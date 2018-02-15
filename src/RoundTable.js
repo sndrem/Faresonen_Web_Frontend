@@ -20,9 +20,8 @@ class RoundTable extends Component {
 
 		axios.get(`/rounds/${tournamentId}/${seasonId}`)
 			.then((data) => {
-				console.log(data.data);
 				this.setState({rounds: data.data.round});
-			});
+			}).catch(err => console.error(err));
 	}
 
 	componentWillReceiveProps(nextProps) {
