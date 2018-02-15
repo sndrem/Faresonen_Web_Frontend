@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react';
-import RoundTable from './Components/RoundTable';
+import RoundTable from '../Components/RoundTable';
 
 class MainView extends Component {
 
