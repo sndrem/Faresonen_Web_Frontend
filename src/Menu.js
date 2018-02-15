@@ -6,6 +6,11 @@ class FaresoneMenu extends Component {
 	state = {}
   	handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
+  	handleSwitchLeagueNameClick = (e) => {
+  		const leagueName = e.target.textContent;
+  		this.props.switchLeagueName(leagueName);
+  	}
+
 	render() {
 		const { activeItem } = this.state
 		return (
@@ -13,13 +18,13 @@ class FaresoneMenu extends Component {
 	            <Menu.Item 
 	              name='eliteserien'
 	              active={activeItem === 'eliteserien'}
-	              onClick={this.handleItemClick}>
+	              onClick={this.handleSwitchLeagueNameClick}>
 	              Eliteserien
 	            </Menu.Item>
 	             <Menu.Item 
 	              name='OBOS-ligaen'
 	              active={activeItem === 'OBOS-ligaen'}
-	              onClick={this.handleItemClick}>
+	              onClick={this.handleSwitchLeagueNameClick}>
 	              OBOS-ligaen
 	            </Menu.Item>
 	          </Menu>

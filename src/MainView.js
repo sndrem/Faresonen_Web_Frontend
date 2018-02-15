@@ -3,12 +3,13 @@ import { Grid } from 'semantic-ui-react';
 import RoundTable from './RoundTable';
 
 class MainView extends Component {
+
 	render() {
 		return (
-				<Grid columns="5" centered>
+				<Grid columns="4" centered>
 					<Grid.Column>
-						<h2>Eliteserien</h2>
-						<RoundTable></RoundTable>
+						<h2>{this.props.leagueName}</h2>
+						<RoundTable tournamentId='230' seasonId='339'></RoundTable>
 					</Grid.Column>
 				</Grid>
 			)
