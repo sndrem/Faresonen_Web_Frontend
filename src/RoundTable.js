@@ -13,10 +13,21 @@ class RoundTable extends Component {
 
 	componentDidMount() {
 		const { tournamentId, seasonId } = this.state;
+		this.getRounds(tournamentId, seasonId);
+	}
+
+	getRounds = (tournamentId, seasonId) => {
+
 		axios.get(`/rounds/${tournamentId}/${seasonId}`)
-				.then((data) => {
-					this.setState({rounds: data.data.round});
-				});
+			.then((data) => {
+				console.log(data.data);
+				this.setState({rounds: data.data.round});
+			});
+	}
+
+	componentWillReceiveProps(nextProps) {
+		const { tournamentId, seasonId } = nextProps;
+		this.getRounds(tournamentId, seasonId);
 	}
 	
 	render() {

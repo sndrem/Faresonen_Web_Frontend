@@ -9,7 +9,7 @@ class MainView extends Component {
 				<Grid columns="4" centered>
 					<Grid.Column>
 						<h2>{this.props.leagueName}</h2>
-						<RoundTable tournamentId='230' seasonId='339'></RoundTable>
+						<RoundTable tournamentId={this.props.tournamentId} seasonId={this.props.seasonId}></RoundTable>
 					</Grid.Column>
 				</Grid>
 			)

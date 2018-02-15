@@ -8,24 +8,38 @@ class FaresoneMenu extends Component {
 
   	handleSwitchLeagueNameClick = (e) => {
   		const leagueName = e.target.textContent;
-  		this.props.switchLeagueName(leagueName);
+  		const tournamentId = e.target.dataset.tournamentid;
+  		const seasonId = e.target.dataset.seasonid;
+  		this.props.switchLeagueName(leagueName, tournamentId, seasonId);
   	}
 
 	render() {
-		const { activeItem } = this.state
+		const { activeItem } = this.state;
 		return (
 			<Menu>
 	            <Menu.Item 
 	              name='eliteserien'
 	              active={activeItem === 'eliteserien'}
-	              onClick={this.handleSwitchLeagueNameClick}>
+	              onClick={this.handleSwitchLeagueNameClick}
+	              data-tournamentid='1'
+	              data-seasonid='340'>
 	              Eliteserien
 	            </Menu.Item>
 	             <Menu.Item 
 	              name='OBOS-ligaen'
 	              active={activeItem === 'OBOS-ligaen'}
-	              onClick={this.handleSwitchLeagueNameClick}>
+	              onClick={this.handleSwitchLeagueNameClick}
+	              data-tournamentid='2'
+	              data-seasonid='340'>
 	              OBOS-ligaen
+	            </Menu.Item>
+	            <Menu.Item 
+	              name='PremierLeague'
+	              active={activeItem === 'PremierLeague'}
+	              onClick={this.handleSwitchLeagueNameClick}
+	              data-tournamentid='230'
+	              data-seasonid='339'>
+	              Premier League
 	            </Menu.Item>
 	          </Menu>
 	        )

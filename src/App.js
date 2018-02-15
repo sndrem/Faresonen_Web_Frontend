@@ -6,11 +6,14 @@ import MainView from './MainView';
 class App extends Component {
 
   state = {
-    leagueName: 'Eliteserien'
+    leagueName: 'Eliteserien',
+    tournamentId: 1,
+    seasonId: 340
+
   }
 
-  switchLeagueName = (leagueName) => {
-    this.setState({ leagueName });
+  switchLeagueName = (leagueName, tournamentId, seasonId) => {
+    this.setState({ leagueName, tournamentId, seasonId});
   }  
 
   render() {
@@ -18,7 +21,7 @@ class App extends Component {
       <Container>
           <h1>Faresonen</h1>
           <Menu switchLeagueName={this.switchLeagueName.bind(this)}></Menu>
-          <MainView leagueName={this.state.leagueName}></MainView>
+          <MainView leagueName={this.state.leagueName} tournamentId={this.state.tournamentId} seasonId={this.state.seasonId}></MainView>
       </Container>
     );
   }
