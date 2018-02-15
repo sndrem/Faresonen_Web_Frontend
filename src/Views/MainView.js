@@ -5,27 +5,15 @@ import Menu from '../Components/Menu';
 
 class MainView extends Component {
 
-	state = {
-	    leagueName: 'Eliteserien',
-	    tournamentId: 1,
-	    seasonId: 340
-	}
-
-
-
-  switchLeagueName = (leagueName, tournamentId, seasonId) => {
-    this.setState({ leagueName, tournamentId, seasonId});
-  }  
-
 
 render() {
 	return (
 		<div>
-       	  	<Menu switchLeagueName={this.switchLeagueName.bind(this)}></Menu>
+       	  	<Menu switchLeagueName={this.props.switchLeagueName}></Menu>
 			<Grid columns="4" centered>
 				<Grid.Column>
-					<h2>{this.state.leagueName}</h2>
-					<RoundTable history={this.props.history} tournamentId={this.state.tournamentId} seasonId={this.state.seasonId}></RoundTable>
+					<h2>{this.props.leagueInfo.leagueName}</h2>
+					<RoundTable history={this.props.history} tournamentId={this.props.leagueInfo.tournamentId} seasonId={this.props.leagueInfo.seasonId}></RoundTable>
 				</Grid.Column>
 			</Grid>
 		</div>

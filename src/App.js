@@ -7,14 +7,24 @@ import RoundView from './Views/RoundView';
 
 class App extends Component {
 
+  state = {
+      leagueName: 'Eliteserien',
+      tournamentId: 1,
+      seasonId: 340
+  }
+
+  switchLeagueName = (leagueName, tournamentId, seasonId) => {
+    this.setState({ leagueName, tournamentId, seasonId});
+  }  
+
   render() {
     return (
       <Container>
         <BrowserRouter>
           <Switch>
-            <Route exact path='/' component={MainView}/>
+            <Route exact path='/' component={(props) => <MainView switchLeagueName={this.switchLeagueName.bind(this)} leagueInfo={this.state} {...props}/>}/>
             {/*<Route exact path='/league/:id' component={LeagueView}/>*/}
-            <Route exact path='/league/:leagueId/round/:roundId' component={RoundView}/>
+            <Route exact path='/league/:leagueId/round/:roundNumber/roundId/:roundId' component={(props) => <RoundView leagueName={this.state.leagueName} switchLeagueName={this.switchLeagueName.bind(this)} {...props}/>}/>
           </Switch>
         </BrowserRouter>
       </Container>
