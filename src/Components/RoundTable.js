@@ -28,6 +28,11 @@ class RoundTable extends Component {
 		const { tournamentId, seasonId } = nextProps;
 		this.getRounds(tournamentId, seasonId);
 	}
+
+	navigateToRound = (e) => {
+		const roundNumber = parseInt(e.target.dataset.round);
+		this.props.history.push(`/league/${this.state.tournamentId}/round/${roundNumber}`);
+	}
 	
 	render() {
 
@@ -37,18 +42,17 @@ class RoundTable extends Component {
 
 			let button = null;
 			if (endDate <= now) {
-				button =	<Button className="round-buttons" fluid color='red'>
+				button = <Button data-round={r.roundNo} onClick={this.navigateToRound.bind(this)} className="round-buttons" fluid color='red'>
 						{r.name}
 					</Button>	
 				} else {
-				button = <Button className="round-buttons" fluid color='blue'>
+				button = <Button data-round={r.roundNo} onClick={this.navigateToRound.bind(this)} className="round-buttons" fluid color='blue'>
 						{r.name}
 					</Button>
 				}
 
 			return 	<List.Item key={r['@uri']} >
-						{ button }
-						
+							{ button }
 					</List.Item>
 		});
 		return (

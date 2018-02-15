@@ -1,27 +1,22 @@
 import React, { Component } from 'react';
 import { Container } from 'semantic-ui-react';
-import Menu from './Components/Menu';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import MainView from './Views/MainView';
+import LeagueView from './Views/LeagueView';
+import RoundView from './Views/RoundView';
 
 class App extends Component {
-
-  state = {
-    leagueName: 'Eliteserien',
-    tournamentId: 1,
-    seasonId: 340
-
-  }
-
-  switchLeagueName = (leagueName, tournamentId, seasonId) => {
-    this.setState({ leagueName, tournamentId, seasonId});
-  }  
 
   render() {
     return (
       <Container>
-          <h1>Faresonen</h1>
-          <Menu switchLeagueName={this.switchLeagueName.bind(this)}></Menu>
-          <MainView leagueName={this.state.leagueName} tournamentId={this.state.tournamentId} seasonId={this.state.seasonId}></MainView>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path='/' component={MainView}/>
+            {/*<Route exact path='/league/:id' component={LeagueView}/>*/}
+            <Route exact path='/league/:leagueId/round/:roundId' component={RoundView}/>
+          </Switch>
+        </BrowserRouter>
       </Container>
     );
   }
