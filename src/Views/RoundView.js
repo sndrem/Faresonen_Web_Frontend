@@ -1,27 +1,36 @@
 import React, { Component } from 'react';
 import Menu from '../Components/Menu';
+import NextMatches from '../Components/NextMatches';
 import axios from 'axios';
 
 class RoundView extends Component {
 
 	state = {
-		leagueName: ''
+		leagueName: '',
+		roundNumber: '',
+		matches: []
 	}
 
 	componentDidMount() {
-		this.setState({leagueName: this.props.leagueName})
-		let { leagueId, roundNumber, roundId} = this.props.match.params;
-		leagueId = parseInt(leagueId);
-		roundId = parseInt(roundId);
-		roundNumber = parseInt(roundNumber);
-		axios.get(`/rounds/${roundId}`).then(data => console.log(data.data));
+		this.setState({
+			leagueName: this.props.leagueName,
+			roundNumber: this.props.match.params.roundNumber
+		})
+		let { roundId} = this.props.match.params;
+		roundId = parseInt(roundId, 10);
+		axios.get(`/rounds/${roundId}`)
+			.then((data) => {
+				this.setState({matches: data.data.match});
+			})
+			.catch(err => console.error(err));
 	}
 
 	render() {
 		return (
 				<div>
 					<Menu switchLeagueName={this.props.switchLeagueName} />
-					<h1>{this.state.leagueName}</h1>
+					<h1>{this.state.leagueName} - Runde {this.state.roundNumber}</h1>
+					<NextMatches matches={this.state.matches} />
 				</div>
 			)
 	}

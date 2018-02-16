@@ -30,8 +30,8 @@ class RoundTable extends Component {
 	}
 
 	navigateToRound = (e) => {
-		const roundNumber = parseInt(e.target.dataset.round);
-		const roundId = parseInt(e.target.dataset.roundid);
+		const roundNumber = parseInt(e.target.dataset.round, 10);
+		const roundId = parseInt(e.target.dataset.roundid, 10);
 		this.props.history.push(`/league/${this.state.tournamentId}/round/${roundNumber}/roundId/${roundId}`);
 	}
 	

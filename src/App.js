@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Container } from 'semantic-ui-react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import MainView from './Views/MainView';
-import LeagueView from './Views/LeagueView';
 import RoundView from './Views/RoundView';
 
 class App extends Component {
@@ -23,7 +22,6 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route exact path='/' component={(props) => <MainView switchLeagueName={this.switchLeagueName.bind(this)} leagueInfo={this.state} {...props}/>}/>
-            {/*<Route exact path='/league/:id' component={LeagueView}/>*/}
             <Route exact path='/league/:leagueId/round/:roundNumber/roundId/:roundId' component={(props) => <RoundView leagueName={this.state.leagueName} switchLeagueName={this.switchLeagueName.bind(this)} {...props}/>}/>
           </Switch>
         </BrowserRouter>
