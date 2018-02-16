@@ -12,6 +12,7 @@ class RoundView extends Component {
 		tournamentId: '',
 		seasonId: '',
 		matches: [],
+		nextMatches: [],
 		table: null
 	}
 
@@ -24,11 +25,17 @@ class RoundView extends Component {
 			table: []
 		})
 
-		let { roundId } = this.props.match.params;
+		let { roundId, nextRoundId } = this.props.match.params;
 		const { tournamentId, seasonId } = this.props;
 		roundId = parseInt(roundId, 10);
-		this.getNextRound(roundId);
+		nextRoundId = parseInt(nextRoundId, 10);
+		console.log(roundId, nextRoundId);
+		this.getRound(roundId, 'matches');
 		this.getTable(tournamentId, seasonId);
+		if(nextRoundId > 0) {
+			this.getRound(nextRoundId, 'nextMatches');	
+		} 
+		
 	}
 
 	getTable(tournamentId, seasonId) {
@@ -40,13 +47,15 @@ class RoundView extends Component {
 			.catch(err => console.error(err));
 	}
 
-	getNextRound(roundId) {
+	getRound(roundId, key) {
 		axios.get(`/rounds/${roundId}`)
 			.then((data) => {
-				this.setState({matches: data.data.match});
+				this.setState({[key]: data.data.match});
 			})
 			.catch(err => console.error(err));
 	}
+
+
 
 	render() {
 		return (
@@ -55,6 +64,7 @@ class RoundView extends Component {
 					<h1>{this.state.leagueName} - {this.state.roundNumber}. Runde</h1>
 					<NextMatches matches={this.state.matches} />
 					<LeagueTable table={this.state.table} />
+					<NextMatches matches={this.state.nextMatches} />
 				</div>
 			)
 	}

@@ -13,7 +13,6 @@ class FaresoneMenu extends Component {
 	}
 
 	render() {
-		const { activeItem } = this.state;
 		let leagueMenu = null;
 		if(this.state.showLeague) {
 			leagueMenu = <LeagueMenuItems switchLeagueName={this.props.switchLeagueName} />;

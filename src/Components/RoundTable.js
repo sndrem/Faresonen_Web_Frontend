@@ -32,21 +32,23 @@ class RoundTable extends Component {
 	navigateToRound = (e) => {
 		const roundNumber = parseInt(e.target.dataset.round, 10);
 		const roundId = parseInt(e.target.dataset.roundid, 10);
-		this.props.history.push(`/league/${this.state.tournamentId}/round/${roundNumber}/roundId/${roundId}`);
+		const nextRoundId = parseInt(e.target.dataset.nextroundid, 10);
+		this.props.history.push(`/league/${this.state.tournamentId}/round/${roundNumber}/roundId/${roundId}/nextRound/${nextRoundId}`);
 	}
 	
 	render() {
 
-		const roundElements = this.state.rounds.map(r => {
+		const roundElements = this.state.rounds.map((r, index, array) => {
 			const endDate = r.enddate;
 			const now = new Date().toISOString();
 			let button = null;
+			const nextRoundId = array[index + 1] ? array[index + 1].id : -1;
 			if (endDate <= now) {
-				button = <Button data-round={r.roundNo} data-roundid={r.id} onClick={this.navigateToRound.bind(this)} className="round-buttons" fluid color='red'>
+				button = <Button data-round={r.roundNo} data-roundid={r.id} data-nextroundid={nextRoundId} onClick={this.navigateToRound.bind(this)} className="round-buttons" fluid color='red'>
 						{r.name}
 					</Button>	
 				} else {
-				button = <Button data-round={r.roundNo} data-roundid={r.id} onClick={this.navigateToRound.bind(this)} className="round-buttons" fluid color='blue'>
+				button = <Button data-round={r.roundNo} data-roundid={r.id} data-nextroundid={nextRoundId} onClick={this.navigateToRound.bind(this)} className="round-buttons" fluid color='blue'>
 						{r.name}
 					</Button>
 				}

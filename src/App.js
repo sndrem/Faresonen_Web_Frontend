@@ -22,7 +22,7 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route exact path='/' component={(props) => <MainView switchLeagueName={this.switchLeagueName.bind(this)} leagueInfo={this.state} {...props}/>}/>
-            <Route exact path='/league/:leagueId/round/:roundNumber/roundId/:roundId' component={(props) => <RoundView tournamentId={this.state.tournamentId} seasonId={this.state.seasonId} leagueName={this.state.leagueName} switchLeagueName={this.switchLeagueName.bind(this)} {...props}/>}/>
+            <Route exact path='/league/:leagueId/round/:roundNumber/roundId/:roundId/nextRound/:nextRoundId' component={(props) => <RoundView tournamentId={this.state.tournamentId} seasonId={this.state.seasonId} leagueName={this.state.leagueName} switchLeagueName={this.switchLeagueName.bind(this)} {...props}/>}/>
           </Switch>
         </BrowserRouter>
       </Container>

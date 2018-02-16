@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { List, Item, Divider } from 'semantic-ui-react';
-import axios from 'axios';
+import { List, Divider } from 'semantic-ui-react';
 import MatchInfo from './MatchInfo';
 
 class NextMatches extends Component {
@@ -15,6 +14,7 @@ class NextMatches extends Component {
 
 
 	componentWillReceiveProps(nextProps) {
+		console.log(nextProps);
 		this.setState({
 			matches: nextProps.matches,
 			loading: false

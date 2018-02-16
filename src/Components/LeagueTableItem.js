@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { Table } from 'semantic-ui-react';
 import axios from 'axios';
 
