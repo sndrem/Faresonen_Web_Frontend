@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Menu from '../Components/Menu';
+import Matches from '../Components/Matches';
 import NextMatches from '../Components/NextMatches';
 import LeagueTable from '../Components/LeagueTable';
 import axios from 'axios';
+import { Grid } from 'semantic-ui-react';
 
 class RoundView extends Component {
 
@@ -29,7 +31,6 @@ class RoundView extends Component {
 		const { tournamentId, seasonId } = this.props;
 		roundId = parseInt(roundId, 10);
 		nextRoundId = parseInt(nextRoundId, 10);
-		console.log(roundId, nextRoundId);
 		this.getRound(roundId, 'matches');
 		this.getTable(tournamentId, seasonId);
 		if(nextRoundId > 0) {
@@ -55,14 +56,12 @@ class RoundView extends Component {
 			.catch(err => console.error(err));
 	}
 
-
-
 	render() {
 		return (
 				<div>
 					<Menu switchLeagueName={this.props.switchLeagueName} />
 					<h1>{this.state.leagueName} - {this.state.roundNumber}. Runde</h1>
-					<NextMatches matches={this.state.matches} />
+					<Matches matches={this.state.matches} />
 					<LeagueTable table={this.state.table} />
 					<NextMatches matches={this.state.nextMatches} />
 				</div>

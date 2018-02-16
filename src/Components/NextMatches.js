@@ -1,48 +1,46 @@
 import React, { Component } from 'react';
-import { List, Divider } from 'semantic-ui-react';
-import MatchInfo from './MatchInfo';
+import { Table } from 'semantic-ui-react';
+import NextMatchInfo from './NextMatchInfo';
 
 class NextMatches extends Component {
-	
 	constructor(props) {
 		super(props);
 		this.state = {
-			matches: [],
-			loading: true
+			matches: props.matches
 		}
 	}
-
 
 	componentWillReceiveProps(nextProps) {
 		console.log(nextProps);
-		this.setState({
-			matches: nextProps.matches,
-			loading: false
-		});
+		this.setState({...nextProps});
 	}
 
-	
-
 	render() {
-		if(this.state.loading) {
-			return <p>Henter kamper</p>
-		}
-		const nextMatches = this.state.matches.map((m) => {
+		const matches = this.state.matches.map(m => {
 			return (
-				<List.Item key={m.id}>
-					<MatchInfo match={m}>
-					</MatchInfo>
-					<Divider />
-				</List.Item>
+					<NextMatchInfo matchInfo={m} />
 				)
 		});
+
 		return (
 			<div>
-				<List>
-					{ nextMatches }
-				</List>
+				<h1>Neste runde</h1>
+				<Table>
+					<Table.Header>
+						<Table.Row>
+							<Table.HeaderCell>Dato</Table.HeaderCell>
+							<Table.HeaderCell>Kl.</Table.HeaderCell>
+							<Table.HeaderCell>Runde</Table.HeaderCell>
+							<Table.HeaderCell>Kamp</Table.HeaderCell>
+							<Table.HeaderCell>Kanal</Table.HeaderCell>
+						</Table.Row>
+					</Table.Header>
+					<Table.Body>
+						{ matches }
+					</Table.Body>
+				</Table>
 			</div>
-			)
+		)
 	}
 }
 

@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { Item } from 'semantic-ui-react';
 import moment from 'moment-with-locales-es6';
 import axios from 'axios';
+import tools from '../Tools/tools';
 moment.locale('no');
+
+console.log(tools);
 
 class MatchInfo extends Component {
 
@@ -16,7 +19,7 @@ class MatchInfo extends Component {
 			startTime: new Date(props.match.starttime).toLocaleTimeString()
 		}
 		
-		axios.all([this.getChannelAndStadium(props.match)])
+		axios.all([tools.getChannelAndStadium(props.match)])
 			.then(axios.spread((data) => {
 			if(data.channel) {
 				data.channel.then(channel => this.setState({ channel: channel.data.name }));	
@@ -37,33 +40,6 @@ class MatchInfo extends Component {
 			
 		}));
 	}
-
-	getChannelAndStadium(match) {
-		return { 
-			channel: this.getChannel(match),
-			stadium: this.getStadium(match) 
-		}
-	}
-
-	getChannel(match) {
-		if(match.channel) {
-			return axios.get(match.channel['@uri']);	
-		} else {
-			return null;
-		}
-		
-	}
-
-	getStadium(match) {
-		if(match.stadium) {
-			return axios.get(match.stadium['@uri'])	
-		} else {
-			return null;
-		}
-		
-	}
-
-
 
 	render() {
 		return (
