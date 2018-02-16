@@ -34,7 +34,6 @@ class NextMatches extends Component {
 			return <p>Henter kamper</p>
 		}
 		const nextMatches = this.state.matches.map((m) => {
-			// console.log('Kampdata', m);
 			return (
 				<List.Item key={m.id}>
 					<MatchInfo match={m}>
@@ -44,9 +43,11 @@ class NextMatches extends Component {
 				)
 		});
 		return (
-			<List>
-				{ nextMatches }
-			</List>
+			<div>
+				<List>
+					{ nextMatches }
+				</List>
+			</div>
 			)
 	}
 }

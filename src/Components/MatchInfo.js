@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Item } from 'semantic-ui-react';
+import moment from 'moment-with-locales-es6';
 import axios from 'axios';
+moment.locale('no');
 
 class MatchInfo extends Component {
 
@@ -10,18 +12,15 @@ class MatchInfo extends Component {
 			matchName: props.match.name,
 			channel: '',
 			stadium: '',
-			starttime: props.match.starttime
+			startDate: new Date(props.match.starttime).toLocaleDateString(),
+			startTime: new Date(props.match.starttime).toLocaleTimeString()
 		}
-
+		
 		axios.all([this.getChannelAndStadium(props.match)])
 			.then(axios.spread((data) => {
 			data.channel.then(channel => this.setState({ channel: channel.data.name }));
 			data.stadium.then(stadium => this.setState({ stadium: stadium.data.name }));
 		}));
-	}
-
-	componentWillReceiveProps(nextProps) {
-		console.log(nextProps, ' yeyeyeye');
 	}
 
 	getChannelAndStadium(match) {
@@ -39,13 +38,14 @@ class MatchInfo extends Component {
 		return axios.get(match.stadium['@uri'])
 	}
 
+
+
 	render() {
-		console.log(this.state);
 		return (
 				<Item>
 					<Item.Content>
-						<Item.Header>{this.state.matchName}, {this.state.channel}</Item.Header>
-						<Item.Meta>{this.state.starttime}</Item.Meta>
+						<Item.Header>{this.state.matchName}, {this.state.stadium}</Item.Header>
+						<Item.Meta>{this.state.startDate} - Avspark kl. {this.state.startTime} på {this.state.channel}</Item.Meta>
 					</Item.Content>
 				</Item>
 			)

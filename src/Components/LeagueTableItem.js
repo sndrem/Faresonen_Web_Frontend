@@ -1,0 +1,31 @@
+import React, { Component } from 'react';
+import { Table } from 'semantic-ui-react';
+
+class LeagueTableItem extends Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			data: props.tableData
+		}
+	}
+
+	render() {
+		return (
+			<Table.Row>
+				<Table.Cell>{this.state.data.position}.</Table.Cell>
+				<Table.Cell>Lagnavn</Table.Cell>
+				<Table.Cell>{this.state.data.matches}</Table.Cell>
+				<Table.Cell>{this.state.data.wins}</Table.Cell>
+				<Table.Cell>{this.state.data.draws}</Table.Cell>
+				<Table.Cell>{this.state.data.losses}</Table.Cell>
+				<Table.Cell>{this.state.data.goalsFor}</Table.Cell>
+				<Table.Cell>{this.state.data.goalsAgainst}</Table.Cell>
+				<Table.Cell>{this.state.data.goalDifference}</Table.Cell>
+				<Table.Cell>{this.state.data.points}</Table.Cell>
+			</Table.Row>
+			)
+	}
+}
+
+export default LeagueTableItem;
