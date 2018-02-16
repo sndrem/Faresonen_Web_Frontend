@@ -13,14 +13,8 @@ class NextMatches extends Component {
 		}
 	}
 
-	
-
-	componentDidMount() {
-
-	}
 
 	componentWillReceiveProps(nextProps) {
-		console.log(nextProps);
 		this.setState({
 			matches: nextProps.matches,
 			loading: false

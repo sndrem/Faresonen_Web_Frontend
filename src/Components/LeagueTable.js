@@ -17,7 +17,6 @@ class LeagueTable extends Component {
 
 	render() {
 		const tableElements = this.state.table.map(t => {
-			console.log(t);
 			return (
 						<LeagueTableItem key={t.id} tableData={t} />
 				)
@@ -25,7 +24,7 @@ class LeagueTable extends Component {
 		return (
 				<div>
 					<h1>Tabell</h1>
-					<Table striped>
+					<Table striped={true} compact={true}>
 						<Table.Header>
 							<Table.Row>
 								<Table.HeaderCell></Table.HeaderCell>

@@ -9,7 +9,7 @@ class MainView extends Component {
 render() {
 	return (
 		<div>
-       	  	<Menu switchLeagueName={this.props.switchLeagueName}></Menu>
+       	  	<Menu switchLeagueName={this.props.switchLeagueName} showLeagues={true}></Menu>
 			<Grid columns="4" centered>
 				<Grid.Column>
 					<h2>{this.props.leagueInfo.leagueName}</h2>

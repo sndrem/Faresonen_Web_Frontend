@@ -18,8 +18,23 @@ class MatchInfo extends Component {
 		
 		axios.all([this.getChannelAndStadium(props.match)])
 			.then(axios.spread((data) => {
-			data.channel.then(channel => this.setState({ channel: channel.data.name }));
-			data.stadium.then(stadium => this.setState({ stadium: stadium.data.name }));
+			if(data.channel) {
+				data.channel.then(channel => this.setState({ channel: channel.data.name }));	
+			} else {
+				this.setState({
+					channel: 'Kanal ikke klar'
+				})
+			}
+
+			if(data.stadium) {
+				data.stadium.then(stadium => this.setState({ stadium: stadium.data.name }));	
+			} else {
+				this.setState({
+					stadium: 'Stadion klar'
+				})
+			}
+			
+			
 		}));
 	}
 
@@ -31,11 +46,21 @@ class MatchInfo extends Component {
 	}
 
 	getChannel(match) {
-		return axios.get(match.channel['@uri']);
+		if(match.channel) {
+			return axios.get(match.channel['@uri']);	
+		} else {
+			return null;
+		}
+		
 	}
 
 	getStadium(match) {
-		return axios.get(match.stadium['@uri'])
+		if(match.stadium) {
+			return axios.get(match.stadium['@uri'])	
+		} else {
+			return null;
+		}
+		
 	}
 
 

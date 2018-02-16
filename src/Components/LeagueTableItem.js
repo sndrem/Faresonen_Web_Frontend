@@ -1,20 +1,31 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { Table } from 'semantic-ui-react';
+import axios from 'axios';
 
 class LeagueTableItem extends Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			data: props.tableData
+			data: props.tableData,
+			teamData: ''
 		}
+
+		this.getTeamData(props.tableData.team['@uri']);
+	}
+
+	getTeamData(url) {
+		axios.get(url).then(data => {
+			this.setState({ teamData: data.data })
+		});
 	}
 
 	render() {
 		return (
 			<Table.Row>
 				<Table.Cell>{this.state.data.position}.</Table.Cell>
-				<Table.Cell>Lagnavn</Table.Cell>
+				<Table.Cell>{this.state.teamData.name}</Table.Cell>
 				<Table.Cell>{this.state.data.matches}</Table.Cell>
 				<Table.Cell>{this.state.data.wins}</Table.Cell>
 				<Table.Cell>{this.state.data.draws}</Table.Cell>

@@ -1,56 +1,34 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
+import LeagueMenuItems from './LeagueMenuItems';
 
 class FaresoneMenu extends Component {
 
-	state = {}
-  	handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-
-  	handleSwitchLeagueNameClick = (e) => {
-  		const leagueName = e.target.textContent;
-  		const tournamentId = e.target.dataset.tournamentid;
-  		const seasonId = e.target.dataset.seasonid;
-  		this.props.switchLeagueName(leagueName, tournamentId, seasonId);
-  	}
+	constructor(props) {
+		super(props);
+		this.state = {
+			showLeague: this.props.showLeagues ? true : false
+		}
+	}
 
 	render() {
 		const { activeItem } = this.state;
+		let leagueMenu = null;
+		if(this.state.showLeague) {
+			leagueMenu = <LeagueMenuItems switchLeagueName={this.props.switchLeagueName} />;
+		}
 		return (
 			<div>
 				<h1>Faresonen</h1>
 				<Menu>
 					<Link to='/'>
 		            	<Menu.Item
-		            	name='home'
-		            	active={activeItem === 'home'}>
+		            	name='home'>
 		            		Hjem
 		            	</Menu.Item>
 		            </Link>
-		            <Menu.Item 
-		              name='eliteserien'
-		              active={activeItem === 'eliteserien'}
-		              onClick={this.handleSwitchLeagueNameClick}
-		              data-tournamentid='1'
-		              data-seasonid='340'>
-		              Eliteserien
-		            </Menu.Item>
-		             <Menu.Item 
-		              name='OBOS-ligaen'
-		              active={activeItem === 'OBOS-ligaen'}
-		              onClick={this.handleSwitchLeagueNameClick}
-		              data-tournamentid='2'
-		              data-seasonid='340'>
-		              OBOS-ligaen
-		            </Menu.Item>
-		            <Menu.Item 
-		              name='PremierLeague'
-		              active={activeItem === 'PremierLeague'}
-		              onClick={this.handleSwitchLeagueNameClick}
-		              data-tournamentid='230'
-		              data-seasonid='339'>
-		              Premier League
-		            </Menu.Item>
+		            { leagueMenu }
 
 		          </Menu>
 	          </div>
