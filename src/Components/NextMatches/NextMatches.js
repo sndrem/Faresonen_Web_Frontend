@@ -6,19 +6,19 @@ class NextMatches extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			matches: props.matches
+			matches: props.matches,
+			nextRoundNumber: props.nextRoundNumber
 		}
 	}
 
 	componentWillReceiveProps(nextProps) {
-		console.log(nextProps);
 		this.setState({...nextProps});
 	}
 
 	render() {
 		const matches = this.state.matches.map(m => {
 			return (
-					<NextMatchInfo matchInfo={m} />
+					<NextMatchInfo key={m.id} matchInfo={m} nextRoundNumber={this.state.nextRoundNumber} />
 				)
 		});
 

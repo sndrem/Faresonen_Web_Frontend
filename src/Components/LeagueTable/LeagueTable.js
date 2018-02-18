@@ -1,18 +1,29 @@
 import React, { Component } from 'react';
 import { Table } from 'semantic-ui-react';
 import LeagueTableItem from './LeagueTableItem';
+import axios from 'axios';
 
 class LeagueTable extends Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			table: []
+			table: [],
+			leagueName: ''
 		}
 	}
 
 	componentWillReceiveProps(nextProps) {
 		this.setState({ table: nextProps.table});
+		if(nextProps.table.length > 1) {
+			this.getLeagueName(nextProps.table[0].tournament['@uri']);	
+		}
+	}
+
+	getLeagueName(tournamentUri) {
+		axios.get(tournamentUri).then((data) => {
+			this.setState({ leagueName: data.data.name});
+		});
 	}
 
 	render() {
@@ -23,7 +34,7 @@ class LeagueTable extends Component {
 		});
 		return (
 				<div>
-					<h1>Tabell</h1>
+					<h1>Tabell: {this.state.leagueName}</h1>
 					<Table striped={true} compact={true}>
 						<Table.Header>
 							<Table.Row>

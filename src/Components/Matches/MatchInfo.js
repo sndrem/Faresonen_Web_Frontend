@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import { Item } from 'semantic-ui-react';
 import moment from 'moment-with-locales-es6';
 import axios from 'axios';
-import tools from '../Tools/tools';
+import tools from '../../Tools/tools';
 moment.locale('no');
-
-console.log(tools);
 
 class MatchInfo extends Component {
 
@@ -15,8 +13,8 @@ class MatchInfo extends Component {
 			matchName: props.match.name,
 			channel: '',
 			stadium: '',
-			startDate: new Date(props.match.starttime).toLocaleDateString(),
-			startTime: new Date(props.match.starttime).toLocaleTimeString()
+			startDate: tools.getDate(props.match.starttime),
+			startTime: tools.getTime(props.match.starttime)
 		}
 		
 		axios.all([tools.getChannelAndStadium(props.match)])

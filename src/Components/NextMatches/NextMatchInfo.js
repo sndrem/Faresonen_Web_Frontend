@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Table } from 'semantic-ui-react';
-import tools from '../Tools/tools';
+import tools from '../../Tools/tools';
 import axios from 'axios';
 
 class NextMatchInfo extends Component {
@@ -9,6 +9,7 @@ class NextMatchInfo extends Component {
 		super(props);
 		this.state = {
 			matchInfo: props.matchInfo,
+			nextRoundNumber: parseInt(props.nextRoundNumber, 10) + 1,
 			stadium: '',
 			channel: '',
 			date: tools.getDate(props.matchInfo.starttime),
@@ -41,7 +42,7 @@ class NextMatchInfo extends Component {
 			<Table.Row>
 				<Table.Cell>{this.state.date}</Table.Cell>
 				<Table.Cell>{this.state.time}</Table.Cell>
-				<Table.Cell>RUNDE XXX</Table.Cell>
+				<Table.Cell>{this.state.nextRoundNumber}. runde</Table.Cell>
 				<Table.Cell>{this.state.matchInfo.name}</Table.Cell>
 				<Table.Cell>{this.state.channel}</Table.Cell>
 			</Table.Row>

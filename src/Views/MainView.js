@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react';
-import RoundTable from '../Components/RoundTable';
-import Menu from '../Components/Menu';
+import RoundList from '../Components/RoundList/RoundList';
+import Menu from '../Components/Menu/Menu';
 
 class MainView extends Component {
 
@@ -13,7 +13,7 @@ render() {
 			<Grid columns="4" centered>
 				<Grid.Column>
 					<h2>{this.props.leagueInfo.leagueName}</h2>
-					<RoundTable history={this.props.history} tournamentId={this.props.leagueInfo.tournamentId} seasonId={this.props.leagueInfo.seasonId}></RoundTable>
+					<RoundList history={this.props.history} tournamentId={this.props.leagueInfo.tournamentId} seasonId={this.props.leagueInfo.seasonId}></RoundList>
 				</Grid.Column>
 			</Grid>
 		</div>

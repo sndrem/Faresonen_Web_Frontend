@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { List, Button } from 'semantic-ui-react';
-import './RoundTable.css';
+import './RoundList.css';
 
-class RoundTable extends Component {
+class RoundList extends Component {
 
 	state = {
 		tournamentId: this.props.tournamentId,
@@ -65,4 +65,4 @@ class RoundTable extends Component {
 	}
 }
 
-export default RoundTable;
+export default RoundList;

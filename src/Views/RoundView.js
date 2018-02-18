@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Menu from '../Components/Menu';
-import Matches from '../Components/Matches';
-import NextMatches from '../Components/NextMatches';
-import LeagueTable from '../Components/LeagueTable';
+import Menu from '../Components/Menu/Menu';
+import Matches from '../Components/Matches/Matches';
+import NextMatches from '../Components/NextMatches/NextMatches';
+import FinishedMatches from '../Components/Matches/FinishedMatches';
+import LeagueTable from '../Components/LeagueTable/LeagueTable';
 import axios from 'axios';
-import { Grid } from 'semantic-ui-react';
 
 class RoundView extends Component {
 
@@ -15,6 +15,7 @@ class RoundView extends Component {
 		seasonId: '',
 		matches: [],
 		nextMatches: [],
+		finishedMatches: [],
 		table: null
 	}
 
@@ -40,7 +41,6 @@ class RoundView extends Component {
 	}
 
 	getTable(tournamentId, seasonId) {
-		console.log('Getting table for t-id: ', tournamentId);
 		axios.get(`/table/${tournamentId}/${seasonId}`)
 			.then(data => {
 				this.setState({ table: data.data.item });
@@ -51,19 +51,39 @@ class RoundView extends Component {
 	getRound(roundId, key) {
 		axios.get(`/rounds/${roundId}`)
 			.then((data) => {
-				this.setState({[key]: data.data.match});
+				// console.log(data.data.match);
+				data.data.match = data.data.match.sort((a, b) => {
+					return a.starttime >= b.starttime;
+				});
+
+				data.data.finishedMatches = this.filterFinishedMatches(data.data.match);
+				this.setState({
+					[key]: data.data.match,
+					finishedMatches: data.data.finishedMatches
+				});
 			})
 			.catch(err => console.error(err));
 	}
 
+	filterFinishedMatches(matches) {
+		return matches.filter(m => !!m.confirmed === true).sort((a, b) => a.starttime >= b.starttime);
+	}
+
 	render() {
+
+		let finishedMatches = null;
+		if(this.state.finishedMatches.length > 0) {
+			finishedMatches = <FinishedMatches matches={this.state.finishedMatches} roundNumber={this.state.roundNumber} />
+		} 
+
 		return (
 				<div>
 					<Menu switchLeagueName={this.props.switchLeagueName} />
 					<h1>{this.state.leagueName} - {this.state.roundNumber}. Runde</h1>
 					<Matches matches={this.state.matches} />
+					{ finishedMatches }
 					<LeagueTable table={this.state.table} />
-					<NextMatches matches={this.state.nextMatches} />
+					<NextMatches matches={this.state.nextMatches} nextRoundNumber={this.state.roundNumber} />
 				</div>
 			)
 	}
