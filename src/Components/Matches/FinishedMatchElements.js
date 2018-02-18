@@ -119,8 +119,8 @@ class FinishedMatchElements extends Component {
 				<Item>
 					<Item.Content>
 						<Item.Header>{ home } { this.props.matchInfo.goalsTeamAEndtime } - { this.props.matchInfo.goalsTeamBEndtime } { away }</Item.Header>
-						<Item.Description>{ home }: { homeScorers }</Item.Description>
-						<Item.Description>{ away }: { awayScorers }</Item.Description>
+						<Item.Description><b>{ home }</b>: { homeScorers }</Item.Description>
+						<Item.Description><b>{ away }</b>: { awayScorers }</Item.Description>
 					</Item.Content>
 				</Item>
 				<Divider /> 
