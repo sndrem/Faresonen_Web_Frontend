@@ -12,32 +12,32 @@ class RoundView extends Component {
 	constructor(props) {
 		super(props);
 		this.state ={
-			leagueName: '',
+			leagueName: props.match.params.leagueName,
 			roundNumber: props.match.params.roundNumber,
 			tournamentId: props.match.params.leagueId,
-			seasonId: '',
+			seasonId: props.match.params.seasonId,
 			matches: [],
 			nextMatches: [],
 			finishedMatches: [],
-			table: null
+			table: []
 		}
 	}
 
 
 	componentDidMount() {
-		this.setState({
-			leagueName: this.props.leagueName,
-			roundNumber: this.props.match.params.roundNumber,
-			tournamentId: this.props.match.params.leagueId,
-			seasonId: this.props.seasonId,
-			table: []
-		})
+		// this.setState({
+		// 	leagueName: this.props.leagueName,
+		// 	roundNumber: this.props.match.params.roundNumber,
+		// 	tournamentId: this.props.match.params.leagueId,
+		// 	seasonId: this.props.seasonId,
+		// 	table: []
+		// })
 
 		let { roundId, nextRoundId } = this.props.match.params;
 		roundId = parseInt(roundId, 10);
 		nextRoundId = parseInt(nextRoundId, 10);
 		this.getRound(roundId, 'matches');
-		this.getTable(this.props.match.params.leagueId, this.props.seasonId);
+		this.getTable(this.props.match.params.leagueId, this.props.match.params.seasonId);
 		if(nextRoundId > 0) {
 			this.getRound(nextRoundId, 'nextMatches');	
 		} 

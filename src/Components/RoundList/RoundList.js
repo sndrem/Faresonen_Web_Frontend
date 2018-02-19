@@ -8,6 +8,7 @@ class RoundList extends Component {
 	state = {
 		tournamentId: this.props.tournamentId,
 		seasonId: this.props.seasonId,
+		leagueName: this.props.leagueName,
 		rounds: []
 	};
 
@@ -33,7 +34,7 @@ class RoundList extends Component {
 		const roundNumber = parseInt(e.target.dataset.round, 10);
 		const roundId = parseInt(e.target.dataset.roundid, 10);
 		const nextRoundId = parseInt(e.target.dataset.nextroundid, 10);
-		this.props.history.push(`/league/${this.state.tournamentId}/round/${roundNumber}/roundId/${roundId}/nextRound/${nextRoundId}`);
+		this.props.history.push(`/league/${this.state.tournamentId}/${this.state.seasonId}/${this.state.leagueName}/round/${roundNumber}/roundId/${roundId}/nextRound/${nextRoundId}`);
 	}
 	
 	render() {
