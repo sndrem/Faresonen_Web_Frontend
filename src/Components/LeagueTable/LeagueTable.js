@@ -15,7 +15,7 @@ class LeagueTable extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		this.setState({ table: nextProps.table});
-		if(nextProps.table.length > 1) {
+		if(nextProps.table && nextProps.table.length > 1) {
 			this.getLeagueName(nextProps.table[0].tournament['@uri']);	
 		}
 	}

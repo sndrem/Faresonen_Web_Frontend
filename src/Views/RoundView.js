@@ -4,45 +4,54 @@ import Matches from '../Components/Matches/Matches';
 import NextMatches from '../Components/NextMatches/NextMatches';
 import FinishedMatches from '../Components/Matches/FinishedMatches';
 import LeagueTable from '../Components/LeagueTable/LeagueTable';
+import Topscorers from '../Components/Topscorers/Topscorers';
 import axios from 'axios';
 
 class RoundView extends Component {
 
-	state = {
-		leagueName: '',
-		roundNumber: '',
-		tournamentId: '',
-		seasonId: '',
-		matches: [],
-		nextMatches: [],
-		finishedMatches: [],
-		table: null
+	constructor(props) {
+		super(props);
+		this.state ={
+			leagueName: '',
+			roundNumber: props.match.params.roundNumber,
+			tournamentId: props.match.params.leagueId,
+			seasonId: '',
+			matches: [],
+			nextMatches: [],
+			finishedMatches: [],
+			table: null
+		}
 	}
+
 
 	componentDidMount() {
 		this.setState({
 			leagueName: this.props.leagueName,
 			roundNumber: this.props.match.params.roundNumber,
-			tournamentId: this.props.tournamentId,
+			tournamentId: this.props.match.params.leagueId,
 			seasonId: this.props.seasonId,
 			table: []
 		})
 
 		let { roundId, nextRoundId } = this.props.match.params;
-		const { tournamentId, seasonId } = this.props;
 		roundId = parseInt(roundId, 10);
 		nextRoundId = parseInt(nextRoundId, 10);
 		this.getRound(roundId, 'matches');
-		this.getTable(tournamentId, seasonId);
+		this.getTable(this.props.match.params.leagueId, this.props.seasonId);
 		if(nextRoundId > 0) {
 			this.getRound(nextRoundId, 'nextMatches');	
 		} 
-		
+	}
+
+	componentWillReceiveUpdate(nextProps, nextState) {
+		console.log(nextProps);
 	}
 
 	getTable(tournamentId, seasonId) {
+		console.log(tournamentId, seasonId);
 		axios.get(`/table/${tournamentId}/${seasonId}`)
 			.then(data => {
+				console.log(data);
 				this.setState({ table: data.data.item });
 			})
 			.catch(err => console.error(err));
@@ -51,7 +60,6 @@ class RoundView extends Component {
 	getRound(roundId, key) {
 		axios.get(`/rounds/${roundId}`)
 			.then((data) => {
-				// console.log(data.data.match);
 				data.data.match = data.data.match.sort((a, b) => {
 					return a.starttime >= b.starttime;
 				});
@@ -84,6 +92,7 @@ class RoundView extends Component {
 					{ finishedMatches }
 					<LeagueTable table={this.state.table} />
 					<NextMatches matches={this.state.nextMatches} nextRoundNumber={this.state.roundNumber} />
+					<Topscorers tournamentId={this.props.tournamentId} />
 				</div>
 			)
 	}
