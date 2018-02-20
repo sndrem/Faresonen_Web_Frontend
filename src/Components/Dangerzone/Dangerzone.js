@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Segment, Dimmer, Loader, List } from 'semantic-ui-react';
+import { Grid, Segment, Dimmer, Loader, Table, Message } from 'semantic-ui-react';
 import axios from 'axios';
 
 class Dangerzone extends Component {
@@ -15,6 +15,13 @@ class Dangerzone extends Component {
 
 	getPlayersWithYellowCards(tournamentId) {
 		axios.get(`/statistics/yellowcards/${tournamentId}`).then((data) => {
+			if(data.data.data.length <= 0) {
+				this.setState({
+					players: [],
+					loading: false
+				})
+				return;
+			}
 			let playersGrouped = this.groupPlayers(data.data.data);
 			playersGrouped = this.filterPlayers(playersGrouped);
 			playersGrouped = this.sortTeams(playersGrouped);
@@ -60,22 +67,37 @@ class Dangerzone extends Component {
 
 	render() {
 		console.log(this.state.players);
+		if(this.state.players.length <= 0 && this.state.loading === false) {
+			return (
+				<Message negative={true}>
+					<Message.Header>Faresonen ikke tilgjengelig</Message.Header>
+					<p>Faresonen er ikke tilgjengelig for denne ligaen. Det kan være fordi ligaen ikke har startet, 
+					gule kort ikke er registrert på Altomfotball eller serveren er nede. Prøv igjen senere.</p>
+				</Message>
+			)
+		}
+		
 		const players = this.state.players.map(team => {
 			return Object.keys(team).map(key => {
 				return (
 					<Grid.Column key={key}>
-						<List>
-							<List.Item>
-								<List.Header>{team[key].name}</List.Header>
-							</List.Item>
+						<Table striped className='min-height' compact collapsing>
+							<Table.Header>
+								<Table.Row textAlign='center'>
+									<Table.HeaderCell colspan='2'>{team[key].name}</Table.HeaderCell>
+								</Table.Row>
+							</Table.Header>
+							<Table.Body>
 							{ team[key].players.map(player => {
 								return (
-									<List.Item key={player.name}>
-										{ player.name } - { player.value1 }
-									</List.Item>
+									<Table.Row key={player.name}>
+										<Table.Cell>{ player.name }</Table.Cell>
+										<Table.Cell>{ player.value1 }</Table.Cell>
+									</Table.Row>
 								)
 							}) }
-						</List>
+							</Table.Body>
+						</Table>
 					</Grid.Column>
 				)
 			});
@@ -85,7 +107,7 @@ class Dangerzone extends Component {
 				<Dimmer active={this.state.loading}>
 					<Loader>Henter spillere i faresonen</Loader>
 				</Dimmer>
-
+				<h1>Faresonen i {this.props.leagueName}</h1>
 				<Grid columns={4}>
 					{ players }
 				</Grid>

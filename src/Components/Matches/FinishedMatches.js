@@ -27,7 +27,7 @@ class FinishedMatches extends Component {
 				<Dimmer active={this.state.loading}>
 					<Loader>Henter kamper som er ferdig</Loader>
 				</Dimmer>
-				<h3>Ferdig spilt i runde {this.props.roundNumber}</h3>
+				<h1>Ferdig spilt i runde {this.props.roundNumber}</h1>
 				{ finishedMatchElements }
 			</Segment>
 		);

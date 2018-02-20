@@ -1,5 +1,5 @@
 @media print {
-	.no-print {
+	.no-print, .negative.message {
 		display: none !important;
 	}
 

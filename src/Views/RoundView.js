@@ -22,7 +22,8 @@ class RoundView extends Component {
 			matches: [],
 			nextMatches: [],
 			finishedMatches: [],
-			table: []
+			table: [],
+			loading: true
 		}
 	}
 
@@ -55,7 +56,8 @@ class RoundView extends Component {
 				data.data.finishedMatches = this.filterFinishedMatches(data.data.match);
 				this.setState({
 					[key]: data.data.match,
-					finishedMatches: data.data.finishedMatches
+					finishedMatches: data.data.finishedMatches,
+					loading: false
 				});
 			})
 			.catch(err => console.error(err));
@@ -81,7 +83,7 @@ class RoundView extends Component {
 					<LeagueTable className='print' leagueName={this.state.leagueName} table={this.state.table} />
 					<NextMatches className='print' matches={this.state.nextMatches} nextRoundNumber={this.state.roundNumber} />
 					<Topscorers className='print' tournamentId={this.state.tournamentId} />
-					<Dangerzone classNake='print' tournamentId={this.state.tournamentId} />
+					<Dangerzone className='print' leagueName={this.state.leagueName} tournamentId={this.state.tournamentId} />
 				</div>
 			)
 	}
