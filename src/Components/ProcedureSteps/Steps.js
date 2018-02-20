@@ -5,11 +5,19 @@ class Steps extends Component {
 	render() {
 		return (
 			<Step.Group>
-			    <Step active>
+			    <Step completed>
 			      <Icon name='checkmark' />
 			      <Step.Content>
-			        <Step.Title>Velg serie</Step.Title>
-			        <Step.Description>Velg ønsket serie</Step.Description>
+			        <Step.Title>Liga valgt</Step.Title>
+			        <Step.Description>Du har valgt {this.props.league}</Step.Description>
+			      </Step.Content>
+			    </Step>
+
+			    <Step active>
+			      <Icon name='numbered list' />
+			      <Step.Content>
+			        <Step.Title>Velg runde</Step.Title>
+			        <Step.Description>Hvilken runde gjelder lefsen for?</Step.Description>
 			      </Step.Content>
 			    </Step>
 
@@ -25,7 +33,7 @@ class Steps extends Component {
 			      <Icon name='cocktail' />
 			      <Step.Content>
 			        <Step.Title>Bra jobbet</Step.Title>
-			        <Step.Description>Ta deg en pause, det har du fortjent!</Step.Description>
+			        <Step.Description>Ta deg en velfortjent pause!</Step.Description>
 			      </Step.Content>
 			    </Step>
 			</Step.Group>

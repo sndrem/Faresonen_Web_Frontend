@@ -8,12 +8,20 @@ class RoundSteps extends Component {
 			    <Step completed>
 			      <Icon name='checkmark' />
 			      <Step.Content>
-			        <Step.Title>Velg serie</Step.Title>
-			        <Step.Description>Du har valgt { this.props.leagueName }</Step.Description>
+			        <Step.Title>Liga valgt</Step.Title>
+			        <Step.Description>Du har valgt {this.props.league}</Step.Description>
 			      </Step.Content>
 			    </Step>
 
-			    <Step active>
+			    <Step completed>
+			      <Icon name='checkmark' />
+			      <Step.Content>
+			        <Step.Title>Runde valgt</Step.Title>
+			        <Step.Description>Du har valgt runde {this.props.round}</Step.Description>
+			      </Step.Content>
+			    </Step>
+
+			    <Step>
 			      <Icon name='print' />
 			      <Step.Content>
 			        <Step.Title>Print</Step.Title>
@@ -25,7 +33,7 @@ class RoundSteps extends Component {
 			      <Icon name='cocktail' />
 			      <Step.Content>
 			        <Step.Title>Bra jobbet</Step.Title>
-			        <Step.Description>Ta deg en pause, det har du fortjent!</Step.Description>
+			        <Step.Description>Ta deg en velfortjent pause!</Step.Description>
 			      </Step.Content>
 			    </Step>
 			</Step.Group>

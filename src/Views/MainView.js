@@ -14,7 +14,8 @@ class MainView extends Component {
 render() {
 	return (
 		<div>
-       	  	<Steps />
+			<Menu />
+       	  	<Steps league={this.props.leagueInfo.leagueName} />
 			<Grid columns="4" centered>
 				<Grid.Column>
 					<h2>{this.props.leagueInfo.leagueName}</h2>

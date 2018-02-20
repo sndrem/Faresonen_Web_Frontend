@@ -73,7 +73,7 @@ class RoundView extends Component {
 		return (
 				<div>
 					<Menu switchLeagueName={this.props.switchLeagueName} />
-					<RoundSteps leagueName={this.state.leagueName} />
+					<RoundSteps round={this.state.roundNumber} league={this.state.leagueName} />
 					<h1>{this.state.leagueName} - {this.state.roundNumber}. Runde</h1>
 					<Matches matches={this.state.matches} />
 					{ finishedMatches }
