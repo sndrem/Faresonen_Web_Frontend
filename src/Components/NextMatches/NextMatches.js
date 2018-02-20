@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table } from 'semantic-ui-react';
+import { Table, Segment, Dimmer, Loader } from 'semantic-ui-react';
 import NextMatchInfo from './NextMatchInfo';
 
 class NextMatches extends Component {
@@ -7,12 +7,16 @@ class NextMatches extends Component {
 		super(props);
 		this.state = {
 			matches: props.matches,
-			nextRoundNumber: props.nextRoundNumber
+			nextRoundNumber: props.nextRoundNumber,
+			loading: true
 		}
 	}
 
 	componentWillReceiveProps(nextProps) {
-		this.setState({...nextProps});
+		this.setState({
+			...nextProps,
+			loading: false
+		});
 	}
 
 	render() {
@@ -23,7 +27,10 @@ class NextMatches extends Component {
 		});
 
 		return (
-			<div>
+			<Segment>
+				<Dimmer active={this.state.loading}>
+					<Loader>Henter neste runde</Loader>
+				</Dimmer>
 				<h1>Neste runde</h1>
 				<Table>
 					<Table.Header>
@@ -39,7 +46,7 @@ class NextMatches extends Component {
 						{ matches }
 					</Table.Body>
 				</Table>
-			</div>
+			</Segment>
 		)
 	}
 }

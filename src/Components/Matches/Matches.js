@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { List, Divider } from 'semantic-ui-react';
+import { List, Divider, Segment, Dimmer, Loader } from 'semantic-ui-react';
 import MatchInfo from './MatchInfo';
 
 class Matches extends Component {
@@ -20,9 +20,6 @@ class Matches extends Component {
 	}
 
 	render() {
-		if(this.state.loading) {
-			return <p>Henter kamper</p>
-		}
 		const nextMatches = this.state.matches.map((m) => {
 			return (
 				<List.Item key={m.id}>
@@ -33,11 +30,14 @@ class Matches extends Component {
 				)
 		});
 		return (
-			<div>
+			<Segment padded={'very'}>
+				<Dimmer size={'medium'} active={this.state.loading}>
+					<Loader>Henter kamper</Loader>
+				</Dimmer>
 				<List>
-					{ nextMatches }
-				</List>
-			</div>
+						{ nextMatches }
+					</List>
+			</Segment>
 			)
 	}
 }

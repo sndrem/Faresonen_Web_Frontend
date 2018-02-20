@@ -25,14 +25,6 @@ class RoundView extends Component {
 
 
 	componentDidMount() {
-		// this.setState({
-		// 	leagueName: this.props.leagueName,
-		// 	roundNumber: this.props.match.params.roundNumber,
-		// 	tournamentId: this.props.match.params.leagueId,
-		// 	seasonId: this.props.seasonId,
-		// 	table: []
-		// })
-
 		let { roundId, nextRoundId } = this.props.match.params;
 		roundId = parseInt(roundId, 10);
 		nextRoundId = parseInt(nextRoundId, 10);
@@ -43,15 +35,9 @@ class RoundView extends Component {
 		} 
 	}
 
-	componentWillReceiveUpdate(nextProps, nextState) {
-		console.log(nextProps);
-	}
-
 	getTable(tournamentId, seasonId) {
-		console.log(tournamentId, seasonId);
 		axios.get(`/table/${tournamentId}/${seasonId}`)
 			.then(data => {
-				console.log(data);
 				this.setState({ table: data.data.item });
 			})
 			.catch(err => console.error(err));
@@ -92,7 +78,7 @@ class RoundView extends Component {
 					{ finishedMatches }
 					<LeagueTable table={this.state.table} />
 					<NextMatches matches={this.state.nextMatches} nextRoundNumber={this.state.roundNumber} />
-					<Topscorers tournamentId={this.props.tournamentId} />
+					<Topscorers tournamentId={this.state.tournamentId} />
 				</div>
 			)
 	}

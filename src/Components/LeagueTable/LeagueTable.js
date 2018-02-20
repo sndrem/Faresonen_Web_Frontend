@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table } from 'semantic-ui-react';
+import { Table, Segment, Dimmer, Loader } from 'semantic-ui-react';
 import LeagueTableItem from './LeagueTableItem';
 import axios from 'axios';
 
@@ -9,7 +9,8 @@ class LeagueTable extends Component {
 		super(props);
 		this.state = {
 			table: [],
-			leagueName: ''
+			leagueName: '',
+			loading: true
 		}
 	}
 
@@ -22,7 +23,10 @@ class LeagueTable extends Component {
 
 	getLeagueName(tournamentUri) {
 		axios.get(tournamentUri).then((data) => {
-			this.setState({ leagueName: data.data.name});
+			this.setState({
+				leagueName: data.data.name,
+				loading: false
+			});
 		});
 	}
 
@@ -33,7 +37,10 @@ class LeagueTable extends Component {
 				)
 		});
 		return (
-				<div>
+				<Segment>
+				<Dimmer active={this.state.loading}>
+					<Loader>Henter tabell for {this.state.leagueName}</Loader>
+				</Dimmer>
 					<h1>Tabell: {this.state.leagueName}</h1>
 					<Table striped={true} compact={true}>
 						<Table.Header>
@@ -54,7 +61,7 @@ class LeagueTable extends Component {
 							{ tableElements }
 						</Table.Body>
 					</Table>
-				</div>
+				</Segment>
 			)
 	}
 }

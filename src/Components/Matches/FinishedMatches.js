@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FinishedMatchElements from './FinishedMatchElements';
+import { Segment, Dimmer, Loader } from 'semantic-ui-react';
 
 class FinishedMatches extends Component {
 	constructor(props) {
@@ -22,10 +23,13 @@ class FinishedMatches extends Component {
 		});
 		
 		return (
-			<div>
+			<Segment>
+				<Dimmer active={this.state.loading}>
+					<Loader>Henter kamper som er ferdig</Loader>
+				</Dimmer>
 				<h3>Ferdig spilt i runde {this.props.roundNumber}</h3>
 				{ finishedMatchElements }
-			</div>
+			</Segment>
 		);
 	}
 }
