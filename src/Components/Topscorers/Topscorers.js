@@ -14,9 +14,7 @@ class Topscorers extends Component {
 
 	componentDidMount() {
 		const { tournamentId } = this.props;
-		console.log(tournamentId);
 		axios.get(`/statistics/topscorers/${tournamentId}`).then((data) => {
-			console.log(data.data);
 			this.setState({
 				topscorers: data.data.data.slice(0, 10),
 				loading: false
@@ -61,7 +59,7 @@ class Topscorers extends Component {
 					<Loader>Henter toppscorere</Loader>
 				</Dimmer>
 				<h1>Toppscorere</h1>
-				<Table celled>
+				<Table striped>
 					<Table.Header>
 						<Table.Row>
 							<Table.HeaderCell>Posisjon</Table.HeaderCell>

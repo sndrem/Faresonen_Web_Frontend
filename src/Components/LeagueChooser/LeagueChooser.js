@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import { Grid, Card } from 'semantic-ui-react';
 
 class LeagueChooser extends Component {
-	constructor(props) {
-		super(props);
-
-	}
 
 	handleClick(leagueData) {
 		const { name, tournamentId, seasonId } = leagueData;

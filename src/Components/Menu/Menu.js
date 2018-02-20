@@ -18,7 +18,7 @@ class FaresoneMenu extends Component {
 			leagueMenu = <LeagueMenuItems switchLeagueName={this.props.switchLeagueName} />;
 		}
 		return (
-			<div>
+			<div className='no-print'>
 				<h1>Faresonen</h1>
 				<Menu>
 					<Link to='/'>

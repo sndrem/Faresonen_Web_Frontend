@@ -4,7 +4,7 @@ import { Icon, Step } from 'semantic-ui-react';
 class RoundSteps extends Component {
 	render() {
 		return (
-			<Step.Group>
+			<Step.Group className='no-print'>
 			    <Step completed>
 			      <Icon name='checkmark' />
 			      <Step.Content>

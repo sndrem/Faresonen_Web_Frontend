@@ -12,6 +12,7 @@ class Matches extends Component {
 		}
 	}
 
+
 	componentWillReceiveProps(nextProps) {
 		this.setState({
 			matches: nextProps.matches,
@@ -30,13 +31,14 @@ class Matches extends Component {
 				)
 		});
 		return (
-			<Segment padded={'very'}>
+			<Segment className='print' padded={'very'}>
 				<Dimmer size={'medium'} active={this.state.loading}>
 					<Loader>Henter kamper</Loader>
 				</Dimmer>
+				<h1>{this.props.leagueName} - {this.props.roundNumber}. Runde</h1>
 				<List>
-						{ nextMatches }
-					</List>
+					{ nextMatches }
+				</List>
 			</Segment>
 			)
 	}

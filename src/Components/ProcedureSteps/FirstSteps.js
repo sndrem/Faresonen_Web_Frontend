@@ -13,7 +13,7 @@ class FirstSteps extends Component {
 			      </Step.Content>
 			    </Step>
 
-			    <Step>
+			    <Step disabled>
 			      <Icon name='numbered list' />
 			      <Step.Content>
 			        <Step.Title>Velg runde</Step.Title>
@@ -21,7 +21,7 @@ class FirstSteps extends Component {
 			      </Step.Content>
 			    </Step>
 
-			    <Step>
+			    <Step disabled>
 			      <Icon name='print' />
 			      <Step.Content>
 			        <Step.Title>Print</Step.Title>
@@ -29,7 +29,7 @@ class FirstSteps extends Component {
 			      </Step.Content>
 			    </Step>
 
-			    <Step>
+			    <Step disabled>
 			      <Icon name='cocktail' />
 			      <Step.Content>
 			        <Step.Title>Bra jobbet</Step.Title>

@@ -6,7 +6,9 @@ import FinishedMatches from '../Components/Matches/FinishedMatches';
 import LeagueTable from '../Components/LeagueTable/LeagueTable';
 import Topscorers from '../Components/Topscorers/Topscorers';
 import RoundSteps from '../Components/ProcedureSteps/RoundSteps';
+import Dangerzone from '../Components/Dangerzone/Dangerzone';
 import axios from 'axios';
+import '../print.css';
 
 class RoundView extends Component {
 
@@ -67,19 +69,19 @@ class RoundView extends Component {
 
 		let finishedMatches = null;
 		if(this.state.finishedMatches.length > 0) {
-			finishedMatches = <FinishedMatches matches={this.state.finishedMatches} roundNumber={this.state.roundNumber} />
+			finishedMatches = <FinishedMatches className='print' matches={this.state.finishedMatches} roundNumber={this.state.roundNumber} />
 		} 
 
 		return (
 				<div>
 					<Menu switchLeagueName={this.props.switchLeagueName} />
-					<RoundSteps round={this.state.roundNumber} league={this.state.leagueName} />
-					<h1>{this.state.leagueName} - {this.state.roundNumber}. Runde</h1>
-					<Matches matches={this.state.matches} />
+					<RoundSteps className='no-print' round={this.state.roundNumber} league={this.state.leagueName} />
+					<Matches className='print' leagueName={this.state.leagueName} roundNumber={this.state.roundNumber} matches={this.state.matches} />
 					{ finishedMatches }
-					<LeagueTable table={this.state.table} />
-					<NextMatches matches={this.state.nextMatches} nextRoundNumber={this.state.roundNumber} />
-					<Topscorers tournamentId={this.state.tournamentId} />
+					<LeagueTable className='print' leagueName={this.state.leagueName} table={this.state.table} />
+					<NextMatches className='print' matches={this.state.nextMatches} nextRoundNumber={this.state.roundNumber} />
+					<Topscorers className='print' tournamentId={this.state.tournamentId} />
+					<Dangerzone classNake='print' tournamentId={this.state.tournamentId} />
 				</div>
 			)
 	}

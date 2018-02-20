@@ -4,7 +4,7 @@ import { Icon, Step } from 'semantic-ui-react';
 class Steps extends Component {
 	render() {
 		return (
-			<Step.Group>
+			<Step.Group className='no-print'>
 			    <Step completed>
 			      <Icon name='checkmark' />
 			      <Step.Content>
@@ -21,7 +21,7 @@ class Steps extends Component {
 			      </Step.Content>
 			    </Step>
 
-			    <Step>
+			    <Step disabled>
 			      <Icon name='print' />
 			      <Step.Content>
 			        <Step.Title>Print</Step.Title>
@@ -29,7 +29,7 @@ class Steps extends Component {
 			      </Step.Content>
 			    </Step>
 
-			    <Step>
+			    <Step disabled>
 			      <Icon name='cocktail' />
 			      <Step.Content>
 			        <Step.Title>Bra jobbet</Step.Title>

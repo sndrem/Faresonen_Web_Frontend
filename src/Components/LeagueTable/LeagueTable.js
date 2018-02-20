@@ -9,9 +9,10 @@ class LeagueTable extends Component {
 		super(props);
 		this.state = {
 			table: [],
-			leagueName: '',
+			leagueName: props.leagueName,
 			loading: true
 		}
+		console.log(props);
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -31,18 +32,19 @@ class LeagueTable extends Component {
 	}
 
 	render() {
+		console.log()
 		const tableElements = this.state.table.map(t => {
 			return (
 						<LeagueTableItem key={t.id} tableData={t} />
 				)
 		});
 		return (
-				<Segment>
+				<Segment className='print'>
 				<Dimmer active={this.state.loading}>
 					<Loader>Henter tabell for {this.state.leagueName}</Loader>
 				</Dimmer>
 					<h1>Tabell: {this.state.leagueName}</h1>
-					<Table striped={true} compact={true}>
+					<Table striped={true} collapsing>
 						<Table.Header>
 							<Table.Row>
 								<Table.HeaderCell></Table.HeaderCell>

@@ -32,7 +32,7 @@ class NextMatches extends Component {
 					<Loader>Henter neste runde</Loader>
 				</Dimmer>
 				<h1>Neste runde</h1>
-				<Table>
+				<Table striped>
 					<Table.Header>
 						<Table.Row>
 							<Table.HeaderCell>Dato</Table.HeaderCell>

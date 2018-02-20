@@ -15,7 +15,7 @@ render() {
 	return (
 		<div>
 			<Menu />
-       	  	<Steps league={this.props.leagueInfo.leagueName} />
+       	  	<Steps className='no-print' league={this.props.leagueInfo.leagueName} />
 			<Grid columns="4" centered>
 				<Grid.Column>
 					<h2>{this.props.leagueInfo.leagueName}</h2>
