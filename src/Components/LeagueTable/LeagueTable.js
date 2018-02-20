@@ -12,7 +12,6 @@ class LeagueTable extends Component {
 			leagueName: props.leagueName,
 			loading: true
 		}
-		console.log(props);
 	}
 
 	componentWillReceiveProps(nextProps) {

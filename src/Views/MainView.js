@@ -5,11 +5,6 @@ import Menu from '../Components/Menu/Menu';
 import Steps from '../Components/ProcedureSteps/Steps';
 
 class MainView extends Component {
-	constructor(props) {
-		super(props);
-		console.log(props.match.params);
-	}
-
 
 render() {
 	const { leagueName, tournamentId, seasonId } = this.props.match.params;

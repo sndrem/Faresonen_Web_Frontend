@@ -83,7 +83,7 @@ class Dangerzone extends Component {
 						<Table striped className='min-height' compact collapsing>
 							<Table.Header>
 								<Table.Row textAlign='center'>
-									<Table.HeaderCell colspan='2'>{team[key].name}</Table.HeaderCell>
+									<Table.HeaderCell colSpan='2'>{team[key].name}</Table.HeaderCell>
 								</Table.Row>
 							</Table.Header>
 							<Table.Body>

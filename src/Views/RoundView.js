@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Menu from '../Components/Menu/Menu';
+import LeagueProgress from '../Components/LeagueProgress/LeagueProgress';
 import Matches from '../Components/Matches/Matches';
 import NextMatches from '../Components/NextMatches/NextMatches';
 import FinishedMatches from '../Components/Matches/FinishedMatches';
@@ -78,6 +79,7 @@ class RoundView extends Component {
 				<div>
 					<Menu switchLeagueName={this.props.switchLeagueName} />
 					<RoundSteps className='no-print' round={this.state.roundNumber} league={this.state.leagueName} />
+					<LeagueProgress leagueName={this.state.leagueName} tournamentId={this.state.tournamentId} seasonId={this.state.seasonId} />
 					<Matches className='print' leagueName={this.state.leagueName} roundNumber={this.state.roundNumber} matches={this.state.matches} />
 					{ finishedMatches }
 					<LeagueTable className='print' leagueName={this.state.leagueName} table={this.state.table} />
