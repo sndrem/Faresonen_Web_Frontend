@@ -2,15 +2,19 @@ import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react';
 import RoundList from '../Components/RoundList/RoundList';
 import Menu from '../Components/Menu/Menu';
+import Steps from '../Components/ProcedureSteps/Steps';
 
 class MainView extends Component {
+	constructor(props) {
+		super(props);
+		console.log(props.match.params)
+	}
 
 
 render() {
-	console.log(this.props);
 	return (
 		<div>
-       	  	<Menu switchLeagueName={this.props.switchLeagueName} showLeagues={true}></Menu>
+       	  	<Steps />
 			<Grid columns="4" centered>
 				<Grid.Column>
 					<h2>{this.props.leagueInfo.leagueName}</h2>

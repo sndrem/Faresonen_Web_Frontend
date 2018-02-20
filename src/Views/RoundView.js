@@ -5,6 +5,7 @@ import NextMatches from '../Components/NextMatches/NextMatches';
 import FinishedMatches from '../Components/Matches/FinishedMatches';
 import LeagueTable from '../Components/LeagueTable/LeagueTable';
 import Topscorers from '../Components/Topscorers/Topscorers';
+import RoundSteps from '../Components/ProcedureSteps/RoundSteps';
 import axios from 'axios';
 
 class RoundView extends Component {
@@ -22,7 +23,6 @@ class RoundView extends Component {
 			table: []
 		}
 	}
-
 
 	componentDidMount() {
 		let { roundId, nextRoundId } = this.props.match.params;
@@ -73,6 +73,7 @@ class RoundView extends Component {
 		return (
 				<div>
 					<Menu switchLeagueName={this.props.switchLeagueName} />
+					<RoundSteps leagueName={this.state.leagueName} />
 					<h1>{this.state.leagueName} - {this.state.roundNumber}. Runde</h1>
 					<Matches matches={this.state.matches} />
 					{ finishedMatches }

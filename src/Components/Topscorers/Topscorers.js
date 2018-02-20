@@ -33,7 +33,7 @@ class Topscorers extends Component {
 				<Message negative={true}>
 					<Message.Header>Toppscorere ikke tilgjengelig</Message.Header>
 					<p>Ingen toppscorere tilgjengelig for denne ligaen. Det kan være fordi ligaen ikke har startet, 
-					mål ikke er registrert på Altomfotball eller serveren er nede. Prøv igjen senere</p>
+					mål ikke er registrert på Altomfotball eller serveren er nede. Prøv igjen senere.</p>
 				</Message>
 			)
 		}

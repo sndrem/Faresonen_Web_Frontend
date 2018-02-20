@@ -81,7 +81,6 @@ class FinishedMatchElements extends Component {
 			
 
 			return obj;
-			// return obj;
 		}, { home: [], away: []});
 	}
 
@@ -119,8 +118,8 @@ class FinishedMatchElements extends Component {
 				<Item>
 					<Item.Content>
 						<Item.Header>{ home } { this.props.matchInfo.goalsTeamAEndtime } - { this.props.matchInfo.goalsTeamBEndtime } { away }</Item.Header>
-						<Item.Description><b>{ home }</b>: { homeScorers }</Item.Description>
-						<Item.Description><b>{ away }</b>: { awayScorers }</Item.Description>
+						{ this.props.matchInfo.goalsTeamAEndtime > 0 ? <Item.Description><b>{ home  }:</b> {homeScorers }</Item.Description> : '' }
+						{ this.props.matchInfo.goalsTeamBEndtime > 0 ? <Item.Description><b>{ away }</b>: { awayScorers }</Item.Description> : '' }
 					</Item.Content>
 				</Item>
 				<Divider /> 

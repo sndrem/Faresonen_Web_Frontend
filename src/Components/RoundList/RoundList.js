@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { List, Button } from 'semantic-ui-react';
+import { List, Button, Segment, Dimmer, Loader } from 'semantic-ui-react';
 import './RoundList.css';
 
 class RoundList extends Component {
@@ -9,7 +9,8 @@ class RoundList extends Component {
 		tournamentId: this.props.tournamentId,
 		seasonId: this.props.seasonId,
 		leagueName: this.props.leagueName,
-		rounds: []
+		rounds: [],
+		loading: true
 	};
 
 	componentDidMount() {
@@ -21,7 +22,10 @@ class RoundList extends Component {
 
 		axios.get(`/rounds/${tournamentId}/${seasonId}`)
 			.then((data) => {
-				this.setState({rounds: data.data.round});
+				this.setState({
+					rounds: data.data.round,
+					loading: false
+				});
 			}).catch(err => console.error(err));
 	}
 
@@ -59,9 +63,14 @@ class RoundList extends Component {
 					</List.Item>
 		});
 		return (
-				<List>
-					{ roundElements }
-				</List>
+				<Segment>
+					<Dimmer active={this.state.loading}>
+						<Loader>Henter runder for {this.state.leagueName}</Loader>
+					</Dimmer>
+					<List>
+						{ roundElements }
+					</List>
+				</Segment>
 			)
 	}
 }
