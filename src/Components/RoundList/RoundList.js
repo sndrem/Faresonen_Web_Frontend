@@ -43,6 +43,10 @@ class RoundList extends Component {
 	
 	render() {
 
+		if(!this.state.rounds) {
+			return <p>Kan ikke hente runder for {this.props.leagueName}</p>;
+		}
+
 		const roundElements = this.state.rounds.map((r, index, array) => {
 			const endDate = r.enddate;
 			const now = new Date().toISOString();

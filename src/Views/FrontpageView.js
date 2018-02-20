@@ -30,6 +30,12 @@ class FrontpageView extends Component {
 						tournamentId: 230,
 						seasonId: 339,
 						image: PremierLeagueImage
+					},
+					{
+						name: 'Champions League',
+						tournamentId: 6330,
+						seasonId: 339,
+						image: PremierLeagueImage
 					}
 				]
 			}

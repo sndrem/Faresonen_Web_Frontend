@@ -7,7 +7,7 @@ class LeagueChooser extends Component {
 		const { name, tournamentId, seasonId } = leagueData;
 		console.log(this.props);
 		this.props.switchLeagueName(name, tournamentId, seasonId);
-		this.props.history.push(`/league/${tournamentId}/${seasonId}`);
+		this.props.history.push(`/league/${name}/${tournamentId}/${seasonId}`);
 	}
 
 

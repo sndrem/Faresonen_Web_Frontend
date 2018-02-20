@@ -66,7 +66,6 @@ class Dangerzone extends Component {
 
 
 	render() {
-		console.log(this.state.players);
 		if(this.state.players.length <= 0 && this.state.loading === false) {
 			return (
 				<Message negative={true}>
