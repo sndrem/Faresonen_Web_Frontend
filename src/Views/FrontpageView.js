@@ -5,40 +5,14 @@ import LeagueChooser from '../Components/LeagueChooser/LeagueChooser';
 import EliteserieImage from '../assets/images/eliteserien.png';
 import ObosligaenImage from '../assets/images/obosligaen.png';
 import PremierLeagueImage from '../assets/images/premierleague.png';
+import Leagues from '../Data/leagues';
 
 class FrontpageView extends Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			data: {
-				leagues: [
-					{
-						name: 'Eliteserien',
-						tournamentId: 1,
-						seasonId: 340,
-						image: EliteserieImage
-					},
-					{
-						name: 'OBOS-ligaen',
-						tournamentId: 2,
-						seasonId: 340,
-						image: ObosligaenImage
-					},
-					{
-						name: 'Premier League',
-						tournamentId: 230,
-						seasonId: 339,
-						image: PremierLeagueImage
-					},
-					{
-						name: 'Champions League',
-						tournamentId: 6330,
-						seasonId: 339,
-						image: PremierLeagueImage
-					}
-				]
-			}
+			data: Leagues
 		}
 	}
 
