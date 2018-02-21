@@ -1,3 +1,16 @@
+# Faresonen
+Dette er en ny versjon av Faresonen, brukt blant grafikkavviklere hos TV 2 ved forberedelser til avvikling av FotballXtra.
+
+![Steg 1](https://i.imgur.com/EoMsu8T.png)
+
+![Steg 2](https://i.imgur.com/ir4vCxN.png)
+
+![Steg 3-1](https://i.imgur.com/hh8bPEZ.png)
+
+![Steg 3-2](https://i.imgur.com/f7Sy1ba.png)
+
+![Steg 3-3](https://i.imgur.com/Wl5jDQa.png)
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
