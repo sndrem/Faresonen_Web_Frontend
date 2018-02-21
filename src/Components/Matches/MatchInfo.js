@@ -1,53 +1,82 @@
-import React, { Component } from 'react';
-import { Item } from 'semantic-ui-react';
-import moment from 'moment-with-locales-es6';
-import axios from 'axios';
-import tools from '../../Tools/tools';
-moment.locale('no');
+import React, { Component } from "react";
+import { Item } from "semantic-ui-react";
+import moment from "moment-with-locales-es6";
+import axios from "axios";
+import tools from "../../Tools/tools";
+moment.locale("no");
 
 class MatchInfo extends Component {
-
 	constructor(props) {
 		super(props);
 		this.state = {
 			matchName: props.match.name,
-			channel: '',
-			stadium: '',
+			channel: "",
+			stadium: "",
 			startDate: tools.getDate(props.match.starttime),
-			startTime: tools.getTime(props.match.starttime)
-		}
-		
-		axios.all([tools.getChannelAndStadium(props.match)])
-			.then(axios.spread((data) => {
-			if(data.channel) {
-				data.channel.then(channel => this.setState({ channel: channel.data.name }));	
-			} else {
-				this.setState({
-					channel: 'Kanal ikke klar'
-				})
-			}
+			startTime: tools.getTime(props.match.starttime),
+			referee: ""
+		};
 
-			if(data.stadium) {
-				data.stadium.then(stadium => this.setState({ stadium: stadium.data.name }));	
-			} else {
-				this.setState({
-					stadium: 'Stadion klar'
-				})
-			}
-			
-			
-		}));
+		if (props.match.referee) {
+			this.getReferee(props.match.referee["@uri"]);
+		}
+
+		axios.all([tools.getChannelAndStadium(props.match)]).then(
+			axios.spread(data => {
+				if (data.channel) {
+					data.channel.then(channel =>
+						this.setState({ channel: channel.data.name })
+					);
+				} else {
+					this.setState({
+						channel: "Kanal ikke klar"
+					});
+				}
+
+				if (data.stadium) {
+					data.stadium.then(stadium =>
+						this.setState({ stadium: stadium.data.name })
+					);
+				} else {
+					this.setState({
+						stadium: "Stadion klar"
+					});
+				}
+			})
+		);
+	}
+
+	getReferee(refUri) {
+		axios.get(refUri).then(data => {
+			this.setState({
+				referee: this.formatRefereeName(data.data)
+			});
+		});
+	}
+
+	formatRefereeName(ref) {
+		return `${ref.firstname} ${ref.lastname}`;
 	}
 
 	render() {
 		return (
-				<Item>
-					<Item.Content>
-						<Item.Header>{this.state.matchName}, {this.state.stadium}</Item.Header>
-						<Item.Meta>{this.state.startDate} - Avspark kl. {this.state.startTime} på {this.state.channel}</Item.Meta>
-					</Item.Content>
-				</Item>
-			)
+			<Item>
+				<Item.Content>
+					<Item.Header>
+						{this.state.matchName}, {this.state.stadium}
+					</Item.Header>
+					<Item.Meta>
+						{this.state.startDate} - Avspark kl.{" "}
+						{this.state.startTime} på {this.state.channel}
+					</Item.Meta>
+					{this.state.referee && (
+						<Item.Meta className="float-right">
+							Dommer: {this.state.referee}
+						</Item.Meta>
+					)}
+				</Item.Content>
+			</Item>
+		);
 	}
 }
 
