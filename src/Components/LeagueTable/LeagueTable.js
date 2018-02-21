@@ -9,6 +9,7 @@ class LeagueTable extends Component {
 		this.state = {
 			table: [],
 			leagueName: props.leagueName,
+			tableColors: props.tableColors,
 			loading: true
 		};
 	}
@@ -30,9 +31,27 @@ class LeagueTable extends Component {
 	}
 
 	render() {
-		const tableElements = this.state.table.map(t => (
-			<LeagueTableItem key={t.id} tableData={t} />
-		));
+		const tableElements = this.state.table.map((t, index, list) => {
+			if (this.state.tableColors.greens.includes(index)) {
+				return (
+					<LeagueTableItem
+						rowColor={"green"}
+						key={t.id}
+						tableData={t}
+					/>
+				);
+			} else if (this.state.tableColors.reds.includes(index)) {
+				return (
+					<LeagueTableItem
+						rowColor={"red"}
+						key={t.id}
+						tableData={t}
+					/>
+				);
+			} else {
+				return <LeagueTableItem key={t.id} tableData={t} />;
+			}
+		});
 
 		return (
 			<Segment className="print">
@@ -40,7 +59,7 @@ class LeagueTable extends Component {
 					<Loader>Henter tabell for {this.state.leagueName}</Loader>
 				</Dimmer>
 				<h1>Tabell: {this.state.leagueName}</h1>
-				<Table striped={true} collapsing>
+				<Table collapsing>
 					<Table.Header>
 						<Table.Row>
 							<Table.HeaderCell />

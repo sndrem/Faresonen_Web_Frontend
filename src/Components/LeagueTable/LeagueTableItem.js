@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Table } from "semantic-ui-react";
 import axios from "axios";
+import "./LeagueTable.css";
 
 class LeagueTableItem extends Component {
 	constructor(props) {
@@ -21,7 +22,7 @@ class LeagueTableItem extends Component {
 
 	render() {
 		return (
-			<Table.Row>
+			<Table.Row className={this.props.rowColor}>
 				<Table.Cell>{this.state.data.position}.</Table.Cell>
 				<Table.Cell>{this.state.teamData.name}</Table.Cell>
 				<Table.Cell>{this.state.data.matches}</Table.Cell>

@@ -9,6 +9,7 @@ import Topscorers from "../Components/Topscorers/Topscorers";
 import RoundSteps from "../Components/ProcedureSteps/RoundSteps";
 import Dangerzone from "../Components/Dangerzone/Dangerzone";
 import { Message } from "semantic-ui-react";
+import tools from "../Tools/tools";
 import axios from "axios";
 import "../print.css";
 
@@ -120,6 +121,7 @@ class RoundView extends Component {
 					className="print"
 					leagueName={this.state.leagueName}
 					table={this.state.table}
+					tableColors={tools.getTableColors(this.state.tournamentId)}
 				/>
 				<NextMatches
 					className="print"
