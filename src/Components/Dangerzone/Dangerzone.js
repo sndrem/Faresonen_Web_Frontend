@@ -134,8 +134,8 @@ class Dangerzone extends Component {
 }
 
 Dangerzone.propTypes = {
-	leagueName: PropTypes.string,
-	tournamentId: PropTypes.number
+	leagueName: PropTypes.string.isRequired,
+	tournamentId: PropTypes.number.isRequired
 };
 
 export default Dangerzone;
