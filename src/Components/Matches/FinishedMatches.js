@@ -1,6 +1,7 @@
-import React, { Component } from "react";
 import FinishedMatchElements from "./FinishedMatchElements";
+import React, { Component } from "react";
 import { Segment, Dimmer, Loader } from "semantic-ui-react";
+import PropTypes from "prop-types";
 
 class FinishedMatches extends Component {
 	constructor(props) {
@@ -13,7 +14,6 @@ class FinishedMatches extends Component {
 	componentDidMount() {}
 
 	render() {
-		console.log(this.state.matches);
 		const finishedMatchElements = this.state.matches.map(m => {
 			return <FinishedMatchElements key={m.id} matchInfo={m} />;
 		});
@@ -29,5 +29,10 @@ class FinishedMatches extends Component {
 		);
 	}
 }
+
+FinishedMatches.propTypes = {
+	matches: PropTypes.array,
+	roundNumber: PropTypes.number
+};
 
 export default FinishedMatches;

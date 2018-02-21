@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import {
 	Grid,
 	Segment,
@@ -131,5 +132,10 @@ class Dangerzone extends Component {
 		);
 	}
 }
+
+Dangerzone.propTypes = {
+	leagueName: PropTypes.string,
+	tournamentId: PropTypes.number
+};
 
 export default Dangerzone;

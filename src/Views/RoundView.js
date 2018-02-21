@@ -17,9 +17,9 @@ class RoundView extends Component {
 		super(props);
 		this.state = {
 			leagueName: props.match.params.leagueName,
-			roundNumber: props.match.params.roundNumber,
-			tournamentId: props.match.params.tournamentId,
-			seasonId: props.match.params.seasonId,
+			roundNumber: parseInt(props.match.params.roundNumber, 10),
+			tournamentId: parseInt(props.match.params.tournamentId, 10),
+			seasonId: parseInt(props.match.params.seasonId, 10),
 			matches: [],
 			nextMatches: [],
 			finishedMatches: [],
@@ -133,7 +133,7 @@ class RoundView extends Component {
 				<Dangerzone
 					className="print"
 					leagueName={this.state.leagueName}
-					tournamentId={this.state.tournamentId}
+					tournamentId={parseInt(this.state.tournamentId, 10)}
 				/>
 			</div>
 		);
