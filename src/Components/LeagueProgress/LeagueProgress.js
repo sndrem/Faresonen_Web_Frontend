@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
-import { Progress } from 'semantic-ui-react';
-import axios from 'axios';
-import tools from '../../Tools/tools';
+import React, { Component } from "react";
+import { Progress } from "semantic-ui-react";
+import axios from "axios";
 
 class LeagueProgess extends Component {
-	constructor(props){
+	constructor(props) {
 		super(props);
 		const { tournamentId, seasonId } = props;
 		this.getRounds(tournamentId, seasonId);
@@ -14,12 +13,13 @@ class LeagueProgess extends Component {
 			left: 0,
 			total: 0,
 			loading: true
-		}
+		};
 	}
 
 	getRounds(tournamentId, seasonId) {
-		axios.get(`/rounds/${tournamentId}/${seasonId}`)
-			.then((data) => {
+		axios
+			.get(`/rounds/${tournamentId}/${seasonId}`)
+			.then(data => {
 				const calculatedRounds = this.calculateRounds(data.data.round);
 				this.setState({
 					finished: calculatedRounds.finished,
@@ -27,26 +27,40 @@ class LeagueProgess extends Component {
 					total: calculatedRounds.finished + calculatedRounds.left,
 					loading: false
 				});
-			}).catch(err => console.error(err));
+			})
+			.catch(err => console.error(err));
 	}
 
 	calculateRounds(rounds) {
-		return rounds.reduce((obj, round) => {
-			const enddate = new Date(round.enddate);
-			const now = new Date();
+		return rounds.reduce(
+			(obj, round) => {
+				const enddate = new Date(round.enddate);
+				const now = new Date();
 
-			if(now > enddate) {
-				obj.finished++;
-			} else {
-				obj.left++;
-			}
-			
-			return obj;
-		}, {finished: 0, left: 0});
+				if (now > enddate) {
+					obj.finished = obj.finished + 1;
+				} else {
+					obj.left = obj.left + 1;
+				}
+
+				return obj;
+			},
+			{ finished: 0, left: 0 }
+		);
 	}
 
 	render() {
-		return (<Progress className='no-print' color='green' progress='ratio' total={this.state.total} value={this.state.finished}>Progresjon for {this.props.leagueName}</Progress>)
+		return (
+			<Progress
+				className="no-print"
+				color="green"
+				progress="ratio"
+				total={this.state.total}
+				value={this.state.finished}
+			>
+				Progresjon for {this.props.leagueName}
+			</Progress>
+		);
 	}
 }
 

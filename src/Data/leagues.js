@@ -1,6 +1,7 @@
 import EliteserieImage from '../assets/images/eliteserien.png';
 import ObosligaenImage from '../assets/images/obosligaen.png';
 import PremierLeagueImage from '../assets/images/premierleague.png';
+
 export default {
 	leagues: [
 				{

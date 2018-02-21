@@ -1,22 +1,21 @@
-import React, { Component } from 'react';
-import { Table } from 'semantic-ui-react';
-import axios from 'axios';
+import React, { Component } from "react";
+import { Table } from "semantic-ui-react";
+import axios from "axios";
 
 class LeagueTableItem extends Component {
-
 	constructor(props) {
 		super(props);
 		this.state = {
 			data: props.tableData,
-			teamData: ''
-		}
+			teamData: ""
+		};
 
-		this.getTeamData(props.tableData.team['@uri']);
+		this.getTeamData(props.tableData.team["@uri"]);
 	}
 
 	getTeamData(url) {
 		axios.get(url).then(data => {
-			this.setState({ teamData: data.data })
+			this.setState({ teamData: data.data });
 		});
 	}
 
@@ -34,7 +33,7 @@ class LeagueTableItem extends Component {
 				<Table.Cell>{this.state.data.goalDifference}</Table.Cell>
 				<Table.Cell>{this.state.data.points}</Table.Cell>
 			</Table.Row>
-			)
+		);
 	}
 }
 
