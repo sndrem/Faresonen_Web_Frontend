@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import { Table, Segment, Dimmer, Loader } from 'semantic-ui-react';
-import NextMatchInfo from './NextMatchInfo';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Table, Segment, Dimmer, Loader } from "semantic-ui-react";
+import NextMatchInfo from "./NextMatchInfo";
 
 class NextMatches extends Component {
 	constructor(props) {
@@ -9,7 +10,7 @@ class NextMatches extends Component {
 			matches: props.matches,
 			nextRoundNumber: props.nextRoundNumber,
 			loading: true
-		}
+		};
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -20,11 +21,13 @@ class NextMatches extends Component {
 	}
 
 	render() {
-		const matches = this.state.matches.map(m => {
-			return (
-					<NextMatchInfo key={m.id} matchInfo={m} nextRoundNumber={this.state.nextRoundNumber} />
-				)
-		});
+		const matches = this.state.matches.map(m => (
+			<NextMatchInfo
+				key={m.id}
+				matchInfo={m}
+				nextRoundNumber={this.state.nextRoundNumber}
+			/>
+		));
 
 		return (
 			<Segment>
@@ -39,16 +42,20 @@ class NextMatches extends Component {
 							<Table.HeaderCell>Kl.</Table.HeaderCell>
 							<Table.HeaderCell>Runde</Table.HeaderCell>
 							<Table.HeaderCell>Kamp</Table.HeaderCell>
+							<Table.HeaderCell>Arena</Table.HeaderCell>
 							<Table.HeaderCell>Kanal</Table.HeaderCell>
 						</Table.Row>
 					</Table.Header>
-					<Table.Body>
-						{ matches }
-					</Table.Body>
+					<Table.Body>{matches}</Table.Body>
 				</Table>
 			</Segment>
-		)
+		);
 	}
 }
+
+NextMatches.propTypes = {
+	matches: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+	nextRoundNumber: PropTypes.number.isRequired
+};
 
 export default NextMatches;

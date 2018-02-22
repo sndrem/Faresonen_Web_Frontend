@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Table, Segment, Dimmer, Loader } from "semantic-ui-react";
-import LeagueTableItem from "./LeagueTableItem";
 import axios from "axios";
+import LeagueTableItem from "./LeagueTableItem";
 
 class LeagueTable extends Component {
 	constructor(props) {
@@ -15,9 +16,10 @@ class LeagueTable extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		this.setState({ table: nextProps.table });
-		if (nextProps.table && nextProps.table.length > 1) {
-			this.getLeagueName(nextProps.table[0].tournament["@uri"]);
+		const { table } = nextProps;
+		this.setState({ table });
+		if (nextProps.table && table.length > 1) {
+			this.getLeagueName(table[0].tournament["@uri"]);
 		}
 	}
 
@@ -31,26 +33,21 @@ class LeagueTable extends Component {
 	}
 
 	render() {
-		const tableElements = this.state.table.map((t, index, list) => {
+		const tableElements = this.state.table.map((t, index) => {
 			if (this.state.tableColors.greens.includes(index)) {
 				return (
 					<LeagueTableItem
-						rowColor={"green"}
+						rowColor="green"
 						key={t.id}
 						tableData={t}
 					/>
 				);
 			} else if (this.state.tableColors.reds.includes(index)) {
 				return (
-					<LeagueTableItem
-						rowColor={"red"}
-						key={t.id}
-						tableData={t}
-					/>
+					<LeagueTableItem rowColor="red" key={t.id} tableData={t} />
 				);
-			} else {
-				return <LeagueTableItem key={t.id} tableData={t} />;
 			}
+			return <LeagueTableItem key={t.id} tableData={t} />;
 		});
 
 		return (
@@ -80,5 +77,14 @@ class LeagueTable extends Component {
 		);
 	}
 }
+
+LeagueTable.propTypes = {
+	leagueName: PropTypes.string.isRequired,
+	tableColors: PropTypes.shape({
+		greens: PropTypes.arrayOf(PropTypes.number),
+		reds: PropTypes.arrayOf(PropTypes.number)
+	}).isRequired,
+	table: PropTypes.arrayOf(PropTypes.object).isRequired
+};
 
 export default LeagueTable;

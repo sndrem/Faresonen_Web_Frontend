@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Table } from "semantic-ui-react";
 import axios from "axios";
 import "./LeagueTable.css";
@@ -37,5 +38,14 @@ class LeagueTableItem extends Component {
 		);
 	}
 }
+
+LeagueTableItem.defaultProps = {
+	rowColor: ""
+};
+
+LeagueTableItem.propTypes = {
+	tableData: PropTypes.object.isRequired,
+	rowColor: PropTypes.string
+};
 
 export default LeagueTableItem;

@@ -47,6 +47,7 @@ class RoundView extends Component {
 		axios
 			.get(`/table/${tournamentId}/${seasonId}`)
 			.then(data => {
+				console.log(data.data.item);
 				this.setState({ table: data.data.item });
 			})
 			.catch(err => console.error(err));

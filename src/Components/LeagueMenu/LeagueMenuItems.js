@@ -1,16 +1,8 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Menu } from "semantic-ui-react";
 
 class LeagueMenuItems extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			activeItem: ""
-		};
-	}
-
-	handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-
 	handleSwitchLeagueNameClick = e => {
 		const leagueName = e.target.textContent;
 		const tournamentId = e.target.dataset.tournamentid;
@@ -49,5 +41,9 @@ class LeagueMenuItems extends Component {
 		);
 	}
 }
+
+LeagueMenuItems.propTypes = {
+	switchLeagueName: PropTypes.func.isRequired
+};
 
 export default LeagueMenuItems;

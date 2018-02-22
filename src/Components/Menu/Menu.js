@@ -36,8 +36,8 @@ class FaresoneMenu extends Component {
 }
 
 FaresoneMenu.propTypes = {
-	switchLeagueName: PropTypes.func,
-	showLeagues: PropTypes.bool
+	switchLeagueName: PropTypes.func.isRequired,
+	showLeagues: PropTypes.bool.isRequired
 };
 
 export default FaresoneMenu;
