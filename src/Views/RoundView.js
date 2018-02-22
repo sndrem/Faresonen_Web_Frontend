@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Message } from "semantic-ui-react";
+import axios from "axios";
 import Menu from "../Components/Menu/Menu";
 import LeagueProgress from "../Components/LeagueProgress/LeagueProgress";
 import Matches from "../Components/Matches/Matches";
@@ -8,12 +11,16 @@ import LeagueTable from "../Components/LeagueTable/LeagueTable";
 import Topscorers from "../Components/Topscorers/Topscorers";
 import RoundSteps from "../Components/ProcedureSteps/RoundSteps";
 import Dangerzone from "../Components/Dangerzone/Dangerzone";
-import { Message } from "semantic-ui-react";
 import tools from "../Tools/tools";
-import axios from "axios";
 import "../print.css";
 
 class RoundView extends Component {
+	static filterFinishedMatches(matches) {
+		return matches
+			.filter(m => !!m.confirmed === true)
+			.sort((a, b) => a.starttime >= b.starttime);
+	}
+
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -47,36 +54,35 @@ class RoundView extends Component {
 		axios
 			.get(`/table/${tournamentId}/${seasonId}`)
 			.then(data => {
-				console.log(data.data.item);
 				this.setState({ table: data.data.item });
 			})
-			.catch(err => console.error(err));
+			.catch(() => this.setState({ table: [] }));
 	}
 
 	getRound(roundId, key) {
 		axios
 			.get(`/rounds/${roundId}`)
 			.then(data => {
-				data.data.match = data.data.match.sort((a, b) => {
-					return a.starttime >= b.starttime;
-				});
-
-				data.data.finishedMatches = this.filterFinishedMatches(
-					data.data.match
+				let matches = [];
+				matches = data.data.match.sort(
+					(a, b) => a.starttime >= b.starttime
 				);
+
+				let finishedMatches = [];
+				finishedMatches = this.filterFinishedMatches(matches);
 				this.setState({
-					[key]: data.data.match,
-					finishedMatches: data.data.finishedMatches,
+					[key]: matches,
+					finishedMatches,
 					loading: false
 				});
 			})
-			.catch(err => console.error(err));
-	}
-
-	filterFinishedMatches(matches) {
-		return matches
-			.filter(m => !!m.confirmed === true)
-			.sort((a, b) => a.starttime >= b.starttime);
+			.catch(() =>
+				this.setState({
+					[key]: [],
+					finishedMatches: [],
+					loading: false
+				})
+			);
 	}
 
 	render() {
@@ -142,5 +148,12 @@ class RoundView extends Component {
 		);
 	}
 }
+
+RoundView.propTypes = {
+	match: PropTypes.shape({
+		params: PropTypes.object
+	}).isRequired,
+	switchLeagueName: PropTypes.func.isRequired
+};
 
 export default RoundView;
