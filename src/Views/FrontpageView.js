@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Menu from "../Components/Menu/Menu";
+import FaresoneMenu from "../Components/Menu/FaresoneMenu";
 import FirstSteps from "../Components/ProcedureSteps/FirstSteps";
 import LeagueChooser from "../Components/LeagueChooser/LeagueChooser";
 import Leagues from "../Data/leagues";
@@ -16,7 +16,7 @@ class FrontpageView extends Component {
 	render() {
 		return (
 			<div>
-				<Menu />
+				<FaresoneMenu switchLeagueName={this.props.switchLeagueName} />
 				<FirstSteps />
 				<LeagueChooser
 					leagues={this.state.data.leagues}

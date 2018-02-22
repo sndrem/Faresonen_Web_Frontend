@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Message } from "semantic-ui-react";
 import axios from "axios";
-import Menu from "../Components/Menu/Menu";
+import FaresoneMenu from "../Components/Menu/FaresoneMenu";
 import LeagueProgress from "../Components/LeagueProgress/LeagueProgress";
 import Matches from "../Components/Matches/Matches";
 import NextMatches from "../Components/NextMatches/NextMatches";
@@ -69,7 +69,7 @@ class RoundView extends Component {
 				);
 
 				let finishedMatches = [];
-				finishedMatches = this.filterFinishedMatches(matches);
+				finishedMatches = RoundView.filterFinishedMatches(matches);
 				this.setState({
 					[key]: matches,
 					finishedMatches,
@@ -106,7 +106,7 @@ class RoundView extends Component {
 
 		return (
 			<div>
-				<Menu switchLeagueName={this.props.switchLeagueName} />
+				<FaresoneMenu switchLeagueName={this.props.switchLeagueName} />
 				<RoundSteps
 					className="no-print"
 					round={this.state.roundNumber}

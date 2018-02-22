@@ -2,14 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Grid } from "semantic-ui-react";
 import RoundList from "../Components/RoundList/RoundList";
-import Menu from "../Components/Menu/Menu";
+import FaresoneMenu from "../Components/Menu/FaresoneMenu";
 import Steps from "../Components/ProcedureSteps/Steps";
 
 function MainView(props) {
 	const { leagueName, tournamentId, seasonId } = props.match.params;
 	return (
 		<div>
-			<Menu />
+			<FaresoneMenu />
 			<Steps className="no-print" league={leagueName} />
 			<Grid columns="4" centered>
 				<Grid.Column>
@@ -17,8 +17,8 @@ function MainView(props) {
 					<RoundList
 						history={props.history}
 						leagueName={leagueName}
-						tournamentId={tournamentId}
-						seasonId={seasonId}
+						tournamentId={parseInt(tournamentId, 10)}
+						seasonId={parseInt(seasonId, 10)}
 					/>
 				</Grid.Column>
 			</Grid>

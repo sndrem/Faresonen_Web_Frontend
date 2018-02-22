@@ -59,9 +59,9 @@ class Dangerzone extends Component {
 				});
 				return;
 			}
-			let playersGrouped = this.groupPlayers(data.data.data);
-			playersGrouped = this.filterPlayers(playersGrouped);
-			playersGrouped = this.sortTeams(playersGrouped);
+			let playersGrouped = Dangerzone.groupPlayers(data.data.data);
+			playersGrouped = Dangerzone.filterPlayers(playersGrouped);
+			playersGrouped = Dangerzone.sortTeams(playersGrouped);
 			this.setState({
 				players: [playersGrouped],
 				loading: false
