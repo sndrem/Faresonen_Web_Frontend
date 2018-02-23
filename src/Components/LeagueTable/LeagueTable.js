@@ -56,7 +56,7 @@ class LeagueTable extends Component {
 					<Loader>Henter tabell for {this.state.leagueName}</Loader>
 				</Dimmer>
 				<h1>Tabell: {this.state.leagueName}</h1>
-				<Table collapsing>
+				<Table>
 					<Table.Header>
 						<Table.Row>
 							<Table.HeaderCell />

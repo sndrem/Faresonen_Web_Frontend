@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Table, Segment, Dimmer, Loader } from "semantic-ui-react";
+import { Table, Segment, Dimmer, Loader, Message } from "semantic-ui-react";
 import NextMatchInfo from "./NextMatchInfo";
 
 class NextMatches extends Component {
@@ -28,6 +28,15 @@ class NextMatches extends Component {
 				nextRoundNumber={this.state.nextRoundNumber}
 			/>
 		));
+
+		if (this.state.matches.length <= 0 && !this.state.loading) {
+			return (
+				<Message className="no-print" info>
+					Kamper for neste runde er ikke klar, eller så holder du på å
+					lage lefsen for sesongens siste runde.
+				</Message>
+			);
+		}
 
 		return (
 			<Segment>
