@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container } from "semantic-ui-react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { HashRouter, Route, Switch } from "react-router-dom";
 import FrontpageView from "./Views/FrontpageView";
 import MainView from "./Views/MainView";
 import RoundView from "./Views/RoundView";
@@ -19,7 +19,7 @@ class App extends Component {
   render() {
     return (
       <Container>
-        <BrowserRouter>
+        <HashRouter>
           <Switch>
             <Route
               exact
@@ -51,7 +51,7 @@ class App extends Component {
               )}
             />
           </Switch>
-        </BrowserRouter>
+        </HashRouter>
       </Container>
     );
   }
