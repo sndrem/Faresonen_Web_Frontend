@@ -70,11 +70,18 @@ class RoundView extends Component {
 
 				let finishedMatches = [];
 				finishedMatches = RoundView.filterFinishedMatches(matches);
-				this.setState({
-					[key]: matches,
-					finishedMatches,
-					loading: false
-				});
+				if (key === "matches") {
+					this.setState({
+						[key]: matches,
+						finishedMatches,
+						loading: false
+					});
+				} else {
+					this.setState({
+						[key]: matches,
+						loading: false
+					});
+				}
 			})
 			.catch(() =>
 				this.setState({

@@ -1,0 +1,7 @@
+.finished {
+	color: lightgray;
+}
+
+.finished .item .content .header {
+	color: lightgray;
+}

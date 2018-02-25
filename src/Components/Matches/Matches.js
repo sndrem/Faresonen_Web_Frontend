@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { List, Divider, Segment, Dimmer, Loader } from "semantic-ui-react";
 import MatchInfo from "./MatchInfo";
+import "./Matches.css";
 
 class Matches extends Component {
 	constructor(props) {
@@ -22,7 +23,12 @@ class Matches extends Component {
 	render() {
 		const nextMatches = this.state.matches.map(m => {
 			return (
-				<List.Item key={m.id}>
+				<List.Item
+					className={
+						m.confirmed === "true" ? "finished no-print" : ""
+					}
+					key={m.id}
+				>
 					<MatchInfo match={m} />
 					<Divider />
 				</List.Item>
