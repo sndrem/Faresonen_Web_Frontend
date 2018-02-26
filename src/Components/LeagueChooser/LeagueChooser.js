@@ -9,6 +9,7 @@ class LeagueChooser extends Component {
 	}
 
 	render() {
+		console.log(this.props);
 		const leagues = this.props.leagues.map(league => {
 			return (
 				<Grid.Column key={league.tournamentId}>

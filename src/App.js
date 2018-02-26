@@ -4,6 +4,7 @@ import { HashRouter, Route, Switch } from "react-router-dom";
 import FrontpageView from "./Views/FrontpageView";
 import MainView from "./Views/MainView";
 import RoundView from "./Views/RoundView";
+import DangerzoneView from "./Views/DangerzoneView";
 
 class App extends Component {
   state = {
@@ -50,6 +51,7 @@ class App extends Component {
                 />
               )}
             />
+            <Route exact path="/dangerzone/" component={DangerzoneView} />
           </Switch>
         </HashRouter>
       </Container>

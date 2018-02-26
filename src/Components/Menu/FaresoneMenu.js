@@ -10,6 +10,9 @@ function FaresoneMenu() {
 				<Link to="/">
 					<Menu.Item name="home">Hjem</Menu.Item>
 				</Link>
+				<Link to="/dangerzone">
+					<Menu.Item name="dangerzone">Faresonen</Menu.Item>
+				</Link>
 			</Menu>
 		</div>
 	);
