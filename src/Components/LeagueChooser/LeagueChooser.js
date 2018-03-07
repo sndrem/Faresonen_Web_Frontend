@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Grid, Card } from "semantic-ui-react";
 
 class LeagueChooser extends Component {
+	
 	handleClick(leagueData) {
 		const { name, tournamentId, seasonId } = leagueData;
 		this.props.switchLeagueName(name, tournamentId, seasonId);
@@ -9,7 +10,6 @@ class LeagueChooser extends Component {
 	}
 
 	render() {
-		console.log(this.props);
 		const leagues = this.props.leagues.map(league => {
 			return (
 				<Grid.Column key={league.tournamentId}>

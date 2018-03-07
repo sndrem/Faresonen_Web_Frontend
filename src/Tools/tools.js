@@ -24,11 +24,11 @@ const tools = {
 	},
 
 	getDate(datetime) {
-		return new Date(datetime).toLocaleDateString();
+		return new Date(datetime).toLocaleDateString('no-NO');
 	},
 
 	getTime(datetime) {
-		return new Date(datetime).toLocaleTimeString();
+		return new Date(datetime).toLocaleTimeString('no-NB',);
 	},
 
 	getTableColors(leagueId) {

@@ -18,7 +18,7 @@ class Dangerzone extends Component {
 	static filterPlayers(players) {
 		const x = Object.keys(players).map(team => ({
 			name: team,
-			players: players[team].players.filter(p => p.value1 % 2 === 0)
+			players: players[team].players.filter(p => p.value1 % 2 === 0 && p.value1 !== 0)
 		}));
 		return x;
 	}
