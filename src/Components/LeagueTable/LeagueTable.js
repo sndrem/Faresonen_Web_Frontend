@@ -15,12 +15,30 @@ class LeagueTable extends Component {
 		};
 	}
 
+	componentDidMount() {
+
+	}
+
 	componentWillReceiveProps(nextProps) {
 		const { table } = nextProps;
 		this.setState({ table });
 		if (nextProps.table && table.length > 1) {
+			// TODO RESOLVE FUNCTION??
 			this.getLeagueName(table[0].tournament["@uri"]);
-		}
+		} 
+
+		// TODO Use this for correct testing?
+		// return new Promise((resolve, reject) => {
+		// 	const { table } = nextProps;
+		// 	this.setState({ table });
+		// 	if (nextProps.table && table.length > 1) {
+		// 		// TODO RESOLVE FUNCTION??
+		// 		this.getLeagueName(table[0].tournament["@uri"]);
+		// 		resolve({});
+		// 	} else {
+		// 		resolve([])
+		// 	}
+		// });
 	}
 
 	getLeagueName(tournamentUri) {
