@@ -4,6 +4,7 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import '../../setupJest.js';
 import LeagueProgress from './LeagueProgress';
+import { Progress } from 'semantic-ui-react';
 let mock = null;
 describe('<LeagueProgess />', () => {
 	beforeAll(() => {
@@ -804,5 +805,25 @@ describe('<LeagueProgess />', () => {
 		expect(defaultState).toEqual(elem.state())
 	})
 
+	it('should have a className of no-print', () => {
+		const elem = shallow(<LeagueProgress />, {
+			disableLifecycleMethods: true
+		});
+		const progress = elem.find(Progress);
+		expect(progress.hasClass('no-print')).toEqual(true);
+	})
+
+	it('should initialize with correct props', () => {
+		const elem = shallow(<LeagueProgress />, {
+			disableLifecycleMethods: true
+		});
+		const progressElement = elem.find(Progress);
+		const { color, progress, total, value } = progressElement.props();
+		expect(color).toEqual('green');
+		expect(progress).toEqual('ratio');
+		expect(total).toEqual(0);
+		expect(value).toEqual(0);
+		// expect(progress.props()int')).toEqual(true);	
+	})
 })
 
