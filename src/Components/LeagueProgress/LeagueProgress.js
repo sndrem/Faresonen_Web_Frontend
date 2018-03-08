@@ -5,9 +5,6 @@ import axios from "axios";
 class LeagueProgess extends Component {
 	constructor(props) {
 		super(props);
-		const { tournamentId, seasonId } = props;
-		this.getRounds(tournamentId, seasonId);
-
 		this.state = {
 			finished: 0,
 			left: 0,
@@ -16,11 +13,16 @@ class LeagueProgess extends Component {
 		};
 	}
 
+	componentDidMount() {
+		const { tournamentId, seasonId } = this.props;
+		this.getRounds(tournamentId, seasonId);
+	}
+
 	getRounds(tournamentId, seasonId) {
 		axios
 			.get(`/rounds/${tournamentId}/${seasonId}`)
 			.then(data => {
-				const calculatedRounds = this.calculateRounds(data.data.round);
+				const calculatedRounds = LeagueProgess.calculateRounds(data.data.round);
 				this.setState({
 					finished: calculatedRounds.finished,
 					left: calculatedRounds.left,
@@ -31,7 +33,8 @@ class LeagueProgess extends Component {
 			.catch(err => console.error(err));
 	}
 
-	calculateRounds(rounds) {
+	static calculateRounds(rounds) {
+		if(!rounds) throw new Error('Rounds cannot be undefined');
 		return rounds.reduce(
 			(obj, round) => {
 				const enddate = new Date(round.enddate);

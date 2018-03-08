@@ -47,6 +47,10 @@ class Dangerzone extends Component {
 			loading: true
 		};
 
+		
+	}
+
+	componentDidMount() {
 		this.getPlayersWithYellowCards(this.props.tournamentId);
 	}
 

@@ -1,6 +1,6 @@
 import React from "react";
 import Dangerzone from './Dangerzone';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import '../../setupJest.js';
 
 describe('Dangerzone', () => {
@@ -60,4 +60,44 @@ describe('Dangerzone', () => {
 			])
 		})
 	})
+
+	describe('players should be grouped by team name', () => {
+		it('should group players by team name', () => {
+			const players = [
+			{ team: 'Brann', name: 'Ole'},
+			{ team: 'Rosenborg', name: 'Petter'},
+			{ team: 'Brann', name: 'Sigurd'},
+			{ team: 'Ranheim', name: 'Kåre'},
+			{ team: 'Brann', name: 'Sigve'},
+			{ team: 'Ranheim', name: 'Aleks'},
+			{ team: 'Rosenborg', name: 'Steffen'},
+			{ team: 'Brann', name: 'Sindre'},
+		]
+
+		const grouped = Dangerzone.groupPlayers(players);
+		expect(grouped).toEqual({
+			'Brann': {
+				players: [
+					{ team: 'Brann', name: 'Ole'},
+					{ team: 'Brann', name: 'Sigurd'},
+					{ team: 'Brann', name: 'Sigve'},
+					{ team: 'Brann', name: 'Sindre'},
+				]
+				}, 
+				'Ranheim': {
+					players: [
+						{ team: 'Ranheim', name: 'Kåre'},
+						{ team: 'Ranheim', name: 'Aleks'}
+					]
+				},
+				'Rosenborg': {
+					players: [
+						{ team: 'Rosenborg', name: 'Petter'},
+						{ team: 'Rosenborg', name: 'Steffen'}
+					]
+				}
+			})
+		})	
+	})
+	
 })

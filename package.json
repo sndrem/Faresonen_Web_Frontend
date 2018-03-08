@@ -21,6 +21,7 @@
   },
   "proxy": "http://localhost:8000",
   "devDependencies": {
+    "axios-mock-adapter": "^1.14.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.18.1",
@@ -30,6 +31,7 @@
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.7.0",
-    "prettier": "^1.10.2"
+    "prettier": "^1.10.2",
+    "sinon": "^4.4.2"
   }
 }
