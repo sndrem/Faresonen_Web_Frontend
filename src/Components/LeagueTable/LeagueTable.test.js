@@ -3,6 +3,7 @@ import { shallow, mount, render } from 'enzyme';
 import '../../setupJest.js';
 import LeagueTable from './LeagueTable';
 import axios from 'axios';
+import { Segment } from 'semantic-ui-react';
 
 // Mock axios
 jest.mock('axios', () => {
@@ -41,7 +42,7 @@ describe('<LeagueTable />', () => {
 		})
 	})
 
-	it('sets the league name in state after componentWillReceiveProps', async (done) => {
+	it('sets the league name in state after componentWillReceiveProps', () => {
 		const uri = 'http://api.tv2.no/sport/resources/tournaments/230/'
 		const nextProps = {
 		  "className": "print",
@@ -781,16 +782,16 @@ describe('<LeagueTable />', () => {
 		      19
 		    ]
 		  }
-}
+		}
 		const elem = instantiateShallow();
-		elem.instance().componentWillReceiveProps(nextProps).then((e) => {
-			console.log(e)
-		});
+		elem.instance().getLeagueName(uri);
 		expect(axios.get).toHaveBeenCalled();
 		expect(axios.get).toHaveBeenCalledWith(uri);
-		// console.log(elem.state())
-		expect(elem.state()).toHaveProperty('leagueName', 'Premier League');
+	})
 
+	it('should render a segment with classname print', () => {
+		const elem = instantiateShallow();
+		expect(elem.find(Segment).hasClass('print')).toEqual(true);
 	})
 
 	// it('gets the league name and sets it in state', () => {

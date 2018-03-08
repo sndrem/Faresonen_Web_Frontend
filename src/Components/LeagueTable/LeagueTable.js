@@ -15,10 +15,6 @@ class LeagueTable extends Component {
 		};
 	}
 
-	componentDidMount() {
-
-	}
-
 	componentWillReceiveProps(nextProps) {
 		const { table } = nextProps;
 		this.setState({ table });

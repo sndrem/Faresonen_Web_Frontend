@@ -5,7 +5,10 @@ import axios from "axios";
 class FinishedMatchElements extends Component {
 	constructor(props) {
 		super(props);
+		const [home, away] = this.splitGameName(props.matchInfo.name);
 		this.state = {
+			home,
+			away,
 			goalScorersHomeTeam: [],
 			goalScorersAwayTeam: []
 		};
@@ -16,7 +19,14 @@ class FinishedMatchElements extends Component {
 	}
 
 	splitGameName(name) {
-		return name.split("-");
+		if(name.includes('-')) {
+			return name.split('-');	
+		} else if(name.includes(',')) {
+			return name.split(',');
+		} else if(name.includes(';')) {
+			return name.split(';');
+		} else return name;
+		
 	}
 
 	getGoals(eventUri) {
@@ -99,6 +109,8 @@ class FinishedMatchElements extends Component {
 			// http://api.tv2.no/sport/resources/extendedeventtypes/304/ = straffer
 			const eventType = e.eventtype["@uri"];
 			const extendedEventType = e.extendedeventtype["@uri"];
+			if(!eventType) return false;
+			if(!extendedEventType) return false;
 			return (
 				eventType.includes(
 					"http://api.tv2.no/sport/resources/eventtypes/3/"
@@ -140,7 +152,7 @@ class FinishedMatchElements extends Component {
 	}
 
 	render() {
-		const [home, away] = this.splitGameName(this.props.matchInfo.name);
+		const { home, away } = this.state;
 		const homeScorers = this.formatGoalScoreText(
 			this.state.goalScorersHomeTeam
 		);
