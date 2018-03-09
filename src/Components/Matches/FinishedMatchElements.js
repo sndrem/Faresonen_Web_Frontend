@@ -38,6 +38,7 @@ class FinishedMatchElements extends Component {
 					goalEvents
 				);
 				this.extractPersonNames(calculatedEvents.home).then(data => {
+
 					this.setState({
 						goalScorersHomeTeam: data
 					});
@@ -111,17 +112,9 @@ class FinishedMatchElements extends Component {
 			const extendedEventType = e.extendedeventtype["@uri"];
 			if(!eventType) return false;
 			if(!extendedEventType) return false;
-			return (
-				eventType.includes(
-					"http://api.tv2.no/sport/resources/eventtypes/3/"
-				) ||
-				extendedEventType.includes(
-					"http://api.tv2.no/sport/resources/extendedeventtypes/304/"
-				) ||
-				extendedEventType.includes(
-					"http://api.tv2.no/sport/resources/extendedeventtypes/105/"
-				)
-			);
+			return this.goalWasGoalInPlay(eventType) 
+			|| this.goalWasPenalty(extendedEventType) 
+			|| this.goalWasOwnGoal(extendedEventType);
 		});
 	}
 
@@ -129,23 +122,80 @@ class FinishedMatchElements extends Component {
 		return axios.get(uri);
 	}
 
+	goalWasGoalInPlay(event) {
+		return event.includes("http://api.tv2.no/sport/resources/eventtypes/3/");
+	}
+
+	goalWasPenalty(event) {
+		return event.includes("http://api.tv2.no/sport/resources/extendedeventtypes/304/") || event.includes("http://api.tv2.no/sport/resources/extendedeventtypes/105/");
+	}
+
+	goalWasOwnGoal(event) {
+		return event.includes('http://api.tv2.no/sport/resources/extendedeventtypes/220/');
+	}
+
+	groupScorers(scorers) {
+		// console.log(scorers);
+		return scorers.reduce((obj, scorer) => {
+			if(!obj[scorer.person1['@uri']]) {
+				obj[scorer.person1['@uri']] = [];
+				obj[scorer.person1['@uri']].push({
+					firstname: scorer.person1.firstname,
+					lastname: scorer.person1.lastname,
+					eventTime: scorer.eventtime,
+					eventType: scorer.eventtype['@uri'],
+					extendedeventtype: scorer.extendedeventtype['@uri']
+				});
+			} else {
+				obj[scorer.person1['@uri']].push({
+					firstname: scorer.person1.firstname,
+					lastname: scorer.person1.lastname,
+					eventTime: scorer.eventtime,
+					eventType: scorer.eventtype['@uri'],
+					extendedeventtype: scorer.extendedeventtype['@uri']
+				})
+			}
+			return obj;
+		}, {});
+	}
+
 	formatGoalScoreText(scorers) {
+		// TODO Fix grouping of scorers
+		// const groupedScorers = this.groupScorers(scorers);
+		
+		// const y = Object.keys(groupedScorers).map(key => {
+		// 	let sentence = '';	 
+		// 	 groupedScorers[key].map((scorer) => {
+		// 			console.log(scorer);
+		// 			const extendedEventType = scorer.extendedeventtype;
+		// 			const { lastname, eventTime } = scorer;
+		// 			if (this.goalWasPenalty(extendedEventType)) {
+		// 				sentence += `${lastname} (str. ${
+		// 					eventTime
+		// 				})`;
+		// 			} else if (this.goalWasOwnGoal(extendedEventType)) {
+		// 				sentence += `${lastname} (sm. ${eventTime})`;
+		// 			} else {
+		// 				sentence += `${lastname} (${eventTime})`;
+		// 			}
+		// 		});
+		// 	 	console.log(sentence);
+		// 		return sentence;
+		// })
+		// console.log(y);
 		return scorers
-			.map(scorer => {
+			.map((scorer, index, list) => {
 				const extendedEventType = scorer.extendedeventtype["@uri"];
-				if (
-					extendedEventType.includes(
-						"http://api.tv2.no/sport/resources/extendedeventtypes/304/"
-					) ||
-					extendedEventType.includes(
-						"http://api.tv2.no/sport/resources/extendedeventtypes/105/"
-					)
-				) {
-					return `${scorer.person1.lastname} (str. ${
-						scorer.eventtime
+				const { lastname } = scorer.person1;
+				const { eventtime } = scorer;
+				if (this.goalWasPenalty(extendedEventType)) {
+					return `${lastname} (str. ${
+						eventtime
 					})`;
+				} else if (this.goalWasOwnGoal(extendedEventType)) {
+					return `${lastname} (sm. ${eventtime})`;
 				} else {
-					return `${scorer.person1.lastname} (${scorer.eventtime})`;
+					return `${lastname} (${eventtime})`;
 				}
 			})
 			.join(", ");

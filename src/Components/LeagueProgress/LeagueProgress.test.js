@@ -772,8 +772,9 @@ describe('<LeagueProgess />', () => {
 			      "@uri": "http://api.tv2.no/sport/resources/tournaments/230/"
 			    }
 			  }
-			]		
-		const calculated = LeagueProgress.calculateRounds(rounds);
+			]
+		const date = new Date(2018, 2, 8, 12, 0, 0, 0)	
+		const calculated = LeagueProgress.calculateRounds(rounds, date);
 		expect(calculated).toEqual({finished: 28, left: 10})
 	})
 

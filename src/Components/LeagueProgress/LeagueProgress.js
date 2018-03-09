@@ -22,7 +22,7 @@ class LeagueProgess extends Component {
 		axios
 			.get(`/rounds/${tournamentId}/${seasonId}`)
 			.then(data => {
-				const calculatedRounds = LeagueProgess.calculateRounds(data.data.round);
+				const calculatedRounds = LeagueProgess.calculateRounds(data.data.round, new Date());
 				this.setState({
 					finished: calculatedRounds.finished,
 					left: calculatedRounds.left,
@@ -33,12 +33,12 @@ class LeagueProgess extends Component {
 			.catch(err => console.error(err));
 	}
 
-	static calculateRounds(rounds) {
+	static calculateRounds(rounds, date) {
 		if(!rounds) throw new Error('Rounds cannot be undefined');
 		return rounds.reduce(
 			(obj, round) => {
 				const enddate = new Date(round.enddate);
-				const now = new Date();
+				const now = date;
 
 				if (now > enddate) {
 					obj.finished = obj.finished + 1;
