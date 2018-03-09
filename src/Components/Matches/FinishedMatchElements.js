@@ -135,7 +135,6 @@ class FinishedMatchElements extends Component {
 	}
 
 	groupScorers(scorers) {
-		// console.log(scorers);
 		return scorers.reduce((obj, scorer) => {
 			if(!obj[scorer.person1['@uri']]) {
 				obj[scorer.person1['@uri']] = [];
@@ -159,46 +158,26 @@ class FinishedMatchElements extends Component {
 		}, {});
 	}
 
+	formatIndividualGoalScorer(scorer) {
+		let text = `${scorer[0].lastname} (`;
+		scorer.forEach((s, index, list) => {
+			const extendedEventType = s.extendedeventtype;
+		if (this.goalWasPenalty(extendedEventType)) {
+				text += `str. `;
+			} else if (this.goalWasOwnGoal(extendedEventType)) {
+				text += `sm. `;
+			} 
+			text += (index + 1) !== list.length ? `${s.eventTime}, ` : `${s.eventTime}`;
+		})
+		text += ')';
+		return text;
+	}
+
 	formatGoalScoreText(scorers) {
-		// TODO Fix grouping of scorers
-		// const groupedScorers = this.groupScorers(scorers);
-		
-		// const y = Object.keys(groupedScorers).map(key => {
-		// 	let sentence = '';	 
-		// 	 groupedScorers[key].map((scorer) => {
-		// 			console.log(scorer);
-		// 			const extendedEventType = scorer.extendedeventtype;
-		// 			const { lastname, eventTime } = scorer;
-		// 			if (this.goalWasPenalty(extendedEventType)) {
-		// 				sentence += `${lastname} (str. ${
-		// 					eventTime
-		// 				})`;
-		// 			} else if (this.goalWasOwnGoal(extendedEventType)) {
-		// 				sentence += `${lastname} (sm. ${eventTime})`;
-		// 			} else {
-		// 				sentence += `${lastname} (${eventTime})`;
-		// 			}
-		// 		});
-		// 	 	console.log(sentence);
-		// 		return sentence;
-		// })
-		// console.log(y);
-		return scorers
-			.map((scorer, index, list) => {
-				const extendedEventType = scorer.extendedeventtype["@uri"];
-				const { lastname } = scorer.person1;
-				const { eventtime } = scorer;
-				if (this.goalWasPenalty(extendedEventType)) {
-					return `${lastname} (str. ${
-						eventtime
-					})`;
-				} else if (this.goalWasOwnGoal(extendedEventType)) {
-					return `${lastname} (sm. ${eventtime})`;
-				} else {
-					return `${lastname} (${eventtime})`;
-				}
-			})
-			.join(", ");
+		const groupedScorers = this.groupScorers(scorers);
+		return Object.keys(groupedScorers).map(key => {
+			return this.formatIndividualGoalScorer(groupedScorers[key]);
+		}).join(", ")
 	}
 
 	render() {

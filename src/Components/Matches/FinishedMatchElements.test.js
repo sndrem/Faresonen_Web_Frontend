@@ -680,7 +680,7 @@ describe('<FinishedMatchElements />', () => {
 			    "mml": "CF-PL17R29-CRY-MAU-Q01E01-223517-LUKAKU-2-2",
 			    "nifsId": "8589101",
 			    "person1": {
-			      "@uri": "http://api.tv2.no/sport/resources/people/227182/",
+			      "@uri": "http://api.tv2.no/sport/resources/people/221003/",
 			      "birthday": "1993-05-13T00:00:00+02:00",
 			      "birthplace": "Antwerpen",
 			      "country": {
@@ -780,6 +780,6 @@ describe('<FinishedMatchElements />', () => {
 
 		const doubleScoreString = elem.instance().formatGoalScoreText(doubleScorers);
 
-		expect(doubleScoreString).toEqual('Smalling (55), Smalling (76), Matic (90)');
+		expect(doubleScoreString).toEqual('Smalling (55, 76), Matic (90)');
 	})
 })
