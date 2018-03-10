@@ -1,7 +1,5 @@
-import React from "react";
 import Dangerzone from './Dangerzone';
-import { shallow, mount } from 'enzyme';
-import '../../setupJest.js';
+import '../../setupJest';
 
 describe('Dangerzone', () => {
 	describe('teams should be sorted alphabetically', () => {

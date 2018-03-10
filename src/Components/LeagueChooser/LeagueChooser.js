@@ -10,23 +10,17 @@ class LeagueChooser extends Component {
 	}
 
 	render() {
-		const leagues = this.props.leagues.map(league => {
-			return (
+		const leagues = this.props.leagues.map(league => (
 				<Grid.Column key={league.tournamentId}>
 					<Card
 						onClick={() => this.handleClick(league)}
 						image={league.image}
 						header={league.name}
-						description={
-							"TurneringsID: " +
-							league.tournamentId +
-							" - SesongID: " +
-							league.seasonId
-						}
+						description={`"TurneringsID: " ${league.tournamentId} - SesongID: ${league.seasonId}`}
 					/>
 				</Grid.Column>
-			);
-		});
+			)
+		);
 		return <Grid columns={3}>{leagues}</Grid>;
 	}
 }

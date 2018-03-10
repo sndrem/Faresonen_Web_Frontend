@@ -21,5 +21,10 @@
             "specialLink": [ "hrefLeft", "hrefRight" ],
             "aspects": [ "noHref", "invalidHref", "preferButton" ]
           }]
+  },
+  "globals": {
+    "describe": 1,
+    "it": 1,
+    "expect": 1
   }
 }

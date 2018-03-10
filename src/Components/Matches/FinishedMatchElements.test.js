@@ -782,4 +782,5 @@ describe('<FinishedMatchElements />', () => {
 
 		expect(doubleScoreString).toEqual('Smalling (55, 76), Matic (90)');
 	})
+
 })

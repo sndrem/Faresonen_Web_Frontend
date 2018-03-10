@@ -1,7 +1,7 @@
-import FinishedMatchElements from "./FinishedMatchElements";
 import React, { Component } from "react";
 import { Segment, Dimmer, Loader } from "semantic-ui-react";
 import PropTypes from "prop-types";
+import FinishedMatchElements from "./FinishedMatchElements";
 
 class FinishedMatches extends Component {
 	constructor(props) {
@@ -31,7 +31,7 @@ class FinishedMatches extends Component {
 }
 
 FinishedMatches.propTypes = {
-	matches: PropTypes.array,
+	matches: PropTypes.array.isRequired,
 	roundNumber: PropTypes.number
 };
 

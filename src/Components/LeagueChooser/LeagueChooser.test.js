@@ -1,8 +1,8 @@
 import React from "react";
+import { shallow } from 'enzyme';
 import LeagueChooser from './LeagueChooser';
 import data from '../../data/leagues';
-import { shallow } from 'enzyme';
-import '../../setupJest.js';
+import '../../setupJest';
 
 describe('LeagueChooser', () => {
 	const elem = shallow(<LeagueChooser leagues={data.leagues} />);

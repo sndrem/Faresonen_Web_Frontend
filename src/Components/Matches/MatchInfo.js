@@ -15,13 +15,14 @@ class MatchInfo extends Component {
 			startDate: tools.getDate(props.match.starttime),
 			startTime: tools.getTime(props.match.starttime),
 			referee: ""
-		};
+		};	
+	}
 
-		if (props.match.referee) {
-			this.getReferee(props.match.referee["@uri"]);
+	componentDidMount() {
+		if (this.props.match.referee) {
+			this.getReferee(this.props.match.referee["@uri"]);
 		}
-
-		axios.all([tools.getChannelAndStadium(props.match)]).then(
+			axios.all([tools.getChannelAndStadium(this.props.match)]).then(
 			axios.spread(data => {
 				if (data.channel) {
 					data.channel.then(channel =>
@@ -55,7 +56,14 @@ class MatchInfo extends Component {
 	}
 
 	formatRefereeName(ref) {
-		return `${ref.firstname} ${ref.lastname}`;
+		if(ref.firstname && ref.lastname) {
+			return `${ref.firstname} ${ref.lastname}`.trim();	
+		} else if(ref.firstname) {
+			return `${ref.firstname}`.trim();
+		} else if (ref.lastname) {
+			return `${ref.lastname}`.trim();
+		} else throw new Error('Referee must have either firstname or lastname property');
+		
 	}
 
 	render() {
