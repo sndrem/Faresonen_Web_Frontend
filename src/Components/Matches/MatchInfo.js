@@ -72,7 +72,6 @@ class MatchInfo extends Component {
   render() {
     let header = "";
     const { status } = this.props.match;
-    console.log(status);
     if (status && events.postponed.includes(status["@uri"])) {
       header = (
         <Item.Header>
