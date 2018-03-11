@@ -1,7 +1,12 @@
 .finished {
-	color: lightgray;
+  color: lightgray;
 }
 
 .finished .item .content .header {
-	color: lightgray;
+  color: lightgray;
+}
+
+.postponed,
+.postponed .item .content .header {
+  color: red;
 }

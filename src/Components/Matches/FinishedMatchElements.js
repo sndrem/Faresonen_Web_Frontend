@@ -1,220 +1,241 @@
 import React, { Component } from "react";
 import { Divider, Message } from "semantic-ui-react";
 import axios from "axios";
+import PropTypes from "prop-types";
+import goalEvents from "../../Tools/events";
 
 class FinishedMatchElements extends Component {
-	constructor(props) {
-		super(props);
-		const [home, away] = this.splitGameName(props.matchInfo.name);
-		this.state = {
-			home,
-			away,
-			goalScorersHomeTeam: [],
-			goalScorersAwayTeam: []
-		};
-	}
+  static goalWasGoalInPlay(event) {
+    return goalEvents.goalInPlay.includes(event);
+  }
 
-	componentDidMount() {
-		this.getGoals(this.props.matchInfo.events["@uri"]);
-	}
+  static goalWasPenalty(event) {
+    return goalEvents.penaltyGoal.includes(event);
+  }
 
-	splitGameName(name) {
-		if(name.includes('-')) {
-			return name.split('-');	
-		} else if(name.includes(',')) {
-			return name.split(',');
-		} else if(name.includes(';')) {
-			return name.split(';');
-		} else return name;
-		
-	}
+  static goalWasOwnGoal(event) {
+    return goalEvents.ownGoal.includes(event);
+  }
 
-	getGoals(eventUri) {
-		axios
-			.get(eventUri)
-			.then(data => {
-				const goalEvents = this.filterGoalEvents(data.data.event);
-				const calculatedEvents = this.calculateHomeAndAwayEvents(
-					goalEvents
-				);
-				this.extractPersonNames(calculatedEvents.home).then(data => {
+  static calculateHomeAndAwayEvents(events) {
+    return events.reduce(
+      (obj, e, index, list) => {
+        const prevElementA =
+          list[index - 1] === undefined ? null : list[index - 1].goalsTeamA;
+        const prevElementB =
+          list[index - 1] === undefined ? null : list[index - 1].goalsTeamB;
 
-					this.setState({
-						goalScorersHomeTeam: data
-					});
-				});
-				this.extractPersonNames(calculatedEvents.away).then(data => {
-					this.setState({
-						goalScorersAwayTeam: data
-					});
-				});
-			})
-			.catch(err => {
-				console.error(err);
-			});
-	}
+        const previousHomeScore =
+          prevElementA === null ? 0 : parseInt(prevElementA, 10);
+        const previousAwayScore =
+          prevElementB === null ? 0 : parseInt(prevElementB, 10);
 
-	extractPersonNames(events) {
-		return new Promise((resolve, reject) => {
-			const promises = [];
-			events.forEach(e => {
-				promises.push(this.getNameOfPerson(e.person1["@uri"]));
-			});
+        const homeScore = parseInt(e.goalsTeamA, 10);
+        const awayScore = parseInt(e.goalsTeamB, 10);
 
-			axios.all(promises).then(data => {
-				events.forEach((e, index, list) => {
-					e.person1 = data[index].data;
-				});
-				resolve(events);
-			});
-		});
-	}
+        if (homeScore > previousHomeScore) {
+          obj.home.push(e);
+        }
 
-	calculateHomeAndAwayEvents(events) {
-		return events.reduce(
-			(obj, e, index, list) => {
-				const prevElementA =
-					list[index - 1] === undefined
-						? null
-						: list[index - 1].goalsTeamA;
-				const prevElementB =
-					list[index - 1] === undefined
-						? null
-						: list[index - 1].goalsTeamB;
+        if (awayScore > previousAwayScore) {
+          obj.away.push(e);
+        }
 
-				const previousHomeScore =
-					prevElementA === null ? 0 : parseInt(prevElementA, 10);
-				const previousAwayScore =
-					prevElementB === null ? 0 : parseInt(prevElementB, 10);
+        return obj;
+      },
+      { home: [], away: [] }
+    );
+  }
 
-				const homeScore = parseInt(e.goalsTeamA, 10);
-				const awayScore = parseInt(e.goalsTeamB, 10);
+  static filterGoalEvents(events) {
+    return events.filter(e => {
+      // http://api.tv2.no/sport/resources/eventtypes/3/ = mål
+      // http://api.tv2.no/sport/resources/extendedeventtypes/304/ = straffer
+      const eventType = e.eventtype["@uri"];
+      const extendedEventType = e.extendedeventtype["@uri"];
+      if (!eventType) return false;
+      if (!extendedEventType) return false;
+      return (
+        FinishedMatchElements.goalWasGoalInPlay(eventType) ||
+        FinishedMatchElements.goalWasPenalty(extendedEventType) ||
+        FinishedMatchElements.goalWasOwnGoal(extendedEventType)
+      );
+    });
+  }
 
-				if (homeScore > previousHomeScore) {
-					obj.home.push(e);
-				}
+  static getNameOfPerson(uri) {
+    return axios.get(uri);
+  }
 
-				if (awayScore > previousAwayScore) {
-					obj.away.push(e);
-				}
+  static splitGameName(name) {
+    if (name.includes("-")) {
+      return name.split("-");
+    } else if (name.includes(",")) {
+      return name.split(",");
+    } else if (name.includes(";")) {
+      return name.split(";");
+    }
+    return name;
+  }
 
-				return obj;
-			},
-			{ home: [], away: [] }
-		);
-	}
+  static groupScorers(scorers) {
+    return scorers.reduce((obj, scorer) => {
+      if (!obj[scorer.person1["@uri"]]) {
+        // eslint-disable-next-line no-param-reassign
+        obj[scorer.person1["@uri"]] = [];
+        obj[scorer.person1["@uri"]].push({
+          firstname: scorer.person1.firstname,
+          lastname: scorer.person1.lastname,
+          eventTime: scorer.eventtime,
+          eventType: scorer.eventtype["@uri"],
+          extendedeventtype: scorer.extendedeventtype["@uri"]
+        });
+      } else {
+        obj[scorer.person1["@uri"]].push({
+          firstname: scorer.person1.firstname,
+          lastname: scorer.person1.lastname,
+          eventTime: scorer.eventtime,
+          eventType: scorer.eventtype["@uri"],
+          extendedeventtype: scorer.extendedeventtype["@uri"]
+        });
+      }
+      return obj;
+    }, {});
+  }
 
-	filterGoalEvents(events) {
-		return events.filter(e => {
-			// http://api.tv2.no/sport/resources/eventtypes/3/ = mål
-			// http://api.tv2.no/sport/resources/extendedeventtypes/304/ = straffer
-			const eventType = e.eventtype["@uri"];
-			const extendedEventType = e.extendedeventtype["@uri"];
-			if(!eventType) return false;
-			if(!extendedEventType) return false;
-			return this.goalWasGoalInPlay(eventType) 
-			|| this.goalWasPenalty(extendedEventType) 
-			|| this.goalWasOwnGoal(extendedEventType);
-		});
-	}
+  static formatIndividualGoalScorer(scorer) {
+    let text = `${scorer[0].lastname} (`;
+    scorer.forEach((s, index, list) => {
+      const extendedEventType = s.extendedeventtype;
+      if (FinishedMatchElements.goalWasPenalty(extendedEventType)) {
+        text += `str. `;
+      } else if (FinishedMatchElements.goalWasOwnGoal(extendedEventType)) {
+        text += `sm. `;
+      }
+      text += index + 1 !== list.length ? `${s.eventTime}, ` : `${s.eventTime}`;
+    });
+    text += ")";
+    return text;
+  }
 
-	getNameOfPerson(uri) {
-		return axios.get(uri);
-	}
+  static formatGoalScoreText(scorers) {
+    const groupedScorers = FinishedMatchElements.groupScorers(scorers);
+    return Object.keys(groupedScorers)
+      .map(key =>
+        FinishedMatchElements.formatIndividualGoalScorer(groupedScorers[key])
+      )
+      .join(", ");
+  }
 
-	goalWasGoalInPlay(event) {
-		return event.includes("http://api.tv2.no/sport/resources/eventtypes/3/");
-	}
+  static extractPersonNames(events) {
+    return new Promise(resolve => {
+      const promises = [];
+      events.forEach(e => {
+        promises.push(FinishedMatchElements.getNameOfPerson(e.person1["@uri"]));
+      });
 
-	goalWasPenalty(event) {
-		return event.includes("http://api.tv2.no/sport/resources/extendedeventtypes/304/") || event.includes("http://api.tv2.no/sport/resources/extendedeventtypes/105/");
-	}
+      axios.all(promises).then(data => {
+        events.forEach((e, index) => {
+          e.person1 = data[index].data;
+        });
+        resolve(events);
+      });
+    });
+  }
 
-	goalWasOwnGoal(event) {
-		return event.includes('http://api.tv2.no/sport/resources/extendedeventtypes/220/');
-	}
+  constructor(props) {
+    super(props);
+    const [home, away] = FinishedMatchElements.splitGameName(
+      props.matchInfo.name
+    );
+    this.state = {
+      home,
+      away,
+      goalScorersHomeTeam: [],
+      goalScorersAwayTeam: []
+    };
+  }
 
-	groupScorers(scorers) {
-		return scorers.reduce((obj, scorer) => {
-			if(!obj[scorer.person1['@uri']]) {
-				obj[scorer.person1['@uri']] = [];
-				obj[scorer.person1['@uri']].push({
-					firstname: scorer.person1.firstname,
-					lastname: scorer.person1.lastname,
-					eventTime: scorer.eventtime,
-					eventType: scorer.eventtype['@uri'],
-					extendedeventtype: scorer.extendedeventtype['@uri']
-				});
-			} else {
-				obj[scorer.person1['@uri']].push({
-					firstname: scorer.person1.firstname,
-					lastname: scorer.person1.lastname,
-					eventTime: scorer.eventtime,
-					eventType: scorer.eventtype['@uri'],
-					extendedeventtype: scorer.extendedeventtype['@uri']
-				})
-			}
-			return obj;
-		}, {});
-	}
+  componentDidMount() {
+    this.getGoals(this.props.matchInfo.events["@uri"]);
+  }
 
-	formatIndividualGoalScorer(scorer) {
-		let text = `${scorer[0].lastname} (`;
-		scorer.forEach((s, index, list) => {
-			const extendedEventType = s.extendedeventtype;
-		if (this.goalWasPenalty(extendedEventType)) {
-				text += `str. `;
-			} else if (this.goalWasOwnGoal(extendedEventType)) {
-				text += `sm. `;
-			} 
-			text += (index + 1) !== list.length ? `${s.eventTime}, ` : `${s.eventTime}`;
-		})
-		text += ')';
-		return text;
-	}
+  getGoals(eventUri) {
+    axios
+      .get(eventUri)
+      .then(data => {
+        const filteredGoalEvents = FinishedMatchElements.filterGoalEvents(
+          data.data.event
+        );
+        const calculatedEvents = FinishedMatchElements.calculateHomeAndAwayEvents(
+          filteredGoalEvents
+        );
+        FinishedMatchElements.extractPersonNames(calculatedEvents.home).then(
+          goalScorersHomeTeam => {
+            this.setState({
+              goalScorersHomeTeam
+            });
+          }
+        );
+        FinishedMatchElements.extractPersonNames(calculatedEvents.away).then(
+          goalScorersAwayTeam => {
+            this.setState({
+              goalScorersAwayTeam
+            });
+          }
+        );
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
 
-	formatGoalScoreText(scorers) {
-		const groupedScorers = this.groupScorers(scorers);
-		return Object.keys(groupedScorers).map(key => {
-			return this.formatIndividualGoalScorer(groupedScorers[key]);
-		}).join(", ")
-	}
+  render() {
+    const { home, away } = this.state;
+    const homeScorers = FinishedMatchElements.formatGoalScoreText(
+      this.state.goalScorersHomeTeam
+    );
+    const awayScorers = FinishedMatchElements.formatGoalScoreText(
+      this.state.goalScorersAwayTeam
+    );
 
-	render() {
-		const { home, away } = this.state;
-		const homeScorers = this.formatGoalScoreText(
-			this.state.goalScorersHomeTeam
-		);
-		const awayScorers = this.formatGoalScoreText(
-			this.state.goalScorersAwayTeam
-		);
-
-		return (
-			<div>
-				<Message size="small">
-					<Message.Header>
-						{home} {this.props.matchInfo.goalsTeamAEndtime} -{" "}
-						{this.props.matchInfo.goalsTeamBEndtime} {away}
-					</Message.Header>
-					{this.props.matchInfo.goalsTeamAEndtime > 0 ? (
-						<p>
-							<b>{home}:</b> {homeScorers}
-						</p>
-					) : (
-						""
-					)}
-					{this.props.matchInfo.goalsTeamBEndtime > 0 ? (
-						<p>
-							<b>{away}</b>: {awayScorers}
-						</p>
-					) : (
-						""
-					)}
-				</Message>
-				<Divider />
-			</div>
-		);
-	}
+    return (
+      <div>
+        <Message size="small">
+          <Message.Header>
+            {home} {this.props.matchInfo.goalsTeamAEndtime} -{" "}
+            {this.props.matchInfo.goalsTeamBEndtime} {away}
+          </Message.Header>
+          {this.props.matchInfo.goalsTeamAEndtime > 0 ? (
+            <p>
+              <b>{home}:</b> {homeScorers}
+            </p>
+          ) : (
+            ""
+          )}
+          {this.props.matchInfo.goalsTeamBEndtime > 0 ? (
+            <p>
+              <b>{away}</b>: {awayScorers}
+            </p>
+          ) : (
+            ""
+          )}
+        </Message>
+        <Divider />
+      </div>
+    );
+  }
 }
+
+FinishedMatchElements.propTypes = {
+  matchInfo: PropTypes.shape({
+    goalsTeamAEndtime: PropTypes.string.isRequired,
+    goalsTeamBEndtime: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    events: PropTypes.shape({
+      "@uri": PropTypes.string.isRequired
+    })
+  }).isRequired
+};
 
 export default FinishedMatchElements;
