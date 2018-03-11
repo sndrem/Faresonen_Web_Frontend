@@ -49,14 +49,13 @@ class FinishedMatchElements extends Component {
 
   static filterGoalEvents(events) {
     return events.filter(e => {
-      // http://api.tv2.no/sport/resources/eventtypes/3/ = mål
-      // http://api.tv2.no/sport/resources/extendedeventtypes/304/ = straffer
       const eventType = e.eventtype["@uri"];
       const extendedEventType = e.extendedeventtype["@uri"];
       if (!eventType) return false;
       if (!extendedEventType) return false;
       return (
         FinishedMatchElements.goalWasGoalInPlay(eventType) ||
+        FinishedMatchElements.goalWasPenalty(eventType) ||
         FinishedMatchElements.goalWasPenalty(extendedEventType) ||
         FinishedMatchElements.goalWasOwnGoal(extendedEventType)
       );
@@ -107,7 +106,11 @@ class FinishedMatchElements extends Component {
     let text = `${scorer[0].lastname} (`;
     scorer.forEach((s, index, list) => {
       const extendedEventType = s.extendedeventtype;
-      if (FinishedMatchElements.goalWasPenalty(extendedEventType)) {
+      const eventType = s.eventType;
+      if (
+        FinishedMatchElements.goalWasPenalty(extendedEventType) ||
+        FinishedMatchElements.goalWasPenalty(eventType)
+      ) {
         text += `str. `;
       } else if (FinishedMatchElements.goalWasOwnGoal(extendedEventType)) {
         text += `sm. `;
