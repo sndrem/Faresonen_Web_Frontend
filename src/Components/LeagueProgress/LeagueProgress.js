@@ -1,70 +1,93 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Progress } from "semantic-ui-react";
 import axios from "axios";
 
 class LeagueProgess extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			finished: 0,
-			left: 0,
-			total: 0,
-			loading: true
-		};
-	}
+  static removeFinishedRounds(rounds) {
+    const promises = [];
+    rounds.forEach(r => {
+      promises.push(axios.get(r.matches["@uri"]));
+    });
+    return new Promise((resolve, reject) => {
+      axios
+        .all(promises)
+        .then(data => {
+          const filteredMatches = data.reduce(
+            (obj, match) => {
+              const { match: matchData } = match.data;
 
-	componentDidMount() {
-		const { tournamentId, seasonId } = this.props;
-		this.getRounds(tournamentId, seasonId);
-	}
+              if (matchData.every(m => m.confirmed === "true")) {
+                // eslint-disable-next-line
+                obj.finished += 1;
+              } else {
+                // eslint-disable-next-line
+                obj.left += 1;
+              }
+              return obj;
+            },
+            { finished: 0, left: 0 }
+          );
+          resolve(filteredMatches);
+        })
+        .catch(err => reject(err));
+    });
+  }
 
-	getRounds(tournamentId, seasonId) {
-		axios
-			.get(`/rounds/${tournamentId}/${seasonId}`)
-			.then(data => {
-				const calculatedRounds = LeagueProgess.calculateRounds(data.data.round, new Date());
-				this.setState({
-					finished: calculatedRounds.finished,
-					left: calculatedRounds.left,
-					total: calculatedRounds.finished + calculatedRounds.left,
-					loading: false
-				});
-			})
-			.catch(err => console.error(err));
-	}
+  constructor(props) {
+    super(props);
+    this.state = {
+      finished: 0,
+      left: 0,
+      total: 0,
+      loading: true
+    };
+  }
 
-	static calculateRounds(rounds, date) {
-		if(!rounds) throw new Error('Rounds cannot be undefined');
-		return rounds.reduce(
-			(obj, round) => {
-				const enddate = new Date(round.enddate);
-				const now = date;
+  componentDidMount() {
+    const { tournamentId, seasonId } = this.props;
+    this.getRounds(tournamentId, seasonId);
+  }
 
-				if (now > enddate) {
-					obj.finished = obj.finished + 1;
-				} else {
-					obj.left = obj.left + 1;
-				}
+  getRounds(tournamentId, seasonId) {
+    axios
+      .get(`/rounds/${tournamentId}/${seasonId}`)
+      .then(data => {
+        this.calculateRounds(data.data.round);
+      })
+      .catch(err => console.error(err));
+  }
 
-				return obj;
-			},
-			{ finished: 0, left: 0 }
-		);
-	}
+  calculateRounds(rounds) {
+    LeagueProgess.removeFinishedRounds(rounds).then(calculated => {
+      this.setState({
+        finished: calculated.finished,
+        left: calculated.left,
+        total: calculated.finished + calculated.left,
+        loading: false
+      });
+    });
+  }
 
-	render() {
-		return (
-			<Progress
-				className="no-print"
-				color="green"
-				progress="ratio"
-				total={this.state.total}
-				value={this.state.finished}
-			>
-				Progresjon for {this.props.leagueName}
-			</Progress>
-		);
-	}
+  render() {
+    return (
+      <Progress
+        className="no-print"
+        color="green"
+        progress="ratio"
+        total={this.state.total}
+        value={this.state.finished}
+      >
+        Progresjon for {this.props.leagueName}
+      </Progress>
+    );
+  }
 }
+
+LeagueProgess.propTypes = {
+  leagueName: PropTypes.string.isRequired,
+  tournamentId: PropTypes.number.isRequired,
+  seasonId: PropTypes.number.isRequired
+};
 
 export default LeagueProgess;
