@@ -9,6 +9,7 @@ import {
   Message
 } from "semantic-ui-react";
 import dangerzoneService from "../../services/dangerzoneService";
+import DangerzoneStats from "../Stats/DangerzoneStats";
 
 class Dangerzone extends Component {
   constructor(props) {
@@ -83,6 +84,9 @@ class Dangerzone extends Component {
         </Dimmer>
         <h1>Faresonen i {this.props.leagueName}</h1>
         <Grid columns={4}>{players}</Grid>
+        <Grid columns={12}>
+          <DangerzoneStats data={this.state.players} />
+        </Grid>
       </Segment>
     );
   }
