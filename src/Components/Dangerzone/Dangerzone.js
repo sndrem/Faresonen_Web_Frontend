@@ -8,40 +8,9 @@ import {
   Table,
   Message
 } from "semantic-ui-react";
-import axios from "axios";
+import dangerzoneService from "../../services/dangerzoneService";
 
 class Dangerzone extends Component {
-  static sortTeams(players) {
-    return players.sort((a, b) => a.name.localeCompare(b.name));
-  }
-
-  static filterPlayers(players) {
-    return Object.keys(players)
-      .map(team => ({
-        name: team,
-        players: players[team].players.filter(
-          p => p.value1 % 2 === 0 && p.value1 !== 0
-        )
-      }))
-      .filter(team => team.players.length > 0);
-  }
-
-  static groupPlayers(players) {
-    return players.reduce((obj, elem) => {
-      if (!obj[elem.team]) {
-        // eslint-disable-next-line no-param-reassign
-        obj[elem.team] = {
-          players: []
-        };
-      }
-
-      if (obj[elem.team]) {
-        obj[elem.team].players.push(elem);
-      }
-      return obj;
-    }, {});
-  }
-
   constructor(props) {
     super(props);
     this.state = {
@@ -55,7 +24,7 @@ class Dangerzone extends Component {
   }
 
   getPlayersWithYellowCards(tournamentId) {
-    axios.get(`/statistics/yellowcards/${tournamentId}`).then(data => {
+    dangerzoneService.getPlayersWithYellowCards(tournamentId).then(data => {
       const { data: yellowCardResponse } = data.data;
       if (data.length <= 0) {
         this.setState({
@@ -64,9 +33,9 @@ class Dangerzone extends Component {
         });
         return;
       }
-      let playersGrouped = Dangerzone.groupPlayers(yellowCardResponse);
-      playersGrouped = Dangerzone.filterPlayers(playersGrouped);
-      playersGrouped = Dangerzone.sortTeams(playersGrouped);
+      let playersGrouped = dangerzoneService.groupPlayers(yellowCardResponse);
+      playersGrouped = dangerzoneService.filterPlayers(playersGrouped);
+      playersGrouped = dangerzoneService.sortTeams(playersGrouped);
       this.setState({
         players: playersGrouped,
         loading: false

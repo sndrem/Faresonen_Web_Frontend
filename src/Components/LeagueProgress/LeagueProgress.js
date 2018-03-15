@@ -9,6 +9,7 @@ class LeagueProgess extends Component {
     rounds.forEach(r => {
       promises.push(axios.get(r.matches["@uri"]));
     });
+
     return new Promise((resolve, reject) => {
       axios
         .all(promises)

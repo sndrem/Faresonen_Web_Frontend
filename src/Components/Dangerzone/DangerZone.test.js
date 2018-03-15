@@ -1,4 +1,5 @@
 import Dangerzone from "./Dangerzone";
+import dangerzoneService from "../../services/dangerzoneService";
 import "../../setupJest";
 
 describe("Dangerzone", () => {
@@ -11,7 +12,7 @@ describe("Dangerzone", () => {
         { name: "Bodø/Glimt" }
       ];
 
-      teams = Dangerzone.sortTeams(teams);
+      teams = dangerzoneService.sortTeams(teams);
       expect(teams).toEqual([
         { name: "Bodø/Glimt" },
         { name: "Brann" },
@@ -46,7 +47,7 @@ describe("Dangerzone", () => {
         }
       };
 
-      const filtered = Dangerzone.filterPlayers(teams);
+      const filtered = dangerzoneService.filterPlayers(teams);
       expect(filtered).toEqual([
         {
           name: "Brann",
@@ -69,7 +70,7 @@ describe("Dangerzone", () => {
         { team: "Brann", name: "Sindre" }
       ];
 
-      const grouped = Dangerzone.groupPlayers(players);
+      const grouped = dangerzoneService.groupPlayers(players);
       expect(grouped).toEqual({
         Brann: {
           players: [
