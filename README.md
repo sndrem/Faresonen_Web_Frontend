@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/sndrem/Faresonen_Web_Frontend.svg?branch=master)](https://travis-ci.org/sndrem/Faresonen_Web_Frontend)
+
 # Faresonen
 Dette er en ny versjon av Faresonen, brukt blant grafikkavviklere hos TV 2 ved forberedelser til avvikling av FotballXtra.
 
