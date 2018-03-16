@@ -1,12 +1,22 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Item } from "semantic-ui-react";
-import moment from "moment-with-locales-es6";
 import axios from "axios";
 import tools from "../../Tools/tools";
 import events from "../../Tools/events";
-moment.locale("no");
 
 class MatchInfo extends Component {
+  static formatRefereeName(ref) {
+    if (ref.firstname && ref.lastname) {
+      return `${ref.firstname} ${ref.lastname}`.trim();
+    } else if (ref.firstname) {
+      return `${ref.firstname}`.trim();
+    } else if (ref.lastname) {
+      return `${ref.lastname}`.trim();
+    }
+    throw new Error("Referee must have either firstname or lastname property");
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -51,22 +61,9 @@ class MatchInfo extends Component {
   getReferee(refUri) {
     axios.get(refUri).then(data => {
       this.setState({
-        referee: this.formatRefereeName(data.data)
+        referee: MatchInfo.formatRefereeName(data.data)
       });
     });
-  }
-
-  formatRefereeName(ref) {
-    if (ref.firstname && ref.lastname) {
-      return `${ref.firstname} ${ref.lastname}`.trim();
-    } else if (ref.firstname) {
-      return `${ref.firstname}`.trim();
-    } else if (ref.lastname) {
-      return `${ref.lastname}`.trim();
-    } else
-      throw new Error(
-        "Referee must have either firstname or lastname property"
-      );
   }
 
   render() {
@@ -103,5 +100,14 @@ class MatchInfo extends Component {
     );
   }
 }
+
+MatchInfo.propTypes = {
+  match: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    starttime: PropTypes.string.isRequired,
+    referee: PropTypes.shape({ "@uri": PropTypes.string.isRequired }),
+    status: PropTypes.shape({ "@uri": PropTypes.string.isRequired })
+  }).isRequired
+};
 
 export default MatchInfo;

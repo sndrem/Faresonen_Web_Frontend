@@ -52,9 +52,9 @@ class Matches extends Component {
 }
 
 Matches.propTypes = {
-  leagueName: PropTypes.string,
-  roundNumber: PropTypes.number,
-  matches: PropTypes.array
+  leagueName: PropTypes.string.isRequired,
+  roundNumber: PropTypes.number.isRequired,
+  matches: PropTypes.array.isRequired
 };
 
 export default Matches;

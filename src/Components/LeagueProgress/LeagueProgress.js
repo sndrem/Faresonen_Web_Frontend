@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Progress } from "semantic-ui-react";
 import axios from "axios";
+import events from "../../Tools/events";
 
 class LeagueProgess extends Component {
   static removeFinishedRounds(rounds) {
@@ -21,6 +22,8 @@ class LeagueProgess extends Component {
               if (matchData.every(m => m.confirmed === "true")) {
                 // eslint-disable-next-line
                 obj.finished += 1;
+              } else if (LeagueProgess.roundHasPostponedMatches(matchData)) {
+                obj.finished += 1;
               } else {
                 // eslint-disable-next-line
                 obj.left += 1;
@@ -32,6 +35,16 @@ class LeagueProgess extends Component {
           resolve(filteredMatches);
         })
         .catch(err => reject(err));
+    });
+  }
+
+  static roundHasPostponedMatches(matches) {
+    return matches.some(m => {
+      let status = null;
+      if (m.status) {
+        status = m.status["@uri"];
+      }
+      return events.postponed.includes(status);
     });
   }
 

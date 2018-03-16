@@ -1,6 +1,6 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Bar as BarChart } from "react-chartjs";
-import tools from "../../Tools/tools";
 import "./DangerzoneStats.css";
 
 class DangerzoneStats extends Component {
@@ -40,4 +40,22 @@ class DangerzoneStats extends Component {
     );
   }
 }
+
+DangerzoneStats.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      players: PropTypes.arrayOf(
+        PropTypes.shape({
+          place: PropTypes.number.isRequired,
+          name: PropTypes.string.isRequired,
+          team: PropTypes.string.isRequired,
+          value1: PropTypes.number.isRequired,
+          value2: PropTypes.number.isRequired
+        })
+      ).isRequired
+    })
+  ).isRequired
+};
+
 export default DangerzoneStats;
