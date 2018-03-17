@@ -12,6 +12,28 @@ import dangerzoneService from "../../services/dangerzoneService";
 import DangerzoneStats from "../Stats/DangerzoneStats";
 
 class Dangerzone extends Component {
+  static createPlayerElements(players) {
+    return players.map(team => (
+      <Grid.Column key={team.name}>
+        <Table striped className="min-height" compact collapsing>
+          <Table.Header>
+            <Table.Row textAlign="center">
+              <Table.HeaderCell colSpan="2">{team.name}</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            {team.players.map(player => (
+              <Table.Row key={player.name}>
+                <Table.Cell>{player.name}</Table.Cell>
+                <Table.Cell>{player.value1}</Table.Cell>
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </Table>
+      </Grid.Column>
+    ));
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -45,7 +67,7 @@ class Dangerzone extends Component {
   }
 
   render() {
-    if (this.state.players.length <= 0) {
+    if (this.state.players.length <= 0 && !this.state.loading) {
       return (
         <Message info>
           <Message.Header>Faresonen ikke tilgjengelig</Message.Header>
@@ -58,25 +80,8 @@ class Dangerzone extends Component {
       );
     }
 
-    const players = this.state.players.map(team => (
-      <Grid.Column key={team.name}>
-        <Table striped className="min-height" compact collapsing>
-          <Table.Header>
-            <Table.Row textAlign="center">
-              <Table.HeaderCell colSpan="2">{team.name}</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
-            {team.players.map(player => (
-              <Table.Row key={player.name}>
-                <Table.Cell>{player.name}</Table.Cell>
-                <Table.Cell>{player.value1}</Table.Cell>
-              </Table.Row>
-            ))}
-          </Table.Body>
-        </Table>
-      </Grid.Column>
-    ));
+    const players = Dangerzone.createPlayerElements(this.state.players);
+
     return (
       <Segment>
         <Dimmer active={this.state.loading}>

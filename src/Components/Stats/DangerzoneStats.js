@@ -22,14 +22,23 @@ class DangerzoneStats extends Component {
 
   constructor(props) {
     super(props);
-    const filteredData = DangerzoneStats.formatData(props.data);
     this.state = {
-      data: filteredData,
+      data: DangerzoneStats.formatData(props.data),
       chartOptions: {
         responsive: true
       },
       loading: true
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      data: DangerzoneStats.formatData(nextProps.data),
+      loading: false,
+      chartOptions: {
+        responsive: true
+      }
+    });
   }
 
   render() {
