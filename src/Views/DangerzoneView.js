@@ -9,9 +9,13 @@ import {
 } from "semantic-ui-react";
 import axios from "axios";
 import moment from "moment";
+import openSocket from "socket.io-client";
 import FaresoneMenu from "../Components/Menu/FaresoneMenu";
 import DangerzoneSearch from "../Components/Dangerzone/DangerzoneSearch";
 import dangerzoneService from "../services/dangerzoneService";
+import "./DangerzoneView.css";
+
+const socket = openSocket("http://127.0.0.1:8000");
 
 class DangerzoneView extends Component {
   constructor(props) {
@@ -22,17 +26,38 @@ class DangerzoneView extends Component {
         obosligaen: []
       },
       loading: true,
-      open: false
+      open: false,
+      socketConnected: true
     };
   }
 
   componentDidMount() {
-    if (!this.playersInLocalStorageExists()) {
+    if (
+      !this.playersInLocalStorageExists() ||
+      this.localStoragePlayersIsEmpty()
+    ) {
       this.getPlayers(true);
     } else {
       this.showModal();
     }
+    this.setupSocket();
   }
+
+  setupSocket = () => {
+    socket.on("connect", () => {
+      this.setState({ socketConnected: true });
+    });
+
+    socket.on("disconnect", () => {
+      this.setState({ socketConnected: false });
+    });
+
+    socket.on("data", data => {
+      // TODO Write logic for updating users that are now in the dangerzone
+      // this.setState({ data });
+      console.log(data);
+    });
+  };
 
   getPlayers = (overwrite = false) =>
     axios
@@ -65,6 +90,11 @@ class DangerzoneView extends Component {
       });
 
   getFromLocalStorage = key => JSON.parse(localStorage.getItem(key));
+
+  localStoragePlayersIsEmpty = () => {
+    const { eliteserien, obosligaen } = this.getFromLocalStorage("players");
+    return eliteserien.length <= 0 && obosligaen.length <= 0;
+  };
 
   showModal = () => {
     this.setState({ open: true });
@@ -101,9 +131,44 @@ class DangerzoneView extends Component {
     localStorage.setItem("players", JSON.stringify(updatedPlayers));
   };
 
+  formatPlayers = () => {
+    return {
+      eliteserien: dangerzoneService.groupPlayersArrayResponse(
+        this.state.data.eliteserien
+      ),
+      obosligaen: dangerzoneService.groupPlayersArrayResponse(
+        this.state.data.obosligaen
+      )
+    };
+  };
+
+  socketConnected = (connected = false) => {
+    if (connected) {
+      return (
+        <Statistic>
+          <Statistic.Value>
+            <i className="green server icon" />
+          </Statistic.Value>
+          <Statistic.Label>Tilkoblet server</Statistic.Label>
+        </Statistic>
+      );
+    }
+    return (
+      <Statistic>
+        <Statistic.Value>
+          <i className="red server icon" />
+        </Statistic.Value>
+        <Statistic.Label>Frakoblet server</Statistic.Label>
+      </Statistic>
+    );
+  };
+
   render() {
     const { eliteserien, obosligaen } = this.state.data;
     const { lastUpdated } = this.getFromLocalStorage("players");
+    const players = this.formatPlayers();
+    const socketConnected = this.socketConnected(this.state.socketConnected);
+
     return (
       <div>
         <FaresoneMenu />
@@ -122,7 +187,8 @@ class DangerzoneView extends Component {
                 onCancel={this.handleCancel}
                 onConfirm={this.handleConfirm}
               />
-              <Statistic.Group widths="two">
+              <Statistic.Group widths="three">
+                {socketConnected}
                 <Statistic>
                   <Statistic.Value>{eliteserien.length}</Statistic.Value>
                   <Statistic.Label>Eliteserie-spillere</Statistic.Label>
@@ -135,17 +201,7 @@ class DangerzoneView extends Component {
             </Segment>
           </Grid.Column>
         </Grid>
-        <DangerzoneSearch
-          players={{
-            eliteserien: dangerzoneService.groupPlayersArrayResponse(
-              this.state.data.eliteserien
-            ),
-            obosligaen: dangerzoneService.groupPlayersArrayResponse(
-              this.state.data.obosligaen
-            )
-          }}
-          getPlayers={this.getPlayers}
-        />
+        <DangerzoneSearch players={players} getPlayers={this.getPlayers} />
       </div>
     );
   }
