@@ -57,18 +57,31 @@ class DangerzoneView extends Component {
     socket.on("data", data => {
       // TODO Write logic for updating users that are now in the dangerzone
       // this.setState({ data });
-      const x = data.eliteserien.filter(p => {
+      const suspendedPlayers = data.eliteserien.filter(p => {
         const found = this.state.data.eliteserien.find(y => y.name === p.name);
-        return p.value1 > found.value1;
+        if (found) {
+          return p.value1 > found.value1;
+        }
+        return false;
       });
-      console.log(x);
+
       this.setState({
         data: {
-          ...this.state.data.eliteserien,
-          ...this.state.data.obosligaen,
-          suspendedPlayers: x
+          ...this.state.data,
+          suspendedPlayers
         }
       });
+    });
+  };
+
+  setDefaultState = (eliteserien, obosligaen) => {
+    this.setState({
+      loading: false,
+      data: {
+        eliteserien,
+        obosligaen,
+        suspendedPlayers: []
+      }
     });
   };
 
@@ -77,27 +90,14 @@ class DangerzoneView extends Component {
       .get("/statistics/allDangerzonePlayers")
       .then(data => {
         const { eliteserien, obosligaen } = data.data;
-        console.log(data);
         if (overwrite) {
           this.saveToLocalStorage({
             eliteserien,
             obosligaen
           });
-          this.setState({
-            loading: false,
-            data: {
-              eliteserien,
-              obosligaen
-            }
-          });
+          this.setDefaultState(eliteserien, obosligaen);
         }
-        this.setState({
-          loading: false,
-          data: {
-            eliteserien,
-            obosligaen
-          }
-        });
+        this.setDefaultState(eliteserien, obosligaen);
       })
       .catch(err => {
         console.error(err);
@@ -125,7 +125,8 @@ class DangerzoneView extends Component {
     this.setState({
       data: {
         eliteserien,
-        obosligaen
+        obosligaen,
+        suspendedPlayers: []
       },
       loading: false
     });
