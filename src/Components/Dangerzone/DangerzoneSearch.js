@@ -1,17 +1,17 @@
 import React, { Component } from "react";
-import { Grid, Form } from "semantic-ui-react";
-import dangerzoneService from "../../services/dangerzoneService";
+import PropTypes from "prop-types";
+import { Grid, Form, List } from "semantic-ui-react";
 
 class DangerzoneSearch extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       data: {
         eliteserien: [],
         obosligaen: []
       },
-      loading: true
+      loading: true,
+      search: ""
     };
   }
 
@@ -25,41 +25,68 @@ class DangerzoneSearch extends Component {
     });
   }
 
-  formatPlayers = players => {
-    if (players.length > 0) {
-      return players.map(p => <li key={p.name}>{p.name}</li>);
-    }
-    return <li>Ingen spillere klare</li>;
-  };
+  formatPlayers = players => (
+    <List.List>
+      <List.Item>
+        {players.map(p => (
+          <List.Content key={p.name}>
+            <List.Header>
+              {p.name} - {p.value1} gule kort
+            </List.Header>
+          </List.Content>
+        ))}
+      </List.Item>
+    </List.List>
+  );
 
-  createPlayerElements = players => {
-    return players.map(p => <p key={p.name}>{p.name}</p>);
-  };
+  createTeamElements = teams =>
+    teams.map(team => {
+      if (team.players.length === 0) {
+        return "";
+      }
+      return (
+        <List.Item key={team.team}>
+          <List.Header>{team.team}</List.Header>
+          <List.Description>{team.players.length} spillere</List.Description>
+          {this.formatPlayers(team.players)}
+        </List.Item>
+      );
+    });
 
   handleSearch = event => {
-    const { value } = event.target;
-    if (value) {
-      const filteredEliteseriePlayers = this.state.data.eliteserien.filter(p =>
-        p.name.toLowerCase().includes(value.toLowerCase())
-      );
-      this.setState({
-        data: {
-          eliteserien: filteredEliteseriePlayers
-        }
-      });
-      console.log(filteredEliteseriePlayers);
-    } else {
-      this.props.getPlayers();
-    }
+    const { value: search } = event.target;
+    this.setState({ search });
   };
 
-  render() {
-    const { eliteserien } = this.state.data;
+  searchFilter(search, leagueId) {
+    if (this.state.data[leagueId] === undefined)
+      throw new Error(
+        `Wrong leagueId for ${leagueId}. Valid id's are ${Object.keys(
+          this.state.data
+        ).join(",")}`
+      );
+    const filteredPlayers = [];
+    this.state.data[leagueId].forEach(team => {
+      const filtered = team.players.filter(p =>
+        p.name.toLowerCase().includes(search.toLowerCase())
+      );
+      filteredPlayers.push({ team: team.team, players: filtered });
+    });
+    return filteredPlayers;
+  }
 
-    // const eliteseriePlayerElements = dangerzoneService.groupPlayers(
-    //   eliteserien
-    // );
-    const elements = this.createPlayerElements(eliteserien);
+  render() {
+    const eliteserienSearchFilter = this.searchFilter(
+      this.state.search,
+      "eliteserien"
+    );
+    const eliteserieElements = this.createTeamElements(eliteserienSearchFilter);
+
+    const obosLigaenSearchFilter = this.searchFilter(
+      this.state.search,
+      "obosligaen"
+    );
+    const obosligaElements = this.createTeamElements(obosLigaenSearchFilter);
 
     return (
       <div>
@@ -77,14 +104,31 @@ class DangerzoneSearch extends Component {
         <Grid columns={2}>
           <Grid.Column>
             <h1>Eliteserien</h1>
-            {elements}
+            <List>{eliteserieElements}</List>
           </Grid.Column>
           <Grid.Column>
             <h1>OBOSligaen</h1>
+            <List>{obosligaElements}</List>
           </Grid.Column>
         </Grid>
       </div>
     );
   }
 }
+DangerzoneSearch.propTypes = {
+  players: PropTypes.shape({
+    eliteserien: PropTypes.arrayOf(
+      PropTypes.shape({
+        team: PropTypes.string.isRequired,
+        players: PropTypes.arrayOf(
+          PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            value1: PropTypes.number.isRequired
+          })
+        ).isRequired
+      })
+    ).isRequired
+  }).isRequired
+};
+
 export default DangerzoneSearch;

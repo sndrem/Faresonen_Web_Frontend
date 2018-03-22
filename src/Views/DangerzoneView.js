@@ -10,6 +10,7 @@ import {
 import axios from "axios";
 import FaresoneMenu from "../Components/Menu/FaresoneMenu";
 import DangerzoneSearch from "../Components/Dangerzone/DangerzoneSearch";
+import dangerzoneService from "../services/dangerzoneService";
 
 class DangerzoneView extends Component {
   constructor(props) {
@@ -129,7 +130,14 @@ class DangerzoneView extends Component {
           </Grid.Column>
         </Grid>
         <DangerzoneSearch
-          players={this.state.data}
+          players={{
+            eliteserien: dangerzoneService.groupPlayersArrayResponse(
+              this.state.data.eliteserien
+            ),
+            obosligaen: dangerzoneService.groupPlayersArrayResponse(
+              this.state.data.obosligaen
+            )
+          }}
           getPlayers={this.getPlayers}
         />
       </div>

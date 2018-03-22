@@ -46,6 +46,18 @@ const dangerzoneService = {
       }
       return obj;
     }, {});
+  },
+
+  groupPlayersArrayResponse(players) {
+    return this.fromObjectToArray(this.groupPlayers(players));
+  },
+
+  fromObjectToArray(objects) {
+    const list = [];
+    Object.keys(objects).forEach(key => {
+      list.push({ team: key, players: objects[key].players });
+    });
+    return list;
   }
 };
 
