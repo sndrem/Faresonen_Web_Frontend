@@ -30,9 +30,9 @@ class DangerzoneSearch extends Component {
       <List.Item>
         {players.map(p => (
           <List.Content key={p.name}>
-            <List.Header>
+            <List.Description>
               {p.name} - {p.value1} gule kort
-            </List.Header>
+            </List.Description>
           </List.Content>
         ))}
       </List.Item>

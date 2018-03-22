@@ -5,7 +5,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "chart.js": "^1.1.1",
-    "moment": "^2.20.1",
+    "moment": "^2.21.0",
     "moment-with-locales-es6": "^2.18.1",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",

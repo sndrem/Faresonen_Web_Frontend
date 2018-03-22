@@ -8,6 +8,7 @@ import {
   Confirm
 } from "semantic-ui-react";
 import axios from "axios";
+import moment from "moment";
 import FaresoneMenu from "../Components/Menu/FaresoneMenu";
 import DangerzoneSearch from "../Components/Dangerzone/DangerzoneSearch";
 import dangerzoneService from "../services/dangerzoneService";
@@ -63,11 +64,7 @@ class DangerzoneView extends Component {
         console.error(err);
       });
 
-  saveToLocalStorage = players => {
-    localStorage.setItem("players", JSON.stringify(players));
-  };
-
-  playersInLocalStorageExists = () => localStorage.getItem("players") !== null;
+  getFromLocalStorage = key => JSON.parse(localStorage.getItem(key));
 
   showModal = () => {
     this.setState({ open: true });
@@ -96,8 +93,17 @@ class DangerzoneView extends Component {
     this.hideModal();
   };
 
+  playersInLocalStorageExists = () => localStorage.getItem("players") !== null;
+
+  saveToLocalStorage = players => {
+    const updatedPlayers = players;
+    updatedPlayers.lastUpdated = new Date();
+    localStorage.setItem("players", JSON.stringify(updatedPlayers));
+  };
+
   render() {
     const { eliteserien, obosligaen } = this.state.data;
+    const { lastUpdated } = this.getFromLocalStorage("players");
     return (
       <div>
         <FaresoneMenu />
@@ -109,7 +115,7 @@ class DangerzoneView extends Component {
               </Dimmer>
               <Confirm
                 open={this.state.open}
-                header="Oppdatering og nedlasting av faresonespillere"
+                header={`Sist oppdatert: ${moment(lastUpdated).fromNow()}`}
                 content="Det er allerede lastet ned spillere for faresonen. Ønsker du å laste ned oppdaterte spillere?"
                 cancelButton="Nææh, dropp det"
                 confirmButton="Ja, kjør på!"
