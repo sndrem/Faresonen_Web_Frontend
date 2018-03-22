@@ -12,6 +12,7 @@ import moment from "moment";
 import openSocket from "socket.io-client";
 import FaresoneMenu from "../Components/Menu/FaresoneMenu";
 import DangerzoneSearch from "../Components/Dangerzone/DangerzoneSearch";
+import DangerZoneAccumulator from "../Components/Dangerzone/DangerZoneAccumulator";
 import dangerzoneService from "../services/dangerzoneService";
 import "./DangerzoneView.css";
 
@@ -23,7 +24,8 @@ class DangerzoneView extends Component {
     this.state = {
       data: {
         eliteserien: [],
-        obosligaen: []
+        obosligaen: [],
+        suspendedPlayers: []
       },
       loading: true,
       open: false,
@@ -55,7 +57,18 @@ class DangerzoneView extends Component {
     socket.on("data", data => {
       // TODO Write logic for updating users that are now in the dangerzone
       // this.setState({ data });
-      console.log(data);
+      const x = data.eliteserien.filter(p => {
+        const found = this.state.data.eliteserien.find(y => y.name === p.name);
+        return p.value1 > found.value1;
+      });
+      console.log(x);
+      this.setState({
+        data: {
+          ...this.state.data.eliteserien,
+          ...this.state.data.obosligaen,
+          suspendedPlayers: x
+        }
+      });
     });
   };
 
@@ -64,6 +77,7 @@ class DangerzoneView extends Component {
       .get("/statistics/allDangerzonePlayers")
       .then(data => {
         const { eliteserien, obosligaen } = data.data;
+        console.log(data);
         if (overwrite) {
           this.saveToLocalStorage({
             eliteserien,
@@ -164,7 +178,7 @@ class DangerzoneView extends Component {
   };
 
   render() {
-    const { eliteserien, obosligaen } = this.state.data;
+    const { eliteserien, obosligaen, suspendedPlayers } = this.state.data;
     const { lastUpdated } = this.getFromLocalStorage("players");
     const players = this.formatPlayers();
     const socketConnected = this.socketConnected(this.state.socketConnected);
@@ -201,7 +215,14 @@ class DangerzoneView extends Component {
             </Segment>
           </Grid.Column>
         </Grid>
-        <DangerzoneSearch players={players} getPlayers={this.getPlayers} />
+        <Grid columns={2}>
+          <Grid.Column>
+            <DangerzoneSearch players={players} getPlayers={this.getPlayers} />
+          </Grid.Column>
+          <Grid.Column>
+            <DangerZoneAccumulator players={suspendedPlayers} />
+          </Grid.Column>
+        </Grid>
       </div>
     );
   }
