@@ -25,7 +25,7 @@ class DangerzoneView extends Component {
       data: {
         eliteserien: [],
         obosligaen: [],
-        suspendedPlayers: []
+        events: []
       },
       loading: true,
       open: false,
@@ -60,7 +60,7 @@ class DangerzoneView extends Component {
       const merged = this.state.data.eliteserien.concat(
         this.state.data.obosligaen
       );
-      const suspendedPlayers = data.events.filter(event => {
+      const events = data.events.filter(event => {
         if (event && event.person1) {
           const personId = this.extractPersonId(event.person1["@uri"]);
           if (personId > -1) {
@@ -75,7 +75,7 @@ class DangerzoneView extends Component {
       this.setState({
         data: {
           ...this.state.data,
-          suspendedPlayers
+          events
         }
       });
     });
@@ -87,7 +87,7 @@ class DangerzoneView extends Component {
       data: {
         eliteserien,
         obosligaen,
-        suspendedPlayers: []
+        events: []
       }
     });
   };
@@ -141,7 +141,7 @@ class DangerzoneView extends Component {
       data: {
         eliteserien,
         obosligaen,
-        suspendedPlayers: []
+        events: []
       },
       loading: false
     });
@@ -194,7 +194,7 @@ class DangerzoneView extends Component {
   };
 
   render() {
-    const { eliteserien, obosligaen, suspendedPlayers } = this.state.data;
+    const { eliteserien, obosligaen, events } = this.state.data;
     const { lastUpdated } = this.getFromLocalStorage("players");
     const players = this.formatPlayers();
     const socketConnected = this.socketConnected(this.state.socketConnected);
@@ -236,7 +236,7 @@ class DangerzoneView extends Component {
             <DangerzoneSearch players={players} getPlayers={this.getPlayers} />
           </Grid.Column>
           <Grid.Column>
-            <DangerZoneAccumulator players={suspendedPlayers} />
+            <DangerZoneAccumulator events={events} />
           </Grid.Column>
         </Grid>
       </div>

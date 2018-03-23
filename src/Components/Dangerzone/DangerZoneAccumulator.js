@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import moment from "moment";
 import { Feed, Icon } from "semantic-ui-react";
 import tools from "../../Tools/tools";
@@ -8,7 +9,7 @@ class DangerZoneAccumulator extends Component {
     super(props);
     this.state = {
       data: {
-        suspendedPlayers: []
+        events: []
       },
       loading: true
     };
@@ -16,45 +17,37 @@ class DangerZoneAccumulator extends Component {
 
   componentWillReceiveProps(nextProps) {
     const players = [];
-    nextProps.players.forEach(p => {
+    nextProps.events.forEach(p => {
       const uri = p.person1["@uri"];
       players.push(tools.getPersonData(uri));
     });
     tools
-      .getMultiplePersonData(players)
+      .getMultiplePersonData(players, nextProps.events)
       .then(data => {
-        const playerInfo = this.extractPlayerInformation(data);
         this.setState({
           data: {
-            suspendedPlayers: playerInfo
+            events: data
           }
         });
       })
       .catch(err => console.warn(err));
   }
 
-  extractPlayerInformation(players) {
-    return players.map(p => {
-      return p.data;
-    });
-  }
-
   render() {
-    const { suspendedPlayers } = this.state.data;
-    console.log(suspendedPlayers);
-    const elements = suspendedPlayers
-      .sort((a, b) => a.realTime <= b.realTime)
+    const { events } = this.state.data;
+    const elements = events
+      .sort((a, b) => a.player.realTime <= b.player.realTime)
       //   .sort((a, b) => a.team >= b.team) // Add if the players should be sorted by team
       .map(p => {
         return (
-          <Feed.Event key={p.id}>
+          <Feed.Event key={p.player.id}>
             <Feed.Content>
               <Feed.Summary>
                 <Feed.User>
-                  {p.firstname} {p.lastname}
+                  {p.player.firstname} {p.player.lastname}
                 </Feed.User>{" "}
                 må stå over neste kamp
-                <Feed.Date>{moment(p.realTime).fromNow()}</Feed.Date>
+                <Feed.Date>{moment(p.event.realTime).fromNow()}</Feed.Date>
               </Feed.Summary>
               <Feed.Meta>
                 <Feed.Like>
@@ -69,4 +62,12 @@ class DangerZoneAccumulator extends Component {
     return <Feed>{elements}</Feed>;
   }
 }
+DangerZoneAccumulator.propTypes = {
+  events: PropTypes.arrayOf(
+    PropTypes.shape({
+      person1: PropTypes.string.isRequired
+    })
+  ).isRequired
+};
+
 export default DangerZoneAccumulator;

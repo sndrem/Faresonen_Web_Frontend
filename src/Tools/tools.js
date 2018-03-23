@@ -67,11 +67,19 @@ const tools = {
     return axios.get(personUrl);
   },
 
-  getMultiplePersonData(promises) {
+  getMultiplePersonData(promises, events) {
     return new Promise((resolve, reject) => {
       axios
         .all(promises)
-        .then(data => resolve(data))
+        .then(data => {
+          const players = data.map((p, index) => {
+            return {
+              player: p.data,
+              event: events[index]
+            };
+          });
+          resolve(players);
+        })
         .catch(err => reject(err));
     });
   }
