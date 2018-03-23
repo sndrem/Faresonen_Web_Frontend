@@ -60,6 +60,7 @@ class DangerzoneView extends Component {
       const merged = this.state.data.eliteserien.concat(
         this.state.data.obosligaen
       );
+      console.log(data);
       const events = data.events.filter(event => {
         if (event && event.person1) {
           const personId = this.extractPersonId(event.person1["@uri"]);

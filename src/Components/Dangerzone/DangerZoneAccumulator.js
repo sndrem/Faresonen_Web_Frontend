@@ -37,35 +37,35 @@ class DangerZoneAccumulator extends Component {
     const { events } = this.state.data;
     const elements = events
       .sort((a, b) => a.player.realTime <= b.player.realTime)
-      //   .sort((a, b) => a.team >= b.team) // Add if the players should be sorted by team
-      .map(p => {
-        return (
-          <Feed.Event key={p.player.id}>
-            <Feed.Content>
-              <Feed.Summary>
-                <Feed.User>
-                  {p.player.firstname} {p.player.lastname}
-                </Feed.User>{" "}
-                må stå over neste kamp
-                <Feed.Date>{moment(p.event.realTime).fromNow()}</Feed.Date>
-              </Feed.Summary>
-              <Feed.Meta>
-                <Feed.Like>
-                  <Icon name="like" />
-                  4 Likes
-                </Feed.Like>
-              </Feed.Meta>
-            </Feed.Content>
-          </Feed.Event>
-        );
-      });
+      .map(p => (
+        <Feed.Event key={p.player.id}>
+          <Feed.Content>
+            <Feed.Summary>
+              <Feed.User>
+                {p.player.firstname} {p.player.lastname}
+              </Feed.User>{" "}
+              må stå over neste kamp
+              <Feed.Date>{moment(p.event.realTime).fromNow()}</Feed.Date>
+            </Feed.Summary>
+            <Feed.Meta>
+              <Feed.Like>
+                <Icon name="clock" />
+                Registrert:{" "}
+                {moment(p.event.realTime).format("DD-MM-YYYY HH:mm")}
+              </Feed.Like>
+            </Feed.Meta>
+          </Feed.Content>
+        </Feed.Event>
+      ));
     return <Feed>{elements}</Feed>;
   }
 }
 DangerZoneAccumulator.propTypes = {
   events: PropTypes.arrayOf(
     PropTypes.shape({
-      person1: PropTypes.string.isRequired
+      person1: PropTypes.shape({
+        "@uri": PropTypes.string.isRequired
+      })
     })
   ).isRequired
 };
