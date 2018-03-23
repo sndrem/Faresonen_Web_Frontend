@@ -29,7 +29,7 @@ class DangerzoneView extends Component {
       },
       loading: true,
       open: false,
-      socketConnected: true
+      socketConnected: false
     };
   }
 
@@ -57,14 +57,21 @@ class DangerzoneView extends Component {
     socket.on("data", data => {
       // TODO Write logic for updating users that are now in the dangerzone
       // this.setState({ data });
-      const suspendedPlayers = data.eliteserien.filter(p => {
-        const found = this.state.data.eliteserien.find(y => y.name === p.name);
-        if (found) {
-          return p.value1 > found.value1;
+      const merged = this.state.data.eliteserien.concat(
+        this.state.data.obosligaen
+      );
+      const suspendedPlayers = data.events.filter(event => {
+        if (event && event.person1) {
+          const personId = this.extractPersonId(event.person1["@uri"]);
+          if (personId > -1) {
+            const found = merged.find(p => p.id === personId);
+            if (found) {
+              return true;
+            }
+          }
         }
         return false;
       });
-
       this.setState({
         data: {
           ...this.state.data,
@@ -112,6 +119,14 @@ class DangerzoneView extends Component {
 
   showModal = () => {
     this.setState({ open: true });
+  };
+
+  extractPersonId = url => {
+    const regex = /people\/(\d+)\//g;
+    const res = regex.exec(url);
+    if (res.length > 1) return parseInt(res[1], 10);
+
+    return -1;
   };
 
   hideModal = () => {

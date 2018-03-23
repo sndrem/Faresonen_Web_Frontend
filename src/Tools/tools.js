@@ -61,6 +61,19 @@ const tools = {
     throw new Error(
       `Could not find matching colors for ${teamName}. Update teamColors.js with the correct team name and colors`
     );
+  },
+
+  getPersonData(personUrl) {
+    return axios.get(personUrl);
+  },
+
+  getMultiplePersonData(promises) {
+    return new Promise((resolve, reject) => {
+      axios
+        .all(promises)
+        .then(data => resolve(data))
+        .catch(err => reject(err));
+    });
   }
 };
 
