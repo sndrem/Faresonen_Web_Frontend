@@ -1,6 +1,5 @@
 import React from "react";
 import { shallow } from "enzyme";
-import "../../setupJest";
 import MatchInfo from "./MatchInfo";
 
 describe("<MatchInfo />", () => {

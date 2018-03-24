@@ -14,6 +14,7 @@ import FaresoneMenu from "../Components/Menu/FaresoneMenu";
 import DangerzoneSearch from "../Components/Dangerzone/DangerzoneSearch";
 import DangerZoneAccumulator from "../Components/Dangerzone/DangerZoneAccumulator";
 import dangerzoneService from "../services/dangerzoneService";
+import tools from "../Tools/tools";
 import "./DangerzoneView.css";
 
 const socket = openSocket("http://127.0.0.1:8000");
@@ -63,7 +64,7 @@ class DangerzoneView extends Component {
       console.log(data);
       const events = data.events.filter(event => {
         if (event && event.person1) {
-          const personId = this.extractPersonId(event.person1["@uri"]);
+          const personId = tools.extractPersonId(event.person1["@uri"]);
           if (personId > -1) {
             const found = merged.find(p => p.id === personId);
             if (found) {
@@ -120,14 +121,6 @@ class DangerzoneView extends Component {
 
   showModal = () => {
     this.setState({ open: true });
-  };
-
-  extractPersonId = url => {
-    const regex = /people\/(\d+)\//g;
-    const res = regex.exec(url);
-    if (res.length > 1) return parseInt(res[1], 10);
-
-    return -1;
   };
 
   hideModal = () => {

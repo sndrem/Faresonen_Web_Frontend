@@ -2,7 +2,6 @@ import React from "react";
 import { shallow, mount, render } from "enzyme";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import "../../setupJest.js";
 import LeagueProgress from "./LeagueProgress";
 import { Progress } from "semantic-ui-react";
 let mock = null;

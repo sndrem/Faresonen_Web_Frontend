@@ -127,7 +127,18 @@ DangerzoneSearch.propTypes = {
           })
         ).isRequired
       })
-    ).isRequired
+    ).isRequired,
+    obosligaen: PropTypes.arrayOf(
+      PropTypes.shape({
+        team: PropTypes.string.isRequired,
+        players: PropTypes.arrayOf(
+          PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            value1: PropTypes.number.isRequired
+          })
+        ).isRequired
+      })
+    )
   }).isRequired
 };
 

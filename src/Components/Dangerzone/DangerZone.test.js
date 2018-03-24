@@ -1,6 +1,4 @@
-import Dangerzone from "./Dangerzone";
 import dangerzoneService from "../../services/dangerzoneService";
-import "../../setupJest";
 
 describe("Dangerzone", () => {
   describe("teams should be sorted alphabetically", () => {

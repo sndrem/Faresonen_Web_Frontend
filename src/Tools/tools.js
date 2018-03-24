@@ -82,6 +82,14 @@ const tools = {
         })
         .catch(err => reject(err));
     });
+  },
+
+  extractPersonId(url) {
+    const regex = /people\/(\d+)\//g;
+    const res = regex.exec(url);
+    if (res && res.length > 1) return parseInt(res[1], 10);
+
+    return -1;
   }
 };
 

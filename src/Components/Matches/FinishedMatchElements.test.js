@@ -1,4 +1,3 @@
-import "../../setupJest";
 import FinishedMatchElements from "./FinishedMatchElements";
 import testData from "../../Test/testData";
 
