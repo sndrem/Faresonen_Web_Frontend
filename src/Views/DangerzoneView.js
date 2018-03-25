@@ -18,7 +18,7 @@ import DangerzoneStatistics from "../Components/Dangerzone/DangerzoneStatistics"
 import tools from "../Tools/tools";
 import "./DangerzoneView.css";
 
-const socket = openSocket("http://192.168.1.61:3000");
+const socket = openSocket();
 
 class DangerzoneView extends Component {
   constructor(props) {
