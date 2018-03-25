@@ -84,6 +84,15 @@ const tools = {
     });
   },
 
+  getMemberships(promises) {
+    return new Promise((resolve, reject) => {
+      axios
+        .all(promises)
+        .then(data => resolve(data))
+        .catch(err => reject(err));
+    });
+  },
+
   extractPersonId(url) {
     const regex = /people\/(\d+)\//g;
     const res = regex.exec(url);

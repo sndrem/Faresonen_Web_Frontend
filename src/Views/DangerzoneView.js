@@ -14,6 +14,7 @@ import FaresoneMenu from "../Components/Menu/FaresoneMenu";
 import DangerzoneSearch from "../Components/Dangerzone/DangerzoneSearch";
 import DangerZoneAccumulator from "../Components/Dangerzone/DangerZoneAccumulator";
 import dangerzoneService from "../services/dangerzoneService";
+import DangerzoneStatistics from "../Components/Dangerzone/DangerzoneStatistics";
 import tools from "../Tools/tools";
 import "./DangerzoneView.css";
 
@@ -46,12 +47,14 @@ class DangerzoneView extends Component {
     this.setupSocket();
   }
 
-  componentWillUnmount() {
-    socket.close();
-  }
+  // componentWillUnmount() {
+  //   socket.close();
+  // }
 
   setupSocket = () => {
+    console.log("Setting up socket");
     socket.on("connect", () => {
+      console.log("Socket connected...");
       this.setState({ socketConnected: true });
     });
 
@@ -62,10 +65,10 @@ class DangerzoneView extends Component {
     socket.on("data", data => {
       // TODO Write logic for updating users that are now in the dangerzone
       // this.setState({ data });
+      this.setState({ socketConnected: true });
       const merged = this.state.data.eliteserien.concat(
         this.state.data.obosligaen
       );
-      console.log(data);
       const events = data.events.filter(event => {
         if (event && event.person1) {
           const personId = tools.extractPersonId(event.person1["@uri"]);
@@ -170,6 +173,28 @@ class DangerzoneView extends Component {
     };
   };
 
+  removePlayer = (player, leagueId) => {
+    const found = this.state.data.eliteserien.find(
+      p => p.id === parseInt(player.id, 10)
+    );
+    if (found) {
+      const index = this.state.data[leagueId].indexOf(found);
+      this.state.data[leagueId].splice(index, 1);
+      this.saveToLocalStorage(this.state.data);
+    }
+  };
+
+  removeEvent = event => {
+    const index = this.state.data.events.indexOf(event.event);
+    this.state.data.events.splice(index, 1);
+    this.setState({
+      data: {
+        events: this.state.data.events,
+        ...this.state.data
+      }
+    });
+  };
+
   socketConnected = (connected = false) => {
     if (connected) {
       return (
@@ -215,26 +240,24 @@ class DangerzoneView extends Component {
                 onCancel={this.handleCancel}
                 onConfirm={this.handleConfirm}
               />
-              <Statistic.Group widths="three">
-                {socketConnected}
-                <Statistic>
-                  <Statistic.Value>{eliteserien.length}</Statistic.Value>
-                  <Statistic.Label>Eliteserie-spillere</Statistic.Label>
-                </Statistic>
-                <Statistic>
-                  <Statistic.Value>{obosligaen.length}</Statistic.Value>
-                  <Statistic.Label>OBOSliga-spillere</Statistic.Label>
-                </Statistic>
-              </Statistic.Group>
+              <DangerzoneStatistics
+                eliteserien={eliteserien.length}
+                obosligaen={obosligaen.length}
+                socketConnected={socketConnected}
+              />
             </Segment>
           </Grid.Column>
         </Grid>
-        <Grid columns={2}>
+        <Grid centered columns={2}>
           <Grid.Column>
             <DangerzoneSearch players={players} getPlayers={this.getPlayers} />
           </Grid.Column>
           <Grid.Column>
-            <DangerZoneAccumulator events={events} />
+            <DangerZoneAccumulator
+              events={events}
+              removePlayer={this.removePlayer}
+              removeEvent={this.removeEvent}
+            />
           </Grid.Column>
         </Grid>
       </div>

@@ -47,7 +47,11 @@ class DangerzoneSearch extends Component {
       return (
         <List.Item key={team.team}>
           <List.Header>{team.team}</List.Header>
-          <List.Description>{team.players.length} spillere</List.Description>
+          <List.Description>
+            {team.players.length >= 2
+              ? `${team.players.length} spillere`
+              : `${team.players.length} spiller`}
+          </List.Description>
           {this.formatPlayers(team.players)}
         </List.Item>
       );
