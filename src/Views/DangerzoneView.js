@@ -119,7 +119,16 @@ class DangerzoneView extends Component {
         console.error(err);
       });
 
-  getFromLocalStorage = key => JSON.parse(localStorage.getItem(key));
+  getFromLocalStorage = key => {
+    const items = JSON.parse(localStorage.getItem(key));
+    if (items) return items;
+
+    return {
+      eliteserien: [],
+      obosligaen: [],
+      lastUpdated: new Date()
+    };
+  };
 
   localStoragePlayersIsEmpty = () => {
     const { eliteserien, obosligaen } = this.getFromLocalStorage("players");
