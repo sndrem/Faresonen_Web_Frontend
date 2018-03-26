@@ -59,32 +59,43 @@ class DangerZoneAccumulator extends Component {
 
   render() {
     const { events } = this.state.data;
-    const elements = events
-      .sort((a, b) => a.player.realTime <= b.player.realTime)
-      .map(p => (
-        <Feed.Event
-          className="event-hover"
-          onClick={() => this.removeFeedEvent(p)}
-          key={p.player.id}
-        >
-          <Feed.Content>
-            <Feed.Summary>
-              <Feed.User>
-                {p.player.firstname} {p.player.lastname}
-              </Feed.User>{" "}
-              må stå over neste kamp
-              <Feed.Date>{moment(p.event.realTime).fromNow()}</Feed.Date>
-            </Feed.Summary>
-            <Feed.Meta>
-              <Feed.Like>
-                <Icon name="clock" />
-                Registrert:{" "}
-                {moment(p.event.realTime).format("DD-MM-YYYY HH:mm")}
-              </Feed.Like>
-            </Feed.Meta>
-          </Feed.Content>
-        </Feed.Event>
-      ));
+    let elements = null;
+    if (events.length === 0) {
+      elements = (
+        <Message
+          info
+          header="Ingen gule kort registrert"
+          content="Det er ikke registrert noen gule kort. Når de blir registrert dukker de opp her, dersom den registrerte finnes i faresonen fra før."
+        />
+      );
+    } else {
+      elements = events
+        .sort((a, b) => a.player.realTime <= b.player.realTime)
+        .map(p => (
+          <Feed.Event
+            className="event-hover"
+            onClick={() => this.removeFeedEvent(p)}
+            key={p.player.id}
+          >
+            <Feed.Content>
+              <Feed.Summary>
+                <Feed.User>
+                  {p.player.firstname} {p.player.lastname}
+                </Feed.User>{" "}
+                må stå over neste kamp
+                <Feed.Date>{moment(p.event.realTime).fromNow()}</Feed.Date>
+              </Feed.Summary>
+              <Feed.Meta>
+                <Feed.Like>
+                  <Icon name="clock" />
+                  Registrert:{" "}
+                  {moment(p.event.realTime).format("DD-MM-YYYY HH:mm")}
+                </Feed.Like>
+              </Feed.Meta>
+            </Feed.Content>
+          </Feed.Event>
+        ));
+    }
     return (
       <div>
         <Modal trigger={this.getInfoMessage()}>

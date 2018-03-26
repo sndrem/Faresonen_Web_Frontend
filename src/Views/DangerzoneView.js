@@ -171,16 +171,14 @@ class DangerzoneView extends Component {
     localStorage.setItem("players", JSON.stringify(updatedPlayers));
   };
 
-  formatPlayers = () => {
-    return {
-      eliteserien: dangerzoneService.groupPlayersArrayResponse(
-        this.state.data.eliteserien
-      ),
-      obosligaen: dangerzoneService.groupPlayersArrayResponse(
-        this.state.data.obosligaen
-      )
-    };
-  };
+  formatPlayers = () => ({
+    eliteserien: dangerzoneService.groupPlayersArrayResponse(
+      this.state.data.eliteserien
+    ),
+    obosligaen: dangerzoneService.groupPlayersArrayResponse(
+      this.state.data.obosligaen
+    )
+  });
 
   removePlayer = (player, leagueId) => {
     const found = this.state.data.eliteserien.find(

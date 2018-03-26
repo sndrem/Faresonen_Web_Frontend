@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Grid, Form, List } from "semantic-ui-react";
+import { Grid, Form, List, Message } from "semantic-ui-react";
 
 class DangerzoneSearch extends Component {
   constructor(props) {
@@ -39,8 +39,17 @@ class DangerzoneSearch extends Component {
     </List.List>
   );
 
-  createTeamElements = teams =>
-    teams.map(team => {
+  createTeamElements = teams => {
+    if (teams.length <= 0) {
+      return (
+        <Message
+          info
+          header="Ingen spillere i faresonen"
+          content="Ingen spillere i faresonen. Spillere i faresonen har partall gule kort."
+        />
+      );
+    }
+    return teams.map(team => {
       if (team.players.length === 0) {
         return "";
       }
@@ -56,6 +65,7 @@ class DangerzoneSearch extends Component {
         </List.Item>
       );
     });
+  };
 
   handleSearch = event => {
     const { value: search } = event.target;
