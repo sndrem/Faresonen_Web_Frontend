@@ -1,109 +1,110 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { List, Button, Segment, Dimmer, Loader } from "semantic-ui-react";
 import "./RoundList.css";
 
 class RoundList extends Component {
-	state = {
-		tournamentId: this.props.tournamentId,
-		seasonId: this.props.seasonId,
-		leagueName: this.props.leagueName,
-		rounds: [],
-		loading: true
-	};
+  state = {
+    tournamentId: this.props.tournamentId,
+    seasonId: this.props.seasonId,
+    leagueName: this.props.leagueName,
+    rounds: [],
+    loading: true
+  };
 
-	componentDidMount() {
-		const { tournamentId, seasonId } = this.state;
-		this.getRounds(tournamentId, seasonId);
-	}
+  componentDidMount() {
+    const { tournamentId, seasonId } = this.state;
+    this.getRounds(tournamentId, seasonId);
+  }
 
-	componentWillReceiveProps(nextProps) {
-		const { tournamentId, seasonId } = nextProps;
-		this.getRounds(tournamentId, seasonId);
-	}
+  componentWillReceiveProps(nextProps) {
+    const { tournamentId, seasonId } = nextProps;
+    this.getRounds(tournamentId, seasonId);
+  }
 
-	getRounds = (tournamentId, seasonId) => {
-		axios
-			.get(`/rounds/${tournamentId}/${seasonId}`)
-			.then(data => {
-				this.setState({
-					rounds: data.data.round,
-					loading: false
-				});
-			})
-			.catch(() => this.setState({ rounds: [] }));
-	};
+  getRounds = (tournamentId, seasonId) => {
+    axios
+      .get(`/rounds/${tournamentId}/${seasonId}`)
+      .then(data => {
+        this.setState({
+          rounds: data.data.round,
+          loading: false
+        });
+      })
+      .catch(() => this.setState({ rounds: [] }));
+  };
 
-	navigateToRound = e => {
-		const roundNumber = parseInt(e.target.dataset.round, 10);
-		const roundId = parseInt(e.target.dataset.roundid, 10);
-		const nextRoundId = parseInt(e.target.dataset.nextroundid, 10);
-		this.props.history.push(
-			`/league/${this.state.tournamentId}/${this.state.seasonId}/${
-				this.state.leagueName
-			}/round/${roundNumber}/roundId/${roundId}/nextRound/${nextRoundId}`
-		);
-	};
+  createRoundButtons = rounds =>
+    rounds.map((r, index, array) => {
+      const round = r;
+      const endDate = r.enddate;
+      const now = new Date().toISOString();
+      const nextRoundId = array[index + 1] ? array[index + 1].id : -1;
+      round.nextRoundId = nextRoundId;
+      const finished = endDate <= now;
+      const button = this.createRoundButton(round, finished);
 
-	render() {
-		if (!this.state.rounds) {
-			return <p>Kan ikke hente runder for {this.props.leagueName}</p>;
-		}
+      return <List.Item key={round["@uri"]}>{button}</List.Item>;
+    });
 
-		const roundElements = this.state.rounds.map((r, index, array) => {
-			const endDate = r.enddate;
-			const now = new Date().toISOString();
-			let button = null;
-			const nextRoundId = array[index + 1] ? array[index + 1].id : -1;
-			if (endDate <= now) {
-				button = (
-					<Button
-						data-round={r.roundNo}
-						data-roundid={r.id}
-						data-nextroundid={nextRoundId}
-						onClick={this.navigateToRound}
-						className="round-buttons"
-						fluid
-						color="red"
-					>
-						{r.name}
-					</Button>
-				);
-			} else {
-				button = (
-					<Button
-						data-round={r.roundNo}
-						data-roundid={r.id}
-						data-nextroundid={nextRoundId}
-						onClick={this.navigateToRound}
-						className="round-buttons"
-						fluid
-						color="blue"
-					>
-						{r.name}
-					</Button>
-				);
-			}
+  createRoundButton = (roundInfo, finished = false) => {
+    if (finished) {
+      return (
+        <Button
+          as={Link}
+          to={`/league/${this.state.tournamentId}/${this.state.seasonId}/${
+            this.state.leagueName
+          }/round/${roundInfo.roundNo}/roundId/${roundInfo.id}/nextRound/${
+            roundInfo.nextRoundId
+          }`}
+          className="round-buttons"
+          fluid
+          color="red"
+        >
+          {roundInfo.name}
+        </Button>
+      );
+    }
+    return (
+      <Button
+        as={Link}
+        to={`/league/${this.state.tournamentId}/${this.state.seasonId}/${
+          this.state.leagueName
+        }/round/${roundInfo.roundNo}/roundId/${roundInfo.id}/nextRound/${
+          roundInfo.nextRoundId
+        }`}
+        className="round-buttons"
+        fluid
+        color="blue"
+      >
+        {roundInfo.name}
+      </Button>
+    );
+  };
 
-			return <List.Item key={r["@uri"]}>{button}</List.Item>;
-		});
-		return (
-			<Segment>
-				<Dimmer active={this.state.loading}>
-					<Loader>Henter runder for {this.state.leagueName}</Loader>
-				</Dimmer>
-				<List>{roundElements}</List>
-			</Segment>
-		);
-	}
+  render() {
+    if (!this.state.rounds) {
+      return <p>Kan ikke hente runder for {this.props.leagueName}</p>;
+    }
+
+    const roundElements = this.createRoundButtons(this.state.rounds);
+    return (
+      <Segment>
+        <Dimmer active={this.state.loading}>
+          <Loader>Henter runder for {this.state.leagueName}</Loader>
+        </Dimmer>
+        <List>{roundElements}</List>
+      </Segment>
+    );
+  }
 }
 
 RoundList.propTypes = {
-	tournamentId: PropTypes.number.isRequired,
-	seasonId: PropTypes.number.isRequired,
-	leagueName: PropTypes.string.isRequired,
-	history: PropTypes.object.isRequired
+  tournamentId: PropTypes.number.isRequired,
+  seasonId: PropTypes.number.isRequired,
+  leagueName: PropTypes.string.isRequired
 };
 
 export default RoundList;

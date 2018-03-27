@@ -1,5 +1,6 @@
 import React from "react";
 import { shallow, mount, render } from "enzyme";
+import renderer from "react-test-renderer";
 import LeagueTable from "./LeagueTable";
 import axios from "axios";
 import { Segment } from "semantic-ui-react";
@@ -31,6 +32,19 @@ function instantiateShallow() {
 }
 
 describe("<LeagueTable />", () => {
+  it("Should render properly", () => {
+    const tree = renderer.create(
+      <LeagueTable
+        leagueName="Eliteserien"
+        tableColors={{
+          greens: [1, 2],
+          reds: [19, 20]
+        }}
+        table={[{}]}
+      />
+    );
+    expect(tree).toMatchSnapshot();
+  });
   it("should have a default state", () => {
     const elem = instantiateShallow();
     expect(elem.state()).toEqual({

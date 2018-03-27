@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DangerzoneStatistics /> Should render properly 1`] = `
+<div
+  className="ui three statistics"
+>
+  <div
+    className="ui statistic"
+  >
+    <div
+      className="value"
+    >
+      <i
+        className="green server icon"
+      />
+    </div>
+    <div
+      className="label"
+    >
+      Tilkoblet server
+    </div>
+  </div>
+  <div
+    className="ui statistic"
+  >
+    <div
+      className="value"
+    >
+      32
+    </div>
+    <div
+      className="label"
+    >
+      Eliteserie-spillere
+    </div>
+  </div>
+  <div
+    className="ui statistic"
+  >
+    <div
+      className="value"
+    >
+      0
+    </div>
+    <div
+      className="label"
+    >
+      OBOSliga-spillere
+    </div>
+  </div>
+</div>
+`;

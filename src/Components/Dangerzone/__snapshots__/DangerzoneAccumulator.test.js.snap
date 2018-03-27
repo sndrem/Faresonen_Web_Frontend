@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DangerzoneAccumulator /> should render correctly 1`] = `
+<div>
+  <div
+    className="ui icon info message"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  >
+    <i
+      aria-hidden="true"
+      className="info icon"
+    />
+    <div
+      className="content"
+    >
+      <div
+        className="header"
+      >
+        Informasjon
+      </div>
+      <p>
+        Trykk her for mer informasjon om hvordan denne tjenesten virker.
+      </p>
+    </div>
+  </div>
+  <div
+    className="ui feed"
+  >
+    <div
+      className="ui info message"
+    >
+      <div
+        className="content"
+      >
+        <div
+          className="header"
+        >
+          Ingen gule kort registrert
+        </div>
+        <p>
+          Det er ikke registrert noen gule kort. Når de blir registrert dukker de opp her, dersom den registrerte finnes i faresonen fra før.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;

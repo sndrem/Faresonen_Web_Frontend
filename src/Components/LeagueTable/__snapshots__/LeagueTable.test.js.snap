@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LeagueTable /> Should render properly 1`] = `
+<div
+  className="ui segment print"
+>
+  <div
+    className="ui active transition visible dimmer"
+    onClick={[Function]}
+  >
+    <div
+      className="content"
+    >
+      <div
+        className="center"
+      >
+        <div
+          className="ui text loader"
+        >
+          Henter tabell for 
+          Eliteserien
+        </div>
+      </div>
+    </div>
+  </div>
+  <h1>
+    Tabell: 
+    Eliteserien
+  </h1>
+  <table
+    className="ui table"
+  >
+    <thead
+      className=""
+    >
+      <tr
+        className=""
+      >
+        <th
+          className=""
+        />
+        <th
+          className=""
+        >
+          Lag
+        </th>
+        <th
+          className=""
+        >
+          K
+        </th>
+        <th
+          className=""
+        >
+          V
+        </th>
+        <th
+          className=""
+        >
+          U
+        </th>
+        <th
+          className=""
+        >
+          T
+        </th>
+        <th
+          className=""
+        >
+          +
+        </th>
+        <th
+          className=""
+        >
+          -
+        </th>
+        <th
+          className=""
+        >
+          +/-
+        </th>
+        <th
+          className=""
+        >
+          P
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      className=""
+    />
+  </table>
+</div>
+`;

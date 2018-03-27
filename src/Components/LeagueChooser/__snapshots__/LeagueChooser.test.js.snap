@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LeagueChooser Should render properly 1`] = `
+<div
+  className="ui three column grid"
+>
+  <div
+    className="column"
+  >
+    <a
+      className="ui card"
+      href="#/league/Eliteserien/1/340/"
+      onClick={[Function]}
+    >
+      <img
+        className="ui image"
+        src="eliteserien.png"
+      />
+      <div
+        className="content"
+      >
+        <div
+          className="header"
+        >
+          Eliteserien
+        </div>
+        <div
+          className="description"
+        >
+          TurneringsID: 1 - SesongID: 340
+        </div>
+      </div>
+    </a>
+  </div>
+  <div
+    className="column"
+  >
+    <a
+      className="ui card"
+      href="#/league/OBOS-ligaen/2/340/"
+      onClick={[Function]}
+    >
+      <img
+        className="ui image"
+        src="obosligaen.png"
+      />
+      <div
+        className="content"
+      >
+        <div
+          className="header"
+        >
+          OBOS-ligaen
+        </div>
+        <div
+          className="description"
+        >
+          TurneringsID: 2 - SesongID: 340
+        </div>
+      </div>
+    </a>
+  </div>
+  <div
+    className="column"
+  >
+    <a
+      className="ui card"
+      href="#/league/Premier League/230/339/"
+      onClick={[Function]}
+    >
+      <img
+        className="ui image"
+        src="premierleague.png"
+      />
+      <div
+        className="content"
+      >
+        <div
+          className="header"
+        >
+          Premier League
+        </div>
+        <div
+          className="description"
+        >
+          TurneringsID: 230 - SesongID: 339
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+`;

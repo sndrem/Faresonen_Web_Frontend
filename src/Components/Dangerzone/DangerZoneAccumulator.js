@@ -41,7 +41,7 @@ class DangerZoneAccumulator extends Component {
       onClick={this.showModal}
       icon="info"
       header="Informasjon"
-      content="Trykk her for mer informasjon om hvordan denne tjenesten virker"
+      content="Trykk her for mer informasjon om hvordan denne tjenesten virker."
     />
   );
 

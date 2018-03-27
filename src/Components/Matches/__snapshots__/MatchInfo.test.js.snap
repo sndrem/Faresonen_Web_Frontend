@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MatchInfo /> should render properly 1`] = `
+<div
+  className="item"
+>
+  <div
+    className="content"
+  >
+    <div
+      className="header"
+    >
+      Brann-Ranheim
+      , 
+      
+    </div>
+    <div
+      className="meta"
+    >
+      1/4/2018
+       - Avspark kl. 
+      12:00:00 AM
+       på
+       
+      
+    </div>
+    
+  </div>
+</div>
+`;

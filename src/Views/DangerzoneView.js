@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  Grid,
-  Dimmer,
-  Loader,
-  Segment,
-  Statistic,
-  Confirm
-} from "semantic-ui-react";
+import { Grid, Dimmer, Loader, Segment, Confirm } from "semantic-ui-react";
 import axios from "axios";
 import moment from "moment";
 import openSocket from "socket.io-client";
@@ -63,8 +56,6 @@ class DangerzoneView extends Component {
     });
 
     socket.on("data", data => {
-      // TODO Write logic for updating users that are now in the dangerzone
-      // this.setState({ data });
       this.setState({ socketConnected: true });
       const merged = this.state.data.eliteserien.concat(
         this.state.data.obosligaen
@@ -202,32 +193,11 @@ class DangerzoneView extends Component {
     });
   };
 
-  socketConnected = (connected = false) => {
-    if (connected) {
-      return (
-        <Statistic>
-          <Statistic.Value>
-            <i className="green server icon" />
-          </Statistic.Value>
-          <Statistic.Label>Tilkoblet server</Statistic.Label>
-        </Statistic>
-      );
-    }
-    return (
-      <Statistic>
-        <Statistic.Value>
-          <i className="red server icon" />
-        </Statistic.Value>
-        <Statistic.Label>Frakoblet server</Statistic.Label>
-      </Statistic>
-    );
-  };
-
   render() {
     const { eliteserien, obosligaen, events } = this.state.data;
     const { lastUpdated } = this.getFromLocalStorage("players");
     const players = this.formatPlayers();
-    const socketConnected = this.socketConnected(this.state.socketConnected);
+    const { socketConnected } = this.state;
 
     return (
       <div>

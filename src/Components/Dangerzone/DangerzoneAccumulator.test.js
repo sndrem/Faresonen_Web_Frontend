@@ -1,9 +1,20 @@
 import React from "react";
 import { shallow } from "enzyme";
+import renderer from "react-test-renderer";
 import DangerZoneAccumulator from "./DangerZoneAccumulator";
 import testData from "../../Test/testData";
 
 describe("<DangerzoneAccumulator />", () => {
+  it("should render correctly", () => {
+    const tree = renderer.create(
+      <DangerZoneAccumulator
+        events={testData.yellowCardEvents}
+        removeEvent={() => {}}
+        removePlayer={() => {}}
+      />
+    );
+    expect(tree).toMatchSnapshot();
+  });
   it("Should return a message element for the getInfoMessage()", () => {
     const elem = shallow(
       <DangerZoneAccumulator

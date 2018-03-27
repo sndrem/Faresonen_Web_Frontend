@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FaresoneMenu /> Should render properly 1`] = `
+<div
+  className="no-print"
+>
+  <h1>
+    Faresonen
+  </h1>
+  <div
+    className="ui menu"
+  >
+    <a
+      className="item"
+      href="#/"
+      onClick={[Function]}
+    >
+      Hjem
+    </a>
+    <a
+      className="item"
+      href="#/dangerzone"
+      onClick={[Function]}
+    >
+      Faresonen
+    </a>
+  </div>
+</div>
+`;

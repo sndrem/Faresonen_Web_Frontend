@@ -1,4 +1,5 @@
 import React from "react";
+import renderer from "react-test-renderer";
 import { shallow } from "enzyme";
 import DangerzoneSearch from "./DangerzoneSearch";
 
@@ -42,6 +43,17 @@ function instantiateShallow() {
 }
 
 describe("<DangerzoneSearch />", () => {
+  it("Should render properly", () => {
+    const tree = renderer.create(
+      <DangerzoneSearch
+        players={{
+          eliteserien: [],
+          obosligaen: []
+        }}
+      />
+    );
+    expect(tree).toMatchSnapshot();
+  });
   it("Should return correct players when searching", () => {
     const elem = instantiateShallow();
     elem.instance().componentWillReceiveProps({

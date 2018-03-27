@@ -23,6 +23,7 @@ class LeagueProgess extends Component {
                 // eslint-disable-next-line
                 obj.finished += 1;
               } else if (LeagueProgess.roundHasPostponedMatches(matchData)) {
+                // eslint-disable-next-line
                 obj.finished += 1;
               } else {
                 // eslint-disable-next-line

@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FirstSteps /> Should render properly 1`] = `
+<div
+  className="ui steps"
+>
+  <div
+    className="active step"
+    href={undefined}
+    onClick={[Function]}
+  >
+    <i
+      aria-hidden="true"
+      className="soccer icon"
+    />
+    <div
+      className="content"
+    >
+      <div
+        className="title"
+      >
+        Velg liga
+      </div>
+      <div
+        className="description"
+      >
+        Hvilken liga skal du generere lefse for?
+      </div>
+    </div>
+  </div>
+  <div
+    className="disabled step"
+    href={undefined}
+    onClick={[Function]}
+  >
+    <i
+      aria-hidden="true"
+      className="numbered list icon"
+    />
+    <div
+      className="content"
+    >
+      <div
+        className="title"
+      >
+        Velg runde
+      </div>
+      <div
+        className="description"
+      >
+        Hvilken runde gjelder lefsen for?
+      </div>
+    </div>
+  </div>
+  <div
+    className="disabled step"
+    href={undefined}
+    onClick={[Function]}
+  >
+    <i
+      aria-hidden="true"
+      className="print icon"
+    />
+    <div
+      className="content"
+    >
+      <div
+        className="title"
+      >
+        Print
+      </div>
+      <div
+        className="description"
+      >
+        Ctrl + P for å printe lefsen
+      </div>
+    </div>
+  </div>
+  <div
+    className="disabled step"
+    href={undefined}
+    onClick={[Function]}
+  >
+    <i
+      aria-hidden="true"
+      className="cocktail icon"
+    />
+    <div
+      className="content"
+    >
+      <div
+        className="title"
+      >
+        Bra jobbet
+      </div>
+      <div
+        className="description"
+      >
+        Ta deg en velfortjent pause!
+      </div>
+    </div>
+  </div>
+</div>
+`;

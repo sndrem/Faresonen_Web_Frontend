@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RoundSteps /> Should render properly 1`] = `
+<div
+  className="ui steps no-print"
+>
+  <div
+    className="completed step"
+    href={undefined}
+    onClick={[Function]}
+  >
+    <i
+      aria-hidden="true"
+      className="checkmark icon"
+    />
+    <div
+      className="content"
+    >
+      <div
+        className="title"
+      >
+        Liga valgt
+      </div>
+      <div
+        className="description"
+      >
+        Du har valgt 
+        Eliteserien
+      </div>
+    </div>
+  </div>
+  <div
+    className="completed step"
+    href={undefined}
+    onClick={[Function]}
+  >
+    <i
+      aria-hidden="true"
+      className="checkmark icon"
+    />
+    <div
+      className="content"
+    >
+      <div
+        className="title"
+      >
+        Runde valgt
+      </div>
+      <div
+        className="description"
+      >
+        Du har valgt runde 
+        1
+      </div>
+    </div>
+  </div>
+  <div
+    className="step"
+    href={undefined}
+    onClick={[Function]}
+  >
+    <i
+      aria-hidden="true"
+      className="print icon"
+    />
+    <div
+      className="content"
+    >
+      <div
+        className="title"
+      >
+        Print
+      </div>
+      <div
+        className="description"
+      >
+        Ctrl + P for å printe lefsen
+      </div>
+    </div>
+  </div>
+  <div
+    className="step"
+    href={undefined}
+    onClick={[Function]}
+  >
+    <i
+      aria-hidden="true"
+      className="cocktail icon"
+    />
+    <div
+      className="content"
+    >
+      <div
+        className="title"
+      >
+        Bra jobbet
+      </div>
+      <div
+        className="description"
+      >
+        Ta deg en velfortjent pause!
+      </div>
+    </div>
+  </div>
+</div>
+`;

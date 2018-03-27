@@ -1,35 +1,31 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import FaresoneMenu from "../Components/Menu/FaresoneMenu";
 import FirstSteps from "../Components/ProcedureSteps/FirstSteps";
 import LeagueChooser from "../Components/LeagueChooser/LeagueChooser";
-import Leagues from "../Data/leagues";
 
-class FrontpageView extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			data: Leagues
-		};
-	}
-
-	render() {
-		return (
-			<div>
-				<FaresoneMenu switchLeagueName={this.props.switchLeagueName} />
-				<FirstSteps />
-				<LeagueChooser
-					leagues={this.state.data.leagues}
-					switchLeagueName={this.props.switchLeagueName}
-					{...this.props}
-				/>
-			</div>
-		);
-	}
-}
+const FrontpageView = props => (
+  <div>
+    <FaresoneMenu switchLeagueName={props.switchLeagueName} />
+    <FirstSteps />
+    <LeagueChooser
+      leagues={props.leagues}
+      switchLeagueName={props.switchLeagueName}
+      {...props}
+    />
+  </div>
+);
 
 FrontpageView.propTypes = {
-	switchLeagueName: PropTypes.func.isRequired
+  switchLeagueName: PropTypes.func.isRequired,
+  leagues: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      tournamentId: PropTypes.number.isRequired,
+      seasonId: PropTypes.number.isRequired,
+      image: PropTypes.string.isRequired
+    })
+  ).isRequired
 };
 
 export default FrontpageView;

@@ -5,6 +5,7 @@ import FrontpageView from "./Views/FrontpageView";
 import MainView from "./Views/MainView";
 import RoundView from "./Views/RoundView";
 import DangerzoneView from "./Views/DangerzoneView";
+import Leagues from "./Data/leagues";
 
 class App extends Component {
   state = {
@@ -29,6 +30,7 @@ class App extends Component {
                 <FrontpageView
                   switchLeagueName={this.switchLeagueName}
                   leagueInfo={this.state}
+                  leagues={Leagues.leagues}
                   {...props}
                 />
               )}

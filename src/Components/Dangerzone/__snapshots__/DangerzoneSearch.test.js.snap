@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DangerzoneSearch /> Should render properly 1`] = `
+<div>
+  <div
+    className="ui one column grid"
+  >
+    <form
+      action={undefined}
+      className="ui form"
+      onSubmit={[Function]}
+    >
+      <div
+        className="field"
+      >
+        <label>
+          Søk etter spiller
+        </label>
+        <input
+          onChange={[Function]}
+          placeholder="Fornavn/etternavn"
+        />
+      </div>
+    </form>
+  </div>
+  <div
+    className="ui two column grid"
+  >
+    <div
+      className="column"
+    >
+      <h1>
+        Eliteserien
+      </h1>
+      <div
+        className="ui list"
+        role="list"
+      >
+        <div
+          className="ui info message"
+        >
+          <div
+            className="content"
+          >
+            <div
+              className="header"
+            >
+              Ingen spillere i faresonen
+            </div>
+            <p>
+              Ingen spillere i faresonen. Spillere i faresonen har partall gule kort.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="column"
+    >
+      <h1>
+        OBOSligaen
+      </h1>
+      <div
+        className="ui list"
+        role="list"
+      >
+        <div
+          className="ui info message"
+        >
+          <div
+            className="content"
+          >
+            <div
+              className="header"
+            >
+              Ingen spillere i faresonen
+            </div>
+            <p>
+              Ingen spillere i faresonen. Spillere i faresonen har partall gule kort.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
