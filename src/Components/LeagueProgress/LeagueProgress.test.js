@@ -22,6 +22,7 @@ describe("<LeagueProgess />", () => {
       }
     );
   }
+
   // it("should calulate the correct number of rounds left and finished", () => {
   //   const elem = createElement();
   //   const rounds = [

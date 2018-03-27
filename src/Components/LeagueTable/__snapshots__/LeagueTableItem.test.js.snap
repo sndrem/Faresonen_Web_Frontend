@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LeagueTableItem /> Should render properly 1`] = `
+<tr
+  className=""
+>
+  <td
+    className=""
+  >
+    .
+  </td>
+  <td
+    className=""
+  />
+  <td
+    className=""
+  />
+  <td
+    className=""
+  />
+  <td
+    className=""
+  />
+  <td
+    className=""
+  />
+  <td
+    className=""
+  />
+  <td
+    className=""
+  />
+  <td
+    className=""
+  />
+  <td
+    className=""
+  />
+</tr>
+`;

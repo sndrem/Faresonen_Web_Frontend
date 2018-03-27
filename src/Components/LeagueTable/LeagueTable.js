@@ -19,22 +19,8 @@ class LeagueTable extends Component {
     const { table } = nextProps;
     this.setState({ table });
     if (nextProps.table && table.length > 1) {
-      // TODO RESOLVE FUNCTION??
       this.getLeagueName(table[0].tournament["@uri"]);
     }
-
-    // TODO Use this for correct testing?
-    // return new Promise((resolve, reject) => {
-    // 	const { table } = nextProps;
-    // 	this.setState({ table });
-    // 	if (nextProps.table && table.length > 1) {
-    // 		// TODO RESOLVE FUNCTION??
-    // 		this.getLeagueName(table[0].tournament["@uri"]);
-    // 		resolve({});
-    // 	} else {
-    // 		resolve([])
-    // 	}
-    // });
   }
 
   getLeagueName(tournamentUri) {
@@ -46,19 +32,27 @@ class LeagueTable extends Component {
     });
   }
 
+  createLeagueTableItems = (data, index) => {
+    if (this.state.tableColors.greens.includes(index)) {
+      return (
+        <LeagueTableItem
+          rowColor="green-table"
+          key={data.id}
+          tableData={data}
+        />
+      );
+    } else if (this.state.tableColors.reds.includes(index)) {
+      return (
+        <LeagueTableItem rowColor="red-table" key={data.id} tableData={data} />
+      );
+    }
+    return <LeagueTableItem key={data.id} tableData={data} />;
+  };
+
   render() {
-    const tableElements = this.state.table.map((t, index) => {
-      if (this.state.tableColors.greens.includes(index)) {
-        return (
-          <LeagueTableItem rowColor="green-table" key={t.id} tableData={t} />
-        );
-      } else if (this.state.tableColors.reds.includes(index)) {
-        return (
-          <LeagueTableItem rowColor="red-table" key={t.id} tableData={t} />
-        );
-      }
-      return <LeagueTableItem key={t.id} tableData={t} />;
-    });
+    const tableElements = this.state.table.map((t, index) =>
+      this.createLeagueTableItems(t, index)
+    );
 
     return (
       <Segment className="print">

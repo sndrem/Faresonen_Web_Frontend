@@ -1,9 +1,9 @@
 import React from "react";
-import { shallow, mount, render } from "enzyme";
+import { shallow } from "enzyme";
 import renderer from "react-test-renderer";
-import LeagueTable from "./LeagueTable";
 import axios from "axios";
 import { Segment } from "semantic-ui-react";
+import LeagueTable from "./LeagueTable";
 
 // Mock axios
 jest.mock("axios", () => {
