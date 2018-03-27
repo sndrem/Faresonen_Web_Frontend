@@ -1,5 +1,6 @@
 import axios from "axios";
 import teamColors from "../Data/teamColors";
+
 const tools = {
   getChannelAndStadium(match) {
     return {
@@ -11,17 +12,15 @@ const tools = {
   getChannel(match) {
     if (match.channel) {
       return axios.get(match.channel["@uri"]);
-    } else {
-      return null;
     }
+    return null;
   },
 
   getStadium(match) {
     if (match.stadium) {
       return axios.get(match.stadium["@uri"]);
-    } else {
-      return null;
     }
+    return null;
   },
 
   getDate(datetime) {
@@ -33,7 +32,7 @@ const tools = {
   },
 
   getTableColors(leagueId) {
-    let data = {
+    const data = {
       greens: [],
       reds: []
     };

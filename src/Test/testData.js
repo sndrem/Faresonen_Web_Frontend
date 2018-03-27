@@ -750,5 +750,477 @@ export default {
         "@uri": "http://api.tv2.no/sport/resources/teams/735/"
       }
     }
+  ],
+  yellowCardEvents: [
+    {
+      "@uri": "http://api.tv2.no/sport/resources/events/15221417/",
+      eventtype: {
+        "@uri": "http://api.tv2.no/sport/resources/eventtypes/2/"
+      },
+      eventtime: "41",
+      extendedeventtype: {
+        "@uri": "http://api.tv2.no/sport/resources/extendedeventtypes/1200/"
+      },
+      goalsTeamA: "1",
+      goalsTeamB: "0",
+      id: "15221417",
+      match: {
+        "@uri": "http://api.tv2.no/sport/resources/matches/912485/"
+      },
+      person1: {
+        "@uri": "http://api.tv2.no/sport/resources/people/345617/"
+      },
+      realTime: "2018-03-18T18:46:57+01:00",
+      team: {
+        "@uri": "http://api.tv2.no/sport/resources/teams/307/"
+      }
+    },
+    {
+      "@uri": "http://api.tv2.no/sport/resources/events/15222082/",
+      enetpulseId: "5491684",
+      eventMin: "84",
+      eventtype: {
+        "@uri": "http://api.tv2.no/sport/resources/eventtypes/2/"
+      },
+      eventtime: "84",
+      extendedeventtype: {
+        "@uri": "http://api.tv2.no/sport/resources/extendedeventtypes/1200/"
+      },
+      goalsTeamA: "2",
+      goalsTeamB: "0",
+      id: "15222082",
+      match: {
+        "@uri": "http://api.tv2.no/sport/resources/matches/912485/"
+      },
+      nifsId: "8630875",
+      person1: {
+        "@uri": "http://api.tv2.no/sport/resources/people/207243/"
+      },
+      realTime: "2018-03-18T19:50:24+01:00",
+      team: {
+        "@uri": "http://api.tv2.no/sport/resources/teams/307/"
+      },
+      text: "Stopper en Brann-kontring. Riktig idømt."
+    },
+    {
+      "@uri": "http://api.tv2.no/sport/resources/events/15222085/",
+      eventtype: {
+        "@uri": "http://api.tv2.no/sport/resources/eventtypes/2/"
+      },
+      eventtime: "85",
+      extendedeventtype: {
+        "@uri": "http://api.tv2.no/sport/resources/extendedeventtypes/1200/"
+      },
+      goalsTeamA: "0",
+      goalsTeamB: "1",
+      id: "15222085",
+      match: {
+        "@uri": "http://api.tv2.no/sport/resources/matches/912482/"
+      },
+      person1: {
+        "@uri": "http://api.tv2.no/sport/resources/people/279765/"
+      },
+      realTime: "2018-03-18T19:50:25+01:00",
+      team: {
+        "@uri": "http://api.tv2.no/sport/resources/teams/309/"
+      }
+    },
+    {
+      "@uri": "http://api.tv2.no/sport/resources/events/15222633/",
+      eventtype: {
+        "@uri": "http://api.tv2.no/sport/resources/eventtypes/2/"
+      },
+      eventtime: "36",
+      extendedeventtype: {
+        "@uri": "http://api.tv2.no/sport/resources/extendedeventtypes/1200/"
+      },
+      goalsTeamA: "0",
+      goalsTeamB: "0",
+      id: "15222633",
+      match: {
+        "@uri": "http://api.tv2.no/sport/resources/matches/912487/"
+      },
+      nifsId: "8631283",
+      person1: {
+        "@uri": "http://api.tv2.no/sport/resources/people/194694/"
+      },
+      realTime: "2018-03-18T20:37:58+01:00",
+      team: {
+        "@uri": "http://api.tv2.no/sport/resources/teams/314/"
+      },
+      text:
+        "Alt for sent inne i en takling på Jone Samuelsen. Frispark til Odd i svært god posisjon."
+    },
+    {
+      "@uri": "http://api.tv2.no/sport/resources/events/15222908/",
+      eventtype: {
+        "@uri": "http://api.tv2.no/sport/resources/eventtypes/2/"
+      },
+      eventtime: "65",
+      extendedeventtype: {
+        "@uri": "http://api.tv2.no/sport/resources/extendedeventtypes/1200/"
+      },
+      goalsTeamA: "2",
+      goalsTeamB: "1",
+      id: "15222908",
+      match: {
+        "@uri": "http://api.tv2.no/sport/resources/matches/912487/"
+      },
+      nifsId: "8631530",
+      person1: {
+        "@uri": "http://api.tv2.no/sport/resources/people/291489/"
+      },
+      realTime: "2018-03-18T21:24:57+01:00",
+      team: {
+        "@uri": "http://api.tv2.no/sport/resources/teams/314/"
+      }
+    },
+    {
+      "@uri": "http://api.tv2.no/sport/resources/events/15222908/",
+      eventtype: {
+        "@uri": "http://api.tv2.no/sport/resources/eventtypes/2/"
+      },
+      eventtime: "65",
+      extendedeventtype: {
+        "@uri": "http://api.tv2.no/sport/resources/extendedeventtypes/1200/"
+      },
+      goalsTeamA: "2",
+      goalsTeamB: "1",
+      id: "15222908",
+      match: {
+        "@uri": "http://api.tv2.no/sport/resources/matches/912487/"
+      },
+      nifsId: "8631530",
+      person1: {
+        "@uri": "http://api.tv2.no/sport/resources/people/241363/"
+      },
+      realTime: "2018-03-18T21:24:57+01:00",
+      team: {
+        "@uri": "http://api.tv2.no/sport/resources/teams/314/"
+      }
+    }
+  ],
+  yellowCardAndPlayerEvents: [
+    {
+      player: {
+        "@uri": "http://api.tv2.no/sport/resources/people/345617/",
+        birthday: "1988-05-28T00:00:00+02:00",
+        birthplace: "Pakrac",
+        country: {
+          "@uri": "http://api.tv2.no/sport/resources/countries/205/"
+        },
+        created: "2018-03-05T17:45:33+01:00",
+        enetpulseId: "463298",
+        firstname: "Zoran",
+        height: "188",
+        id: "345617",
+        images: {
+          "@uri": "http://api.tv2.no/sport/resources/people/345617/images/"
+        },
+        lastname: "Popovic",
+        memberships: {
+          "@uri": "http://api.tv2.no/sport/resources/people/345617/memberships/"
+        },
+        nifsId: "155223",
+        role: {
+          "@uri": "http://api.tv2.no/sport/resources/roles/1/"
+        },
+        weight: "81"
+      },
+      event: {
+        "@uri": "http://api.tv2.no/sport/resources/events/15221417/",
+        eventtype: {
+          "@uri": "http://api.tv2.no/sport/resources/eventtypes/2/"
+        },
+        eventtime: "41",
+        extendedeventtype: {
+          "@uri": "http://api.tv2.no/sport/resources/extendedeventtypes/1200/"
+        },
+        goalsTeamA: "1",
+        goalsTeamB: "0",
+        id: "15221417",
+        match: {
+          "@uri": "http://api.tv2.no/sport/resources/matches/912485/"
+        },
+        person1: {
+          "@uri": "http://api.tv2.no/sport/resources/people/345617/"
+        },
+        realTime: "2018-03-18T18:46:57+01:00",
+        team: {
+          "@uri": "http://api.tv2.no/sport/resources/teams/307/"
+        }
+      }
+    },
+    {
+      player: {
+        "@uri": "http://api.tv2.no/sport/resources/people/207243/",
+        birthday: "1991-01-23T00:00:00+01:00",
+        comments: "\t\t\t\t",
+        country: {
+          "@uri": "http://api.tv2.no/sport/resources/countries/1/"
+        },
+        created: "1990-01-01T01:00:00+01:00",
+        earlierTeams:
+          "juli 2016-mars -17 Sogndal Fotball<br/>\r\njan. 2011-jul. -16 Åsane Fotball<br/>\r\n-jan. 2011 Os Turn",
+        enetpulseId: "120463",
+        firstname: "Vegard Leikvoll",
+        height: "190",
+        id: "207243",
+        images: {
+          "@uri": "http://api.tv2.no/sport/resources/people/207243/images/"
+        },
+        lastname: "Moberg",
+        memberships: {
+          "@uri": "http://api.tv2.no/sport/resources/people/207243/memberships/"
+        },
+        nifsId: "29356",
+        role: {
+          "@uri": "http://api.tv2.no/sport/resources/roles/3/"
+        },
+        weight: "84"
+      },
+      event: {
+        "@uri": "http://api.tv2.no/sport/resources/events/15222082/",
+        enetpulseId: "5491684",
+        eventMin: "84",
+        eventtype: {
+          "@uri": "http://api.tv2.no/sport/resources/eventtypes/2/"
+        },
+        eventtime: "84",
+        extendedeventtype: {
+          "@uri": "http://api.tv2.no/sport/resources/extendedeventtypes/1200/"
+        },
+        goalsTeamA: "2",
+        goalsTeamB: "0",
+        id: "15222082",
+        match: {
+          "@uri": "http://api.tv2.no/sport/resources/matches/912485/"
+        },
+        nifsId: "8630875",
+        person1: {
+          "@uri": "http://api.tv2.no/sport/resources/people/207243/"
+        },
+        realTime: "2018-03-18T19:50:24+01:00",
+        team: {
+          "@uri": "http://api.tv2.no/sport/resources/teams/307/"
+        },
+        text: "Stopper en Brann-kontring. Riktig idømt."
+      }
+    },
+    {
+      player: {
+        "@uri": "http://api.tv2.no/sport/resources/people/279765/",
+        birthday: "1996-05-28T00:00:00+02:00",
+        birthplace: "Svolvær",
+        country: {
+          "@uri": "http://api.tv2.no/sport/resources/countries/1/"
+        },
+        created: "2013-04-16T12:10:45+02:00",
+        earlierTeams:
+          "aug. 2017- Brighton & Hove Albion FC<br/>\r\n2015 Alta IF (på utlån)<br/>\r\n-2013-juli -17 FK Bodø/Glimt",
+        enetpulseId: "439105",
+        firstname: "Mathias",
+        height: "179",
+        id: "279765",
+        images: {
+          "@uri": "http://api.tv2.no/sport/resources/people/279765/images/"
+        },
+        lastname: "Normann",
+        memberships: {
+          "@uri": "http://api.tv2.no/sport/resources/people/279765/memberships/"
+        },
+        nickname: "Mathias Antonsen Normann",
+        nifsId: "117090",
+        role: {
+          "@uri": "http://api.tv2.no/sport/resources/roles/3/"
+        },
+        suspension: "På utlån fra Brighton til Molde til juli 2018.",
+        weight: "75"
+      },
+      event: {
+        "@uri": "http://api.tv2.no/sport/resources/events/15222085/",
+        eventtype: {
+          "@uri": "http://api.tv2.no/sport/resources/eventtypes/2/"
+        },
+        eventtime: "85",
+        extendedeventtype: {
+          "@uri": "http://api.tv2.no/sport/resources/extendedeventtypes/1200/"
+        },
+        goalsTeamA: "0",
+        goalsTeamB: "1",
+        id: "15222085",
+        match: {
+          "@uri": "http://api.tv2.no/sport/resources/matches/912482/"
+        },
+        person1: {
+          "@uri": "http://api.tv2.no/sport/resources/people/279765/"
+        },
+        realTime: "2018-03-18T19:50:25+01:00",
+        team: {
+          "@uri": "http://api.tv2.no/sport/resources/teams/309/"
+        }
+      }
+    },
+    {
+      player: {
+        "@uri": "http://api.tv2.no/sport/resources/people/194694/",
+        birthday: "1990-07-01T00:00:00+02:00",
+        birthplace: "Ålesund",
+        comments: "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+        country: {
+          "@uri": "http://api.tv2.no/sport/resources/countries/1/"
+        },
+        created: "1990-01-01T01:00:00+01:00",
+        earlierTeams: "-2005 Blindheim IL",
+        enetpulseId: "119355",
+        firstname: "Jonatan Tollås",
+        height: "188",
+        id: "194694",
+        images: {
+          "@uri": "http://api.tv2.no/sport/resources/people/194694/images/"
+        },
+        lastname: "Nation",
+        memberships: {
+          "@uri": "http://api.tv2.no/sport/resources/people/194694/memberships/"
+        },
+        nifsId: "26939",
+        role: {
+          "@uri": "http://api.tv2.no/sport/resources/roles/2/"
+        },
+        weight: "86"
+      },
+      event: {
+        "@uri": "http://api.tv2.no/sport/resources/events/15222633/",
+        eventtype: {
+          "@uri": "http://api.tv2.no/sport/resources/eventtypes/2/"
+        },
+        eventtime: "36",
+        extendedeventtype: {
+          "@uri": "http://api.tv2.no/sport/resources/extendedeventtypes/1200/"
+        },
+        goalsTeamA: "0",
+        goalsTeamB: "0",
+        id: "15222633",
+        match: {
+          "@uri": "http://api.tv2.no/sport/resources/matches/912487/"
+        },
+        nifsId: "8631283",
+        person1: {
+          "@uri": "http://api.tv2.no/sport/resources/people/194694/"
+        },
+        realTime: "2018-03-18T20:37:58+01:00",
+        team: {
+          "@uri": "http://api.tv2.no/sport/resources/teams/314/"
+        },
+        text:
+          "Alt for sent inne i en takling på Jone Samuelsen. Frispark til Odd i svært god posisjon."
+      }
+    },
+    {
+      player: {
+        "@uri": "http://api.tv2.no/sport/resources/people/291489/",
+        birthday: "1996-02-22T00:00:00+01:00",
+        birthplace: "Reykjanesbaer",
+        country: {
+          "@uri": "http://api.tv2.no/sport/resources/countries/30/"
+        },
+        created: "2014-08-06T17:06:29+02:00",
+        earlierTeams: "2013-16 Reading FC<br/>\r\n-juli 2013 Keflavík ÍF",
+        enetpulseId: "371794",
+        firstname: "Samúel",
+        height: "186",
+        id: "291489",
+        images: {
+          "@uri": "http://api.tv2.no/sport/resources/people/291489/images/"
+        },
+        lastname: "Fridjónsson",
+        memberships: {
+          "@uri": "http://api.tv2.no/sport/resources/people/291489/memberships/"
+        },
+        nickname: "Samúel Kári Fridjónsson",
+        nifsId: "98412",
+        role: {
+          "@uri": "http://api.tv2.no/sport/resources/roles/3/"
+        },
+        weight: "76"
+      },
+      event: {
+        "@uri": "http://api.tv2.no/sport/resources/events/15222908/",
+        eventtype: {
+          "@uri": "http://api.tv2.no/sport/resources/eventtypes/2/"
+        },
+        eventtime: "65",
+        extendedeventtype: {
+          "@uri": "http://api.tv2.no/sport/resources/extendedeventtypes/1200/"
+        },
+        goalsTeamA: "2",
+        goalsTeamB: "1",
+        id: "15222908",
+        match: {
+          "@uri": "http://api.tv2.no/sport/resources/matches/912487/"
+        },
+        nifsId: "8631530",
+        person1: {
+          "@uri": "http://api.tv2.no/sport/resources/people/291489/"
+        },
+        realTime: "2018-03-18T21:24:57+01:00",
+        team: {
+          "@uri": "http://api.tv2.no/sport/resources/teams/314/"
+        }
+      }
+    },
+    {
+      player: {
+        "@uri": "http://api.tv2.no/sport/resources/people/241363/",
+        birthday: "1994-04-18T00:00:00+02:00",
+        birthplace: "Drammen",
+        country: {
+          "@uri": "http://api.tv2.no/sport/resources/countries/1/"
+        },
+        created: "1990-01-01T01:00:00+01:00",
+        earlierTeams: "Strømsgodset TF, Mjøndalen IF, Liungen IF",
+        enetpulseId: "198626",
+        firstname: "Martin",
+        height: "182",
+        id: "241363",
+        images: {
+          "@uri": "http://api.tv2.no/sport/resources/people/241363/images/"
+        },
+        lastname: "Ovenstad",
+        memberships: {
+          "@uri": "http://api.tv2.no/sport/resources/people/241363/memberships/"
+        },
+        nickname: "Martin Rønning Ovenstad",
+        nifsId: "66049",
+        role: {
+          "@uri": "http://api.tv2.no/sport/resources/roles/3/"
+        },
+        weight: "70"
+      },
+      event: {
+        "@uri": "http://api.tv2.no/sport/resources/events/15222908/",
+        eventtype: {
+          "@uri": "http://api.tv2.no/sport/resources/eventtypes/2/"
+        },
+        eventtime: "65",
+        extendedeventtype: {
+          "@uri": "http://api.tv2.no/sport/resources/extendedeventtypes/1200/"
+        },
+        goalsTeamA: "2",
+        goalsTeamB: "1",
+        id: "15222908",
+        match: {
+          "@uri": "http://api.tv2.no/sport/resources/matches/912487/"
+        },
+        nifsId: "8631530",
+        person1: {
+          "@uri": "http://api.tv2.no/sport/resources/people/241363/"
+        },
+        realTime: "2018-03-18T21:24:57+01:00",
+        team: {
+          "@uri": "http://api.tv2.no/sport/resources/teams/314/"
+        }
+      }
+    }
   ]
 };

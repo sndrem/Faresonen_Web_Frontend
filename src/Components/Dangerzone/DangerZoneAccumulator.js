@@ -25,6 +25,7 @@ class DangerZoneAccumulator extends Component {
     tools
       .getMultiplePersonData(players, nextProps.events)
       .then(data => {
+        console.log(data);
         this.setState({
           data: {
             events: data
@@ -45,16 +46,27 @@ class DangerZoneAccumulator extends Component {
   );
 
   removeFeedEvent = event => {
-    const index = this.state.data.events.indexOf(event);
+    this.removeEventFromState(event);
+    this.props.removePlayer(event.player, "eliteserien");
+    this.props.removePlayer(event.player, "obosligaen");
+    this.props.removeEvent(event);
+  };
+
+  removeEventFromState = event => {
+    if (!event.player)
+      throw new Error(
+        "Event does not have player and player id information. Cannot remove element from state"
+      );
+    const index = this.state.data.events.findIndex(e => {
+      return e.player.id === event.player.id;
+    });
+    if (index < 0) return false;
     this.state.data.events.splice(index, 1);
     this.setState({
       data: {
         events: this.state.data.events
       }
     });
-    this.props.removePlayer(event.player, "eliteserien");
-    this.props.removePlayer(event.player, "obosligaen");
-    this.props.removeEvent(event);
   };
 
   render() {

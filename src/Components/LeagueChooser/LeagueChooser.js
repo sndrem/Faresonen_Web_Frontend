@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Grid, Card } from "semantic-ui-react";
 
 class LeagueChooser extends Component {
@@ -24,5 +25,17 @@ class LeagueChooser extends Component {
     return <Grid columns={3}>{leagues}</Grid>;
   }
 }
+LeagueChooser.propTypes = {
+  switchLeagueName: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired,
+  leagues: PropTypes.arrayOf(
+    PropTypes.shape({
+      tournamentId: PropTypes.number.isRequired,
+      seasonId: PropTypes.number.isRequired
+    })
+  ).isRequired
+};
 
 export default LeagueChooser;
