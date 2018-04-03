@@ -5,8 +5,9 @@ import "./DangerzoneStats.css";
 
 class DangerzoneStats extends Component {
   static formatData(data) {
+    const labels = data.map(t => t.name);
     return {
-      labels: data.map(t => t.name),
+      labels,
       datasets: [
         {
           label: "Spillere i faresonen",
@@ -34,10 +35,7 @@ class DangerzoneStats extends Component {
   componentWillReceiveProps(nextProps) {
     this.setState({
       data: DangerzoneStats.formatData(nextProps.data),
-      loading: false,
-      chartOptions: {
-        responsive: true
-      }
+      loading: false
     });
   }
 

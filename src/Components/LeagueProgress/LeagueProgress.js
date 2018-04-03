@@ -18,7 +18,6 @@ class LeagueProgess extends Component {
           const filteredMatches = data.reduce(
             (obj, match) => {
               const { match: matchData } = match.data;
-
               if (matchData.every(m => m.confirmed === "true")) {
                 // eslint-disable-next-line
                 obj.finished += 1;

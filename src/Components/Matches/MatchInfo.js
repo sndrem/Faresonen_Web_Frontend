@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Item } from "semantic-ui-react";
 import axios from "axios";
+import moment from "moment";
+import "moment/locale/nb";
 import tools from "../../Tools/tools";
 import events from "../../Tools/events";
 
@@ -23,7 +25,7 @@ class MatchInfo extends Component {
       matchName: props.match.name,
       channel: "",
       stadium: "",
-      startDate: tools.getDate(props.match.starttime),
+      startDate: moment(props.match.starttime).format("DD/MM YYYY"),
       startTime: tools.getTime(props.match.starttime),
       referee: ""
     };

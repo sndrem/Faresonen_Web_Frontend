@@ -69,7 +69,7 @@ class Dangerzone extends Component {
   render() {
     if (this.state.players.length <= 0 && !this.state.loading) {
       return (
-        <Message info>
+        <Message info className="no-print">
           <Message.Header>Faresonen ikke tilgjengelig</Message.Header>
           <p>
             Faresonen er ikke tilgjengelig for denne ligaen. Det kan være fordi
@@ -89,9 +89,9 @@ class Dangerzone extends Component {
         </Dimmer>
         <h1>Faresonen i {this.props.leagueName}</h1>
         <Grid columns={4}>{players}</Grid>
-        <Grid columns={12}>
+        {/* <Grid columns={12}>
           <DangerzoneStats data={this.state.players} />
-        </Grid>
+        </Grid> */}
       </Segment>
     );
   }
