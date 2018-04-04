@@ -5,31 +5,43 @@ import {
   Segment,
   Dimmer,
   Loader,
-  Table,
+  List,
   Message
 } from "semantic-ui-react";
 import dangerzoneService from "../../services/dangerzoneService";
 import DangerzoneStats from "../Stats/DangerzoneStats";
+import "./Dangerzone.css";
 
 class Dangerzone extends Component {
   static createPlayerElements(players) {
     return players.map(team => (
       <Grid.Column key={team.name}>
-        <Table striped className="min-height" compact collapsing>
-          <Table.Header>
-            <Table.Row textAlign="center">
-              <Table.HeaderCell colSpan="2">{team.name}</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
-            {team.players.map(player => (
-              <Table.Row key={player.name}>
-                <Table.Cell>{player.name}</Table.Cell>
-                <Table.Cell>{player.value1}</Table.Cell>
-              </Table.Row>
-            ))}
-          </Table.Body>
-        </Table>
+        <List className="similar-height">
+          <List.Item>
+            <List.Content>
+              <List.Header>{team.name}</List.Header>
+              <List.Description>
+                {team.players.length} spillere
+              </List.Description>
+              <List.List>
+                {team.players.map(player => (
+                  <List.Item key={player.name}>
+                    <List.Icon name="user" />
+                    <List.Content>
+                      <List.Header>{player.name}</List.Header>
+                      <List.Description>
+                        {player.value1}{" "}
+                        {player.value1 > 1 ? "gule kort" : "gult kort"}
+                        {", "}
+                        {team.name}
+                      </List.Description>
+                    </List.Content>
+                  </List.Item>
+                ))}
+              </List.List>
+            </List.Content>
+          </List.Item>
+        </List>
       </Grid.Column>
     ));
   }
