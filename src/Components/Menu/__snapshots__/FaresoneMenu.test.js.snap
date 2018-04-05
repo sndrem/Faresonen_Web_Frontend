@@ -24,6 +24,13 @@ exports[`<FaresoneMenu /> Should render properly 1`] = `
     >
       Faresonen
     </a>
+    <a
+      className="item"
+      href="#/about"
+      onClick={[Function]}
+    >
+      Om
+    </a>
   </div>
 </div>
 `;

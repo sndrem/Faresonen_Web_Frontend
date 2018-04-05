@@ -25,7 +25,9 @@ class MatchInfo extends Component {
       matchName: props.match.name,
       channel: "",
       stadium: "",
-      startDate: moment(props.match.starttime).format("DD/MM YYYY"),
+      startDate: moment(props.match.starttime, "YYYY-MM-DDTHH:mm:ssZZ").format(
+        "DD/MM YYYY"
+      ),
       startTime: tools.getTime(props.match.starttime),
       referee: ""
     };
