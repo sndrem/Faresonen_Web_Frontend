@@ -9,7 +9,7 @@ describe("<MatchInfo />", () => {
       <MatchInfo
         match={{
           name: "Brann-Ranheim",
-          starttime: "2018-04-01T11:53:29+00:00",
+          starttime: "2018-04-01T18:00:00+02:00",
           referee: {
             "@uri": ""
           },
