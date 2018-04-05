@@ -5,6 +5,7 @@ import FrontpageView from "./Views/FrontpageView";
 import MainView from "./Views/MainView";
 import RoundView from "./Views/RoundView";
 import DangerzoneView from "./Views/DangerzoneView";
+import AboutView from "./Views/AboutView";
 import Leagues from "./Data/leagues";
 
 class App extends Component {
@@ -54,6 +55,7 @@ class App extends Component {
               )}
             />
             <Route exact path="/dangerzone/" component={DangerzoneView} />
+            <Route exact path="/about/" component={AboutView} />
           </Switch>
         </HashRouter>
       </Container>

@@ -53,7 +53,7 @@ class MatchInfo extends Component {
           );
         } else {
           this.setState({
-            stadium: "Stadion klar"
+            stadium: "Stadion ikke klar"
           });
         }
       })

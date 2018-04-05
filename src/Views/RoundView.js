@@ -4,15 +4,15 @@ import { Message } from "semantic-ui-react";
 import axios from "axios";
 import FaresoneMenu from "../Components/Menu/FaresoneMenu";
 import LeagueProgress from "../Components/LeagueProgress/LeagueProgress";
-import Matches from "../Components/Matches/Matches";
 import NextMatches from "../Components/NextMatches/NextMatches";
 import FinishedMatches from "../Components/Matches/FinishedMatches";
 import LeagueTable from "../Components/LeagueTable/LeagueTable";
 import Topscorers from "../Components/Topscorers/Topscorers";
 import RoundSteps from "../Components/ProcedureSteps/RoundSteps";
-import DangerzoneContainer from "../Components/Dangerzone/DangerzoneContainer";
+import DangerzoneContainer from "../Components/Dangerzone/Containers/DangerzoneContainer";
 import tools from "../Tools/tools";
 import "../print.css";
+import MatchesContainer from "../Components/Dangerzone/Containers/MatchesContainer";
 
 class RoundView extends Component {
   static filterFinishedMatches(matches) {
@@ -125,11 +125,12 @@ class RoundView extends Component {
           seasonId={this.state.seasonId}
         />
 
-        <Matches
+        <MatchesContainer
           className="print"
           leagueName={this.state.leagueName}
           roundNumber={this.state.roundNumber}
           matches={this.state.matches}
+          loading={this.state.loading}
         />
 
         {finishedMatches}

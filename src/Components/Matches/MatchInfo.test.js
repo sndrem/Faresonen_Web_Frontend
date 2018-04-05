@@ -4,12 +4,12 @@ import renderer from "react-test-renderer";
 import MatchInfo from "./MatchInfo";
 
 describe("<MatchInfo />", () => {
-  xit("should render properly", () => {
+  it("should render properly", () => {
     const tree = renderer.create(
       <MatchInfo
         match={{
           name: "Brann-Ranheim",
-          starttime: "01.04.2018",
+          starttime: "2018-04-01T11:53:29+00:00",
           referee: {
             "@uri": ""
           },

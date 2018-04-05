@@ -5,7 +5,8 @@ const tools = {
   getChannelAndStadium(match) {
     return {
       channel: this.getChannel(match),
-      stadium: this.getStadium(match)
+      stadium: this.getStadium(match),
+      referee: this.getReferee(match)
     };
   },
 
@@ -29,6 +30,15 @@ const tools = {
 
   getTime(datetime) {
     return new Date(datetime).toLocaleTimeString("no-NB");
+  },
+
+  getReferee(match) {
+    if (match.referee) {
+      return { referee: axios.get(match.referee["@uri"]) };
+    }
+    return {
+      referee: { info: "Dommer ikke klar" }
+    };
   },
 
   getTableColors(leagueId) {

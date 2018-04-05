@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Dangerzone from "./Dangerzone";
-import dangerzoneService from "../../services/dangerzoneService";
+import Dangerzone from "../Dangerzone";
+import dangerzoneService from "../../../services/dangerzoneService";
 
 class DangerzoneContainer extends Component {
   constructor(props) {
