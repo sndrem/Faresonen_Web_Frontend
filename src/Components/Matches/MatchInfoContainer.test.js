@@ -2,6 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import renderer from "react-test-renderer";
 import MatchInfo from "./MatchInfo";
+import MatchInfoContainer from "./Containers/MatchInfoContainer";
 
 describe("<MatchInfo />", () => {
   xit("should render properly", () => {
@@ -29,20 +30,24 @@ describe("<MatchInfo />", () => {
 
     const elem = shallow(
       <MatchInfo
-        match={{
-          name: "Man. United - Liverpool",
-          starttime: "11.01.1993"
-        }}
+        matchName="Manchester United - Liverpool"
+        stadium="Old Trafford"
+        startDate="11.01.1993"
+        startTime=""
+        channel="TV 2 Sport Premium"
+        referee="Martin Atkinson"
       />
     );
-    expect(MatchInfo.formatRefereeName(ref)).toEqual("Martin Atkinson");
+    expect(MatchInfoContainer.formatRefereeName(ref)).toEqual(
+      "Martin Atkinson"
+    );
     ref.lastname = "";
-    expect(MatchInfo.formatRefereeName(ref)).toEqual("Martin");
+    expect(MatchInfoContainer.formatRefereeName(ref)).toEqual("Martin");
     delete ref.lastname;
-    expect(MatchInfo.formatRefereeName(ref)).toEqual("Martin");
+    expect(MatchInfoContainer.formatRefereeName(ref)).toEqual("Martin");
     ref.lastname = "Moldeklev";
     delete ref.firstname;
-    expect(MatchInfo.formatRefereeName(ref)).toEqual("Moldeklev");
+    expect(MatchInfoContainer.formatRefereeName(ref)).toEqual("Moldeklev");
     function emptyRefObj() {
       elem.instance.formatRefereeName({});
     }

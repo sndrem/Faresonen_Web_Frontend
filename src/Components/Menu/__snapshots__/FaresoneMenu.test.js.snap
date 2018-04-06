@@ -8,7 +8,7 @@ exports[`<FaresoneMenu /> Should render properly 1`] = `
     Faresonen
   </h1>
   <div
-    className="ui menu"
+    className="ui inverted menu"
   >
     <a
       className="item"
