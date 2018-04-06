@@ -27,7 +27,6 @@ class LeagueProgess extends Component {
               ) {
                 // eslint-disable-next-line
                 obj.finished += 1;
-                console.log("All matches done");
               } else if (LeagueProgess.roundHasPostponedMatches(matchData)) {
                 // eslint-disable-next-line
                 obj.finished += 1;
@@ -91,7 +90,6 @@ class LeagueProgess extends Component {
 
   calculateRounds(rounds) {
     LeagueProgess.removeFinishedRounds(rounds).then(calculated => {
-      console.log(calculated);
       this.setState({
         finished: calculated.finished,
         left: calculated.left,

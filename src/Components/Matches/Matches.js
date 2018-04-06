@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { List, Divider, Segment, Dimmer, Loader } from "semantic-ui-react";
-import MatchInfo from "./MatchInfo";
+import MatchInfoContainer from "./Containers/MatchInfoContainer";
 import events from "../../Tools/events";
 import "./Matches.css";
 
@@ -16,7 +16,7 @@ const Matches = props => {
     }
     return (
       <List.Item className={className} key={m.id}>
-        <MatchInfo match={m} />
+        <MatchInfoContainer match={m} />
         <Divider />
       </List.Item>
     );
