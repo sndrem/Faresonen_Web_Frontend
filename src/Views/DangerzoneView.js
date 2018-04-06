@@ -8,6 +8,7 @@ import DangerzoneSearch from "../Components/Dangerzone/DangerzoneSearch";
 import DangerZoneAccumulator from "../Components/Dangerzone/DangerZoneAccumulator";
 import dangerzoneService from "../services/dangerzoneService";
 import DangerzoneStatistics from "../Components/Dangerzone/DangerzoneStatistics";
+import playerLocalStorageService from "../services/playerLocalStorageService";
 import tools from "../Tools/tools";
 import "./DangerzoneView.css";
 
@@ -29,15 +30,15 @@ class DangerzoneView extends Component {
   }
 
   componentDidMount() {
+    this.setupSocket();
     if (
-      !this.playersInLocalStorageExists() ||
-      this.localStoragePlayersIsEmpty()
+      !playerLocalStorageService.playersInLocalStorageExists() ||
+      playerLocalStorageService.localStoragePlayersIsEmpty()
     ) {
       this.getPlayers(true);
     } else {
       this.showModal();
     }
-    this.setupSocket();
   }
 
   // componentWillUnmount() {
@@ -98,7 +99,7 @@ class DangerzoneView extends Component {
       .then(data => {
         const { eliteserien, obosligaen } = data.data;
         if (overwrite) {
-          this.saveToLocalStorage({
+          playerLocalStorageService.saveToLocalStorage({
             eliteserien,
             obosligaen
           });
@@ -109,22 +110,6 @@ class DangerzoneView extends Component {
       .catch(err => {
         console.error(err);
       });
-
-  getFromLocalStorage = key => {
-    const items = JSON.parse(localStorage.getItem(key));
-    if (items) return items;
-
-    return {
-      eliteserien: [],
-      obosligaen: [],
-      lastUpdated: new Date()
-    };
-  };
-
-  localStoragePlayersIsEmpty = () => {
-    const { eliteserien, obosligaen } = this.getFromLocalStorage("players");
-    return eliteserien.length <= 0 && obosligaen.length <= 0;
-  };
 
   showModal = () => {
     this.setState({ open: true });
@@ -154,14 +139,6 @@ class DangerzoneView extends Component {
     this.hideModal();
   };
 
-  playersInLocalStorageExists = () => localStorage.getItem("players") !== null;
-
-  saveToLocalStorage = players => {
-    const updatedPlayers = players;
-    updatedPlayers.lastUpdated = new Date();
-    localStorage.setItem("players", JSON.stringify(updatedPlayers));
-  };
-
   formatPlayers = () => ({
     eliteserien: dangerzoneService.groupPlayersArrayResponse(
       this.state.data.eliteserien
@@ -178,7 +155,7 @@ class DangerzoneView extends Component {
     if (found) {
       const index = this.state.data[leagueId].indexOf(found);
       this.state.data[leagueId].splice(index, 1);
-      this.saveToLocalStorage(this.state.data);
+      playerLocalStorageService.saveToLocalStorage(this.state.data);
     }
   };
 
@@ -195,7 +172,9 @@ class DangerzoneView extends Component {
 
   render() {
     const { eliteserien, obosligaen, events } = this.state.data;
-    const { lastUpdated } = this.getFromLocalStorage("players");
+    const { lastUpdated } = playerLocalStorageService.getFromLocalStorage(
+      "players"
+    );
     const players = this.formatPlayers();
     const { socketConnected } = this.state;
 
