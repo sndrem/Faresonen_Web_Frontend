@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TopScorers /> Should render corretly 1`] = `
+<div
+  className="ui segment"
+>
+  <div
+    className="ui dimmer"
+    onClick={[Function]}
+  >
+    <div
+      className="content"
+    >
+      <div
+        className="center"
+      >
+        <div
+          className="ui text loader"
+        >
+          Henter toppscorere
+        </div>
+      </div>
+    </div>
+  </div>
+  <h1>
+    Toppscorere
+  </h1>
+  <table
+    className="ui striped table"
+  >
+    <thead
+      className=""
+    >
+      <tr
+        className=""
+      >
+        <th
+          className=""
+        >
+          Posisjon
+        </th>
+        <th
+          className=""
+        >
+          Navn
+        </th>
+        <th
+          className=""
+        >
+          Lag
+        </th>
+        <th
+          className=""
+        >
+          Mål
+        </th>
+        <th
+          className=""
+        >
+          Kamper
+        </th>
+        <th
+          className=""
+        >
+          Snitt
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      className=""
+    >
+      <tr
+        className=""
+      >
+        <td
+          className=""
+        >
+          1
+        </td>
+        <td
+          className=""
+        >
+          Sindre Moldeklev
+        </td>
+        <td
+          className=""
+        >
+          Mathopen IL
+        </td>
+        <td
+          className=""
+        >
+          3
+        </td>
+        <td
+          className=""
+        >
+          4
+        </td>
+        <td
+          className=""
+        >
+          0.75
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`<TopScorers /> Should render corretly 2`] = `
+<div
+  className="ui negative message"
+>
+  <div
+    className="header"
+  >
+    Toppscorere ikke tilgjengelig
+  </div>
+  <p>
+    Ingen toppscorere tilgjengelig for denne ligaen. Det kan være fordi ligaen ikke har startet, mål ikke er registrert på Altomfotball eller serveren er nede. Prøv igjen senere.
+  </p>
+</div>
+`;

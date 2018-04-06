@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Grid } from "semantic-ui-react";
-import RoundList from "../Components/RoundList/RoundList";
+import RoundListContainer from "../Components/RoundList/Containers/RoundListContainer";
 import FaresoneMenu from "../Components/Menu/FaresoneMenu";
 import Steps from "../Components/ProcedureSteps/Steps";
 
@@ -14,8 +14,7 @@ const MainView = props => {
       <Grid columns="4" centered>
         <Grid.Column>
           <h2>{leagueName}</h2>
-          <RoundList
-            history={props.history}
+          <RoundListContainer
             leagueName={leagueName}
             tournamentId={parseInt(tournamentId, 10)}
             seasonId={parseInt(seasonId, 10)}
@@ -29,8 +28,7 @@ const MainView = props => {
 MainView.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.object.isRequired
-  }).isRequired,
-  history: PropTypes.shape({}).isRequired
+  }).isRequired
 };
 
 export default MainView;

@@ -7,7 +7,7 @@ import LeagueProgress from "../Components/LeagueProgress/LeagueProgress";
 import NextMatches from "../Components/NextMatches/NextMatches";
 import FinishedMatches from "../Components/Matches/FinishedMatches";
 import LeagueTable from "../Components/LeagueTable/LeagueTable";
-import Topscorers from "../Components/Topscorers/Topscorers";
+import TopscorersContainer from "../Components/Topscorers/Containers/TopscorersContainer";
 import RoundSteps from "../Components/ProcedureSteps/RoundSteps";
 import DangerzoneContainer from "../Components/Dangerzone/Containers/DangerzoneContainer";
 import tools from "../Tools/tools";
@@ -148,7 +148,10 @@ class RoundView extends Component {
           nextRoundNumber={this.state.roundNumber}
         />
 
-        <Topscorers className="print" tournamentId={this.state.tournamentId} />
+        <TopscorersContainer
+          className="print"
+          tournamentId={this.state.tournamentId}
+        />
 
         <DangerzoneContainer
           className="print"

@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RoundButtons /> Should render properly 1`] = `
+<div
+  className="ui list"
+  role="list"
+>
+  <div
+    className="item"
+    data-value={undefined}
+    onClick={[Function]}
+    role="listitem"
+  >
+    <a
+      className="round-buttons"
+      href="#/league/1/340/Eliteserien/round/1/roundId/undefined/nextRound/-1"
+    >
+      1. runde
+    </a>
+  </div>
+</div>
+`;
