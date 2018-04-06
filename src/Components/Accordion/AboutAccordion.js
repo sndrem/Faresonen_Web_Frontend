@@ -34,7 +34,8 @@ export default class AccordionExampleStandard extends Component {
             Ideen bak har hele tiden vært og få generert lefsen til FotballXtra
             med færrest mulige klikk. Fra første versjon av faresone-generatoren
             så dagens lys som Java-applikasjon i 2014 er dagens versjon
-            oppdatert til å være web-basert. Det betyr
+            oppdatert til å være web-basert. Det betyr at ny funksjonalitet kan
+            komme ut fortere og alt man trenger er en nettleser for tilgang.
           </p>
         </Accordion.Content>
 
@@ -69,6 +70,12 @@ export default class AccordionExampleStandard extends Component {
             Dataene hentes direkte fra samme kilde som Homla og andre systemer i
             TV 2. Vi kan dermed være sikre på at det vi bruker på luft også er
             det vi ser på sidene her.
+          </p>
+
+          <p>
+            For Faresone-komponenten for bruk på sending så hentes de spillerne
+            som er i faresonen ned og lagret i nettleseren. Dermed får man
+            besjed dersom
           </p>
         </Accordion.Content>
       </Accordion>

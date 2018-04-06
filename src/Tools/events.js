@@ -6,5 +6,6 @@ export default {
     "http://api.tv2.no/sport/resources/eventtypes/6/"
   ],
   ownGoal: ["http://api.tv2.no/sport/resources/extendedeventtypes/220/"],
-  postponed: ["http://api.tv2.no/sport/resources/statuses/2/"]
+  postponed: ["http://api.tv2.no/sport/resources/statuses/2/"],
+  ended: ["http://api.tv2.no/sport/resources/statuses/1/"]
 };

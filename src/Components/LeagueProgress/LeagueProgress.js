@@ -18,9 +18,16 @@ class LeagueProgess extends Component {
           const filteredMatches = data.reduce(
             (obj, match) => {
               const { match: matchData } = match.data;
-              if (matchData.every(m => m.confirmed === "true")) {
+              if (
+                matchData.every(
+                  m =>
+                    m.confirmed === "true" ||
+                    LeagueProgess.roundHasFinishedMatches(matchData)
+                )
+              ) {
                 // eslint-disable-next-line
                 obj.finished += 1;
+                console.log("All matches done");
               } else if (LeagueProgess.roundHasPostponedMatches(matchData)) {
                 // eslint-disable-next-line
                 obj.finished += 1;
@@ -45,6 +52,16 @@ class LeagueProgess extends Component {
         status = m.status["@uri"];
       }
       return events.postponed.includes(status);
+    });
+  }
+
+  static roundHasFinishedMatches(matches) {
+    return matches.some(m => {
+      let status = null;
+      if (m.status) {
+        status = m.status["@uri"];
+      }
+      return events.ended.includes(status);
     });
   }
 
@@ -74,6 +91,7 @@ class LeagueProgess extends Component {
 
   calculateRounds(rounds) {
     LeagueProgess.removeFinishedRounds(rounds).then(calculated => {
+      console.log(calculated);
       this.setState({
         finished: calculated.finished,
         left: calculated.left,
