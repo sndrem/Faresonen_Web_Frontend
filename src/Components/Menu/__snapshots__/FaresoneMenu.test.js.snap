@@ -26,6 +26,13 @@ exports[`<FaresoneMenu /> Should render properly 1`] = `
     </a>
     <a
       className="item"
+      href="#/fantasy"
+      onClick={[Function]}
+    >
+      Fantasy PL
+    </a>
+    <a
+      className="right item"
       href="#/about"
       onClick={[Function]}
     >
