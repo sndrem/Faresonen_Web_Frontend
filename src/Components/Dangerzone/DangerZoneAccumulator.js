@@ -25,7 +25,6 @@ class DangerZoneAccumulator extends Component {
     tools
       .getMultiplePersonData(players, nextProps.events)
       .then(data => {
-        console.log(data);
         this.setState({
           data: {
             events: data

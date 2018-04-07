@@ -11,7 +11,10 @@ const FaresoneMenu = () => (
       <Menu.Item as={"a"} href="#/dangerzone" name="dangerzone">
         Faresonen
       </Menu.Item>
-      <Menu.Item as={"a"} href="#/about" name="about">
+      <Menu.Item as="a" href="#/fantasy" name="fantasy">
+        Fantasy PL
+      </Menu.Item>
+      <Menu.Item position="right" as={"a"} href="#/about" name="about">
         Om
       </Menu.Item>
     </Menu>

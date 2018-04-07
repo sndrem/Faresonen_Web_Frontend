@@ -41,14 +41,13 @@ class DangerzoneView extends Component {
     }
   }
 
-  // componentWillUnmount() {
-  //   socket.close();
-  // }
+  componentWillUnmount() {
+    socket.close();
+  }
 
   setupSocket = () => {
-    console.log("Setting up socket");
+    socket.open();
     socket.on("connect", () => {
-      console.log("Socket connected...");
       this.setState({ socketConnected: true });
     });
 
