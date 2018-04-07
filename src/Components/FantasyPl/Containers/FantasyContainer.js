@@ -21,7 +21,9 @@ class FantasyContainer extends Component {
         const players = data[0].data;
         const teams = data[1].data;
         let groupedTeams = this.groupTeams(players, teams);
-        groupedTeams = Object.values(groupedTeams).map(team => team);
+        groupedTeams = Object.values(groupedTeams)
+          .map(team => team)
+          .sort((teamA, teamB) => teamA.name.localeCompare(teamB.name));
         this.setState({
           data: {
             teams: groupedTeams
@@ -48,7 +50,6 @@ class FantasyContainer extends Component {
         teamToFind => teamToFind.code === player.team_code
       );
       if (obj[player.team_code]) {
-        // const playerWithTeam = this.connectPlayerAndTeam(player, teams);
         // eslint-disable-next-line
         player.team = team;
         obj[player.team_code].players.push(player);
@@ -61,14 +62,6 @@ class FantasyContainer extends Component {
       }
       return obj;
     }, {});
-
-  connectPlayerAndTeam = (player, teams) => {
-    const mappedPlayer = player;
-    const { team_code: teamCode } = player;
-    const team = teams.find(teamToMatch => teamToMatch.code === teamCode);
-    mappedPlayer.team = team;
-    return mappedPlayer;
-  };
 
   render() {
     return (

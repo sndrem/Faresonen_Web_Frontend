@@ -3,7 +3,6 @@ import { Menu } from "semantic-ui-react";
 
 const FaresoneMenu = () => (
   <div className="no-print">
-    <h1>Faresonen</h1>
     <Menu inverted>
       <Menu.Item as={"a"} href="#/" name="home">
         Hjem

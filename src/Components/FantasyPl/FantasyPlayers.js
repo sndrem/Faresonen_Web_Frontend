@@ -14,17 +14,19 @@ const FantasyPlayers = ({ teams, loading }) => {
         {Object.keys(teams).map(key => (
           <Grid.Column key={key}>
             <Header as="h3">{teams[key].name}</Header>
-            {Object.values(teams[key].players).map(player => (
-              <div key={player.id}>
-                <a href={`#/fantasy/player/${player.id}`}>
-                  <p>
+            {Object.values(teams[key].players)
+              .sort((a, b) => a.first_name.localeCompare(b.first_name))
+              .map(player => (
+                <div key={player.id}>
+                  <a href={`#/fantasy/player/${player.id}`}>
                     {player.first_name} {player.second_name} -{" "}
+                  </a>
+                  <span>
                     <Icon name="money" />
                     {player.now_cost / 10}£
-                  </p>
-                </a>
-              </div>
-            ))}
+                  </span>
+                </div>
+              ))}
           </Grid.Column>
         ))}
       </Grid>
