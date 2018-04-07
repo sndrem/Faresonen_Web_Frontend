@@ -6,6 +6,7 @@ import MainView from "./Views/MainView";
 import RoundView from "./Views/RoundView";
 import DangerzoneView from "./Views/DangerzoneView";
 import FantasyView from "./Views/FantasyView";
+import DetailedPlayerView from "./Views/DetailedPlayerView";
 import AboutView from "./Views/AboutView";
 import Leagues from "./Data/leagues";
 
@@ -57,6 +58,11 @@ class App extends Component {
             />
             <Route exact path="/dangerzone/" component={DangerzoneView} />
             <Route exact path="/fantasy/" component={FantasyView} />
+            <Route
+              exact
+              path="/fantasy/player/:playerId"
+              component={DetailedPlayerView}
+            />
             <Route exact path="/about/" component={AboutView} />
           </Switch>
         </HashRouter>

@@ -20,7 +20,8 @@ class FantasyContainer extends Component {
       .then(data => {
         const players = data[0].data;
         const teams = data[1].data;
-        const groupedTeams = this.groupTeams(players, teams);
+        let groupedTeams = this.groupTeams(players, teams);
+        groupedTeams = Object.values(groupedTeams).map(team => team);
         this.setState({
           data: {
             teams: groupedTeams
