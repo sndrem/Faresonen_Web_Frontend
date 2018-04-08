@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid, Header, Segment, Dimmer, Loader, Icon } from "semantic-ui-react";
+import { Grid, Header, Segment, Dimmer, Loader } from "semantic-ui-react";
 
 const FantasyPlayers = ({ teams, loading }) => {
   return (
@@ -14,19 +14,20 @@ const FantasyPlayers = ({ teams, loading }) => {
         {Object.keys(teams).map(key => (
           <Grid.Column key={key}>
             <Header as="h3">{teams[key].name}</Header>
-            {Object.values(teams[key].players)
-              .sort((a, b) => a.first_name.localeCompare(b.first_name))
-              .map(player => (
-                <div key={player.id}>
-                  <a href={`#/fantasy/player/${player.id}`}>
-                    {player.first_name} {player.second_name} -{" "}
-                  </a>
-                  <span>
-                    <Icon name="money" />
-                    {player.now_cost / 10}£
-                  </span>
-                </div>
-              ))}
+            {Object.values(teams[key].players).length > 0 ? (
+              Object.values(teams[key].players)
+                .sort((a, b) => a.first_name.localeCompare(b.first_name))
+                .map(player => (
+                  <div key={player.id}>
+                    <a href={`#/fantasy/player/${player.id}`}>
+                      {player.first_name} {player.second_name} -{" "}
+                    </a>
+                    <span>£{player.now_cost / 10}</span>
+                  </div>
+                ))
+            ) : (
+              <p>Ingen spillere i {teams[key].name} møter søkekriteriene.</p>
+            )}
           </Grid.Column>
         ))}
       </Grid>

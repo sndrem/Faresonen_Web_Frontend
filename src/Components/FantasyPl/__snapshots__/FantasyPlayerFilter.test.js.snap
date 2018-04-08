@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FantasyPlayerFilter /> Should render properly 1`] = `
+<div
+  className="ui segment"
+>
+  <p
+    className="special"
+  >
+    Her kan du filtrere spillere ved å søke etter fornavn/etternavn eller filtrere på pris.
+  </p>
+  <form
+    action={undefined}
+    className="ui form"
+    onSubmit={[Function]}
+  >
+    <div
+      className="field"
+    >
+      <label>
+        Søk fritekst
+      </label>
+      <input
+        onChange={[Function]}
+        placeholder="Søk etter navn"
+      />
+    </div>
+    <div
+      className="field"
+    >
+      <label>
+        Filtrer på pris i pund (£)
+      </label>
+      <input
+        onChange={[Function]}
+        step={0.1}
+        type="number"
+      />
+    </div>
+  </form>
+</div>
+`;
