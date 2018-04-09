@@ -11,11 +11,14 @@ const FantasyPlayers = ({ teams, loading }) => {
 
       <Header as="h1">Fantasy PL</Header>
       <Grid columns={4}>
-        {Object.keys(teams).map(key => (
-          <Grid.Column key={key}>
-            <Header as="h3">{teams[key].name}</Header>
-            {Object.values(teams[key].players).length > 0 ? (
-              Object.values(teams[key].players)
+        {Object.keys(teams).map(key => {
+          if (teams[key].players.length === 0) {
+            return "";
+          }
+          return (
+            <Grid.Column key={key}>
+              <Header as="h3">{teams[key].name}</Header>
+              {Object.values(teams[key].players)
                 .sort((a, b) => a.first_name.localeCompare(b.first_name))
                 .map(player => (
                   <div key={player.id}>
@@ -24,12 +27,10 @@ const FantasyPlayers = ({ teams, loading }) => {
                     </a>
                     <span>£{player.now_cost / 10}</span>
                   </div>
-                ))
-            ) : (
-              <p>Ingen spillere i {teams[key].name} møter søkekriteriene.</p>
-            )}
-          </Grid.Column>
-        ))}
+                ))}
+            </Grid.Column>
+          );
+        })}
       </Grid>
     </Segment>
   );
