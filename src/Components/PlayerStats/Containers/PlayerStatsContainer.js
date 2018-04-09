@@ -81,12 +81,12 @@ class PlayerStatsContainer extends Component {
               selectedBy={player.selected_by_percent}
               cost={player.now_cost}
             />
+          </Grid.Column>
+          <Grid.Column>
             <Segment>
               <Statistic.Group widths={2} items={items} />
             </Segment>
           </Grid.Column>
-          <TeamView team={team} />
-          <Grid.Column />
         </Grid>
       </div>
     );
