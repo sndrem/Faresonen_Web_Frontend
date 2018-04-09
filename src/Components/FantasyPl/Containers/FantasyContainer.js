@@ -12,7 +12,8 @@ class FantasyContainer extends Component {
       },
       filters: {
         priceFilter: -1,
-        nameFilter: ""
+        nameFilter: "",
+        onlyDreamTeam: false
       },
       loading: true,
       error: ""
@@ -68,19 +69,38 @@ class FantasyContainer extends Component {
     });
   };
 
+  setDreamTeamFilter = filter => {
+    this.setState({
+      filters: {
+        ...this.state.filters,
+        onlyDreamTeam: filter
+      }
+    });
+  };
+
   filterTeams = (teams, filters) => {
-    if (!filters.nameFilter && filters.priceFilter < 0) return teams;
+    if (
+      !filters.nameFilter &&
+      filters.priceFilter < 0 &&
+      !filters.onlyDreamTeam
+    )
+      return teams;
     // Dette er kanskje en veldig rar løsning på filtreringen, men jeg er bakfull og gidder ikke se mer på det nå. Det
     // virker enn så lenge... 08.04.18
     const filtered = teams.map(team => {
       const teamCopy = Object.assign({}, team);
       const filteredPlayers = teamCopy.players.filter(player => {
-        if (filters.priceFilter <= 0) {
+        if (filters.onlyDreamTeam) {
+          return player.in_dreamteam;
+        } else if (filters.priceFilter <= 0) {
           return this.mergeName(player.first_name, player.second_name)
             .toLowerCase()
             .includes(filters.nameFilter);
-        } else if (filters.priceFilter > 0 && !filters.nameFilter)
+        } else if (filters.priceFilter > 0 && !filters.nameFilter) {
           return this.formatPrice(player.now_cost) >= filters.priceFilter;
+        } else if (filters.onlyDreamTeam) {
+          return player.in_dreamteam;
+        }
         return (
           this.mergeName(player.first_name, player.second_name)
             .toLowerCase()
@@ -123,6 +143,7 @@ class FantasyContainer extends Component {
         <FantasyPlayerFilter
           setNameFilter={this.setNameFilter}
           setPriceFilter={this.setPriceFilter}
+          setDreamTeamFilter={this.setDreamTeamFilter}
         />
         <FantasyPlayers teams={teams} loading={this.state.loading} />
       </div>

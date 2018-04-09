@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Segment, Form } from "semantic-ui-react";
+import { Segment, Form, Checkbox } from "semantic-ui-react";
 import "./FantasyPlayerFilter.css";
 
 class FantasyPlayerFilter extends Component {
@@ -13,6 +13,10 @@ class FantasyPlayerFilter extends Component {
     else {
       this.props.setPriceFilter(parseFloat(value, 10));
     }
+  };
+
+  handleDreamTeamFilter = (event, data) => {
+    this.props.setDreamTeamFilter(data.checked);
   };
 
   render() {
@@ -33,6 +37,12 @@ class FantasyPlayerFilter extends Component {
           <Form.Field>
             <label>Filtrer på pris i pund (£)</label>
             <input type="number" step={0.1} onChange={this.handlePriceSearch} />
+          </Form.Field>
+          <Form.Field>
+            <Checkbox
+              label="Vis kun Dream Team"
+              onChange={this.handleDreamTeamFilter}
+            />
           </Form.Field>
         </Form>
       </Segment>
