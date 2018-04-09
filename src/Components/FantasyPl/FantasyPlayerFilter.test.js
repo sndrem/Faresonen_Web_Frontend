@@ -6,7 +6,11 @@ import FantasyPlayerFilter from "./FantasyPlayerFilter";
 describe("<FantasyPlayerFilter />", () => {
   it("Should render properly", () => {
     const tree = renderer.create(
-      <FantasyPlayerFilter setNameFilter={() => {}} setPriceFilter={() => {}} />
+      <FantasyPlayerFilter
+        setNameFilter={() => {}}
+        setPriceFilter={() => {}}
+        setDreamTeamFilter={() => {}}
+      />
     );
     expect(tree).toMatchSnapshot();
   });

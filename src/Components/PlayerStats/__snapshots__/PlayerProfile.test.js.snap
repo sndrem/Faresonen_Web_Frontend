@@ -1,0 +1,226 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PlayerProfile /> Should render properly 1`] = `
+<div>
+  <div
+    className="ui card"
+    href={undefined}
+    onClick={[Function]}
+  >
+    <img
+      className="ui image"
+      src="http://platform-static-files.s3.amazonaws.com/premierleague/photos/players/250x250/pp82263.png"
+    />
+    <div
+      className="content"
+    >
+      <div
+        className="header"
+      >
+        Marcos Alonso
+        , 
+        Chelsea
+         
+        <i
+          aria-hidden="true"
+          className="yellow star icon"
+        />
+      </div>
+      <div>
+        <div
+          className="description"
+        >
+          <b>
+            Pris: 
+          </b>
+          £
+          7.2
+        </div>
+        <div
+          className="description"
+        >
+          <b>
+            Poeng: 
+          </b>
+          146
+        </div>
+        <div
+          className="description"
+        >
+          <b>
+            Valgt av: 
+          </b>
+          19,7
+          %
+        </div>
+        <div
+          className="description"
+        >
+          <b>
+            Skader: 
+          </b>
+          Ingen skader.
+        </div>
+        <div
+          className="description"
+        >
+          <b>
+            Sjanse for å spille neste runde:
+          </b>
+           
+          100
+          %
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<PlayerProfile /> Should render properly 2`] = `
+<div>
+  <div
+    className="ui card"
+    href={undefined}
+    onClick={[Function]}
+  >
+    <img
+      className="ui image"
+      src=""
+    />
+    <div
+      className="content"
+    >
+      <div
+        className="header"
+      >
+        Marcos Alonso
+        , 
+        Chelsea
+         
+        
+      </div>
+      <div>
+        <div
+          className="description"
+        >
+          <b>
+            Pris: 
+          </b>
+          £
+          7.2
+        </div>
+        <div
+          className="description"
+        >
+          <b>
+            Poeng: 
+          </b>
+          146
+        </div>
+        <div
+          className="description"
+        >
+          <b>
+            Valgt av: 
+          </b>
+          19,7
+          %
+        </div>
+        <div
+          className="description"
+        >
+          <b>
+            Skader: 
+          </b>
+          Ingen skader.
+        </div>
+        <div
+          className="description"
+        >
+          <b>
+            Sjanse for å spille neste runde:
+          </b>
+           
+          -1
+          %
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<PlayerProfile /> Should render properly 3`] = `
+<div>
+  <div
+    className="ui card"
+    href={undefined}
+    onClick={[Function]}
+  >
+    <img
+      className="ui image"
+      src=""
+    />
+    <div
+      className="content"
+    >
+      <div
+        className="header"
+      >
+        Marcos Alonso
+        , 
+        
+         
+        
+      </div>
+      <div>
+        <div
+          className="description"
+        >
+          <b>
+            Pris: 
+          </b>
+          £
+          -0.1
+        </div>
+        <div
+          className="description"
+        >
+          <b>
+            Poeng: 
+          </b>
+          -1
+        </div>
+        <div
+          className="description"
+        >
+          <b>
+            Valgt av: 
+          </b>
+          
+          %
+        </div>
+        <div
+          className="description"
+        >
+          <b>
+            Skader: 
+          </b>
+          Ingen skader.
+        </div>
+        <div
+          className="description"
+        >
+          <b>
+            Sjanse for å spille neste runde:
+          </b>
+           
+          -1
+          %
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
