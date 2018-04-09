@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid, Header, Segment, Dimmer, Loader } from "semantic-ui-react";
+import { Grid, Header, Segment, Dimmer, Loader, Icon } from "semantic-ui-react";
 
 const FantasyPlayers = ({ teams, loading }) => {
   return (
@@ -23,6 +23,11 @@ const FantasyPlayers = ({ teams, loading }) => {
                 .map(player => (
                   <div key={player.id}>
                     <a href={`#/fantasy/player/${player.id}`}>
+                      {player.in_dreamteam ? (
+                        <Icon name="star" color="yellow" />
+                      ) : (
+                        ""
+                      )}
                       {player.first_name} {player.second_name} -{" "}
                     </a>
                     <span>£{player.now_cost / 10}</span>
