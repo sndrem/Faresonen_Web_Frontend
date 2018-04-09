@@ -52,7 +52,8 @@ class FantasyPlayerFilter extends Component {
 
 FantasyPlayerFilter.propTypes = {
   setPriceFilter: PropTypes.func.isRequired,
-  setNameFilter: PropTypes.func.isRequired
+  setNameFilter: PropTypes.func.isRequired,
+  setDreamTeamFilter: PropTypes.func.isRequired
 };
 
 export default FantasyPlayerFilter;

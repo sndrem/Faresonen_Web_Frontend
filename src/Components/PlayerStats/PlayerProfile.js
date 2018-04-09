@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Card, Image, Icon } from "semantic-ui-react";
 
@@ -10,7 +10,8 @@ const PlayerProfile = ({
   inDreamTeam,
   cost,
   selectedBy,
-  points
+  points,
+  teamName
 }) => {
   return (
     <div>
@@ -27,7 +28,8 @@ const PlayerProfile = ({
         />
         <Card.Content>
           <Card.Header>
-            {name} {inDreamTeam ? <Icon name="star" color="yellow" /> : ""}
+            {name}, {teamName}{" "}
+            {inDreamTeam ? <Icon name="star" color="yellow" /> : ""}
           </Card.Header>
           <div>
             <Card.Description>
@@ -58,5 +60,28 @@ const PlayerProfile = ({
       </Card>
     </div>
   );
+};
+PlayerProfile.propTypes = {
+  name: PropTypes.string,
+  teamName: PropTypes.string,
+  news: PropTypes.string,
+  photo: PropTypes.string,
+  chanceOfPlayingNextRound: PropTypes.number,
+  inDreamTeam: PropTypes.bool,
+  cost: PropTypes.number,
+  selectedBy: PropTypes.string,
+  points: PropTypes.number
+};
+
+PlayerProfile.defaultProps = {
+  name: "",
+  news: "",
+  photo: "",
+  chanceOfPlayingNextRound: -1,
+  inDreamTeam: false,
+  cost: -1,
+  selectedBy: "",
+  points: -1,
+  teamName: ""
 };
 export default PlayerProfile;

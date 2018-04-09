@@ -1,16 +1,18 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
-import { Grid, Statistic } from "semantic-ui-react";
+import { Grid, Statistic, Segment } from "semantic-ui-react";
 import FaresoneMenu from "../../Menu/FaresoneMenu";
 import PlayerProfile from "../PlayerProfile";
+import TeamView from "../TeamView";
 
 class PlayerStatsContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       data: {
-        player: {}
+        player: {},
+        team: {}
       },
       loading: true
     };
@@ -19,8 +21,13 @@ class PlayerStatsContainer extends Component {
   componentDidMount = () => {
     const { playerId } = this.props;
     axios.get(`/fantasy/player/${playerId}`).then(data => {
+      const player = data.data;
+      if (player.team_code) {
+        this.getTeam(player.team_code);
+      }
       this.setState({
         data: {
+          ...this.state.data,
           player: data.data
         },
         loading: false
@@ -28,9 +35,20 @@ class PlayerStatsContainer extends Component {
     });
   };
 
+  // TODO Fetch team based on team code
+  getTeam = teamId => {
+    axios.get(`/fantasy/team/${teamId}`).then(data => {
+      this.setState({
+        data: {
+          ...this.state.data,
+          team: data.data
+        }
+      });
+    });
+  };
   mapStats = player => [
-    { key: "assists", label: "Assists", value: player.assists },
     { key: "goals", label: "Mål", value: player.goals_scored },
+    { key: "assists", label: "Assists", value: player.assists },
     {
       key: "pointsPerGame",
       label: "Poeng per kamp",
@@ -39,25 +57,22 @@ class PlayerStatsContainer extends Component {
     { key: "minPlayed", label: "Min. spilt", value: player.minutes },
     { key: "influence", label: "Påvirkning", value: player.influence },
     { key: "creativity", label: "Kreativitet", value: player.creativity },
-    { key: "form", label: "Form", value: player.form }
+    { key: "form", label: "Form", value: player.form },
+    { key: "bonus", label: "Bonus", value: player.bonus }
   ];
 
-  // TODO Fetch team based on team code
-
   render() {
-    const { player } = this.state.data;
-    console.log(player);
-    if (!player) {
-      return <p>Ingen data for spiller med ID: {this.props.playerId}</p>;
-    }
+    const { player, team } = this.state.data;
+
     const items = this.mapStats(player);
     return (
       <div>
         <FaresoneMenu />
         <Grid columns={2}>
-          <Grid.Column stretched>
+          <Grid.Column>
             <PlayerProfile
               name={`${player.first_name} ${player.second_name}`}
+              teamName={team.name}
               news={player.news}
               photo={player.photo}
               chanceOfPlayingNextRound={player.chance_of_playing_next_round}
@@ -66,10 +81,12 @@ class PlayerStatsContainer extends Component {
               selectedBy={player.selected_by_percent}
               cost={player.now_cost}
             />
+            <Segment>
+              <Statistic.Group widths={2} items={items} />
+            </Segment>
           </Grid.Column>
-          <Grid.Column>
-            <Statistic.Group horizontal items={items} />
-          </Grid.Column>
+          <TeamView team={team} />
+          <Grid.Column />
         </Grid>
       </div>
     );
