@@ -37,6 +37,33 @@ exports[`<FantasyPlayerFilter /> Should render properly 1`] = `
         type="number"
       />
     </div>
+    <div
+      className="field"
+    >
+      <div
+        className="ui checkbox"
+        onChange={[Function]}
+        onClick={[Function]}
+        onMouseDown={[Function]}
+      >
+        <input
+          checked={false}
+          className="hidden"
+          id={undefined}
+          name={undefined}
+          onClick={[Function]}
+          readOnly={true}
+          tabIndex={0}
+          type="checkbox"
+          value={undefined}
+        />
+        <label
+          htmlFor={undefined}
+        >
+          Vis kun Dream Team
+        </label>
+      </div>
+    </div>
   </form>
 </div>
 `;

@@ -39,7 +39,7 @@ const PlayerProfile = ({
             </Card.Description>
             <Card.Description>
               <b>Valgt av: </b>
-              {selectedBy}
+              {selectedBy}%
             </Card.Description>
             <Card.Description>
               <b>Skader: </b>
