@@ -4,7 +4,6 @@ import axios from "axios";
 import { Grid, Statistic, Segment } from "semantic-ui-react";
 import FaresoneMenu from "../../Menu/FaresoneMenu";
 import PlayerProfile from "../PlayerProfile";
-import TeamView from "../TeamView";
 
 class PlayerStatsContainer extends Component {
   constructor(props) {
