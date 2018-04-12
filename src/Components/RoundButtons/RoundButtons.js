@@ -1,16 +1,19 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import moment from "moment";
 import { List } from "semantic-ui-react";
 import "./RoundButtons.css";
 
 class RoundButtons extends Component {
+  getNextRoundId = (rounds, index) =>
+    rounds[index + 1] ? rounds[index + 1] : -1;
+
   createRoundButtons = rounds =>
-    rounds.map((r, index, array) => {
-      const round = r;
-      const endDate = r.enddate;
+    rounds.map((round, index, array) => {
+      const endDate = round.enddate;
       const now = new Date().toISOString();
-      const nextRoundId = array[index + 1] ? array[index + 1].id : -1;
-      round.nextRoundId = nextRoundId;
+      // eslint-disable-next-line
+      round.nextRoundId = this.getNextRoundId(array, index);
       const finished = endDate <= now;
       const button = this.createRoundButton(round, finished);
 
@@ -33,6 +36,9 @@ class RoundButtons extends Component {
   createNotFinishedButton = roundInfo => (
     <a href={this.createUrl(roundInfo)} className="round-buttons">
       {roundInfo.name}
+      <span className="startDate">
+        Starter: {moment(roundInfo.startdate).format("DD.MM.YYYY")}
+      </span>
     </a>
   );
 

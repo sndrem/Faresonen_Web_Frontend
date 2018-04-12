@@ -19,7 +19,6 @@ class FantasyPlayers extends Component {
   }
 
   handleOpen = () => {
-    console.log("Click");
   };
 
   render() {

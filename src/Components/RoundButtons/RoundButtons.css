@@ -18,3 +18,7 @@
 .round-buttons.finished {
   background: #cf0b0d;
 }
+
+.startDate {
+  display: block;
+}

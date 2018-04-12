@@ -60,7 +60,6 @@ class FantasyContainer extends Component {
   };
 
   setPriceFilter = filter => {
-    console.log(filter);
     this.setState({
       filters: {
         ...this.state.filters,
