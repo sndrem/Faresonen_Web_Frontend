@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Segment, Message } from "semantic-ui-react";
 import FantasyPlayerFilter from "../FantasyPlayerFilter";
 import FantasyPlayers from "../FantasyPlayers";
 
@@ -42,7 +43,8 @@ class FantasyContainer extends Component {
         console.warn("Problem fetching fantasy players");
         console.warn(err);
         this.setState({
-          error: "Det oppsto desverre et problem ved henting av spillere."
+          error:
+            "Det oppsto dessverre et problem ved henting av spillere. Grunnen er nok at PL-Fantasy oppdateres..."
         });
       });
   }
@@ -136,6 +138,13 @@ class FantasyContainer extends Component {
     }, {});
 
   render() {
+    if (this.state.error) {
+      return (
+        <Segment>
+          <Message warning>{this.state.error}</Message>
+        </Segment>
+      );
+    }
     const teams = this.filterTeams(this.state.data.teams, this.state.filters);
     return (
       <div>

@@ -16,6 +16,12 @@ exports[`<RoundButtons /> Should render properly 1`] = `
       href="#/league/1/340/Eliteserien/round/1/roundId/undefined/nextRound/-1"
     >
       1. runde
+      <span
+        className="startDate"
+      >
+        Starter: 
+        16.04.2018
+      </span>
     </a>
   </div>
 </div>
