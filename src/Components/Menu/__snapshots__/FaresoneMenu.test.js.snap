@@ -36,6 +36,13 @@ exports[`<FaresoneMenu /> Should render properly 1`] = `
       Fantasy PL
     </a>
     <a
+      className="item"
+      href="#/premierleague"
+      onClick={[Function]}
+    >
+      Premier League-verktøy
+    </a>
+    <a
       className="right item"
       href="#/about"
       onClick={[Function]}
