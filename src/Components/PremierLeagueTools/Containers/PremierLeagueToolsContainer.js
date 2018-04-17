@@ -19,6 +19,7 @@ class PremierLeagueToolsContainer extends Component {
       channels: ["TV 2 Sport Premium", "TV 2 Sumo"],
       script: "",
       loading: true,
+      copied: false,
       error: ""
     };
   }
@@ -117,7 +118,9 @@ class PremierLeagueToolsContainer extends Component {
     const channelNumbers = formattingChannels.map(ch =>
       this.getChannelNumber(ch)
     );
-    if (channelNumbers.length === 1) {
+    if (channelNumbers.length === 0) {
+      return "INGEN KANALER VALGT";
+    } else if (channelNumbers.length === 1) {
       return `${channelNumbers[0]}
 0`;
     } else if (channelNumbers.length === 2) {

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Message, Dropdown } from "semantic-ui-react";
 import channels from "../../Data/channels";
 import kickOfTexts from "../../Data/kickOfTexts";
+import "./LiveTeaseGenerator.css";
 
 class LiveTeaseGenerator extends Component {
   constructor(props) {
@@ -21,8 +22,9 @@ class LiveTeaseGenerator extends Component {
     this.props.setSelectedMatch(value);
   };
 
-  handleTimeTextChange = (event, { value }) =>
+  handleTimeTextChange = (event, { value }) => {
     this.props.setMatchTimeText(value);
+  };
   handleTimeChange = (event, { value }) => this.props.setTime(value);
   handleChannelChange = (event, { value }) => {
     this.props.setChannels(value);
@@ -59,6 +61,7 @@ class LiveTeaseGenerator extends Component {
           sending
         </Message>
         <Dropdown
+          className="dropdown"
           placeholder="Velg kamp"
           fluid
           search
@@ -67,6 +70,7 @@ class LiveTeaseGenerator extends Component {
           onChange={this.handleMatchChange}
         />
         <Dropdown
+          className="dropdown"
           placeholder="Velg avsparkstekst"
           search
           selection
@@ -74,14 +78,15 @@ class LiveTeaseGenerator extends Component {
           onChange={this.handleTimeTextChange}
         />
         <Dropdown
+          className="dropdown"
           placeholder="Velg klokkeslett"
           search
           selection
           options={this.state.times}
           onChange={this.handleTimeChange}
         />
-
         <Dropdown
+          className="dropdown"
           placeholder="Velg kanal"
           fluid
           search
@@ -89,7 +94,7 @@ class LiveTeaseGenerator extends Component {
           multiple
           defaultValue={this.props.defaultChannels}
           onChange={this.handleChannelChange}
-          options={channels}
+          options={this.state.channels}
         />
       </div>
     );
@@ -107,7 +112,12 @@ LiveTeaseGenerator.propTypes = {
   setTime: PropTypes.func.isRequired,
   setSelectedMatch: PropTypes.func.isRequired,
   setChannels: PropTypes.func.isRequired,
-  defaultChannels: PropTypes.arrayOf(PropTypes.string).isRequired
+  defaultChannels: PropTypes.arrayOf(PropTypes.string).isRequired,
+  error: PropTypes.string
+};
+
+LiveTeaseGenerator.defaultProps = {
+  error: ""
 };
 
 export default LiveTeaseGenerator;
