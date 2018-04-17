@@ -8,6 +8,7 @@ import DangerzoneView from "./Views/DangerzoneView";
 import FantasyView from "./Views/FantasyView";
 import DetailedPlayerView from "./Views/DetailedPlayerView";
 import GigSportsView from "./Views/GigSportsView";
+import PremierLeagueToolsView from "./Views/PremierLeagueToolsView";
 import AboutView from "./Views/AboutView";
 import Leagues from "./Data/leagues";
 
@@ -65,6 +66,11 @@ class App extends Component {
               component={DetailedPlayerView}
             />
             <Route exact path="/gigsports/" component={GigSportsView} />
+            <Route
+              exact
+              path="/premierleague/"
+              component={PremierLeagueToolsView}
+            />
             <Route exact path="/about/" component={AboutView} />
           </Switch>
         </HashRouter>

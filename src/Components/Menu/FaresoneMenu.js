@@ -16,6 +16,9 @@ const FaresoneMenu = () => (
       <Menu.Item as="a" href="#/fantasy" name="fantasy">
         Fantasy PL
       </Menu.Item>
+      <Menu.Item as="a" href="#/premierleague" name="premierleague">
+        Premier League-verktøy
+      </Menu.Item>
       <Menu.Item position="right" as={"a"} href="#/about" name="about">
         Om
       </Menu.Item>

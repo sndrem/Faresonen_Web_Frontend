@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { CSSTransitionGroup } from "react-transition-group";
 import moment from "moment";
 import { Feed, Icon, Message, Modal, Header } from "semantic-ui-react";
 import tools from "../../Tools/tools";
