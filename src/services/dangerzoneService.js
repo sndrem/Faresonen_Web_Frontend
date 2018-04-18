@@ -25,9 +25,16 @@ const dangerzoneService = {
     return Object.keys(players)
       .map(team => ({
         name: team,
-        players: players[team].players.filter(
-          p => p.value1 % 2 === 0 && p.value1 !== 0
-        )
+        players: players[team].players.filter(player => {
+          const yellowCards = player.value1;
+          if (yellowCards < 4 || yellowCards === 0) {
+            return false;
+          } else if (yellowCards % 2 === 0) {
+            return true;
+          }
+
+          return false;
+        })
       }))
       .filter(team => team.players.length > 0);
   },

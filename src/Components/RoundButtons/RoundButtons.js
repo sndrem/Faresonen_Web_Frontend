@@ -6,7 +6,7 @@ import "./RoundButtons.css";
 
 class RoundButtons extends Component {
   getNextRoundId = (rounds, index) =>
-    rounds[index + 1] ? rounds[index + 1] : -1;
+    rounds[index + 1] ? rounds[index + 1].id : -1;
 
   createRoundButtons = rounds =>
     rounds.map((round, index, array) => {

@@ -15,11 +15,7 @@ const Dangerzone = props => {
     return (
       <Message info className="no-print">
         <Message.Header>Faresonen ikke tilgjengelig</Message.Header>
-        <p>
-          Faresonen er ikke tilgjengelig for denne ligaen. Det kan være fordi
-          ligaen ikke har startet, gule kort ikke er registrert på Altomfotball
-          eller serveren er nede. Prøv igjen senere.
-        </p>
+        <p>Det er ingen spillere i Faresonen for {props.leagueName}.</p>
       </Message>
     );
   }
