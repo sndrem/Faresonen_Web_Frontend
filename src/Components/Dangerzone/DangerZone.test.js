@@ -27,7 +27,7 @@ describe("Dangerzone", () => {
           players: [
             {
               name: "Ole",
-              value1: 3
+              value1: 4
             },
             {
               name: "Petter",
@@ -39,7 +39,7 @@ describe("Dangerzone", () => {
             },
             {
               name: "Nikko",
-              value1: 4
+              value1: 3
             }
           ]
         }
@@ -49,7 +49,7 @@ describe("Dangerzone", () => {
       expect(filtered).toEqual([
         {
           name: "Brann",
-          players: [{ name: "Nikko", value1: 4 }]
+          players: [{ name: "Nikko", value1: 3 }]
         }
       ]);
     });

@@ -27,12 +27,9 @@ const dangerzoneService = {
         name: team,
         players: players[team].players.filter(player => {
           const yellowCards = player.value1;
-          if (yellowCards < 4 || yellowCards === 0) {
-            return false;
-          } else if (yellowCards % 2 === 0) {
+          if (yellowCards === 3 || (yellowCards % 2 !== 0 && yellowCards > 2)) {
             return true;
           }
-
           return false;
         })
       }))
