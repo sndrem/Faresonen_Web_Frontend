@@ -68,8 +68,22 @@ class DangerZoneAccumulator extends Component {
     });
   };
 
+  filterEvents = events => {
+    events.filter(event => {
+      const index = events.findIndex(e => {
+        return event.player.id === e.player.id;
+      });
+      return index > -1;
+    });
+  };
+
+  sortEvents = events =>
+    events.sort((a, b) => a.event.realTime <= b.event.realTime);
+
   render() {
-    const { events } = this.state.data;
+    let { events } = this.state.data;
+    events = this.sortEvents(events);
+
     let elements = null;
     if (events.length === 0) {
       elements = (
@@ -80,32 +94,30 @@ class DangerZoneAccumulator extends Component {
         />
       );
     } else {
-      elements = events
-        .sort((a, b) => a.event.realTime <= b.event.realTime)
-        .map(p => (
-          <Feed.Event
-            className="event-hover fadeInLeft"
-            onClick={() => this.removeFeedEvent(p)}
-            key={p.player.id}
-          >
-            <Feed.Content>
-              <Feed.Summary>
-                <Feed.User>
-                  {p.player.firstname} {p.player.lastname}
-                </Feed.User>{" "}
-                må stå over neste kamp
-                <Feed.Date>{moment(p.event.realTime).fromNow()}</Feed.Date>
-              </Feed.Summary>
-              <Feed.Meta>
-                <Feed.Like>
-                  <Icon name="clock" />
-                  Registrert:{" "}
-                  {moment(p.event.realTime).format("DD-MM-YYYY HH:mm")}
-                </Feed.Like>
-              </Feed.Meta>
-            </Feed.Content>
-          </Feed.Event>
-        ));
+      elements = events.map(p => (
+        <Feed.Event
+          className="event-hover fadeInLeft"
+          onClick={() => this.removeFeedEvent(p)}
+          key={p.player.id}
+        >
+          <Feed.Content>
+            <Feed.Summary>
+              <Feed.User>
+                {p.player.firstname} {p.player.lastname}
+              </Feed.User>{" "}
+              må stå over neste kamp
+              <Feed.Date>{moment(p.event.realTime).fromNow()}</Feed.Date>
+            </Feed.Summary>
+            <Feed.Meta>
+              <Feed.Like>
+                <Icon name="clock" />
+                Registrert:{" "}
+                {moment(p.event.realTime).format("DD-MM-YYYY HH:mm")}
+              </Feed.Like>
+            </Feed.Meta>
+          </Feed.Content>
+        </Feed.Event>
+      ));
     }
     return (
       <div>
