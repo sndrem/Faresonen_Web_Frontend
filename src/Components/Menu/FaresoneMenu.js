@@ -13,8 +13,12 @@ const FaresoneMenu = () => (
       <Menu.Item as="a" href="#/gigsports" name="gigsports">
         GIG Sports
       </Menu.Item>
+
       <Menu.Item as="a" href="#/fantasy" name="fantasy">
         Fantasy PL
+      </Menu.Item>
+      <Menu.Item as="a" href="#/fantasy/stats" name="fantasystats">
+        Statistikk
       </Menu.Item>
       <Menu.Item as="a" href="#/premierleague" name="premierleague">
         Premier League-verktøy

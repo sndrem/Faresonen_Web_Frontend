@@ -11,6 +11,7 @@ import GigSportsView from "./Views/GigSportsView";
 import PremierLeagueToolsView from "./Views/PremierLeagueToolsView";
 import AboutView from "./Views/AboutView";
 import Leagues from "./Data/leagues";
+import FantasyStatsView from "./Views/FantasyStatsView";
 
 class App extends Component {
   state = {
@@ -60,6 +61,7 @@ class App extends Component {
             />
             <Route exact path="/dangerzone/" component={DangerzoneView} />
             <Route exact path="/fantasy/" component={FantasyView} />
+            <Route exact path="/fantasy/stats" component={FantasyStatsView} />
             <Route
               exact
               path="/fantasy/player/:playerId"
