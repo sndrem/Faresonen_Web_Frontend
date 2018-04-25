@@ -14,6 +14,7 @@ const RoundList = props => (
       leagueName={props.leagueName}
       finished={false}
       rounds={props.rounds}
+      now={new Date().toISOString()}
     />
   </Segment>
 );

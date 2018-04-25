@@ -11,10 +11,10 @@ class RoundButtons extends Component {
   createRoundButtons = rounds =>
     rounds.map((round, index, array) => {
       const endDate = round.enddate;
-      const now = new Date().toISOString();
+
       // eslint-disable-next-line
       round.nextRoundId = this.getNextRoundId(array, index);
-      const finished = endDate <= now;
+      const finished = endDate <= this.props.now;
       const button = this.createRoundButton(round, finished);
 
       return <List.Item key={round["@uri"]}>{button}</List.Item>;
@@ -66,7 +66,8 @@ RoundButtons.propTypes = {
       nextRoundId: PropTypes.string,
       roundNo: PropTypes.string.isRequired
     })
-  ).isRequired
+  ).isRequired,
+  now: PropTypes.string.isRequired
 };
 
 export default RoundButtons;

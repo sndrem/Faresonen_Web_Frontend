@@ -18,6 +18,7 @@ describe("<RoundButtons />", () => {
             roundNo: "1"
           }
         ]}
+        now="2018-04-25T09:33:22.320Z"
       />
     );
     expect(tree).toMatchSnapshot();
