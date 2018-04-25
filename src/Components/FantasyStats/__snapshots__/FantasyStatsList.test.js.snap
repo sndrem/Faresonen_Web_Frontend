@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FantasyStatsList /> Should render properly 1`] = `
+<div>
+  <h2
+    className="ui header"
+  >
+    Dyreste spillere
+  </h2>
+  <div
+    className="ui list"
+    role="list"
+  >
+    <div
+      className="item"
+      data-value={undefined}
+      onClick={[Function]}
+      role="listitem"
+    >
+      £5,6 mill - Harry Kane
+    </div>
+    <div
+      className="item"
+      data-value={undefined}
+      onClick={[Function]}
+      role="listitem"
+    >
+      £4,2 mill - Mohamed Salah
+    </div>
+    <div
+      className="item"
+      data-value={undefined}
+      onClick={[Function]}
+      role="listitem"
+    >
+      £3,3 mill - Alexis Sanchez
+    </div>
+    <div
+      className="item"
+      data-value={undefined}
+      onClick={[Function]}
+      role="listitem"
+    >
+      £2,9 mill - Romelu Lukaku
+    </div>
+  </div>
+</div>
+`;

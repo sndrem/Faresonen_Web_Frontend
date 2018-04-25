@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import FaresoneMenu from "../Components/Menu/FaresoneMenu";
-import FantasyStatsContainer from "../Components/FantasyStats/FantasyStatsContainer";
+import FantasyStatsContainer from "../Components/FantasyStats/Containers/FantasyStatsContainer";
 
 class FantasyStatsView extends Component {
   constructor(props) {
