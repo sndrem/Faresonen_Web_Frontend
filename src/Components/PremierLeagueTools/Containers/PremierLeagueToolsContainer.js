@@ -33,13 +33,16 @@ class PremierLeagueToolsContainer extends Component {
       console.log(
         `Det er ingen turneringsID eller sesongID tilgjengelig for Premier League`
       );
-      this.setState({
-        error: `Det er ingen turneringsID eller sesongID tilgjengelig for Premier League`,
-        loading: false
-      });
+      this.setErrorLoadingState();
     }
     this.getMatches(tournamentId, seasonId);
   }
+
+  setErrorLoadingState = () =>
+    this.setState({
+      error: `Det er ingen turneringsID eller sesongID tilgjengelig for Premier League`,
+      loading: false
+    });
 
   getMatches = (tournamentId, seasonId) => {
     axios
@@ -103,11 +106,8 @@ class PremierLeagueToolsContainer extends Component {
     });
   };
 
-  getBadgePath = team => {
-    return badges.find(
-      badge => badge.team.toLowerCase() === team.toLowerCase()
-    );
-  };
+  getBadgePath = team =>
+    badges.find(badge => badge.team.toLowerCase() === team.toLowerCase());
 
   getChannelNumber = channel => {
     const found = channels.find(
@@ -131,7 +131,7 @@ class PremierLeagueToolsContainer extends Component {
 
   formatName = name => name.replace("_", "");
 
-  formatChannels = formattingChannels => {
+  formatChannels = (formattingChannels, text) => {
     const channelNumbers = formattingChannels.map(ch =>
       this.getChannelNumber(ch)
     );
@@ -143,7 +143,7 @@ class PremierLeagueToolsContainer extends Component {
     } else if (channelNumbers.length === 2) {
       return `
 ${channelNumbers[0]}
-${channelNumbers[1]}`.trim();
+${text === "I morgen fra kl." ? 0 : channelNumbers[1]}`.trim();
     }
     this.setState({
       error: "Du kan kun velge to kanaler. Fjern de overflødige"
@@ -168,7 +168,7 @@ ${awayTeam}
 ${awayBadge.path}
 ${this.state.colorAway.value}
 ${text.trim()} ${time.trim()}
-${this.formatChannels(tvChannels)}
+${this.formatChannels(tvChannels, text.trim())}
 PREMIER LEAGUE <00:02-00:15
 `;
   };

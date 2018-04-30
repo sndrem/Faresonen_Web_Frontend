@@ -32,13 +32,11 @@ class LiveTeaseGenerator extends Component {
     this.props.setChannels(value);
   };
 
-  handleColorChangeHome = homeColor => this.props.setHomeColor(homeColor);
-  handleColorChangeAway = awayColor => this.props.setAwayColor(awayColor);
-
   createTimes = () => {
     const hours = 24;
     const minutes = 15;
     const times = [];
+    // eslint-disable-next-line
     for (let i = 0; i < hours; i++) {
       for (let y = 0; y < 60; y += minutes) {
         const time = `${this.formatHours(i)}.${this.formatMinutes(y)}`;
@@ -77,6 +75,9 @@ class LiveTeaseGenerator extends Component {
 
     return this.handleColorChangeAway;
   };
+
+  handleColorChangeHome = homeColor => this.props.setHomeColor(homeColor);
+  handleColorChangeAway = awayColor => this.props.setAwayColor(awayColor);
 
   render() {
     return (
@@ -152,7 +153,8 @@ LiveTeaseGenerator.propTypes = {
   setSelectedMatch: PropTypes.func.isRequired,
   setChannels: PropTypes.func.isRequired,
   defaultChannels: PropTypes.arrayOf(PropTypes.string).isRequired,
-  error: PropTypes.string
+  setHomeColor: PropTypes.func.isRequired,
+  setAwayColor: PropTypes.func.isRequired
 };
 
 LiveTeaseGenerator.defaultProps = {
