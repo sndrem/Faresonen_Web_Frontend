@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Message, Dropdown } from "semantic-ui-react";
 import channels from "../../Data/channels";
 import kickOfTexts from "../../Data/kickOfTexts";
+import colors from "../../Data/colors";
 import "./LiveTeaseGenerator.css";
 
 class LiveTeaseGenerator extends Component {
@@ -10,7 +11,8 @@ class LiveTeaseGenerator extends Component {
     super(props);
     this.state = {
       channels,
-      times: []
+      times: [],
+      colors
     };
   }
 
@@ -85,6 +87,41 @@ class LiveTeaseGenerator extends Component {
           options={this.state.times}
           onChange={this.handleTimeChange}
         />
+        <Dropdown
+          className="dropdown"
+          placeholder="Velg farge hjemmelag"
+          search
+          selection
+          onChange={this.handleTimeChange}
+        >
+          <Dropdown.Menu>
+            {this.state.colors.map(color => (
+              <Dropdown.Item
+                style={{ background: color.value }}
+                value={color.value}
+                text={color.text}
+              />
+            ))}
+          </Dropdown.Menu>
+        </Dropdown>
+        <Dropdown
+          className="dropdown"
+          placeholder="Velg farge bortlag"
+          search
+          selection
+          onChange={this.handleTimeChange}
+          Dropdown
+        >
+          <Dropdown.Menu>
+            {this.state.colors.map(color => (
+              <Dropdown.Item
+                style={{ background: color.value }}
+                value={color.value}
+                text={color.text}
+              />
+            ))}
+          </Dropdown.Menu>
+        </Dropdown>
         <Dropdown
           className="dropdown"
           placeholder="Velg kanal"

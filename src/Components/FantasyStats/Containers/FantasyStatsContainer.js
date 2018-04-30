@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Segment, Grid, List, Header } from "semantic-ui-react";
+import { Segment, Grid } from "semantic-ui-react";
 import FantasyStatsList from "../FantasyStatsList";
 import FantasyStatsService from "../../../services/FantasyStatsService";
 
