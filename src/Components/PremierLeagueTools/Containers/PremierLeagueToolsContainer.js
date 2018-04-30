@@ -144,7 +144,7 @@ class PremierLeagueToolsContainer extends Component {
     } else if (channelNumbers.length === 2) {
       return `
 ${channelNumbers[0]}
-${text === "I morgen fra kl." ? 0 : channelNumbers[1]}`.trim();
+${text.trim() !== "Avspark kl." ? 0 : channelNumbers[1]}`.trim();
     }
     this.setState({
       error: "Du kan kun velge to kanaler. Fjern de overflødige"
