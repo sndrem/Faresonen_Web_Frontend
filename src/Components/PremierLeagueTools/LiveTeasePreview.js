@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { TextArea, Grid, Header, Segment } from "semantic-ui-react";
+import { TextArea, Grid, Header, Segment, Label } from "semantic-ui-react";
 
 const LiveTeasePreview = props => {
   return (
@@ -21,6 +21,18 @@ const LiveTeasePreview = props => {
           ) : (
             ""
           )}
+          <p>
+            Farge hjemmelag:{" "}
+            <span style={{ background: props.homeColor.hex }}>
+              {props.homeColor.text}
+            </span>
+          </p>
+          <p>
+            Farge bortelag:{" "}
+            <span style={{ background: props.awayColor.hex }}>
+              {props.awayColor.text}
+            </span>
+          </p>
         </Grid.Column>
         <Grid.Column>
           <TextArea style={{ width: "100%" }} autoHeight value={props.script} />

@@ -7,6 +7,7 @@ import LiveTeasePreview from "../LiveTeasePreview";
 import leagues from "../../../Data/leagues";
 import badges from "../../../Data/badgePaths";
 import channels from "../../../Data/channels";
+import colors from "../../../Data/colors";
 
 class PremierLeagueToolsContainer extends Component {
   constructor(props) {
@@ -17,6 +18,8 @@ class PremierLeagueToolsContainer extends Component {
       matchTimeText: "",
       matchTime: "",
       channels: ["TV 2 Sport Premium", "TV 2 Sumo"],
+      colorHome: colors[0],
+      colorAway: colors[2],
       script: "",
       loading: true,
       copied: false,
@@ -80,20 +83,25 @@ class PremierLeagueToolsContainer extends Component {
     });
   };
 
-  setChannels = channels =>
+  setChannels = setChannels =>
     this.setState({
       ...this.state,
-      channels
+      channels: setChannels
     });
 
-  mapMatches = matches =>
-    matches.map(match => ({
-      key: match.name,
-      value: match.name,
-      text: `${match.name} - ${moment(match.starttime).fromNow()} - ${moment(
-        match.starttime
-      ).format("DD.MM.YYYY [Kl.] HH:mm")}`
-    }));
+  setHomeColor = colorHome => {
+    this.setState({
+      ...this.state,
+      colorHome
+    });
+  };
+
+  setAwayColor = colorAway => {
+    this.setState({
+      ...this.state,
+      colorAway
+    });
+  };
 
   getBadgePath = team => {
     return badges.find(
@@ -108,6 +116,15 @@ class PremierLeagueToolsContainer extends Component {
     if (found) return found.number;
     throw new Error(`Could not find a channel number for ${channel}`);
   };
+
+  mapMatches = matches =>
+    matches.map(match => ({
+      key: match.name,
+      value: match.name,
+      text: `${match.name} - ${moment(match.starttime).fromNow()} - ${moment(
+        match.starttime
+      ).format("DD.MM.YYYY [Kl.] HH:mm")}`
+    }));
 
   filterDoneMatches = matches =>
     matches.filter(match => match.confirmed !== "true");
@@ -136,7 +153,8 @@ ${channelNumbers[1]}`.trim();
   createScript = (match, text, time, tvChannels) => {
     if (!match) return "";
 
-    if (match.split("-").length < 2) return "";
+    // TODO Refactor this check for if we can split the match string in two pieces
+    if (match.split("-").length < 2) return match;
     const teams = match.split("-");
     const homeTeam = this.formatName(teams[0]);
     const awayTeam = this.formatName(teams[1]);
@@ -145,10 +163,10 @@ ${channelNumbers[1]}`.trim();
 
     return `*SUPER Kamp_Promo_v2 ${homeTeam}
 ${homeBadge.path}
-0
+${this.state.colorHome.value}
 ${awayTeam}
 ${awayBadge.path}
-0
+${this.state.colorAway.value}
 ${text.trim()} ${time.trim()}
 ${this.formatChannels(tvChannels)}
 PREMIER LEAGUE <00:02-00:15
@@ -187,6 +205,8 @@ PREMIER LEAGUE <00:02-00:15
             setTime={this.setMatchTime}
             setChannels={this.setChannels}
             defaultChannels={this.state.channels}
+            setHomeColor={this.setHomeColor}
+            setAwayColor={this.setAwayColor}
           />
         </Segment>
         <LiveTeasePreview
@@ -195,6 +215,8 @@ PREMIER LEAGUE <00:02-00:15
           matchTime={this.state.matchTime}
           channels={this.state.channels}
           script={script}
+          homeColor={this.state.colorHome}
+          awayColor={this.state.colorAway}
         />
       </div>
     );

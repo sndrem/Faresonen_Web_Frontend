@@ -32,6 +32,9 @@ class LiveTeaseGenerator extends Component {
     this.props.setChannels(value);
   };
 
+  handleColorChangeHome = homeColor => this.props.setHomeColor(homeColor);
+  handleColorChangeAway = awayColor => this.props.setAwayColor(awayColor);
+
   createTimes = () => {
     const hours = 24;
     const minutes = 15;
@@ -54,6 +57,26 @@ class LiveTeaseGenerator extends Component {
 
   formatHours = hour => (hour < 10 ? `0${hour}` : hour);
   formatMinutes = mins => (mins < 10 ? `0${mins}` : mins);
+
+  createColorItems = (colorElements, home) =>
+    colorElements.map(color => {
+      const changeColor = this.handleColorChange(color, home);
+      return (
+        <Dropdown.Item
+          key={color.value}
+          style={{ background: color.hex }}
+          value={color.value}
+          text={color.text}
+          onClick={() => changeColor(color)}
+        />
+      );
+    });
+
+  handleColorChange = (color, home) => {
+    if (home) return this.handleColorChangeHome;
+
+    return this.handleColorChangeAway;
+  };
 
   render() {
     return (
@@ -91,35 +114,14 @@ class LiveTeaseGenerator extends Component {
           className="dropdown"
           placeholder="Velg farge hjemmelag"
           search
-          selection
-          onChange={this.handleTimeChange}
         >
           <Dropdown.Menu>
-            {this.state.colors.map(color => (
-              <Dropdown.Item
-                style={{ background: color.value }}
-                value={color.value}
-                text={color.text}
-              />
-            ))}
+            {this.createColorItems(this.state.colors, true)}
           </Dropdown.Menu>
         </Dropdown>
-        <Dropdown
-          className="dropdown"
-          placeholder="Velg farge bortlag"
-          search
-          selection
-          onChange={this.handleTimeChange}
-          Dropdown
-        >
+        <Dropdown className="dropdown" placeholder="Velg farge bortelag" search>
           <Dropdown.Menu>
-            {this.state.colors.map(color => (
-              <Dropdown.Item
-                style={{ background: color.value }}
-                value={color.value}
-                text={color.text}
-              />
-            ))}
+            {this.createColorItems(this.state.colors, false)}
           </Dropdown.Menu>
         </Dropdown>
         <Dropdown
