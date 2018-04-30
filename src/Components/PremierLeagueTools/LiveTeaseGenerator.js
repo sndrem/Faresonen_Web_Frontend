@@ -27,7 +27,9 @@ class LiveTeaseGenerator extends Component {
   handleTimeTextChange = (event, { value }) => {
     this.props.setMatchTimeText(value);
   };
+
   handleTimeChange = (event, { value }) => this.props.setTime(value);
+
   handleChannelChange = (event, { value }) => {
     this.props.setChannels(value);
   };
@@ -92,6 +94,7 @@ class LiveTeaseGenerator extends Component {
           fluid
           search
           selection
+          loading={this.props.loading}
           options={this.props.matches}
           onChange={this.handleMatchChange}
         />
@@ -154,7 +157,8 @@ LiveTeaseGenerator.propTypes = {
   setChannels: PropTypes.func.isRequired,
   defaultChannels: PropTypes.arrayOf(PropTypes.string).isRequired,
   setHomeColor: PropTypes.func.isRequired,
-  setAwayColor: PropTypes.func.isRequired
+  setAwayColor: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired
 };
 
 LiveTeaseGenerator.defaultProps = {

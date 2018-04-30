@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { TextArea, Grid, Header, Segment, Label } from "semantic-ui-react";
+import { TextArea, Grid, Header, Segment } from "semantic-ui-react";
 
 const LiveTeasePreview = props => {
   return (

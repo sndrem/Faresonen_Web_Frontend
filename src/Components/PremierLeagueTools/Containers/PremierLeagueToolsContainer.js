@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Message, Segment, Dimmer, Loader } from "semantic-ui-react";
+import { Message, Segment, Menu } from "semantic-ui-react";
 import moment from "moment";
 import LiveTeaseGenerator from "../LiveTeaseGenerator";
 import LiveTeasePreview from "../LiveTeasePreview";
@@ -23,7 +23,8 @@ class PremierLeagueToolsContainer extends Component {
       script: "",
       loading: true,
       copied: false,
-      error: ""
+      error: "",
+      activeItem: "liveinfo"
     };
   }
 
@@ -150,7 +151,13 @@ ${text === "I morgen fra kl." ? 0 : channelNumbers[1]}`.trim();
     });
   };
 
-  createScript = (match, text, time, tvChannels) => {
+  createScript = () => {
+    const {
+      selectedMatch: match,
+      matchTimeText: text,
+      matchTime: time,
+      channels: tvChannels
+    } = this.state;
     if (!match) return "";
 
     // TODO Refactor this check for if we can split the match string in two pieces
@@ -173,6 +180,40 @@ PREMIER LEAGUE <00:02-00:15
 `;
   };
 
+  handleItemClick = (event, props) => {
+    this.setState({
+      ...this.state,
+      activeItem: props.name.toLowerCase()
+    });
+  };
+
+  getGenerator(name, matches, script) {
+    return (
+      <Segment>
+        <LiveTeaseGenerator
+          matches={matches}
+          setSelectedMatch={this.setSelectedMatch}
+          setMatchTimeText={this.setMatchTimeText}
+          setTime={this.setMatchTime}
+          setChannels={this.setChannels}
+          defaultChannels={this.state.channels}
+          setHomeColor={this.setHomeColor}
+          setAwayColor={this.setAwayColor}
+          loading={this.state.loading}
+        />
+        <LiveTeasePreview
+          selectedMatch={this.state.selectedMatch}
+          matchTimeText={this.state.matchTimeText}
+          matchTime={this.state.matchTime}
+          channels={this.state.channels}
+          script={script}
+          homeColor={this.state.colorHome}
+          awayColor={this.state.colorAway}
+        />
+      </Segment>
+    );
+  }
+
   render() {
     if (this.state.error) {
       return <Message warning>{this.state.error}</Message>;
@@ -185,39 +226,34 @@ PREMIER LEAGUE <00:02-00:15
     let filtered = this.filterDoneMatches(match);
     filtered = this.mapMatches(filtered);
 
-    const { selectedMatch, matchTimeText, matchTime, channels } = this.state;
-    const script = this.createScript(
-      selectedMatch,
-      matchTimeText,
-      matchTime,
-      channels
-    );
+    const { activeItem } = this.state;
+    const script = this.createScript();
+    const generator = this.getGenerator(activeItem, filtered, script);
     return (
       <div>
         <Segment>
-          <Dimmer active={this.state.loading}>
-            <Loader>henter kamper</Loader>
-          </Dimmer>
-          <LiveTeaseGenerator
-            matches={filtered}
-            setSelectedMatch={this.setSelectedMatch}
-            setMatchTimeText={this.setMatchTimeText}
-            setTime={this.setMatchTime}
-            setChannels={this.setChannels}
-            defaultChannels={this.state.channels}
-            setHomeColor={this.setHomeColor}
-            setAwayColor={this.setAwayColor}
-          />
+          <Menu>
+            <Menu.Item
+              name="liveinfo"
+              active={activeItem === "liveinfo"}
+              onClick={this.handleItemClick}
+              link
+            >
+              Liveinfo
+            </Menu.Item>
+
+            <Menu.Item
+              name="S18 - Teasesuper"
+              active={activeItem === "S18 - Teasesuper"}
+              onClick={this.handleItemClick}
+              link
+            >
+              S18 - Teasesuper
+            </Menu.Item>
+          </Menu>
         </Segment>
-        <LiveTeasePreview
-          selectedMatch={this.state.selectedMatch}
-          matchTimeText={this.state.matchTimeText}
-          matchTime={this.state.matchTime}
-          channels={this.state.channels}
-          script={script}
-          homeColor={this.state.colorHome}
-          awayColor={this.state.colorAway}
-        />
+
+        <Segment>{generator}</Segment>
       </div>
     );
   }
