@@ -107,8 +107,14 @@ class PremierLeagueToolsContainer extends Component {
     });
   };
 
-  getBadgePath = team =>
-    badges.find(badge => badge.team.toLowerCase() === team.toLowerCase());
+  getBadgePath = team => {
+    const badgeFound = badges.find(
+      badge => badge.team.toLowerCase() === team.toLowerCase()
+    );
+    if (badgeFound) return badgeFound;
+
+    throw new Error(`Could not find badge for ${team}`);
+  };
 
   getChannelNumber = channel => {
     const found = channels.find(
@@ -175,20 +181,44 @@ ${awayBadge.path}
 ${this.state.colorAway.value}
 ${text.trim()} ${time.trim()}
 ${this.formatChannels(tvChannels, text.trim())}
-PREMIER LEAGUE <00:02-00:15
-`;
+PREMIER LEAGUE <00:02-00:15`;
   };
 
   handleItemClick = (event, props) => {
     this.setState({
       ...this.state,
-      activeItem: props.name.toLowerCase()
+      activeItem: props.name
     });
   };
 
   getGenerator(name, matches, script) {
-    return (
-      <Segment>
+    if (name === "liveinfo") {
+      return (
+        <Segment>
+          <LiveTeaseGenerator
+            matches={matches}
+            setSelectedMatch={this.setSelectedMatch}
+            setMatchTimeText={this.setMatchTimeText}
+            setTime={this.setMatchTime}
+            setChannels={this.setChannels}
+            defaultChannels={this.state.channels}
+            setHomeColor={this.setHomeColor}
+            setAwayColor={this.setAwayColor}
+            loading={this.state.loading}
+          />
+          <LiveTeasePreview
+            selectedMatch={this.state.selectedMatch}
+            matchTimeText={this.state.matchTimeText}
+            matchTime={this.state.matchTime}
+            channels={this.state.channels}
+            script={script}
+            awayColor={this.state.colorAway}
+            homeColor={this.state.colorHome}
+          />
+        </Segment>
+      );
+    } else {
+      return (
         <LiveTeaseGenerator
           matches={matches}
           setSelectedMatch={this.setSelectedMatch}
@@ -200,17 +230,8 @@ PREMIER LEAGUE <00:02-00:15
           setAwayColor={this.setAwayColor}
           loading={this.state.loading}
         />
-        <LiveTeasePreview
-          selectedMatch={this.state.selectedMatch}
-          matchTimeText={this.state.matchTimeText}
-          matchTime={this.state.matchTime}
-          channels={this.state.channels}
-          script={script}
-          homeColor={this.state.colorHome}
-          awayColor={this.state.colorAway}
-        />
-      </Segment>
-    );
+      );
+    }
   }
 
   render() {
@@ -218,15 +239,18 @@ PREMIER LEAGUE <00:02-00:15
       return <Message warning>{this.state.error}</Message>;
     }
 
-    let { match } = this.state.data;
-    if (!match) {
-      match = [];
+    let { match: matches } = this.state.data;
+    if (!matches) {
+      matches = [];
     }
-    let filtered = this.filterDoneMatches(match);
+    let filtered = this.filterDoneMatches(matches);
     filtered = this.mapMatches(filtered);
 
     const { activeItem } = this.state;
-    const script = this.createScript();
+    let script = "";
+    if (activeItem === "liveinfo") {
+      script = this.createScript();
+    }
     const generator = this.getGenerator(activeItem, filtered, script);
     return (
       <div>
@@ -242,8 +266,8 @@ PREMIER LEAGUE <00:02-00:15
             </Menu.Item>
 
             <Menu.Item
-              name="S18 - Teasesuper"
-              active={activeItem === "S18 - Teasesuper"}
+              name="S18Teasesuper"
+              active={activeItem === "S18Teasesuper"}
               onClick={this.handleItemClick}
               link
             >

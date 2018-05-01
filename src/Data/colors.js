@@ -10,35 +10,35 @@ export default [
     color: "Mørk lilla",
     key: "Mørk lilla",
     text: "Mørk lilla",
-    value: 1,
+    value: 2,
     hex: "#38003c"
   },
   {
     color: "Grønn",
     key: "Grønn",
     text: "Grønn",
-    value: 2,
+    value: 3,
     hex: "#00FF87"
   },
   {
     color: "Gul",
     key: "Gul",
     text: "Gul",
-    value: 3,
+    value: 4,
     hex: "#eaff04"
   },
   {
     color: "Lyseblå",
     key: "Lyseblå",
     text: "Lyseblå",
-    value: 4,
+    value: 5,
     hex: "#04f5ff"
   },
   {
     color: "Hvit",
     key: "Hvit",
     text: "Hvit",
-    value: 5,
+    value: 6,
     hex: "#fff"
   }
 ];

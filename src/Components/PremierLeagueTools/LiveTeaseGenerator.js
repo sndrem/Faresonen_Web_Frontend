@@ -73,9 +73,6 @@ class LiveTeaseGenerator extends Component {
     this.props.setAwayColor(color);
   };
 
-  handleColorChangeHome = homeColor => this.props.setHomeColor(homeColor);
-  handleColorChangeAway = awayColor => this.props.setAwayColor(awayColor);
-
   render() {
     return (
       <div>

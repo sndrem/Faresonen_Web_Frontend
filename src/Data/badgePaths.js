@@ -26,7 +26,7 @@ const badges = [
   },
 
   {
-    team: "CRYSTAL_PALACE",
+    team: "CRYSTAL PALACE",
     path: `${path}CRYSTAL_PALACE`
   },
 
