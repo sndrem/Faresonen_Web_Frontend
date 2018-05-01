@@ -41,7 +41,7 @@ class LiveTeaseGenerator extends Component {
     // eslint-disable-next-line
     for (let i = 0; i < hours; i++) {
       for (let y = 0; y < 60; y += minutes) {
-        const time = `${this.formatHours(i)}.${this.formatMinutes(y)}`;
+        const time = `${this.formatTime(i)}.${this.formatTime(y)}`;
         times.push({
           key: time,
           value: time,
@@ -55,27 +55,22 @@ class LiveTeaseGenerator extends Component {
     });
   };
 
-  formatHours = hour => (hour < 10 ? `0${hour}` : hour);
-  formatMinutes = mins => (mins < 10 ? `0${mins}` : mins);
+  formatTime = time => (time < 10 ? `0${time}` : time.toString());
 
-  createColorItems = (colorElements, home) =>
-    colorElements.map(color => {
-      const changeColor = this.handleColorChange(color, home);
-      return (
-        <Dropdown.Item
-          key={color.value}
-          style={{ background: color.hex }}
-          value={color.value}
-          text={color.text}
-          onClick={() => changeColor(color)}
-        />
-      );
-    });
+  findColor = (colorList, value) => {
+    const color = colorList.find(c => c.value === value);
+    if (color) return color;
+    throw new Error(`Could not find correct color for value ${value}`);
+  };
 
-  handleColorChange = (color, home) => {
-    if (home) return this.handleColorChangeHome;
+  handleColorChange = (value, home) => {
+    const color = this.findColor(colors, value);
 
-    return this.handleColorChangeAway;
+    if (home) {
+      this.props.setHomeColor(color);
+      return;
+    }
+    this.props.setAwayColor(color);
   };
 
   handleColorChangeHome = homeColor => this.props.setHomeColor(homeColor);
@@ -118,16 +113,19 @@ class LiveTeaseGenerator extends Component {
           className="dropdown"
           placeholder="Velg farge hjemmelag"
           search
-        >
-          <Dropdown.Menu>
-            {this.createColorItems(this.state.colors, true)}
-          </Dropdown.Menu>
-        </Dropdown>
-        <Dropdown className="dropdown" placeholder="Velg farge bortelag" search>
-          <Dropdown.Menu>
-            {this.createColorItems(this.state.colors, false)}
-          </Dropdown.Menu>
-        </Dropdown>
+          selection
+          options={this.state.colors}
+          onChange={(event, { value }) => this.handleColorChange(value, true)}
+        />
+
+        <Dropdown
+          className="dropdown"
+          placeholder="Velg farge bortelag"
+          search
+          options={this.state.colors}
+          selection
+          onChange={(event, { value }) => this.handleColorChange(value, false)}
+        />
         <Dropdown
           className="dropdown"
           placeholder="Velg kanal"

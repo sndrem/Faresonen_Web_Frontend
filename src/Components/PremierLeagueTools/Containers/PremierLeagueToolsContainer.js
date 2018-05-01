@@ -142,8 +142,7 @@ class PremierLeagueToolsContainer extends Component {
       return `${channelNumbers[0]}
 0`;
     } else if (channelNumbers.length === 2) {
-      return `
-${channelNumbers[0]}
+      return `${channelNumbers[0]}
 ${text.trim() !== "Avspark kl." ? 0 : channelNumbers[1]}`.trim();
     }
     this.setState({

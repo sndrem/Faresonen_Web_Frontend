@@ -15,7 +15,8 @@ describe("<RoundButtons />", () => {
             "@uri": "http://eliteserien.no",
             name: "1. runde",
             nextRoundId: "2",
-            roundNo: "1"
+            roundNo: "1",
+            startdate: "2018-04-25T09:33:22.320Z"
           }
         ]}
         now="2018-04-25T09:33:22.320Z"

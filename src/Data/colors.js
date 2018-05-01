@@ -3,7 +3,7 @@ export default [
     color: "Rød",
     key: "Rød",
     text: "Rød",
-    value: 0,
+    value: 1,
     hex: "#e90052"
   },
   {

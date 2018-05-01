@@ -1,0 +1,2929 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
+<div>
+  <div
+    className="ui info message"
+  >
+    Obs obs, pass på og alltid dobbeltsjekke scriptet før du bruker det på sending
+  </div>
+  <div
+    aria-busy={false}
+    aria-disabled={undefined}
+    aria-expanded={false}
+    className="ui fluid search selection dropdown dropdown"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onMouseDown={[Function]}
+    role="combobox"
+    tabIndex={undefined}
+  >
+    <input
+      aria-autocomplete="list"
+      autoComplete="off"
+      className="search"
+      onChange={[Function]}
+      style={
+        Object {
+          "width": undefined,
+        }
+      }
+      tabIndex={0}
+      type="text"
+      value=""
+    />
+    <div
+      aria-live="polite"
+      className="default text"
+      role="alert"
+    >
+      Velg kamp
+    </div>
+    <i
+      aria-hidden="true"
+      className="dropdown icon"
+      onClick={[Function]}
+    />
+    <div
+      aria-multiselectable={undefined}
+      className="menu transition"
+      role="listbox"
+    >
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={true}
+        className="selected item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      />
+    </div>
+  </div>
+  <div
+    aria-busy={undefined}
+    aria-disabled={undefined}
+    aria-expanded={false}
+    className="ui search selection dropdown dropdown"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onMouseDown={[Function]}
+    role="combobox"
+    tabIndex={undefined}
+  >
+    <input
+      aria-autocomplete="list"
+      autoComplete="off"
+      className="search"
+      onChange={[Function]}
+      style={
+        Object {
+          "width": undefined,
+        }
+      }
+      tabIndex={0}
+      type="text"
+      value=""
+    />
+    <div
+      aria-live="polite"
+      className="default text"
+      role="alert"
+    >
+      Velg avsparkstekst
+    </div>
+    <i
+      aria-hidden="true"
+      className="dropdown icon"
+      onClick={[Function]}
+    />
+    <div
+      aria-multiselectable={undefined}
+      className="menu transition"
+      role="listbox"
+    >
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={true}
+        className="selected item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          Avspark kl. 
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          I morgen fra kl. 
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          Mandag fra kl. 
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          Tirsdag fra kl. 
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          Onsdag fra kl. 
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          Torsdag fra kl. 
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          Fredag fra kl. 
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          Lørdag fra kl. 
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          Søndag fra kl. 
+        </span>
+      </div>
+    </div>
+  </div>
+  <div
+    aria-busy={undefined}
+    aria-disabled={undefined}
+    aria-expanded={false}
+    className="ui search selection dropdown dropdown"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onMouseDown={[Function]}
+    role="combobox"
+    tabIndex={undefined}
+  >
+    <input
+      aria-autocomplete="list"
+      autoComplete="off"
+      className="search"
+      onChange={[Function]}
+      style={
+        Object {
+          "width": undefined,
+        }
+      }
+      tabIndex={0}
+      type="text"
+      value=""
+    />
+    <div
+      aria-live="polite"
+      className="default text"
+      role="alert"
+    >
+      Velg klokkeslett
+    </div>
+    <i
+      aria-hidden="true"
+      className="dropdown icon"
+      onClick={[Function]}
+    />
+    <div
+      aria-multiselectable={undefined}
+      className="menu transition"
+      role="listbox"
+    >
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={true}
+        className="selected item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          00.00
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          00.15
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          00.30
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          00.45
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          01.00
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          01.15
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          01.30
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          01.45
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          02.00
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          02.15
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          02.30
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          02.45
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          03.00
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          03.15
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          03.30
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          03.45
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          04.00
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          04.15
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          04.30
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          04.45
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          05.00
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          05.15
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          05.30
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          05.45
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          06.00
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          06.15
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          06.30
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          06.45
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          07.00
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          07.15
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          07.30
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          07.45
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          08.00
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          08.15
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          08.30
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          08.45
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          09.00
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          09.15
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          09.30
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          09.45
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          10.00
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          10.15
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          10.30
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          10.45
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          11.00
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          11.15
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          11.30
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          11.45
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          12.00
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          12.15
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          12.30
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          12.45
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          13.00
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          13.15
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          13.30
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          13.45
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          14.00
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          14.15
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          14.30
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          14.45
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          15.00
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          15.15
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          15.30
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          15.45
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          16.00
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          16.15
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          16.30
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          16.45
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          17.00
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          17.15
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          17.30
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          17.45
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          18.00
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          18.15
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          18.30
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          18.45
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          19.00
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          19.15
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          19.30
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          19.45
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          20.00
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          20.15
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          20.30
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          20.45
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          21.00
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          21.15
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          21.30
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          21.45
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          22.00
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          22.15
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          22.30
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          22.45
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          23.00
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          23.15
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          23.30
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          23.45
+        </span>
+      </div>
+    </div>
+  </div>
+  <div
+    aria-busy={undefined}
+    aria-disabled={undefined}
+    aria-expanded={false}
+    className="ui search selection dropdown dropdown"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onMouseDown={[Function]}
+    role="combobox"
+    tabIndex={undefined}
+  >
+    <input
+      aria-autocomplete="list"
+      autoComplete="off"
+      className="search"
+      onChange={[Function]}
+      style={
+        Object {
+          "width": undefined,
+        }
+      }
+      tabIndex={0}
+      type="text"
+      value=""
+    />
+    <div
+      aria-live="polite"
+      className="default text"
+      role="alert"
+    >
+      Velg farge hjemmelag
+    </div>
+    <i
+      aria-hidden="true"
+      className="dropdown icon"
+      onClick={[Function]}
+    />
+    <div
+      aria-multiselectable={undefined}
+      className="menu transition"
+      role="listbox"
+    >
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={true}
+        className="selected item"
+        color="Rød"
+        hex="#e90052"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          Rød
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        color="Mørk lilla"
+        hex="#38003c"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          Mørk lilla
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        color="Grønn"
+        hex="#00FF87"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          Grønn
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        color="Gul"
+        hex="#eaff04"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          Gul
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        color="Lyseblå"
+        hex="#04f5ff"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          Lyseblå
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        color="Hvit"
+        hex="#fff"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          Hvit
+        </span>
+      </div>
+    </div>
+  </div>
+  <div
+    aria-busy={undefined}
+    aria-disabled={undefined}
+    aria-expanded={false}
+    className="ui search selection dropdown dropdown"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onMouseDown={[Function]}
+    role="combobox"
+    tabIndex={undefined}
+  >
+    <input
+      aria-autocomplete="list"
+      autoComplete="off"
+      className="search"
+      onChange={[Function]}
+      style={
+        Object {
+          "width": undefined,
+        }
+      }
+      tabIndex={0}
+      type="text"
+      value=""
+    />
+    <div
+      aria-live="polite"
+      className="default text"
+      role="alert"
+    >
+      Velg farge bortelag
+    </div>
+    <i
+      aria-hidden="true"
+      className="dropdown icon"
+      onClick={[Function]}
+    />
+    <div
+      aria-multiselectable={undefined}
+      className="menu transition"
+      role="listbox"
+    >
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={true}
+        className="selected item"
+        color="Rød"
+        hex="#e90052"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          Rød
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        color="Mørk lilla"
+        hex="#38003c"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          Mørk lilla
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        color="Grønn"
+        hex="#00FF87"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          Grønn
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        color="Gul"
+        hex="#eaff04"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          Gul
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        color="Lyseblå"
+        hex="#04f5ff"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          Lyseblå
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        color="Hvit"
+        hex="#fff"
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          Hvit
+        </span>
+      </div>
+    </div>
+  </div>
+  <div
+    aria-busy={undefined}
+    aria-disabled={undefined}
+    aria-expanded={false}
+    className="ui fluid multiple search selection dropdown dropdown"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onMouseDown={[Function]}
+    role="combobox"
+    tabIndex={undefined}
+  >
+    <a
+      className="ui label"
+      onClick={[Function]}
+      value="TV 2 Sport Premium"
+    >
+      TV 2 Sport Premium
+      <i
+        aria-hidden="true"
+        className="delete icon"
+        onClick={[Function]}
+      />
+    </a>
+    <a
+      className="ui label"
+      onClick={[Function]}
+      value="TV 2 Sumo"
+    >
+      TV 2 Sumo
+      <i
+        aria-hidden="true"
+        className="delete icon"
+        onClick={[Function]}
+      />
+    </a>
+    <input
+      aria-autocomplete="list"
+      autoComplete="off"
+      className="search"
+      onChange={[Function]}
+      style={
+        Object {
+          "width": undefined,
+        }
+      }
+      tabIndex={0}
+      type="text"
+      value=""
+    />
+    <span
+      className="sizer"
+    />
+    <div
+      aria-live="polite"
+      className="text"
+      role="alert"
+    />
+    <i
+      aria-hidden="true"
+      className="dropdown icon"
+      onClick={[Function]}
+    />
+    <div
+      aria-multiselectable={true}
+      className="menu transition"
+      role="listbox"
+    >
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={true}
+        className="selected item"
+        name="TV 2"
+        number={1}
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          TV 2
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        name="TV 2 Zebra"
+        number={2}
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          TV 2 Zebra
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        name="TV 2 Sportskanalen"
+        number={3}
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          TV 2 Sportskanalen
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        name="TV 2 Nyhetskanalen"
+        number={4}
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          TV 2 Nyhetskanalen
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        name="TV 2 Sport Premium 2"
+        number={6}
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          TV 2 Sport Premium 2
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        name="TV 2 Sport Premium 3"
+        number={7}
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          TV 2 Sport Premium 3
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        name="TV 2 Livsstil"
+        number={8}
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          TV 2 Livsstil
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        name="TV 2 Humor"
+        number={9}
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          TV 2 Humor
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        name="TV 2 Sport Premium 4"
+        number={11}
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          TV 2 Sport Premium 4
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        name="TV 2 Sport Premium 5"
+        number={12}
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          TV 2 Sport Premium 5
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        name="TV 2 Sport Premium 6"
+        number={13}
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          TV 2 Sport Premium 6
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        name="TV 2 Sport Premium 7"
+        number={14}
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          TV 2 Sport Premium 7
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        name="TV 2 Sport Premium 8"
+        number={15}
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          TV 2 Sport Premium 8
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        name="TV2.no"
+        number={16}
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          TV2.no
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        name="NRK 1"
+        number={17}
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          NRK 1
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        name="NRK 2"
+        number={18}
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          NRK 2
+        </span>
+      </div>
+      <div
+        aria-checked={false}
+        aria-disabled={undefined}
+        aria-selected={false}
+        className="item"
+        name="NRK 3"
+        number={19}
+        onClick={[Function]}
+        role="option"
+        style={
+          Object {
+            "pointerEvents": "all",
+          }
+        }
+      >
+        <span
+          className="text"
+        >
+          NRK 3
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
