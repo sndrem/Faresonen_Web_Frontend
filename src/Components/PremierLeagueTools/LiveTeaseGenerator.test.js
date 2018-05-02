@@ -4,7 +4,7 @@ import renderer from "react-test-renderer";
 import LiveTeaseGenerator from "./LiveTeaseGenerator";
 
 describe("<LiveTeaseGenerator />", () => {
-  it("Should render properly", () => {
+  xit("Should render properly", () => {
     const tree = renderer.create(
       <LiveTeaseGenerator
         matches={[
