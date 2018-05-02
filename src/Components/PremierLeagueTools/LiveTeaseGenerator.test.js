@@ -8,7 +8,10 @@ describe("<LiveTeaseGenerator />", () => {
     const tree = renderer.create(
       <LiveTeaseGenerator
         matches={[
-          { key: "Brighton-Man.United", value: "Brighton - Manchester United" }
+          {
+            name: "Brighton-Man.United",
+            starttime: "2018-05-02T12:22:24.041Z"
+          }
         ]}
         setMatchTimeText={() => {}}
         setTime={() => {}}
@@ -27,7 +30,10 @@ describe("<LiveTeaseGenerator />", () => {
     const elem = shallow(
       <LiveTeaseGenerator
         matches={[
-          { key: "Brighton-Man.United", value: "Brighton - Manchester United" }
+          {
+            name: "Brighton-Man.United",
+            starttime: "2018-05-02T12:22:24.041Z"
+          }
         ]}
         setMatchTimeText={() => {}}
         setTime={() => {}}
@@ -51,7 +57,10 @@ describe("<LiveTeaseGenerator />", () => {
     const elem = shallow(
       <LiveTeaseGenerator
         matches={[
-          { key: "Brighton-Man.United", value: "Brighton - Manchester United" }
+          {
+            name: "Brighton-Man.United",
+            starttime: "2018-05-02T12:22:24.041Z"
+          }
         ]}
         setMatchTimeText={() => {}}
         setTime={() => {}}

@@ -46,10 +46,10 @@ class LiveTeaseGeneratorContainer extends Component {
 
   getMatches = (tournamentId, seasonId) => {
     altOmFotballMatchService
-      .getMatches(tournamentId, seasonId)
+      .getOnlyDoneMatches(tournamentId, seasonId)
       .then(data => {
         this.setState({
-          data: data.data,
+          data: { match: data },
           loading: false,
           error: ""
         });
@@ -122,18 +122,6 @@ class LiveTeaseGeneratorContainer extends Component {
     if (found) return found.number;
     throw new Error(`Could not find a channel number for ${channel}`);
   };
-
-  mapMatches = matches =>
-    matches.map(match => ({
-      key: match.name,
-      value: match.name,
-      text: `${match.name} - ${moment(match.starttime).fromNow()} - ${moment(
-        match.starttime
-      ).format("DD.MM.YYYY [Kl.] HH:mm")}`
-    }));
-
-  filterDoneMatches = matches =>
-    matches.filter(match => match.confirmed !== "true");
 
   formatName = name => name.replace("_", "");
 
@@ -217,11 +205,9 @@ PREMIER LEAGUE <00:02-00:15`;
     if (!matches) {
       matches = [];
     }
-    let filteredMatches = this.filterDoneMatches(matches);
-    filteredMatches = this.mapMatches(filteredMatches);
 
     const script = this.createScript();
-    const generator = this.getGenerator(filteredMatches, script);
+    const generator = this.getGenerator(matches, script);
     return <Segment>{generator}</Segment>;
   }
 }

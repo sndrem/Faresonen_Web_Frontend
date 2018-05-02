@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import FaresoneMenu from "../Components/Menu/FaresoneMenu";
 import TypeOfGraphicSubMenu from "../Components/PremierLeagueTools/TypeOfGraphicSubMenu";
 import LiveTeaseGeneratorContainer from "../Components/PremierLeagueTools/Containers/LiveTeaseGeneratorContainer";
+import ProgramTeaseGeneratorContainer from "../Components/PremierLeagueTools/Containers/ProgramTeaseGeneratorContainer";
 
 class PremierLeagueToolsView extends Component {
   constructor() {
@@ -15,6 +16,8 @@ class PremierLeagueToolsView extends Component {
     switch (type.toLowerCase()) {
       case "liveinfo":
         return <LiveTeaseGeneratorContainer />;
+      case "s18teasesuper":
+        return <ProgramTeaseGeneratorContainer />;
       default:
         return <p>Lol</p>;
     }

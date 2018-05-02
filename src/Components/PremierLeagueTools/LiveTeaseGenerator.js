@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Message, Dropdown } from "semantic-ui-react";
+import moment from "moment";
 import channels from "../../Data/channels";
 import kickOfTexts from "../../Data/kickOfTexts";
 import colors from "../../Data/colors";
@@ -73,6 +74,15 @@ class LiveTeaseGenerator extends Component {
     this.props.setAwayColor(color);
   };
 
+  mapMatches = matches =>
+    matches.map(match => ({
+      key: match.name,
+      value: match.name,
+      text: `${match.name} - ${moment(match.starttime).fromNow()} - ${moment(
+        match.starttime
+      ).format("DD.MM.YYYY [Kl.] HH:mm")}`
+    }));
+
   render() {
     return (
       <div>
@@ -87,7 +97,7 @@ class LiveTeaseGenerator extends Component {
           search
           selection
           loading={this.props.loading}
-          options={this.props.matches}
+          options={this.mapMatches(this.props.matches)}
           onChange={this.handleMatchChange}
         />
         <Dropdown
@@ -142,8 +152,8 @@ class LiveTeaseGenerator extends Component {
 LiveTeaseGenerator.propTypes = {
   matches: PropTypes.arrayOf(
     PropTypes.shape({
-      key: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired
+      name: PropTypes.string.isRequired,
+      starttime: PropTypes.string.isRequired
     })
   ).isRequired,
   setMatchTimeText: PropTypes.func.isRequired,
@@ -151,13 +161,15 @@ LiveTeaseGenerator.propTypes = {
   setSelectedMatch: PropTypes.func.isRequired,
   setChannels: PropTypes.func.isRequired,
   defaultChannels: PropTypes.arrayOf(PropTypes.string).isRequired,
-  setHomeColor: PropTypes.func.isRequired,
-  setAwayColor: PropTypes.func.isRequired,
+  setHomeColor: PropTypes.func,
+  setAwayColor: PropTypes.func,
   loading: PropTypes.bool.isRequired
 };
 
 LiveTeaseGenerator.defaultProps = {
-  error: ""
+  error: "",
+  setHomeColor: () => {},
+  setAwayColor: () => {}
 };
 
 export default LiveTeaseGenerator;
