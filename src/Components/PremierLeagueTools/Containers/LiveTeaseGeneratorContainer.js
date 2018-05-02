@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
-import { Message, Segment, Menu } from "semantic-ui-react";
+import { Message, Segment } from "semantic-ui-react";
 import moment from "moment";
 import LiveTeaseGenerator from "../LiveTeaseGenerator";
 import LiveTeasePreview from "../LiveTeasePreview";
@@ -8,8 +7,9 @@ import leagues from "../../../Data/leagues";
 import badges from "../../../Data/badgePaths";
 import channels from "../../../Data/channels";
 import colors from "../../../Data/colors";
+import altOmFotballMatchService from "../../../services/altOmFotballMatchService";
 
-class PremierLeagueToolsContainer extends Component {
+class LiveTeaseGeneratorContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,8 +23,7 @@ class PremierLeagueToolsContainer extends Component {
       script: "",
       loading: true,
       copied: false,
-      error: "",
-      activeItem: "liveinfo"
+      error: ""
     };
   }
 
@@ -46,8 +45,8 @@ class PremierLeagueToolsContainer extends Component {
     });
 
   getMatches = (tournamentId, seasonId) => {
-    axios
-      .get(`/matches/${tournamentId}/${seasonId}`)
+    altOmFotballMatchService
+      .getMatches(tournamentId, seasonId)
       .then(data => {
         this.setState({
           data: data.data,
@@ -184,55 +183,30 @@ ${this.formatChannels(tvChannels, text.trim())}
 PREMIER LEAGUE <00:02-00:15`;
   };
 
-  handleItemClick = (event, props) => {
-    this.setState({
-      ...this.state,
-      activeItem: props.name
-    });
-  };
-
-  getGenerator(name, matches, script) {
-    if (name === "liveinfo") {
-      return (
-        <Segment>
-          <LiveTeaseGenerator
-            matches={matches}
-            setSelectedMatch={this.setSelectedMatch}
-            setMatchTimeText={this.setMatchTimeText}
-            setTime={this.setMatchTime}
-            setChannels={this.setChannels}
-            defaultChannels={this.state.channels}
-            setHomeColor={this.setHomeColor}
-            setAwayColor={this.setAwayColor}
-            loading={this.state.loading}
-          />
-          <LiveTeasePreview
-            selectedMatch={this.state.selectedMatch}
-            matchTimeText={this.state.matchTimeText}
-            matchTime={this.state.matchTime}
-            channels={this.state.channels}
-            script={script}
-            awayColor={this.state.colorAway}
-            homeColor={this.state.colorHome}
-          />
-        </Segment>
-      );
-    } else {
-      return (
-        <LiveTeaseGenerator
-          matches={matches}
-          setSelectedMatch={this.setSelectedMatch}
-          setMatchTimeText={this.setMatchTimeText}
-          setTime={this.setMatchTime}
-          setChannels={this.setChannels}
-          defaultChannels={this.state.channels}
-          setHomeColor={this.setHomeColor}
-          setAwayColor={this.setAwayColor}
-          loading={this.state.loading}
-        />
-      );
-    }
-  }
+  getGenerator = (matches, script) => (
+    <Segment>
+      <LiveTeaseGenerator
+        matches={matches}
+        setSelectedMatch={this.setSelectedMatch}
+        setMatchTimeText={this.setMatchTimeText}
+        setTime={this.setMatchTime}
+        setChannels={this.setChannels}
+        defaultChannels={this.state.channels}
+        setHomeColor={this.setHomeColor}
+        setAwayColor={this.setAwayColor}
+        loading={this.state.loading}
+      />
+      <LiveTeasePreview
+        selectedMatch={this.state.selectedMatch}
+        matchTimeText={this.state.matchTimeText}
+        matchTime={this.state.matchTime}
+        channels={this.state.channels}
+        script={script}
+        awayColor={this.state.colorAway}
+        homeColor={this.state.colorHome}
+      />
+    </Segment>
+  );
 
   render() {
     if (this.state.error) {
@@ -243,42 +217,12 @@ PREMIER LEAGUE <00:02-00:15`;
     if (!matches) {
       matches = [];
     }
-    let filtered = this.filterDoneMatches(matches);
-    filtered = this.mapMatches(filtered);
+    let filteredMatches = this.filterDoneMatches(matches);
+    filteredMatches = this.mapMatches(filteredMatches);
 
-    const { activeItem } = this.state;
-    let script = "";
-    if (activeItem === "liveinfo") {
-      script = this.createScript();
-    }
-    const generator = this.getGenerator(activeItem, filtered, script);
-    return (
-      <div>
-        <Segment>
-          <Menu>
-            <Menu.Item
-              name="liveinfo"
-              active={activeItem === "liveinfo"}
-              onClick={this.handleItemClick}
-              link
-            >
-              Liveinfo
-            </Menu.Item>
-
-            <Menu.Item
-              name="S18Teasesuper"
-              active={activeItem === "S18Teasesuper"}
-              onClick={this.handleItemClick}
-              link
-            >
-              S18 - Teasesuper
-            </Menu.Item>
-          </Menu>
-        </Segment>
-
-        <Segment>{generator}</Segment>
-      </div>
-    );
+    const script = this.createScript();
+    const generator = this.getGenerator(filteredMatches, script);
+    return <Segment>{generator}</Segment>;
   }
 }
-export default PremierLeagueToolsContainer;
+export default LiveTeaseGeneratorContainer;
