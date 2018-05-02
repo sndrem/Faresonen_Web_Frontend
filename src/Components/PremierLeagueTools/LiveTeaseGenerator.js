@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Message, Dropdown } from "semantic-ui-react";
-import moment from "moment";
+import moment from "moment-timezone";
 import channels from "../../Data/channels";
 import kickOfTexts from "../../Data/kickOfTexts";
 import colors from "../../Data/colors";
@@ -74,14 +74,16 @@ class LiveTeaseGenerator extends Component {
     this.props.setAwayColor(color);
   };
 
-  mapMatches = matches =>
-    matches.map(match => ({
+  mapMatches = matches => {
+    moment.tz.setDefault("Europe/Oslo");
+    return matches.map(match => ({
       key: match.name,
       value: match.name,
       text: `${match.name} - ${moment(match.starttime).from(
         moment()
       )} - ${moment(match.starttime).format("DD.MM.YYYY [Kl.] HH:mm")}`
     }));
+  };
 
   render() {
     return (
