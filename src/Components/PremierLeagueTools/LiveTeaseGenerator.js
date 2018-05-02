@@ -78,9 +78,9 @@ class LiveTeaseGenerator extends Component {
     matches.map(match => ({
       key: match.name,
       value: match.name,
-      text: `${match.name} - ${moment(match.starttime).fromNow()} - ${moment(
-        match.starttime
-      ).format("DD.MM.YYYY [Kl.] HH:mm")}`
+      text: `${match.name} - ${moment(match.starttime).from(
+        moment()
+      )} - ${moment(match.starttime).format("DD.MM.YYYY [Kl.] HH:mm")}`
     }));
 
   render() {
