@@ -67,7 +67,7 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
         <span
           className="text"
         >
-          Brighton-Man.United - a minute ago - 02.05.2018 Kl. 14:22
+          Brighton-Man.United - an hour ago - 02.05.2018 Kl. 14:22
         </span>
       </div>
     </div>
