@@ -146,6 +146,7 @@ class RoundView extends Component {
           className="print"
           matches={this.state.nextMatches}
           nextRoundNumber={this.state.roundNumber}
+          loading={this.state.loading}
         />
 
         <TopscorersContainer

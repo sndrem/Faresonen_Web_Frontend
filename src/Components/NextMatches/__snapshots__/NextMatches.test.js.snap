@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NextMatches /> Should render properly 1`] = `
+<div
+  className="ui info message no-print"
+>
+  Kamper for neste runde er ikke klar, eller så holder du på å lage lefsen for sesongens siste runde.
+</div>
+`;
+
+exports[`<NextMatches /> Should render properly 2`] = `
+<div
+  className="ui segment"
+>
+  <div
+    className="ui dimmer"
+    onClick={[Function]}
+  >
+    <div
+      className="content"
+    >
+      <div
+        className="center"
+      >
+        <div
+          className="ui text loader"
+        >
+          Henter neste runde
+        </div>
+      </div>
+    </div>
+  </div>
+  <h1>
+    Neste runde
+  </h1>
+  <table
+    className="ui striped table"
+  >
+    <thead
+      className=""
+    >
+      <tr
+        className=""
+      >
+        <th
+          className=""
+        >
+          Dato
+        </th>
+        <th
+          className=""
+        >
+          Kl.
+        </th>
+        <th
+          className=""
+        >
+          Runde
+        </th>
+        <th
+          className=""
+        >
+          Kamp
+        </th>
+        <th
+          className=""
+        >
+          Arena
+        </th>
+        <th
+          className=""
+        >
+          Kanal
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      className=""
+    >
+      <tr
+        className=""
+      >
+        <td
+          className=""
+        >
+          Invalid Date
+        </td>
+        <td
+          className=""
+        >
+          Invalid Date
+        </td>
+        <td
+          className=""
+        >
+          3
+          . runde
+        </td>
+        <td
+          className=""
+        />
+        <td
+          className=""
+        >
+          
+        </td>
+        <td
+          className=""
+        >
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
