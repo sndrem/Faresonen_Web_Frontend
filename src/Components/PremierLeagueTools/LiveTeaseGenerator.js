@@ -162,7 +162,7 @@ LiveTeaseGenerator.propTypes = {
   setTime: PropTypes.func.isRequired,
   setSelectedMatch: PropTypes.func.isRequired,
   setChannels: PropTypes.func.isRequired,
-  defaultChannels: PropTypes.arrayOf(PropTypes.string).isRequired,
+  defaultChannels: PropTypes.arrayOf(PropTypes.number).isRequired,
   setHomeColor: PropTypes.func,
   setAwayColor: PropTypes.func,
   loading: PropTypes.bool.isRequired

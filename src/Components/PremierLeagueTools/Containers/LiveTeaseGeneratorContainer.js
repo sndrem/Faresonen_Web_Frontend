@@ -17,7 +17,7 @@ class LiveTeaseGeneratorContainer extends Component {
       selectedMatch: "",
       matchTimeText: "",
       matchTime: "",
-      channels: ["TV 2 Sport Premium", "TV 2 Sumo"],
+      channels: [5, 10],
       colorHome: colors[0],
       colorAway: colors[2],
       script: "",
@@ -115,32 +115,25 @@ class LiveTeaseGeneratorContainer extends Component {
     throw new Error(`Could not find badge for ${team}`);
   };
 
-  getChannelNumber = channel => {
-    const found = channels.find(
-      ch => ch.name.toLowerCase() === channel.toLowerCase()
-    );
-    if (found) return found.number;
+  getChannelName = channel => {
+    const found = channels.find(ch => ch.value === channel);
+    if (found) return found.name;
     throw new Error(`Could not find a channel number for ${channel}`);
   };
 
   formatName = name => name.replace("_", "");
 
   formatChannels = (formattingChannels, text) => {
-    const channelNumbers = formattingChannels.map(ch =>
-      this.getChannelNumber(ch)
-    );
-    if (channelNumbers.length === 0) {
-      return "INGEN KANALER VALGT";
-    } else if (channelNumbers.length === 1) {
-      return `${channelNumbers[0]}
-0`;
-    } else if (channelNumbers.length === 2) {
-      return `${channelNumbers[0]}
-${text.trim() !== "Avspark kl." ? 0 : channelNumbers[1]}`.trim();
+    let formattedChannels = [...formattingChannels];
+    if (formattingChannels.length === 0) return "INGEN KANALER VALGT";
+    // If only one channel is chosen, add a 0 to end of channel list because of how iNews script works
+    if (formattedChannels.length === 1) formattedChannels.push(0);
+
+    // If text is not equal to {avspark kl.} then remove all channels, except first, and add 0 to end of channel list
+    if (!text.includes("Avspark kl.")) {
+      formattedChannels = [formattingChannels[0], 0];
     }
-    this.setState({
-      error: "Du kan kun velge to kanaler. Fjern de overflødige"
-    });
+    return formattedChannels.join("\n");
   };
 
   createScript = () => {

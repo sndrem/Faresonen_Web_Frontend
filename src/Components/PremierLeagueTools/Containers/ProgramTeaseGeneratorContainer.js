@@ -11,7 +11,7 @@ class ProgramTeaseGeneratorContainer extends Component {
     this.state = {
       data: {
         matches: [],
-        channels: ["TV 2 Sport Premium"],
+        channels: [5],
         matchTimeText: "",
         matchTime: "",
         selectedMatch: ""
@@ -94,12 +94,19 @@ class ProgramTeaseGeneratorContainer extends Component {
       this.state.data.selectedMatch,
       "-"
     );
-    return `Super S18 ${this.state.data.channels[0]}`;
+    const channel = this.state.data.channels[0]
+      ? this.state.data.channels[0]
+      : "INGEN KANAL VALGT";
+    return `Super S18 ${channel}
+${this.state.data.matchTimeText || "Tekst ikke valgt"}
+${this.state.data.matchTime || "Tid ikke valgt"}
+Premier League
+${home || "Hjemmelag ikke valgt"} - ${away ||
+      "Bortelag ikke valgt"}<00:01-00:15`;
   };
 
   render() {
     const script = this.createScript();
-    console.log(script);
     const {
       matches,
       channels,

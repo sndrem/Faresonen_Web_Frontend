@@ -39,7 +39,11 @@ const LiveTeasePreview = props => (
         )}
       </Grid.Column>
       <Grid.Column>
-        <TextArea style={{ width: "100%" }} autoHeight value={props.script} />
+        <TextArea
+          style={{ width: "100%", color: "#298aef" }}
+          autoHeight
+          value={props.script}
+        />
       </Grid.Column>
     </Grid>
   </Segment>
@@ -49,16 +53,21 @@ LiveTeasePreview.propTypes = {
   selectedMatch: PropTypes.string.isRequired,
   matchTimeText: PropTypes.string.isRequired,
   matchTime: PropTypes.string.isRequired,
-  channels: PropTypes.arrayOf(PropTypes.string).isRequired,
+  channels: PropTypes.arrayOf(PropTypes.number).isRequired,
   script: PropTypes.string.isRequired,
   awayColor: PropTypes.shape({
-    text: PropTypes.string.isRequired,
-    hex: PropTypes.string.isRequired
-  }).isRequired,
+    text: PropTypes.string,
+    hex: PropTypes.string
+  }),
   homeColor: PropTypes.shape({
-    text: PropTypes.string.isRequired,
-    hex: PropTypes.string.isRequired
-  }).isRequired
+    text: PropTypes.string,
+    hex: PropTypes.string
+  })
+};
+
+LiveTeasePreview.defaultProps = {
+  awayColor: null,
+  homeColor: null
 };
 
 export default LiveTeasePreview;
