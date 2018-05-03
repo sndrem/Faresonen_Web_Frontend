@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LiveTeasePreview /> Should render properly 1`] = `
+<div
+  className="ui segment"
+>
+  <h3
+    className="ui header"
+  >
+    Preview
+  </h3>
+  <div
+    className="ui two column grid"
+  >
+    <div
+      className="column"
+    >
+      <p>
+        Kamp valgt: 
+        Brighton - Manchester United
+      </p>
+      <p>
+        Fritekst: 
+        Avspark kl.
+         
+        21.00
+      </p>
+      <p>
+        Kanal(er):
+         
+        TV 2 Sport Premium
+      </p>
+      <p>
+        Farge hjemmelag:
+         
+        <span
+          style={
+            Object {
+              "background": "#eaff04",
+            }
+          }
+        >
+          Yellow
+        </span>
+      </p>
+      <p>
+        Farge bortelag:
+         
+        <span
+          style={
+            Object {
+              "background": "#e90052",
+            }
+          }
+        >
+          Rød
+        </span>
+      </p>
+    </div>
+    <div
+      className="column"
+    >
+      <textarea
+        onChange={[Function]}
+        onInput={[Function]}
+        rows={3}
+        style={
+          Object {
+            "color": "#298aef",
+            "resize": "none",
+            "width": "100%",
+          }
+        }
+        value="S18 5"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<LiveTeasePreview /> Should render properly 2`] = `
+<div
+  className="ui segment"
+>
+  <h3
+    className="ui header"
+  >
+    Preview
+  </h3>
+  <div
+    className="ui two column grid"
+  >
+    <div
+      className="column"
+    >
+      <p>
+        Kamp valgt: 
+        Brighton - Manchester United
+      </p>
+      <p>
+        Fritekst: 
+        Avspark kl.
+         
+        21.00
+      </p>
+      <p>
+        Kanal(er):
+         
+        TV 2 Sport Premium
+      </p>
+    </div>
+    <div
+      className="column"
+    >
+      <textarea
+        onChange={[Function]}
+        onInput={[Function]}
+        rows={3}
+        style={
+          Object {
+            "color": "#298aef",
+            "resize": "none",
+            "width": "100%",
+          }
+        }
+        value="S18 5"
+      />
+    </div>
+  </div>
+</div>
+`;

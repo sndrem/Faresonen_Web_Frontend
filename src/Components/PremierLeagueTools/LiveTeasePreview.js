@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { TextArea, Grid, Header, Segment } from "semantic-ui-react";
+import altOmFotballMatchService from "../../services/altOmFotballMatchService";
 
 const LiveTeasePreview = props => (
   <Segment>
@@ -16,7 +17,12 @@ const LiveTeasePreview = props => (
           ""
         )}
         {props.channels && props.channels.length > 0 ? (
-          <p>Kanaler: {props.channels.map(channel => channel).join(",")}</p>
+          <p>
+            Kanal(er):{" "}
+            {props.channels
+              .map(channel => altOmFotballMatchService.getChannelName(channel))
+              .join(",")}
+          </p>
         ) : (
           ""
         )}
