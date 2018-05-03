@@ -19,7 +19,7 @@ describe("<LiveTeaseGenerator />", () => {
         setChannels={() => {}}
         setHomeColor={() => {}}
         setAwayColor={() => {}}
-        defaultChannels={["TV 2 Sport Premium", "TV 2 Sumo"]}
+        defaultChannels={[5, 10]}
         loading={false}
       />
     );
@@ -41,7 +41,7 @@ describe("<LiveTeaseGenerator />", () => {
         setChannels={() => {}}
         setHomeColor={() => {}}
         setAwayColor={() => {}}
-        defaultChannels={["TV 2 Sport Premium", "TV 2 Sumo"]}
+        defaultChannels={[5, 10]}
         loading={false}
       />
     );
@@ -68,7 +68,7 @@ describe("<LiveTeaseGenerator />", () => {
         setChannels={() => {}}
         setHomeColor={() => {}}
         setAwayColor={() => {}}
-        defaultChannels={["TV 2 Sport Premium", "TV 2 Sumo"]}
+        defaultChannels={[5, 10]}
         loading={false}
       />
     );
