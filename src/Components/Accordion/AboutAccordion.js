@@ -7,10 +7,13 @@ export default class AccordionExampleStandard extends Component {
   handleClick = (e, titleProps) => {
     const { index } = titleProps;
     const { activeIndex } = this.state;
-    const newIndex = activeIndex === index ? -1 : index;
+    const newIndex = this.calculateNewIndex(index, activeIndex);
 
     this.setState({ activeIndex: newIndex });
   };
+
+  calculateNewIndex = (index, activeIndex) =>
+    activeIndex === index ? -1 : index;
 
   render() {
     const { activeIndex } = this.state;
