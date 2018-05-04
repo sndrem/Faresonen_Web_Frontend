@@ -16,11 +16,12 @@ const AltOmFotballMatchService = {
   },
 
   getOnlyDoneMatches: (tournamentId, seasonId) => {
+    const self = this.a;
     return new Promise((resolve, reject) => {
       axios
         .get(`/matches/${tournamentId}/${seasonId}`)
         .then(data => {
-          const filtered = this.filterDoneMatches(data.data.match);
+          const filtered = self.filterDoneMatches(data.data.match);
           resolve(filtered);
         })
         .catch(err => reject(err));
