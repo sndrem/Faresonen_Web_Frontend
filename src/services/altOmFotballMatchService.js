@@ -1,6 +1,10 @@
 import axios from "axios";
 import channels from "../Data/channels";
 
+function filterDoneMatches(matches) {
+  return matches.filter(match => match.confirmed !== "true");
+}
+
 const AltOmFotballMatchService = {
   getMatches: (tournamentId, seasonId) => {
     return new Promise((resolve, reject) => {
@@ -16,15 +20,12 @@ const AltOmFotballMatchService = {
       axios
         .get(`/matches/${tournamentId}/${seasonId}`)
         .then(data => {
-          const filtered = data.data.match.filter(this.filterDoneMatches);
+          const filtered = filterDoneMatches(data.data.match);
           resolve(filtered);
         })
         .catch(err => reject(err));
     });
   },
-
-  filterDoneMatches: matches =>
-    matches.filter(match => match.confirmed !== "true"),
 
   splitNames: (name, delimiter) => {
     if (name) return name.split(delimiter);
