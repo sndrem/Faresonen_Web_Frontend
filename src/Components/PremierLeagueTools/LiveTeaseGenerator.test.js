@@ -4,13 +4,13 @@ import renderer from "react-test-renderer";
 import LiveTeaseGenerator from "./LiveTeaseGenerator";
 
 describe("<LiveTeaseGenerator />", () => {
-  xit("Should render properly", () => {
+  it("Should render properly", () => {
     const tree = renderer.create(
       <LiveTeaseGenerator
         matches={[
           {
             name: "Brighton-Man.United",
-            starttime: "2018-05-02T12:22:24.041Z"
+            starttime: "2017-09-15 09:30:00"
           }
         ]}
         setMatchTimeText={() => {}}
