@@ -44,7 +44,8 @@ class FantasyContainer extends Component {
         console.warn(err);
         this.setState({
           error:
-            "Det oppsto dessverre et problem ved henting av spillere. Grunnen er nok at PL-Fantasy oppdateres..."
+            "Det oppsto dessverre et problem ved henting av spillere. Det kan være fordi PL-Fantasy oppdateres eller fordi du ikke er koblet til internett.",
+          loading: false
         });
       });
   }
@@ -138,16 +139,16 @@ class FantasyContainer extends Component {
     }, {});
 
   render() {
-    if (this.state.error) {
-      return (
-        <Segment>
-          <Message warning>{this.state.error}</Message>
-        </Segment>
-      );
-    }
     const teams = this.filterTeams(this.state.data.teams, this.state.filters);
     return (
       <div>
+        {this.state.error ? (
+          <Segment>
+            <Message warning>{this.state.error}</Message>
+          </Segment>
+        ) : (
+          ""
+        )}
         <FantasyPlayerFilter
           setNameFilter={this.setNameFilter}
           setPriceFilter={this.setPriceFilter}

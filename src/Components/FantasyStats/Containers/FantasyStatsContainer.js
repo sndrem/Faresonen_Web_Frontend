@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Segment, Grid } from "semantic-ui-react";
+import { Message, Segment, Grid } from "semantic-ui-react";
 import FantasyStatsList from "../FantasyStatsList";
 import FantasyStatsService from "../../../services/FantasyStatsService";
 
@@ -11,7 +11,8 @@ class FantasyStatsContainer extends Component {
         selectedPlayers: [],
         expensivePlayers: []
       },
-      loading: true
+      loading: true,
+      errors: []
     };
   }
   componentDidMount() {
@@ -34,7 +35,12 @@ class FantasyStatsContainer extends Component {
           data: {
             ...this.state.data,
             expensivePlayers: []
-          }
+          },
+          loading: false,
+          errors: [
+            ...this.state.errors,
+            "Kunne ikke hente de dyreste spillerne. Er du koblet til internett?"
+          ]
         });
       });
   };
@@ -54,13 +60,28 @@ class FantasyStatsContainer extends Component {
           data: {
             ...this.state.data,
             selectedPlayers: []
-          }
+          },
+          loading: false,
+          errors: [
+            ...this.state.errors,
+            "Kunne ikke hente de mest valgte spillerne. Er du koblet til internett?"
+          ]
         });
       });
   };
 
+  formatErrors = errors => (
+    <Message info>
+      <ul>{errors.map(error => <li key={error}>{error}</li>)}</ul>
+    </Message>
+  );
+
   render() {
     const { selectedPlayers, expensivePlayers } = this.state.data;
+    if (this.state.errors.length > 0) {
+      return this.formatErrors(this.state.errors);
+    }
+
     return (
       <Segment>
         <Grid columns={4}>

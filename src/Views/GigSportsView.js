@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import moment from "moment";
-import { Header, Segment, Loader, Dimmer, Divider } from "semantic-ui-react";
+import {
+  Header,
+  Segment,
+  Loader,
+  Dimmer,
+  Divider,
+  Message
+} from "semantic-ui-react";
 import MatchFeed from "../Components/Feeds/MatchFeed";
 import DateFilter from "../Components/Filters/DateFilter";
 import FaresoneMenu from "../Components/Menu/FaresoneMenu";
@@ -21,22 +28,26 @@ class GigSportsView extends Component {
 
   componentDidMount() {
     document.title = "Odds";
-    Promise.all([this.fetchMatches(), this.fetchBets()]).then(values => {
-      const eliteserien = this.extractLeague(values, 0);
+    Promise.all([this.fetchMatches(), this.fetchBets()])
+      .then(values => {
+        const eliteserien = this.extractLeague(values, 0);
 
-      const obosligaen = this.addHours(this.extractLeague(values, 1), 2);
+        const obosligaen = this.addHours(this.extractLeague(values, 1), 2);
 
-      const bets = values[1].feed;
-      const eliteserieBets = this.connectGamesAndBets(eliteserien, bets);
-      const obosligaBets = this.connectGamesAndBets(obosligaen, bets);
-      this.setState({
-        data: {
-          eliteserien: eliteserieBets,
-          obosligaen: obosligaBets
-        },
-        loading: false
+        const bets = values[1].feed;
+        const eliteserieBets = this.connectGamesAndBets(eliteserien, bets);
+        const obosligaBets = this.connectGamesAndBets(obosligaen, bets);
+        this.setState({
+          data: {
+            eliteserien: eliteserieBets,
+            obosligaen: obosligaBets
+          },
+          loading: false
+        });
+      })
+      .catch(err => {
+        this.updateError("Kunne ikke hente odds. Er du koblet til internett?");
       });
-    });
   }
 
   extractLeague = (values, index) => {
@@ -79,16 +90,31 @@ class GigSportsView extends Component {
   fetchMatches = () => {
     return fetch(
       "https://api-starfleet.oddsmodel.com/Customers/TV2/MatchFeed?apiKey=a1476rz9nz3wh0x5denb8ij54cxo47yr"
-    ).then(response => response.json());
+    )
+      .then(response => response.json())
+      .catch(err =>
+        this.updateError(
+          "Kunne ikke hente kamper fra GIG Sports. Er du koblet til internett?"
+        )
+      );
   };
 
   fetchBets = () => {
     return fetch(
       "https://api-starfleet.oddsmodel.com/Customers/Tv2/OddsFeed/Pregame?apiKey=a1476rz9nz3wh0x5denb8ij54cxo47yr"
-    ).then(response => response.json());
+    )
+      .then(response => response.json())
+      .catch(err =>
+        this.updateError(
+          "Kunne ikke hente odds fra GIG Sports. Er du koblet til internett?"
+        )
+      );
   };
 
   updateDate = date => this.setState({ dateFilter: date });
+
+  updateError = message =>
+    this.setState({ ...this.state, error: message, loading: false });
 
   render() {
     let { eliteserien, obosligaen } = this.state.data;
@@ -101,7 +127,11 @@ class GigSportsView extends Component {
           <Dimmer active={this.state.loading}>
             <Loader>Henter kamper</Loader>
           </Dimmer>
-          <Header as="h1">Odds</Header>
+          {this.state.error ? (
+            <Message info>{this.state.error}</Message>
+          ) : (
+            <Header as="h1">Odds</Header>
+          )}
           <DateFilter updateDate={this.updateDate} />
           <Divider />
           <MatchFeed matches={eliteserien} league="Eliteserien" />
