@@ -13,7 +13,10 @@ const dangerzoneService = {
         .then(data => {
           resolve({ data: data.data });
         })
-        .catch(err => reject(err));
+        .catch(err => {
+          console.log(err);
+          reject(err);
+        });
     });
   },
 

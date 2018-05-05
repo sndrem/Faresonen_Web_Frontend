@@ -32,7 +32,14 @@ class RoundListContainer extends Component {
           loading: false
         });
       })
-      .catch(() => this.setState({ rounds: [] }));
+      .catch(() =>
+        this.setState({
+          data: {
+            rounds: []
+          },
+          loading: false
+        })
+      );
   };
   render() {
     const { rounds } = this.state.data;

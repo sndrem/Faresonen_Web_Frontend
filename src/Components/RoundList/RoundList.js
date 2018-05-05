@@ -1,23 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Segment, Dimmer, Loader } from "semantic-ui-react";
+import { Segment, Dimmer, Loader, Message } from "semantic-ui-react";
 import RoundButtons from "../RoundButtons/RoundButtons";
 
-const RoundList = props => (
-  <Segment>
-    <Dimmer active={props.loading}>
-      <Loader>Henter runder for {props.leagueName}</Loader>
-    </Dimmer>
-    <RoundButtons
-      tournamentId={props.tournamentId}
-      seasonId={props.seasonId}
-      leagueName={props.leagueName}
-      finished={false}
-      rounds={props.rounds}
-      now={new Date().toISOString()}
-    />
-  </Segment>
-);
+const RoundList = props => {
+  if (props.rounds.length === 0) {
+    return (
+      <Message info>
+        Klarte ikke å hente runder. Sjekk at du er koblet til internett
+      </Message>
+    );
+  }
+  return (
+    <Segment>
+      <Dimmer active={props.loading}>
+        <Loader>Henter runder for {props.leagueName}</Loader>
+      </Dimmer>
+      <RoundButtons
+        tournamentId={props.tournamentId}
+        seasonId={props.seasonId}
+        leagueName={props.leagueName}
+        finished={false}
+        rounds={props.rounds}
+        now={new Date().toISOString()}
+      />
+    </Segment>
+  );
+};
 
 RoundList.propTypes = {
   leagueName: PropTypes.string.isRequired,

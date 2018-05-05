@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Message, Segment } from "semantic-ui-react";
-import moment from "moment";
 import LiveTeaseGenerator from "../LiveTeaseGenerator";
 import LiveTeasePreview from "../LiveTeasePreview";
 import leagues from "../../../Data/leagues";

@@ -17,23 +17,28 @@ class DangerzoneContainer extends Component {
   }
 
   getPlayersWithYellowCards(tournamentId) {
-    dangerzoneService.getPlayersWithYellowCards(tournamentId).then(data => {
-      const { data: yellowCardResponse } = data.data;
-      if (data.length <= 0) {
+    dangerzoneService
+      .getPlayersWithYellowCards(tournamentId)
+      .then(data => {
+        const { data: yellowCardResponse } = data.data;
+        if (data.length <= 0) {
+          this.setState({
+            players: [],
+            loading: false
+          });
+          return;
+        }
+        let playersGrouped = dangerzoneService.groupPlayers(yellowCardResponse);
+        playersGrouped = dangerzoneService.filterPlayers(playersGrouped);
+        playersGrouped = dangerzoneService.sortTeams(playersGrouped);
         this.setState({
-          players: [],
+          players: playersGrouped,
           loading: false
         });
-        return;
-      }
-      let playersGrouped = dangerzoneService.groupPlayers(yellowCardResponse);
-      playersGrouped = dangerzoneService.filterPlayers(playersGrouped);
-      playersGrouped = dangerzoneService.sortTeams(playersGrouped);
-      this.setState({
-        players: playersGrouped,
-        loading: false
+      })
+      .catch(err => {
+        console.log(err);
       });
-    });
   }
   render() {
     const { players, loading } = this.state;

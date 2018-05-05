@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Grid, Dimmer, Loader, Segment, Confirm } from "semantic-ui-react";
+import {
+  Message,
+  Grid,
+  Dimmer,
+  Loader,
+  Segment,
+  Confirm
+} from "semantic-ui-react";
 import axios from "axios";
 import moment from "moment";
 import openSocket from "socket.io-client";
@@ -25,7 +32,8 @@ class DangerzoneView extends Component {
       },
       loading: true,
       open: false,
-      socketConnected: false
+      socketConnected: false,
+      error: ""
     };
   }
 
@@ -107,6 +115,14 @@ class DangerzoneView extends Component {
         this.setDefaultState(eliteserien, obosligaen);
       })
       .catch(err => {
+        this.setState({
+          data: {
+            ...this.state.data
+          },
+          loading: false,
+          error:
+            "Kunne ikke hente spillere i faresonen. Er du koblet til internett?"
+        });
         console.error(err);
       });
 
@@ -195,11 +211,15 @@ class DangerzoneView extends Component {
                 onCancel={this.handleCancel}
                 onConfirm={this.handleConfirm}
               />
-              <DangerzoneStatistics
-                eliteserien={eliteserien.length}
-                obosligaen={obosligaen.length}
-                socketConnected={socketConnected}
-              />
+              {this.state.error ? (
+                <Message info>{this.state.error}</Message>
+              ) : (
+                <DangerzoneStatistics
+                  eliteserien={eliteserien.length}
+                  obosligaen={obosligaen.length}
+                  socketConnected={socketConnected}
+                />
+              )}
             </Segment>
           </Grid.Column>
         </Grid>
