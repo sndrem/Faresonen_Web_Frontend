@@ -16,15 +16,19 @@
   },
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "jsx-a11y/anchor-is-valid": [1, {
-            "components": [ "Link" ],
-            "specialLink": [ "hrefLeft", "hrefRight" ],
-            "aspects": [ "noHref", "invalidHref", "preferButton" ]
-          }]
+    "jsx-a11y/anchor-is-valid": [
+      1,
+      {
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight"],
+        "aspects": ["noHref", "invalidHref", "preferButton"]
+      }
+    ]
   },
   "globals": {
     "describe": 1,
     "it": 1,
-    "expect": 1
+    "expect": 1,
+    "jest": 1
   }
 }

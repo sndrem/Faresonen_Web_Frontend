@@ -1,0 +1,102 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FantasyContainer /> Should render properly 1`] = `
+<div>
+  
+  <div
+    className="ui segment"
+  >
+    <p
+      className="special"
+    >
+      Her kan du filtrere spillere ved å søke etter fornavn/etternavn eller filtrere på pris.
+    </p>
+    <form
+      action={undefined}
+      className="ui form"
+      onSubmit={[Function]}
+    >
+      <div
+        className="field"
+      >
+        <label>
+          Søk fritekst
+        </label>
+        <input
+          onChange={[Function]}
+          placeholder="Søk etter navn"
+        />
+      </div>
+      <div
+        className="field"
+      >
+        <label>
+          Filtrer på pris i pund (£)
+        </label>
+        <input
+          onChange={[Function]}
+          step={0.1}
+          type="number"
+        />
+      </div>
+      <div
+        className="field"
+      >
+        <div
+          className="ui checkbox"
+          onChange={[Function]}
+          onClick={[Function]}
+          onMouseDown={[Function]}
+        >
+          <input
+            checked={false}
+            className="hidden"
+            id={undefined}
+            name={undefined}
+            onClick={[Function]}
+            readOnly={true}
+            tabIndex={0}
+            type="checkbox"
+            value={undefined}
+          />
+          <label
+            htmlFor={undefined}
+          >
+            Vis kun Dream Team
+          </label>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div
+    className="ui segment"
+  >
+    <div
+      className="ui active transition visible dimmer"
+      onClick={[Function]}
+    >
+      <div
+        className="content"
+      >
+        <div
+          className="center"
+        >
+          <div
+            className="ui text loader"
+          >
+            Henter Fantasy-spillere
+          </div>
+        </div>
+      </div>
+    </div>
+    <h1
+      className="ui header"
+    >
+      Fantasy PL
+    </h1>
+    <div
+      className="ui four column grid"
+    />
+  </div>
+</div>
+`;
