@@ -4,5 +4,8 @@ export default {
   }),
   all: jest.fn(allData => {
     return Promise.resolve(allData);
+  }),
+  spread: jest.fn(() => {
+    return [];
   })
 };

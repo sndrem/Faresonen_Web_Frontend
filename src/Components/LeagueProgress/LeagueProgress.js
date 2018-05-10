@@ -6,6 +6,8 @@ import events from "../../Tools/events";
 
 class LeagueProgess extends Component {
   static removeFinishedRounds(rounds) {
+    if (!rounds) throw new Error("Rounds cannot be undefined");
+
     const promises = [];
     rounds.forEach(r => {
       promises.push(axios.get(r.matches["@uri"]));
@@ -40,7 +42,9 @@ class LeagueProgess extends Component {
           );
           resolve(filteredMatches);
         })
-        .catch(err => reject(err));
+        .catch(err => {
+          reject(err);
+        });
     });
   }
 

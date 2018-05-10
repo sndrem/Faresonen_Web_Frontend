@@ -1,10 +1,6 @@
 import axios from "axios";
 import channels from "../Data/channels";
 
-// function filterDoneMatches(matches) {
-//   return matches.filter(match => match.confirmed !== "true");
-// }
-
 const AltOmFotballMatchService = {
   getMatches: (tournamentId, seasonId) => {
     return new Promise((resolve, reject) => {

@@ -1,3 +1,4 @@
+import mockAxios from "axios";
 import altOmFotballMatchService from "./altOmFotballMatchService";
 
 function getWrongId() {
@@ -8,6 +9,15 @@ function idDoesNotExists() {
   altOmFotballMatchService.getChannelName(-1);
 }
 describe("altOmFotballMatchService", () => {
+  it("Should get matches", async () => {
+    mockAxios.get.mockImplementationOnce(() =>
+      Promise.resolve({ data: ["matches"] })
+    );
+
+    const matches = await altOmFotballMatchService.getMatches();
+    expect(matches.data).toEqual(["matches"]);
+  });
+
   it("Should get the correct channel name based on ID", () => {
     // ID is okay
     const id = 5;
