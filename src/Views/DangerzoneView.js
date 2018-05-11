@@ -65,9 +65,12 @@ class DangerzoneView extends Component {
 
     socket.on("data", data => {
       this.setState({ socketConnected: true });
+      if (!data.events) return;
+
       const merged = this.state.data.eliteserien.concat(
         this.state.data.obosligaen
       );
+
       const events = data.events.filter(event => {
         if (event && event.person1) {
           const personId = tools.extractPersonId(event.person1["@uri"]);

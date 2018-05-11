@@ -8,10 +8,7 @@ class LeagueProgess extends Component {
   static removeFinishedRounds(rounds) {
     if (!rounds) throw new Error("Rounds cannot be undefined");
 
-    const promises = [];
-    rounds.forEach(r => {
-      promises.push(axios.get(r.matches["@uri"]));
-    });
+    const promises = LeagueProgess.getMatchUris(rounds);
 
     return new Promise((resolve, reject) => {
       axios
@@ -46,6 +43,10 @@ class LeagueProgess extends Component {
           reject(err);
         });
     });
+  }
+
+  static getMatchUris(rounds) {
+    return rounds.map(r => axios.get(r.matches["@uri"]));
   }
 
   static roundHasPostponedMatches(matches) {

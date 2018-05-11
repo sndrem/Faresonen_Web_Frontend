@@ -18,6 +18,12 @@ function mockGetOnce() {
   );
 }
 
+function mockAllOnce() {
+  mockAxios.all.mockImplementationOnce(() =>
+    Promise.resolve({ data: ["Yeah"] })
+  );
+}
+
 describe("<LeagueProgess />", () => {
   function createElement() {
     return shallow(
@@ -31,8 +37,13 @@ describe("<LeagueProgess />", () => {
       }
     );
   }
-  
+
   // TODO Add test for correct calculation of rounds
+  // it("Should calculate the correct number of rounds", async () => {
+  //   mockAllOnce();
+  //   const elem = createElement();
+  //   const
+  // })
 
   it("should set state to default if an empty round list is specified", async () => {
     mockGetOnce();
