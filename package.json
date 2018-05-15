@@ -21,8 +21,7 @@
     "socket.io-client": "^2.0.4"
   },
   "scripts": {
-    "start":
-      "concurrently \"nodemon --exec babel-node ../faresonen_api/bin/www\" \"react-scripts start\"",
+    "start": "concurrently \"nodemon --exec babel-node ../faresonen_api/bin/www\" \"react-scripts start\"",
     "start_front": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
@@ -31,6 +30,7 @@
   "proxy": "http://localhost:8000",
   "devDependencies": {
     "axios-mock-adapter": "^1.14.1",
+    "babel-cli": "^6.26.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.18.1",

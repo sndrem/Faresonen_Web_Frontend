@@ -1,0 +1,8 @@
+.disabled {
+    opacity: 0.5
+}
+
+a.ui.card.disabled:hover {
+    transform: none;
+    cursor: not-allowed;
+}
