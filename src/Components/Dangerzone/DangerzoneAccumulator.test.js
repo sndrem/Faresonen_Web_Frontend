@@ -113,4 +113,28 @@ describe("<DangerzoneAccumulator />", () => {
     // Test to remove an event that does not exists
     expect(removeEmptyObject).toThrow();
   });
+
+  it("Should call the correct methods when removing a feed event", () => {
+    const removePlayerMock = jest.fn(() => {});
+
+    const removeEventMock = jest.fn(() => {});
+
+    const elem = shallow(
+      <DangerZoneAccumulator
+        events={testData.yellowCardAndPlayerEvents}
+        removeEvent={removeEventMock}
+        removePlayer={removePlayerMock}
+      />
+    );
+    elem.instance().removeFeedEvent({
+      player: {
+        name: "Wayne Rooney",
+        id: 1
+      }
+    });
+    expect(removeEventMock.mock.calls.length).toBe(1);
+    expect(removePlayerMock.mock.calls[0][1]).toEqual("eliteserien");
+    expect(removePlayerMock.mock.calls[1][1]).toEqual("obosligaen");
+    expect(removePlayerMock.mock.calls.length).toBe(2);
+  });
 });

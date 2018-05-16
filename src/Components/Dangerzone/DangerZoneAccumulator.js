@@ -68,15 +68,6 @@ class DangerZoneAccumulator extends Component {
     });
   };
 
-  filterEvents = events => {
-    events.filter(event => {
-      const index = events.findIndex(e => {
-        return event.player.id === e.player.id;
-      });
-      return index > -1;
-    });
-  };
-
   sortEvents = events =>
     events.sort((a, b) => a.event.realTime <= b.event.realTime);
 
