@@ -1,6 +1,61 @@
+import React from "react";
+import renderer from "react-test-renderer";
+import Dangerzone from "./Dangerzone";
 import dangerzoneService from "../../services/dangerzoneService";
 
 describe("Dangerzone", () => {
+  it("Should render properly", () => {
+    const elem = renderer.create(
+      <Dangerzone
+        leagueName="Premier League"
+        players={[
+          {
+            name: "Everton",
+            players: [
+              {
+                name: "Wayne Rooney",
+                place: 1,
+                team: "Everton",
+                value1: 1
+              }
+            ]
+          }
+        ]}
+        loading={false}
+      />
+    );
+    expect(elem).toMatchSnapshot();
+  });
+  it("Should render properly when players have more than 1 yellow card", () => {
+    const elem = renderer.create(
+      <Dangerzone
+        leagueName="Premier League"
+        players={[
+          {
+            name: "Everton",
+            players: [
+              {
+                name: "Wayne Rooney",
+                place: 1,
+                team: "Everton",
+                value1: 3
+              }
+            ]
+          }
+        ]}
+        loading={false}
+      />
+    );
+    expect(elem).toMatchSnapshot();
+  });
+
+  it("Should render properly when no players are present", () => {
+    const elem = renderer.create(
+      <Dangerzone leagueName="Premier League" players={[]} loading={false} />
+    );
+    expect(elem).toMatchSnapshot();
+  });
+
   describe("teams should be sorted alphabetically", () => {
     it("should return a list of alphabetically sorted teams", () => {
       let teams = [

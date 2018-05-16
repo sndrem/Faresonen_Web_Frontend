@@ -1,0 +1,212 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dangerzone Should render properly 1`] = `
+<div
+  className="ui segment"
+>
+  <div
+    className="ui dimmer"
+    onClick={[Function]}
+  >
+    <div
+      className="content"
+    >
+      <div
+        className="center"
+      >
+        <div
+          className="ui text loader"
+        >
+          Henter spillere i faresonen
+        </div>
+      </div>
+    </div>
+  </div>
+  <h1>
+    Faresonen i 
+    Premier League
+  </h1>
+  <div
+    className="ui four column grid"
+  >
+    <div
+      className="column"
+    >
+      <div
+        className="ui list similar-height"
+        role="list"
+      >
+        <div
+          className="item"
+          data-value={undefined}
+          onClick={[Function]}
+          role="listitem"
+        >
+          <div
+            className="content"
+          >
+            <div
+              className="header"
+            >
+              Everton
+            </div>
+            <div
+              className="description"
+            >
+              1
+               spillere
+            </div>
+            <div
+              className="list"
+            >
+              <div
+                className="item"
+                data-value={undefined}
+                onClick={[Function]}
+                role="listitem"
+              >
+                <i
+                  aria-hidden="true"
+                  className="user icon"
+                />
+                <div
+                  className="content"
+                >
+                  <div
+                    className="header"
+                  >
+                    Wayne Rooney
+                  </div>
+                  <div
+                    className="description"
+                  >
+                    1
+                     
+                    gult kort
+                    , 
+                    Everton
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Dangerzone Should render properly when no players are present 1`] = `
+<div
+  className="ui info message no-print"
+>
+  <div
+    className="header"
+  >
+    Faresonen ikke tilgjengelig
+  </div>
+  <p>
+    Det er ingen spillere i Faresonen for 
+    Premier League
+    .
+  </p>
+</div>
+`;
+
+exports[`Dangerzone Should render properly when players have more than 1 yellow card 1`] = `
+<div
+  className="ui segment"
+>
+  <div
+    className="ui dimmer"
+    onClick={[Function]}
+  >
+    <div
+      className="content"
+    >
+      <div
+        className="center"
+      >
+        <div
+          className="ui text loader"
+        >
+          Henter spillere i faresonen
+        </div>
+      </div>
+    </div>
+  </div>
+  <h1>
+    Faresonen i 
+    Premier League
+  </h1>
+  <div
+    className="ui four column grid"
+  >
+    <div
+      className="column"
+    >
+      <div
+        className="ui list similar-height"
+        role="list"
+      >
+        <div
+          className="item"
+          data-value={undefined}
+          onClick={[Function]}
+          role="listitem"
+        >
+          <div
+            className="content"
+          >
+            <div
+              className="header"
+            >
+              Everton
+            </div>
+            <div
+              className="description"
+            >
+              1
+               spillere
+            </div>
+            <div
+              className="list"
+            >
+              <div
+                className="item"
+                data-value={undefined}
+                onClick={[Function]}
+                role="listitem"
+              >
+                <i
+                  aria-hidden="true"
+                  className="user icon"
+                />
+                <div
+                  className="content"
+                >
+                  <div
+                    className="header"
+                  >
+                    Wayne Rooney
+                  </div>
+                  <div
+                    className="description"
+                  >
+                    3
+                     
+                    gule kort
+                    , 
+                    Everton
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
