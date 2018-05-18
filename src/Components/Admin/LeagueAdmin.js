@@ -43,7 +43,7 @@ class LeagueAdmin extends Component {
         </p>
         <Button onClick={this.logOut}>Logg ut</Button>
         <Divider />
-        <Header as="h2">Ligaer</Header>
+        <Header as="h2">Rediger ligaer</Header>
         {loading ? <p>Henter ligaer...</p> : ""}
         <Grid columns="2">
           <Grid.Column>

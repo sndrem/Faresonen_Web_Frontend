@@ -16,6 +16,20 @@ class FirebaseService {
     });
   };
 
+  updateLeague = ({ name, seasonId, tournamentId }) => {
+    console.log("Updating league", name);
+    const leagueName = name.toLowerCase();
+    firebaseConfig
+      .database()
+      .ref(`leagues/${leagueName}`)
+      .set({
+        name,
+        active: true,
+        seasonId,
+        tournamentId
+      });
+  };
+
   mapLeaguesToList = data => {
     return Object.keys(data).map(key => {
       return data[key];

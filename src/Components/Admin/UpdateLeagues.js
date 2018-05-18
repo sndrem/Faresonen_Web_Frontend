@@ -15,19 +15,22 @@ class UpdateLeagues extends Component {
     this.props.setSelectedLeague({ id: value });
   };
 
+  createOptions = leagues =>
+    leagues.map(league => ({ text: league.name, value: league.tournamentId }));
+
   render() {
+    const options = this.createOptions(this.props.leagues);
     return (
       <Segment color="blue">
         <Dropdown
           name="league"
           placeholder="Velg liga du vil oppdatere"
-          options={this.props.leagues.map(league => {
-            return { text: league.name, value: league.tournamentId };
-          })}
+          options={options}
           fluid
           selection
           loading={this.props.loading}
           onChange={this.handleChange}
+          onAddItem={this.handleAddition}
         />{" "}
       </Segment>
     );

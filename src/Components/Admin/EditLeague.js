@@ -1,46 +1,104 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Header, Segment, Form, Button } from "semantic-ui-react";
+import inputParser from "../../Tools/inputParsers";
+import FirebaseService from "../../services/firebaseService";
 
 class EditLeague extends Component {
   constructor(props) {
     super(props);
+    const { name, seasonId, tournamentId } = props.league;
     this.state = {
-      data: {},
+      data: {
+        name,
+        seasonId,
+        tournamentId
+      },
       loading: true
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.submit = this.submit.bind(this);
   }
+
+  componentWillReceiveProps = nextProps => {
+    const { name, seasonId, tournamentId } = nextProps.league;
+    this.setState({
+      data: {
+        name,
+        seasonId,
+        tournamentId
+      }
+    });
+  };
+
+  handleChange = e => {
+    e.preventDefault();
+    const parseType = e.target.dataset.parse;
+    if (parseType) {
+      const parser = inputParser[parseType];
+      const parsedValue = parser(e.target.value);
+      this.setState({
+        data: {
+          ...this.state.data,
+          [e.target.name]: parsedValue
+        }
+      });
+      return;
+    }
+    this.setState({
+      data: {
+        ...this.state.data,
+        [e.target.name]: e.target.value
+      }
+    });
+  };
+
+  submit = e => {
+    e.preventDefault();
+    console.log("Submitting form with data", this.state);
+    const service = new FirebaseService();
+    service.updateLeague(this.state.data);
+  };
   render() {
-    const { name, seasonId, tournamentId } = this.props.league;
+    const { name, seasonId, tournamentId } = this.state.data;
     return (
       <Segment color="red">
         <Header as="h3">Liga: {this.props.league.name}</Header>
-        <Form>
+        <Form onSubmit={this.submit}>
           <Form.Field>
             <label htmlFor="leagueName">Navn</label>
             <input
               placeholder="Navn på serien"
-              name="leagueName"
+              name="name"
               value={name}
+              onChange={this.handleChange}
             />
           </Form.Field>
           <Form.Field>
             <label htmlFor="leagueSeasonID">SesongID</label>
             <input
               placeholder="SesongID"
-              name="leagueSeasonID"
+              name="seasonId"
               value={seasonId}
+              onChange={this.handleChange}
+              type="number"
+              data-parse="number"
             />
           </Form.Field>
           <Form.Field>
             <label htmlFor="leagueTournamentID">TurneringsID</label>
             <input
               placeholder="TurneringsID"
-              name="leagueTournamentID"
+              name="tournamentId"
               value={tournamentId}
+              onChange={this.handleChange}
+              type="number"
+              data-parse="number"
             />
           </Form.Field>
-          <Button type="submit">Submit</Button>
+          <Button color="green" type="submit">
+            Oppdater
+          </Button>
         </Form>
       </Segment>
     );
