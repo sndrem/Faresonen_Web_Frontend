@@ -28,7 +28,7 @@ class RoundListContainer extends Component {
       .get(`/rounds/${tournamentId}/${seasonId}`)
       .then(data => {
         this.setState({
-          data: { rounds: data.data.round },
+          data: { rounds: data.data.round || [] },
           loading: false
         });
       })

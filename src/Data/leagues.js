@@ -8,19 +8,22 @@ export default {
       name: "Eliteserien",
       tournamentId: 1,
       seasonId: 340,
-      image: EliteserieImage
+      image: EliteserieImage,
+      active: true
     },
     {
       name: "OBOS-ligaen",
       tournamentId: 2,
       seasonId: 340,
-      image: ObosligaenImage
+      image: ObosligaenImage,
+      active: true
     },
     {
       name: "Premier League",
       tournamentId: 230,
-      seasonId: 339,
-      image: PremierLeagueImage
+      seasonId: 340,
+      image: PremierLeagueImage,
+      active: false
     }
   ]
 };
