@@ -9,6 +9,7 @@ const FrontpageView = props => (
     <FaresoneMenu switchLeagueName={props.switchLeagueName} />
     <FirstSteps />
     {props.loading ? <p>Henter ligaer...</p> : ""}
+    {props.error ? <p>{props.error}</p> : ""}
     <LeagueChooser
       leagues={props.leagues}
       switchLeagueName={props.switchLeagueName}
@@ -26,7 +27,8 @@ FrontpageView.propTypes = {
       seasonId: PropTypes.number.isRequired
     })
   ).isRequired,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.string.isRequired
 };
 
 export default FrontpageView;

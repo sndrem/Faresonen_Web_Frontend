@@ -20,7 +20,8 @@ class App extends Component {
     tournamentId: "",
     seasonId: "",
     leagues: [],
-    loading: true
+    loading: true,
+    error: ""
   };
 
   componentDidMount() {
@@ -32,7 +33,11 @@ class App extends Component {
       })
       .catch(err => {
         console.error("There was a problem getting the leagues");
-        this.setState({ leagues: [], loading: false });
+        this.setState({
+          leagues: [],
+          loading: false,
+          error: "Det var et problem ved henting av ligaer"
+        });
       });
   }
 
@@ -55,6 +60,7 @@ class App extends Component {
                   leagues={this.state.leagues}
                   {...props}
                   loading={this.state.loading}
+                  error={this.state.error}
                 />
               )}
             />
