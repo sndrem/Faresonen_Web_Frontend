@@ -11,15 +11,30 @@ import GigSportsView from "./Views/GigSportsView";
 import PremierLeagueToolsView from "./Views/PremierLeagueToolsView";
 import AdminView from "./Views/AdminView";
 import AboutView from "./Views/AboutView";
-import Leagues from "./Data/leagues";
 import FantasyStatsView from "./Views/FantasyStatsView";
+import FirebaseService from "./services/firebaseService";
 
 class App extends Component {
   state = {
     leagueName: "",
     tournamentId: "",
-    seasonId: ""
+    seasonId: "",
+    leagues: [],
+    loading: true
   };
+
+  componentDidMount() {
+    const service = new FirebaseService();
+    service
+      .getLeagues()
+      .then(leagues => {
+        this.setState({ leagues, loading: false });
+      })
+      .catch(err => {
+        console.error("There was a problem getting the leagues");
+        this.setState({ leagues: [], loading: false });
+      });
+  }
 
   switchLeagueName = (leagueName, tournamentId, seasonId) => {
     this.setState({ leagueName, tournamentId, seasonId });
@@ -37,8 +52,9 @@ class App extends Component {
                 <FrontpageView
                   switchLeagueName={this.switchLeagueName}
                   leagueInfo={this.state}
-                  leagues={Leagues.leagues}
+                  leagues={this.state.leagues}
                   {...props}
+                  loading={this.state.loading}
                 />
               )}
             />

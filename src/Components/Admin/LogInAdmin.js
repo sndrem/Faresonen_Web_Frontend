@@ -47,6 +47,7 @@ class LogInAdmin extends Component {
             type="email"
             required
             onChange={this.handleChange}
+            autoComplete="email"
           />
         </Form.Field>
         <Form.Field>
@@ -57,6 +58,7 @@ class LogInAdmin extends Component {
             name="pwd"
             value={pwd}
             onChange={this.handleChange}
+            autoComplete="password"
           />
         </Form.Field>
         <Button onClick={this.signIn} type="submit">

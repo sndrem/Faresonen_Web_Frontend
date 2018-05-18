@@ -19,7 +19,6 @@ class AdminContainer extends Component {
   // Authentication listener
   authListener() {
     firebaseConfig.auth().onAuthStateChanged(user => {
-      console.log(user);
       if (user) {
         this.setState({ user });
       } else {
