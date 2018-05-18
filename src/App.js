@@ -43,9 +43,7 @@ class App extends Component {
   };
 
   render() {
-    return !this.state.user ? (
-      <p>Ingen bruker er logget inn. Du må logge inn først</p>
-    ) : (
+    return (
       <Container>
         <HashRouter>
           <Switch>

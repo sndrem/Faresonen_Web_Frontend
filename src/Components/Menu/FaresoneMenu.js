@@ -23,6 +23,9 @@ const FaresoneMenu = () => (
       <Menu.Item as="a" href="#/premierleague" name="premierleague">
         Premier League-verktøy
       </Menu.Item>
+      <Menu.Item position="right" as="a" href="#/admin" name="admin">
+        Admin
+      </Menu.Item>
       <Menu.Item position="right" as={"a"} href="#/about" name="about">
         Om
       </Menu.Item>

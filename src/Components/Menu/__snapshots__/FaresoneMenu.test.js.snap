@@ -51,6 +51,13 @@ exports[`<FaresoneMenu /> Should render properly 1`] = `
     </a>
     <a
       className="right item"
+      href="#/admin"
+      onClick={[Function]}
+    >
+      Admin
+    </a>
+    <a
+      className="right item"
       href="#/about"
       onClick={[Function]}
     >
