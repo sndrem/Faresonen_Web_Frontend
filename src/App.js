@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Container } from "semantic-ui-react";
 import { HashRouter, Route, Switch } from "react-router-dom";
+import firebaseConfig from "./databaseConfig/firebaseConfig";
 import FrontpageView from "./Views/FrontpageView";
 import MainView from "./Views/MainView";
 import RoundView from "./Views/RoundView";
@@ -17,15 +18,34 @@ class App extends Component {
   state = {
     leagueName: "",
     tournamentId: "",
-    seasonId: ""
+    seasonId: "",
+    user: {}
   };
+
+  componentDidMount() {
+    this.authListener();
+  }
+
+  // Authentication listener
+  authListener() {
+    firebaseConfig.auth().onAuthStateChanged(user => {
+      console.log(user);
+      if (user) {
+        this.setState({ user });
+      } else {
+        this.setState({ user: null });
+      }
+    });
+  }
 
   switchLeagueName = (leagueName, tournamentId, seasonId) => {
     this.setState({ leagueName, tournamentId, seasonId });
   };
 
   render() {
-    return (
+    return !this.state.user ? (
+      <p>Ingen bruker er logget inn. Du må logge inn først</p>
+    ) : (
       <Container>
         <HashRouter>
           <Switch>

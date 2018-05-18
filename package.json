@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "chart.js": "^1.1.1",
+    "firebase": "^5.0.3",
     "moment": "^2.21.0",
     "moment-timezone": "^0.5.16",
     "prop-types": "^15.6.0",
@@ -21,8 +22,7 @@
     "socket.io-client": "^2.0.4"
   },
   "scripts": {
-    "start":
-      "concurrently \"nodemon --exec babel-node ../faresonen_api/bin/www\" \"react-scripts start\"",
+    "start": "concurrently \"nodemon --exec babel-node ../faresonen_api/bin/www\" \"react-scripts start\"",
     "start_front": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
