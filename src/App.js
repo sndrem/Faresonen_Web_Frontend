@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Container } from "semantic-ui-react";
 import { HashRouter, Route, Switch } from "react-router-dom";
-import firebaseConfig from "./databaseConfig/firebaseConfig";
 import FrontpageView from "./Views/FrontpageView";
 import MainView from "./Views/MainView";
 import RoundView from "./Views/RoundView";
@@ -10,6 +9,7 @@ import FantasyView from "./Views/FantasyView";
 import DetailedPlayerView from "./Views/DetailedPlayerView";
 import GigSportsView from "./Views/GigSportsView";
 import PremierLeagueToolsView from "./Views/PremierLeagueToolsView";
+import AdminView from "./Views/AdminView";
 import AboutView from "./Views/AboutView";
 import Leagues from "./Data/leagues";
 import FantasyStatsView from "./Views/FantasyStatsView";
@@ -18,25 +18,8 @@ class App extends Component {
   state = {
     leagueName: "",
     tournamentId: "",
-    seasonId: "",
-    user: {}
+    seasonId: ""
   };
-
-  componentDidMount() {
-    this.authListener();
-  }
-
-  // Authentication listener
-  authListener() {
-    firebaseConfig.auth().onAuthStateChanged(user => {
-      console.log(user);
-      if (user) {
-        this.setState({ user });
-      } else {
-        this.setState({ user: null });
-      }
-    });
-  }
 
   switchLeagueName = (leagueName, tournamentId, seasonId) => {
     this.setState({ leagueName, tournamentId, seasonId });
@@ -91,6 +74,7 @@ class App extends Component {
               path="/premierleague/"
               component={PremierLeagueToolsView}
             />
+            <Route exact path="/admin/" component={AdminView} />
             <Route exact path="/about/" component={AboutView} />
           </Switch>
         </HashRouter>

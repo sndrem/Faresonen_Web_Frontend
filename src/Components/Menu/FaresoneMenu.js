@@ -26,7 +26,7 @@ const FaresoneMenu = () => (
       <Menu.Item position="right" as="a" href="#/admin" name="admin">
         Admin
       </Menu.Item>
-      <Menu.Item position="right" as={"a"} href="#/about" name="about">
+      <Menu.Item position="right" as="a" href="#/about" name="about">
         Om
       </Menu.Item>
     </Menu>
