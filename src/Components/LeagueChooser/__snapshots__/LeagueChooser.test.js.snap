@@ -12,10 +12,6 @@ exports[`LeagueChooser Should render properly 1`] = `
       href="#/league/Eliteserien/1/340/"
       onClick={[Function]}
     >
-      <img
-        className="ui image"
-        src="eliteserien.png"
-      />
       <div
         className="content"
       >
@@ -40,10 +36,6 @@ exports[`LeagueChooser Should render properly 1`] = `
       href="#/league/OBOS-ligaen/2/340/"
       onClick={[Function]}
     >
-      <img
-        className="ui image"
-        src="obosligaen.png"
-      />
       <div
         className="content"
       >
@@ -68,10 +60,6 @@ exports[`LeagueChooser Should render properly 1`] = `
       href=""
       onClick={[Function]}
     >
-      <img
-        className="ui image"
-        src="premierleague.png"
-      />
       <div
         className="content"
       >
