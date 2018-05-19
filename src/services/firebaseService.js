@@ -17,7 +17,6 @@ class FirebaseService {
   };
 
   updateLeague = ({ name, seasonId, tournamentId }) => {
-    console.log("Updating league", name);
     const leagueName = name.toLowerCase();
     firebaseConfig
       .database()
