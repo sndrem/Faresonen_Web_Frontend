@@ -17,12 +17,15 @@ class EditLeaguesContainer extends Component {
   componentDidMount() {
     const service = new FirebaseService();
     service.getLeagues().then(leagues => {
+      console.log(leagues);
       this.setState({ leagues, loading: false });
     });
   }
 
   setSelectedLeague = ({ id }) => {
-    const selectedLeague = this.state.leagues.find(l => l.tournamentId === id);
+    const selectedLeague = this.state.leagues.find(
+      l => parseFloat(l.id) === id
+    );
     this.setState({ selectedLeague });
   };
 

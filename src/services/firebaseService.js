@@ -7,6 +7,7 @@ class FirebaseService {
       leagueRef
         .once("value")
         .then(data => {
+          if (!data.val()) resolve([]);
           const leagues = this.mapLeaguesToList(data.val());
           resolve(leagues);
         })
@@ -29,7 +30,15 @@ class FirebaseService {
       });
   };
 
+  saveLeagues = leagues => {
+    firebaseConfig
+      .database()
+      .ref("leagues/")
+      .set(leagues);
+  };
+
   mapLeaguesToList = data => {
+    if (!data) throw new Error("You must provide data for mapping");
     return Object.keys(data).map(key => {
       return data[key];
     });

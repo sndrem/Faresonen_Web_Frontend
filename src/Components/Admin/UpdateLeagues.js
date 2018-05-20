@@ -16,7 +16,11 @@ class UpdateLeagues extends Component {
   };
 
   createOptions = leagues =>
-    leagues.map(league => ({ text: league.name, value: league.tournamentId }));
+    leagues.map(league => ({
+      text: league.name,
+      value: parseFloat(league.id),
+      name: league.name
+    }));
 
   render() {
     const options = this.createOptions(this.props.leagues);
@@ -30,7 +34,6 @@ class UpdateLeagues extends Component {
           selection
           loading={this.props.loading}
           onChange={this.handleChange}
-          onAddItem={this.handleAddition}
         />{" "}
       </Segment>
     );

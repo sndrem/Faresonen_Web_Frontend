@@ -23,8 +23,10 @@ FrontpageView.propTypes = {
   leagues: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
-      tournamentId: PropTypes.number.isRequired,
-      seasonId: PropTypes.number.isRequired
+      id: PropTypes.string.isRequired,
+      activeseason: PropTypes.shape({
+        "@uri": PropTypes.string.isRequired
+      })
     })
   ).isRequired,
   loading: PropTypes.bool.isRequired,
