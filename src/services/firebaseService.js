@@ -21,7 +21,6 @@ class FirebaseService {
     return new Promise(resolve => {
       const leagueRef = firebaseConfig.database().ref("leagues");
       leagueRef.on("value", snapshot => {
-        console.log(snapshot.val());
         resolve(this.mapLeaguesToList(snapshot.val()));
       });
     });
@@ -57,7 +56,7 @@ class FirebaseService {
   };
 
   mapLeaguesToList = data => {
-    if (!data) throw new Error("You must provide data for mapping");
+    if (!data) return [];
     return Object.keys(data).map(key => {
       return data[key];
     });

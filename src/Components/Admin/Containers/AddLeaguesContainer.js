@@ -48,7 +48,6 @@ class AddLeaguesContainer extends Component {
     this.state.selectedLeagues.forEach(league => {
       leagues[league.id] = league;
     });
-    console.log(leagues);
 
     this.service.saveLeagues(leagues);
   };

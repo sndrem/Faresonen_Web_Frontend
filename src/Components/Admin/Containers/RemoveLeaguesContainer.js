@@ -25,7 +25,20 @@ class RemoveLeaguesContainer extends Component {
 
   removeLeague = event => {
     const { id } = event.target.dataset;
+    this.removeLeagueFromState(parseFloat(id));
     this.service.removeLeague(id);
+  };
+
+  removeLeagueFromState = id => {
+    const idFound = this.state.leagues.findIndex(
+      league => parseFloat(league.id) === parseFloat(id)
+    );
+    if (idFound > -1) {
+      this.state.leagues.splice(idFound, 1);
+      this.setState({
+        leagues: this.state.leagues
+      });
+    }
   };
 
   render() {
