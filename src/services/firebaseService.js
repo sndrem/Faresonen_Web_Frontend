@@ -1,19 +1,29 @@
 import firebaseConfig from "../databaseConfig/firebaseConfig";
 
 class FirebaseService {
+  // getLeagues = () => {
+  //   return new Promise((resolve, reject) => {
+  //     const leagueRef = firebaseConfig.database().ref("leagues");
+  //     leagueRef
+  //       .once("value")
+  //       .then(data => {
+  //         if (!data.val()) resolve([]);
+  //         const leagues = this.mapLeaguesToList(data.val());
+  //         resolve(leagues);
+  //       })
+  //       .catch(err => {
+  //         reject(err);
+  //       });
+  //   });
+  // };
+
   getLeagues = () => {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       const leagueRef = firebaseConfig.database().ref("leagues");
-      leagueRef
-        .once("value")
-        .then(data => {
-          if (!data.val()) resolve([]);
-          const leagues = this.mapLeaguesToList(data.val());
-          resolve(leagues);
-        })
-        .catch(err => {
-          reject(err);
-        });
+      leagueRef.on("value", snapshot => {
+        console.log(snapshot.val());
+        resolve(this.mapLeaguesToList(snapshot.val()));
+      });
     });
   };
 
@@ -37,6 +47,13 @@ class FirebaseService {
         .ref(`leagues/${key}`)
         .set(leagues[key]);
     });
+  };
+
+  removeLeague = id => {
+    firebaseConfig
+      .database()
+      .ref(`leagues/${id}`)
+      .remove();
   };
 
   mapLeaguesToList = data => {
