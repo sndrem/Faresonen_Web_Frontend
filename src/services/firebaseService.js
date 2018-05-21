@@ -31,10 +31,12 @@ class FirebaseService {
   };
 
   saveLeagues = leagues => {
-    firebaseConfig
-      .database()
-      .ref("leagues/")
-      .set(leagues);
+    Object.keys(leagues).forEach(key => {
+      firebaseConfig
+        .database()
+        .ref(`leagues/${key}`)
+        .set(leagues[key]);
+    });
   };
 
   mapLeaguesToList = data => {
