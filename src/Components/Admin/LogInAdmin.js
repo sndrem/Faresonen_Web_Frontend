@@ -7,7 +7,8 @@ class LogInAdmin extends Component {
     super(props);
     this.state = {
       email: "",
-      pwd: ""
+      pwd: "",
+      error: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.signIn = this.signIn.bind(this);
@@ -20,22 +21,17 @@ class LogInAdmin extends Component {
 
   signIn = e => {
     e.preventDefault();
-    console.log("Signing in with credentials", this.state);
     const { email, pwd } = this.state;
     firebaseConfig
       .auth()
       .signInWithEmailAndPassword(email, pwd)
-      .then(user => {
-        console.log("User signed in", user);
-      })
-      .catch(err => {
-        console.warn("Could not log in");
-        console.log(err);
+      .catch(() => {
+        this.setState({ error: "Brukernavn eller passord er feil." });
       });
   };
 
   render() {
-    const { email, pwd } = this.state;
+    const { error, email, pwd } = this.state;
     return (
       <Form>
         <Form.Field>
@@ -61,6 +57,7 @@ class LogInAdmin extends Component {
             autoComplete="password"
           />
         </Form.Field>
+        {error ? <span style={{ display: "block" }}>{error}</span> : ""}
         <Button onClick={this.signIn} type="submit">
           Submit
         </Button>

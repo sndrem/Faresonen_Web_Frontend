@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid, Card } from "semantic-ui-react";
+import { Grid, Card, Message } from "semantic-ui-react";
 
 const LeagueChooser = props => {
   const leagues = props.leagues.map(league => {
@@ -15,7 +15,18 @@ const LeagueChooser = props => {
       </Grid.Column>
     );
   });
-  return <Grid columns={3}>{leagues}</Grid>;
+  return leagues.length > 0 ? (
+    <Grid columns={3}>{leagues}</Grid>
+  ) : (
+    <Message info>
+      <Message.Header>Ingen ligaer tilgjengelig</Message.Header>
+      <p>
+        Det er ingen ligaer lagt til i databasen. Dersom du er administrator kan
+        du legge til kamper <a href="#/admin">her</a> eller få en administrator
+        til å gjøre det for deg.
+      </p>
+    </Message>
+  );
 };
 
 LeagueChooser.propTypes = {

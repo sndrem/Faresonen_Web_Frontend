@@ -12,6 +12,7 @@ import PremierLeagueToolsView from "./Views/PremierLeagueToolsView";
 import AdminView from "./Views/AdminView";
 import AboutView from "./Views/AboutView";
 import FantasyStatsView from "./Views/FantasyStatsView";
+import My404NotFound from "./Views/My404NotFound";
 import FirebaseService from "./services/FirebaseService";
 
 class App extends Component {
@@ -91,6 +92,7 @@ class App extends Component {
             />
             <Route exact path="/admin/" component={AdminView} />
             <Route exact path="/about/" component={AboutView} />
+            <Route path="*" exact component={My404NotFound} />
           </Switch>
         </HashRouter>
       </Container>

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import AddLeaguesContainer from "./AddLeaguesContainer";
 import RemoveLeaguesContainer from "./RemoveLeaguesContainer";
-import EditLeaguesContainer from "./EditLeaguesContainer";
 import FirebaseService from "../../../services/FirebaseService";
 import altOmFotballLeagueService from "../../../services/altOmFotballLeagueService";
 

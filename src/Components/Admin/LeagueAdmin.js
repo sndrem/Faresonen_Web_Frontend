@@ -21,8 +21,8 @@ class LeagueAdmin extends Component {
     return (
       <Segment>
         <p>
-          Dette er admin-sidene til Faresonen. Her kan du opprette, endre og
-          slette ligaer
+          Dette er admin-sidene til Faresonen. Her kan du legge til og fjerne
+          ligaer.
         </p>
         <Button onClick={this.logOut}>Logg ut</Button>
         <Divider />

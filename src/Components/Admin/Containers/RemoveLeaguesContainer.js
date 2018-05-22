@@ -11,6 +11,9 @@ class RemoveLeaguesContainer extends Component {
 
   render() {
     const { leagues, loading } = this.props;
+    if (leagues.length === 0) {
+      return "";
+    }
     return (
       <Segment>
         <Dimmer active={loading}>
