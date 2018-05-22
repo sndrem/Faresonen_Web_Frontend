@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { Button, Segment, Divider } from "semantic-ui-react";
 import firebaseConfig from "../../databaseConfig/firebaseConfig";
-import AddLeaguesContainer from "./Containers/AddLeaguesContainer";
-import RemoveLeaguesContainer from "./Containers/RemoveLeaguesContainer";
-import EditLeaguesContainer from "./Containers/EditLeaguesContainer";
+import LeaguesContainer from "./Containers/LeaguesContainer";
 
 class LeagueAdmin extends Component {
   constructor(props) {
@@ -28,8 +26,8 @@ class LeagueAdmin extends Component {
         </p>
         <Button onClick={this.logOut}>Logg ut</Button>
         <Divider />
-        <AddLeaguesContainer />
-        <RemoveLeaguesContainer />
+        <LeaguesContainer />
+
         {/* <EditLeaguesContainer /> */}
       </Segment>
     );

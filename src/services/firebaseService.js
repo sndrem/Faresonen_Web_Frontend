@@ -17,12 +17,10 @@ class FirebaseService {
   //   });
   // };
 
-  getLeagues = () => {
-    return new Promise(resolve => {
-      const leagueRef = firebaseConfig.database().ref("leagues");
-      leagueRef.on("value", snapshot => {
-        resolve(this.mapLeaguesToList(snapshot.val()));
-      });
+  getLeagues = cb => {
+    const leagueRef = firebaseConfig.database().ref("leagues");
+    leagueRef.on("value", snapshot => {
+      cb(this.mapLeaguesToList(snapshot.val()));
     });
   };
 
@@ -44,7 +42,16 @@ class FirebaseService {
       firebaseConfig
         .database()
         .ref(`leagues/${key}`)
-        .set(leagues[key]);
+        .set(leagues[key], error => {
+          if (!error) {
+            console.log("League savings went okay");
+          } else {
+            console.warn(
+              "There was an error saving the leagues to the database"
+            );
+            console.warn(error);
+          }
+        });
     });
   };
 

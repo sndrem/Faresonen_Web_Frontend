@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Grid, Header, Segment } from "semantic-ui-react";
 import UpdateLeagues from "../UpdateLeagues";
 import EditLeague from "../EditLeague";
-import FirebaseService from "../../../services/firebaseService";
 
 class EditLeaguesContainer extends Component {
   constructor(props) {
@@ -14,13 +13,13 @@ class EditLeaguesContainer extends Component {
     };
   }
 
-  componentDidMount() {
-    const service = new FirebaseService();
-    service.getLeagues().then(leagues => {
-      console.log(leagues);
-      this.setState({ leagues, loading: false });
-    });
-  }
+  // componentDidMount() {
+  //   const service = new FirebaseService();
+  //   service.getLeagues().then(leagues => {
+  //     console.log(leagues);
+  //     this.setState({ leagues, loading: false });
+  //   });
+  // }
 
   setSelectedLeague = ({ id }) => {
     const selectedLeague = this.state.leagues.find(

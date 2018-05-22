@@ -12,34 +12,27 @@ import PremierLeagueToolsView from "./Views/PremierLeagueToolsView";
 import AdminView from "./Views/AdminView";
 import AboutView from "./Views/AboutView";
 import FantasyStatsView from "./Views/FantasyStatsView";
-import FirebaseService from "./services/firebaseService";
+import FirebaseService from "./services/FirebaseService";
 
 class App extends Component {
-  state = {
-    leagueName: "",
-    tournamentId: "",
-    seasonId: "",
-    leagues: [],
-    loading: true,
-    error: ""
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      leagueName: "",
+      tournamentId: "",
+      seasonId: "",
+      leagues: [],
+      loading: true,
+      error: ""
+    };
+    this.service = new FirebaseService();
+  }
 
   componentDidMount() {
-    const service = new FirebaseService();
-    service
-      .getLeagues()
-      .then(leagues => {
-        this.setState({ leagues, loading: false });
-      })
-      .catch(err => {
-        console.error("There was a problem getting the leagues");
-        this.setState({
-          leagues: [],
-          loading: false,
-          error: "Det var et problem ved henting av ligaer"
-        });
-      });
+    this.service.getLeagues(this.processLeagues);
   }
+
+  processLeagues = leagues => this.setState({ leagues, loading: false });
 
   switchLeagueName = (leagueName, tournamentId, seasonId) => {
     this.setState({ leagueName, tournamentId, seasonId });

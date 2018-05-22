@@ -1,34 +1,10 @@
 import React, { Component } from "react";
-import axios from "axios";
+import PropTypes from "prop-types";
 import { Button, Segment, Header, Dropdown } from "semantic-ui-react";
+import axios from "axios";
 import altOmFotballLeagueService from "../../../services/altOmFotballLeagueService";
-import FirebaseService from "../../../services/firebaseService";
 
 class AddLeaguesContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.service = new FirebaseService();
-    this.state = {
-      leagues: [],
-      selectedLeagues: [],
-      loading: true
-    };
-    this.addLeagues = this.addLeagues.bind(this);
-    this.saveLeagues = this.saveLeagues.bind(this);
-  }
-
-  componentDidMount() {
-    this.getLeagues();
-  }
-
-  getLeagues = () => {
-    altOmFotballLeagueService.getAllLeagues().then(data => {
-      this.setState({
-        leagues: data.data.tournament
-      });
-    });
-  };
-
   addLeagues = (e, { value: values }) => {
     // Get values and return promises for each
     const promises = values.map(value =>
@@ -37,23 +13,21 @@ class AddLeaguesContainer extends Component {
     // Fetch data about each league
     axios.all(promises).then(data => {
       const leagueData = data.map(d => d.data);
-      this.setState({
-        selectedLeagues: leagueData
-      });
+      this.props.setSelectedLeagues(leagueData);
     });
   };
 
   saveLeagues = () => {
     const leagues = {};
-    this.state.selectedLeagues.forEach(league => {
+    this.props.selectedLeagues.forEach(league => {
       leagues[league.id] = league;
     });
 
-    this.service.saveLeagues(leagues);
+    this.props.saveSelectedLeagues(leagues);
   };
 
   render() {
-    const { leagues } = this.state;
+    const { selectedLeagues, altOmFotballLeagues } = this.props;
     return (
       <Segment>
         <Header as="h2">Legg til ligaer</Header>
@@ -64,7 +38,7 @@ class AddLeaguesContainer extends Component {
           search
           selection
           onChange={this.addLeagues}
-          options={leagues.map(league => {
+          options={altOmFotballLeagues.map(league => {
             return {
               name: league.name,
               text: league.name,
@@ -73,7 +47,7 @@ class AddLeaguesContainer extends Component {
           })}
         />
         <Button
-          disabled={this.state.selectedLeagues.length === 0}
+          disabled={selectedLeagues.length === 0}
           onClick={this.saveLeagues}
         >
           Lagre kamper til database
@@ -82,4 +56,20 @@ class AddLeaguesContainer extends Component {
     );
   }
 }
+AddLeaguesContainer.propTypes = {
+  selectedLeagues: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired
+    })
+  ).isRequired,
+  altOmFotballLeagues: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired
+    })
+  ).isRequired,
+  setSelectedLeagues: PropTypes.func.isRequired,
+  saveSelectedLeagues: PropTypes.func.isRequired
+};
 export default AddLeaguesContainer;

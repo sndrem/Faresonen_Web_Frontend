@@ -1,48 +1,16 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Segment, Header, Card, Dimmer, Loader } from "semantic-ui-react";
-import FirebaseService from "../../../services/firebaseService";
 import "./RemoveLeaguesContainer.css";
 
 class RemoveLeaguesContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.service = new FirebaseService();
-    this.state = {
-      leagues: [],
-      loading: true
-    };
-  }
-
-  componentDidMount() {
-    this.getLeagues();
-  }
-
-  getLeagues() {
-    this.service.getLeagues().then(leagues => {
-      this.setState({ leagues, loading: false });
-    });
-  }
-
   removeLeague = event => {
     const { id } = event.target.dataset;
-    this.removeLeagueFromState(parseFloat(id));
-    this.service.removeLeague(id);
-  };
-
-  removeLeagueFromState = id => {
-    const idFound = this.state.leagues.findIndex(
-      league => parseFloat(league.id) === parseFloat(id)
-    );
-    if (idFound > -1) {
-      this.state.leagues.splice(idFound, 1);
-      this.setState({
-        leagues: this.state.leagues
-      });
-    }
+    this.props.removeLeague(id);
   };
 
   render() {
-    const { leagues, loading } = this.state;
+    const { leagues, loading } = this.props;
     return (
       <Segment>
         <Dimmer active={loading}>
@@ -76,4 +44,17 @@ class RemoveLeaguesContainer extends Component {
     );
   }
 }
+RemoveLeaguesContainer.propTypes = {
+  leagues: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      activeseason: PropTypes.shape({
+        "@uri": PropTypes.string.isRequired
+      }).isRequired,
+      id: PropTypes.string.isRequired
+    })
+  ).isRequired,
+  loading: PropTypes.bool.isRequired,
+  removeLeague: PropTypes.func.isRequired
+};
 export default RemoveLeaguesContainer;

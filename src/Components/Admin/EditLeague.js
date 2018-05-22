@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Header, Segment, Form, Button } from "semantic-ui-react";
 import inputParser from "../../Tools/inputParsers";
-import FirebaseService from "../../services/firebaseService";
 
 class EditLeague extends Component {
   constructor(props) {
@@ -53,12 +52,12 @@ class EditLeague extends Component {
     });
   };
 
-  submit = e => {
-    e.preventDefault();
-    console.log("Submitting form with data", this.state);
-    const service = new FirebaseService();
-    service.updateLeague(this.state.data);
-  };
+  // submit = e => {
+  //   e.preventDefault();
+  //   console.log("Submitting form with data", this.state);
+  //   const service = new FirebaseService();
+  //   service.updateLeague(this.state.data);
+  // };
   render() {
     const { name, seasonId, tournamentId } = this.state.data;
     return (
