@@ -7,23 +7,35 @@ export default {
     {
       name: "Eliteserien",
       tournamentId: 1,
+      id: "1",
       seasonId: 340,
       image: EliteserieImage,
-      active: true
+      active: true,
+      activeseason: {
+        "@uri": "http://api.tv2.no/sport/resources/seasons/340/"
+      }
     },
     {
       name: "OBOS-ligaen",
       tournamentId: 2,
+      id: "2",
       seasonId: 340,
       image: ObosligaenImage,
-      active: true
+      active: true,
+      activeseason: {
+        "@uri": "http://api.tv2.no/sport/resources/seasons/340/"
+      }
     },
     {
       name: "Premier League",
       tournamentId: 230,
+      id: "230",
       seasonId: 340,
       image: PremierLeagueImage,
-      active: false
+      active: false,
+      activeseason: {
+        "@uri": "http://api.tv2.no/sport/resources/seasons/339/"
+      }
     }
   ]
 };

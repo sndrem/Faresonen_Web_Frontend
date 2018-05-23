@@ -8,7 +8,7 @@ exports[`LeagueChooser Should render properly 1`] = `
     className="column"
   >
     <a
-      className="ui card active"
+      className="ui card"
       href="#/league/Eliteserien/1/340/"
       onClick={[Function]}
     >
@@ -32,7 +32,7 @@ exports[`LeagueChooser Should render properly 1`] = `
     className="column"
   >
     <a
-      className="ui card active"
+      className="ui card"
       href="#/league/OBOS-ligaen/2/340/"
       onClick={[Function]}
     >
@@ -55,9 +55,9 @@ exports[`LeagueChooser Should render properly 1`] = `
   <div
     className="column"
   >
-    <div
-      className="ui card disabled"
-      href=""
+    <a
+      className="ui card"
+      href="#/league/Premier League/230/339/"
       onClick={[Function]}
     >
       <div
@@ -71,10 +71,10 @@ exports[`LeagueChooser Should render properly 1`] = `
         <div
           className="description"
         >
-          TurneringsID: 230 - SesongID: 340
+          TurneringsID: 230 - SesongID: 339
         </div>
       </div>
-    </div>
+    </a>
   </div>
 </div>
 `;
