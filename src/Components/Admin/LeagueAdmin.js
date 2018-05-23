@@ -27,8 +27,6 @@ class LeagueAdmin extends Component {
         <Button onClick={this.logOut}>Logg ut</Button>
         <Divider />
         <LeaguesContainer />
-
-        {/* <EditLeaguesContainer /> */}
       </Segment>
     );
   }

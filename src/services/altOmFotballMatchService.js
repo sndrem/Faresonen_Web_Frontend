@@ -17,8 +17,12 @@ const AltOmFotballMatchService = {
       axios
         .get(`/matches/${tournamentId}/${seasonId}`)
         .then(data => {
-          const filtered = self.filterDoneMatches(data.data.match);
-          resolve(filtered);
+          if (data.data.match) {
+            const filtered = self.filterDoneMatches(data.data.match);
+            resolve(filtered);
+          } else {
+            resolve([]);
+          }
         })
         .catch(err => reject(err));
     });

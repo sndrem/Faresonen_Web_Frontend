@@ -8,13 +8,16 @@ const FrontpageView = props => (
   <div>
     <FaresoneMenu switchLeagueName={props.switchLeagueName} />
     <FirstSteps />
-    {props.loading ? <p>Henter ligaer...</p> : ""}
+    {props.loading ? (
+      <p>Henter ligaer...</p>
+    ) : (
+      <LeagueChooser
+        leagues={props.leagues}
+        switchLeagueName={props.switchLeagueName}
+        {...props}
+      />
+    )}
     {props.error ? <p>{props.error}</p> : ""}
-    <LeagueChooser
-      leagues={props.leagues}
-      switchLeagueName={props.switchLeagueName}
-      {...props}
-    />
   </div>
 );
 

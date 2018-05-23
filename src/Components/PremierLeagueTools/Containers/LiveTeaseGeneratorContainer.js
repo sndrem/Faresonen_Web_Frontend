@@ -12,7 +12,7 @@ class LiveTeaseGeneratorContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: {},
+      data: { match: [] },
       selectedMatch: "",
       matchTimeText: "",
       matchTime: "",
@@ -189,6 +189,9 @@ PREMIER LEAGUE <00:02-00:15`;
   );
 
   render() {
+    if (this.state.data.match.length === 0) {
+      return <Message info>Ingen kamper tilgjengelig</Message>;
+    }
     if (this.state.error) {
       return <Message warning>{this.state.error}</Message>;
     }
