@@ -24,6 +24,7 @@ class GigSportsView extends Component {
       loading: true,
       error: ""
     };
+    this.gigDomain = "https://api-starfleet.sports.gig.com/";
   }
 
   componentDidMount() {
@@ -89,7 +90,9 @@ class GigSportsView extends Component {
 
   fetchMatches = () => {
     return fetch(
-      "https://api-starfleet.oddsmodel.com/Customers/TV2/MatchFeed?apiKey=a1476rz9nz3wh0x5denb8ij54cxo47yr"
+      `${
+        this.gigDomain
+      }Customers/TV2/MatchFeed?apiKey=a1476rz9nz3wh0x5denb8ij54cxo47yr`
     )
       .then(response => response.json())
       .catch(err =>
@@ -101,7 +104,9 @@ class GigSportsView extends Component {
 
   fetchBets = () => {
     return fetch(
-      "https://api-starfleet.oddsmodel.com/Customers/Tv2/OddsFeed/Pregame?apiKey=a1476rz9nz3wh0x5denb8ij54cxo47yr"
+      `${
+        this.gigDomain
+      }Customers/Tv2/OddsFeed/Pregame?apiKey=a1476rz9nz3wh0x5denb8ij54cxo47yr`
     )
       .then(response => response.json())
       .catch(err =>
