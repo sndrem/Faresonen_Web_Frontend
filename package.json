@@ -22,11 +22,13 @@
     "socket.io-client": "^2.0.4"
   },
   "scripts": {
-    "start": "concurrently \"nodemon --exec babel-node ../faresonen_api/bin/www\" \"react-scripts start\"",
+    "start":
+      "concurrently \"nodemon --exec babel-node ../faresonen_api/bin/www\" \"react-scripts start\"",
     "start_front": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "cp -r build ../faresonen_api/"
   },
   "proxy": "http://localhost:8000",
   "devDependencies": {
