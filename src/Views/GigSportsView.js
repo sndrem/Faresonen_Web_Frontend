@@ -24,7 +24,8 @@ class GigSportsView extends Component {
       loading: true,
       error: ""
     };
-    this.gigDomain = "https://api-starfleet.sports.gig.com/";
+
+    this.gigDomain = process.env.REACT_APP_GIG_SPORTS_DOMAIN;
   }
 
   componentDidMount() {
