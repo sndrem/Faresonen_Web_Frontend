@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Button } from "semantic-ui-react";
+import { Form, Button, Message } from "semantic-ui-react";
 import { SketchPicker } from "react-color";
 
 import premierLeagueDefaultColors from "../../Data/premierLeagueDefaultColors";
@@ -12,7 +12,8 @@ class NewColorForm extends Component {
       colorName: "",
       colorNumber: 0,
       colorHex: premierLeagueDefaultColors[0],
-      valid: false
+      valid: false,
+      error: ""
     };
     this.service = new FirebaseService();
     this.saveColor = this.saveColor.bind(this);
@@ -25,13 +26,22 @@ class NewColorForm extends Component {
     const form = document.forms.colorForm;
     if (form.checkValidity()) {
       const { colorName, colorHex, colorNumber } = this.state;
-      this.service.addColor(colorHex, {
-        color: colorName,
-        key: colorName,
-        text: colorName,
-        value: parseInt(colorNumber, 10),
-        hex: colorHex
-      });
+      this.service
+        .addColor(colorHex, {
+          color: colorName,
+          key: colorName,
+          text: colorName,
+          value: parseInt(colorNumber, 10),
+          hex: colorHex
+        })
+        .then(data => {
+          this.setState({
+            colorName: "",
+            colorHex: "FFFFFF",
+            colorNumber: 0
+          });
+        })
+        .catch(error => {});
       console.log("Save color to db");
     }
   };
@@ -46,43 +56,54 @@ class NewColorForm extends Component {
   };
 
   render() {
-    const { colorName, colorNumber, colorHex } = this.state;
+    const { colorName, colorNumber, colorHex, error } = this.state;
+
     return (
-      <Form name="colorForm" onSubmit={this.saveColor}>
-        <Form.Field>
-          <label htmlFor="colorName">Navn på farge</label>
-          <Form.Input
-            placeholder="Navn på farge"
-            required
-            name="colorName"
-            onChange={this.handleChange}
-            value={colorName}
-          />
-        </Form.Field>
-        <Form.Field>
-          <label htmlFor="colorNumber">
-            Numerisk verdi (mappet mot grafikk)
-          </label>
-          <Form.Input
-            type="number"
-            required
-            name="colorNumber"
-            value={colorNumber}
-            onChange={this.handleChange}
-          />
-        </Form.Field>
-        <Form.Field>
-          <label htmlFor="colorHex">Farge</label>
-          <SketchPicker
-            presetColors={premierLeagueDefaultColors}
-            onChange={this.handleColorChange}
-            color={colorHex}
-          />
-        </Form.Field>
-        <Button disabled={!this.state.valid} type="submit">
-          Lagre farge
-        </Button>
-      </Form>
+      <div>
+        {error ? (
+          <Message warning>
+            <Message.Header>Lagring av farge feilet</Message.Header>
+            <p>{error.message}</p>
+          </Message>
+        ) : (
+          ""
+        )}
+        <Form name="colorForm" onSubmit={this.saveColor}>
+          <Form.Field>
+            <label htmlFor="colorName">Navn på farge</label>
+            <Form.Input
+              placeholder="Navn på farge"
+              required
+              name="colorName"
+              onChange={this.handleChange}
+              value={colorName}
+            />
+          </Form.Field>
+          <Form.Field>
+            <label htmlFor="colorNumber">
+              Numerisk verdi (mappet mot grafikk)
+            </label>
+            <Form.Input
+              type="number"
+              required
+              name="colorNumber"
+              value={colorNumber}
+              onChange={this.handleChange}
+            />
+          </Form.Field>
+          <Form.Field>
+            <label htmlFor="colorHex">Farge</label>
+            <SketchPicker
+              presetColors={premierLeagueDefaultColors}
+              onChange={this.handleColorChange}
+              color={colorHex}
+            />
+          </Form.Field>
+          <Button disabled={!this.state.valid} type="submit">
+            Lagre farge
+          </Button>
+        </Form>
+      </div>
     );
   }
 }

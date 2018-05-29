@@ -40,7 +40,18 @@ class FirebaseService {
 
   addColor = (id, color) => {
     // Remove # from Hex color since Firebase won't accept # in keys
-    this.database.ref(`colors/${id.replace("#", "")}`).set(color);
+    return new Promise((resolve, reject) => {
+      this.database.ref(`colors/${id.replace("#", "")}`).set(color, error => {
+        if (!error) {
+          resolve({ message: `${color.text} saved to database` });
+        } else {
+          reject({
+            message: `${color.text} could not be saved to database`,
+            error
+          });
+        }
+      });
+    });
   };
 
   mapLeaguesToList = data => {
