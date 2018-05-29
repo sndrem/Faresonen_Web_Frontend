@@ -4,7 +4,6 @@ import { Form, Button, Message } from "semantic-ui-react";
 import { SketchPicker } from "react-color";
 
 import premierLeagueDefaultColors from "../../Data/premierLeagueDefaultColors";
-import FirebaseService from "../../services/FirebaseService";
 
 class NewColorForm extends Component {
   constructor(props) {

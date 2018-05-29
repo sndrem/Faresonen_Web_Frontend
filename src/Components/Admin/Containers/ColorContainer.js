@@ -53,6 +53,7 @@ class ColorContainer extends Component {
         .removeColor(key)
         .then(data => {
           resolve(data);
+          this.resetForm();
         })
         .catch(error => reject(error));
     });

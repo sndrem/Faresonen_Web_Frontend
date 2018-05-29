@@ -5,7 +5,6 @@ import LiveTeasePreview from "../LiveTeasePreview";
 import leagues from "../../../Data/leagues";
 import badges from "../../../Data/badgePaths";
 import channels from "../../../Data/channels";
-import colors from "../../../Data/colors";
 import altOmFotballMatchService from "../../../services/altOmFotballMatchService";
 
 class LiveTeaseGeneratorContainer extends Component {
@@ -17,8 +16,8 @@ class LiveTeaseGeneratorContainer extends Component {
       matchTimeText: "",
       matchTime: "",
       channels: [5, 10],
-      colorHome: colors[0],
-      colorAway: colors[2],
+      colorHome: {},
+      colorAway: {},
       script: "",
       loading: true,
       copied: false,
@@ -27,7 +26,7 @@ class LiveTeaseGeneratorContainer extends Component {
   }
 
   componentDidMount() {
-    const { tournamentId, seasonId } = leagues.leagues[2];
+    const { tournamentId, seasonId } = leagues.leagues[0];
     if (!tournamentId || !seasonId) {
       console.log(
         `Det er ingen turneringsID eller sesongID tilgjengelig for Premier League`
@@ -110,8 +109,8 @@ class LiveTeaseGeneratorContainer extends Component {
       badge => badge.team.toLowerCase() === team.toLowerCase()
     );
     if (badgeFound) return badgeFound;
-
-    throw new Error(`Could not find badge for ${team}`);
+    return { path: "IKKE RIKTIG BADGE" };
+    // throw new Error(`Could not find badge for ${team}`);
   };
 
   getChannelName = channel => {

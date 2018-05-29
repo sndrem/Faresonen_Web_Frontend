@@ -61,6 +61,8 @@ EditColors.propTypes = {
       text: PropTypes.string.isRequired
     })
   ).isRequired,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
+  editColor: PropTypes.func.isRequired,
+  deleteColor: PropTypes.func.isRequired
 };
 export default EditColors;
