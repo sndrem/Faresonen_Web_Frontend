@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Grid, Icon } from "semantic-ui-react";
 
-const EditColors = ({ colors, loading, editColor }) => {
+const EditColors = ({ colors, loading, editColor, deleteColor }) => {
   return (
     <Grid columns={2}>
       {colors
@@ -40,7 +40,11 @@ const EditColors = ({ colors, loading, editColor }) => {
                 >
                   <Icon name="edit" />Rediger
                 </span>
-                <span>
+                <span
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => deleteColor(color.hex)}
+                >
                   <Icon name="delete" />Fjern
                 </span>
               </div>

@@ -46,6 +46,18 @@ class ColorContainer extends Component {
     });
   };
 
+  deleteColor = key => {
+    if (!key) throw new Error("Cannot delete color without a key");
+    return new Promise((resolve, reject) => {
+      this.service
+        .removeColor(key)
+        .then(data => {
+          resolve(data);
+        })
+        .catch(error => reject(error));
+    });
+  };
+
   resetForm = () => {
     this.setState({
       ...this.state,
@@ -106,6 +118,7 @@ class ColorContainer extends Component {
             colors={colors}
             loading={loading}
             editColor={this.editColor}
+            deleteColor={this.deleteColor}
           />
         </Grid.Column>
       </Grid>

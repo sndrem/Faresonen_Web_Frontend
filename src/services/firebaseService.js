@@ -48,18 +48,31 @@ class FirebaseService {
   addColor = (id, color) => {
     // Remove # from Hex color since Firebase won't accept # in keys
     return new Promise((resolve, reject) => {
-      this.database.ref(`colors/${id.replace("#", "")}`).set(color, error => {
-        if (!error) {
-          resolve({ message: `${color.text} lagret til databasen` });
-        } else {
-          reject({
-            message: `${color.text} kunne ikke bli lagret i databasen.`,
-            error
-          });
-        }
-      });
+      this.database
+        .ref(`colors/${this.removeFirebaseSpecializedCharacters(id, "#")}`)
+        .set(color, error => {
+          if (!error) {
+            resolve({ message: `${color.text} lagret til databasen` });
+          } else {
+            reject({
+              message: `${color.text} kunne ikke bli lagret i databasen.`,
+              error
+            });
+          }
+        });
     });
   };
+
+  removeFirebaseSpecializedCharacters = (ref, char) => ref.replace(char, "");
+
+  removeColor = key =>
+    new Promise((resolve, reject) => {
+      this.database
+        .ref(`colors/${this.removeFirebaseSpecializedCharacters(key, "#")}`)
+        .remove()
+        .then(data => resolve(data))
+        .catch(err => reject(err));
+    });
 
   mapLeaguesToList = data => {
     if (!data) return [];
