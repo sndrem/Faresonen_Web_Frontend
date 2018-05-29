@@ -24,7 +24,6 @@ class GigSportsView extends Component {
       loading: true,
       error: ""
     };
-
     this.gigDomain = process.env.REACT_APP_GIG_SPORTS_DOMAIN;
   }
 
