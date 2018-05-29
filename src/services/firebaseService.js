@@ -38,15 +38,22 @@ class FirebaseService {
     this.database.ref(`leagues/${id}`).remove();
   };
 
+  getColors = cb => {
+    const colorRef = this.database.ref("colors");
+    colorRef.on("value", snapshot => {
+      cb(this.mapLeaguesToList(snapshot.val()));
+    });
+  };
+
   addColor = (id, color) => {
     // Remove # from Hex color since Firebase won't accept # in keys
     return new Promise((resolve, reject) => {
       this.database.ref(`colors/${id.replace("#", "")}`).set(color, error => {
         if (!error) {
-          resolve({ message: `${color.text} saved to database` });
+          resolve({ message: `${color.text} lagret til databasen` });
         } else {
           reject({
-            message: `${color.text} could not be saved to database`,
+            message: `${color.text} kunne ikke bli lagret i databasen.`,
             error
           });
         }

@@ -9,10 +9,10 @@ class LeagueAdmin extends Component {
     super(props);
     this.state = {
       loading: true,
-      activeItem: "leagues",
+      activeItem: "ligaer",
       menuComponents: {
-        leagues: <LeaguesContainer />,
-        colors: <ColorContainer />
+        ligaer: <LeaguesContainer />,
+        farger: <ColorContainer />
       }
     };
     this.logOut = this.logOut.bind(this);
@@ -42,13 +42,13 @@ class LeagueAdmin extends Component {
         </p>
         <Menu tabular>
           <Menu.Item
-            name="leagues"
-            active={activeItem === "leagues"}
+            name="ligaer"
+            active={activeItem === "ligaer"}
             onClick={this.handleItemClick}
           />
           <Menu.Item
-            name="colors"
-            active={activeItem === "colors"}
+            name="farger"
+            active={activeItem === "farger"}
             onClick={this.handleItemClick}
           />
         </Menu>

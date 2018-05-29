@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Form, Button, Message } from "semantic-ui-react";
 import { SketchPicker } from "react-color";
 
@@ -8,55 +9,45 @@ import FirebaseService from "../../services/FirebaseService";
 class NewColorForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      colorName: "",
-      colorNumber: 0,
-      colorHex: premierLeagueDefaultColors[0],
-      valid: false,
-      error: ""
-    };
-    this.service = new FirebaseService();
+
     this.saveColor = this.saveColor.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleColorChange = this.handleColorChange.bind(this);
   }
 
+  constructColorObject = (name, hex, number) => ({
+    color: name,
+    key: name,
+    text: name,
+    value: number,
+    hex
+  });
+
   saveColor = e => {
     e.preventDefault();
     const form = document.forms.colorForm;
     if (form.checkValidity()) {
-      const { colorName, colorHex, colorNumber } = this.state;
-      this.service
-        .addColor(colorHex, {
-          color: colorName,
-          key: colorName,
-          text: colorName,
-          value: parseInt(colorNumber, 10),
-          hex: colorHex
-        })
-        .then(data => {
-          this.setState({
-            colorName: "",
-            colorHex: "FFFFFF",
-            colorNumber: 0
-          });
-        })
-        .catch(error => {});
-      console.log("Save color to db");
+      const { color: { key, hex, value } } = this.props;
+      const colorObject = this.constructColorObject(key, hex, value);
+      const colorKey = hex.replace("#", "");
+      this.props.saveColor(colorKey, colorObject);
     }
   };
 
   handleChange = (e, { name, value }) => {
-    const valid = document.forms.colorForm.checkValidity();
-    this.setState({ [name]: value, valid });
+    const valid = this.formIsValid();
+    this.props.handleChange(name, value, valid);
   };
 
-  handleColorChange = (color, event) => {
-    this.setState({ colorHex: color.hex });
+  handleColorChange = color => {
+    const valid = this.formIsValid();
+    this.props.handleColorChange(color.hex, valid);
   };
+
+  formIsValid = () => document.forms.colorForm.checkValidity();
 
   render() {
-    const { colorName, colorNumber, colorHex, error } = this.state;
+    const { color: { key, value, hex }, error, valid } = this.props;
 
     return (
       <div>
@@ -70,41 +61,61 @@ class NewColorForm extends Component {
         )}
         <Form name="colorForm" onSubmit={this.saveColor}>
           <Form.Field>
-            <label htmlFor="colorName">Navn på farge</label>
+            <label htmlFor="key">Navn på farge</label>
             <Form.Input
               placeholder="Navn på farge"
               required
-              name="colorName"
+              name="key"
               onChange={this.handleChange}
-              value={colorName}
+              value={key}
             />
           </Form.Field>
           <Form.Field>
-            <label htmlFor="colorNumber">
-              Numerisk verdi (mappet mot grafikk)
-            </label>
+            <label htmlFor="value">Numerisk verdi (mappet mot grafikk)</label>
             <Form.Input
               type="number"
               required
-              name="colorNumber"
-              value={colorNumber}
+              name="value"
+              value={value}
               onChange={this.handleChange}
             />
           </Form.Field>
           <Form.Field>
-            <label htmlFor="colorHex">Farge</label>
+            <label htmlFor="hex">Farge</label>
             <SketchPicker
               presetColors={premierLeagueDefaultColors}
               onChange={this.handleColorChange}
-              color={colorHex}
+              color={hex}
             />
           </Form.Field>
-          <Button disabled={!this.state.valid} type="submit">
+          <Button color="green" disabled={!valid} type="submit">
             Lagre farge
+          </Button>
+          <Button color="teal" onClick={this.props.resetForm}>
+            Resett form
           </Button>
         </Form>
       </div>
     );
   }
 }
+NewColorForm.propTypes = {
+  saveColor: PropTypes.func.isRequired,
+  color: PropTypes.shape({
+    key: PropTypes.string.isRequired,
+    hex: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired
+  }).isRequired,
+  handleColorChange: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  error: PropTypes.shape({
+    message: PropTypes.string.isRequired
+  }),
+  valid: PropTypes.bool.isRequired,
+  resetForm: PropTypes.func.isRequired
+};
+
+NewColorForm.defaultProps = {
+  error: undefined
+};
 export default NewColorForm;
