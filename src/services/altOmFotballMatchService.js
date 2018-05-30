@@ -1,5 +1,8 @@
 import axios from "axios";
 import channels from "../Data/channels";
+import FirebaseService from "../services/FirebaseService";
+
+const service = new FirebaseService();
 
 const AltOmFotballMatchService = {
   getMatches: (tournamentId, seasonId) => {
@@ -39,11 +42,17 @@ const AltOmFotballMatchService = {
   getChannelName: channelId => {
     if (!channelId) throw new Error(`Please provide a channelId`);
 
-    const channelFound = channels.find(channel => channel.value === channelId);
-    if (!channelFound)
-      throw new Error(`Channel not found for ID: ${channelId}`);
+    return new Promise(resolve => {
+      service.getChannels(data => {
+        const channelFound = data.find(
+          channel => parseInt(channel.value, 10) === channelId
+        );
+        if (!channelFound)
+          throw new Error(`Channel not found for ID: ${channelId}`);
 
-    return channelFound.name;
+        resolve(channelFound);
+      });
+    });
   }
 };
 

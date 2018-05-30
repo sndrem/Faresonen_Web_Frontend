@@ -23,11 +23,14 @@ const LiveTeasePreview = props => {
           {props.channels && props.channels.length > 0 ? (
             <p>
               Kanal(er):{" "}
-              {props.channels
-                .map(channel =>
+              {Promise.all(
+                props.channels.map(channel =>
                   altOmFotballMatchService.getChannelName(channel)
                 )
-                .join(",")}
+              ).then(channels => {
+                console.log(channels);
+                channels.map(channel => channel.name).join(",");
+              })}
             </p>
           ) : (
             ""
