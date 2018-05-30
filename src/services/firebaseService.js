@@ -74,6 +74,29 @@ class FirebaseService {
         .catch(err => reject(err));
     });
 
+  addChannel = channel => {
+    return new Promise((resolve, reject) => {
+      this.database
+        .ref(
+          `channels/${this.removeFirebaseSpecializedCharacters(
+            channel.name,
+            "."
+          )}`
+        )
+        .set(channel)
+        .then(() => resolve({ message: "Kanal lagret i database" }))
+        .catch(error =>
+          reject({ message: "Kanal kunne ikke lagres i databasen", error })
+        );
+    });
+  };
+
+  getChannels = cb => {
+    this.database.ref("channels").on("value", snapshot => {
+      cb(this.mapLeaguesToList(snapshot.val()));
+    });
+  };
+
   mapLeaguesToList = data => {
     if (!data) return [];
     return Object.keys(data).map(key => {

@@ -3,6 +3,7 @@ import { Button, Segment, Divider, Menu } from "semantic-ui-react";
 import firebaseConfig from "../../databaseConfig/firebaseConfig";
 import LeaguesContainer from "./Containers/LeaguesContainer";
 import ColorContainer from "./Containers/ColorContainer";
+import ChannelContainer from "./Containers/ChannelContainer";
 
 class LeagueAdmin extends Component {
   constructor(props) {
@@ -12,7 +13,8 @@ class LeagueAdmin extends Component {
       activeItem: "ligaer",
       menuComponents: {
         ligaer: <LeaguesContainer />,
-        farger: <ColorContainer />
+        farger: <ColorContainer />,
+        kanaler: <ChannelContainer />
       }
     };
     this.logOut = this.logOut.bind(this);
@@ -49,6 +51,11 @@ class LeagueAdmin extends Component {
           <Menu.Item
             name="farger"
             active={activeItem === "farger"}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Item
+            name="kanaler"
+            active={activeItem === "kanaler"}
             onClick={this.handleItemClick}
           />
         </Menu>
