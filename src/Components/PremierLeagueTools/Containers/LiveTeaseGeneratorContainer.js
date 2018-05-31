@@ -5,8 +5,8 @@ import LiveTeasePreview from "../LiveTeasePreview";
 import leagues from "../../../Data/leagues";
 import badges from "../../../Data/badgePaths";
 import channels from "../../../Data/channels";
-import colors from "../../../Data/colors";
 import altOmFotballMatchService from "../../../services/altOmFotballMatchService";
+import FirebaseService from "../../../services/FirebaseService";
 
 class LiveTeaseGeneratorContainer extends Component {
   constructor(props) {
@@ -17,17 +17,22 @@ class LiveTeaseGeneratorContainer extends Component {
       matchTimeText: "",
       matchTime: "",
       channels: [5, 10],
-      colorHome: colors[0],
-      colorAway: colors[2],
+      allChannels: [],
+      colorHome: {},
+      colorAway: {},
       script: "",
       loading: true,
       copied: false,
-      error: ""
+      error: "",
+      leagueSelected: 0
     };
+    this.service = new FirebaseService();
   }
 
   componentDidMount() {
-    const { tournamentId, seasonId } = leagues.leagues[2];
+    const { tournamentId, seasonId } = leagues.leagues[
+      this.state.leagueSelected
+    ];
     if (!tournamentId || !seasonId) {
       console.log(
         `Det er ingen turneringsID eller sesongID tilgjengelig for Premier League`
@@ -35,7 +40,12 @@ class LiveTeaseGeneratorContainer extends Component {
       this.setErrorLoadingState();
     }
     this.getMatches(tournamentId, seasonId);
+    this.getChannels();
   }
+
+  getChannels = () => {
+    this.service.getChannels(this.processChannels);
+  };
 
   setErrorLoadingState = () =>
     this.setState({
@@ -110,8 +120,8 @@ class LiveTeaseGeneratorContainer extends Component {
       badge => badge.team.toLowerCase() === team.toLowerCase()
     );
     if (badgeFound) return badgeFound;
-
-    throw new Error(`Could not find badge for ${team}`);
+    return { path: "IKKE RIKTIG BADGE" };
+    // throw new Error(`Could not find badge for ${team}`);
   };
 
   getChannelName = channel => {
@@ -154,10 +164,10 @@ class LiveTeaseGeneratorContainer extends Component {
 
     return `*SUPER Kamp_Promo_v2 ${homeTeam}
 ${homeBadge.path}
-${this.state.colorHome.value}
+${this.state.colorHome.value ? this.state.colorHome.value : "FARGE IKKE VALGT"}
 ${awayTeam}
 ${awayBadge.path}
-${this.state.colorAway.value}
+${this.state.colorAway.value ? this.state.colorAway.value : "FARGE IKKE VALGT"}
 ${text.trim()} ${time.trim()}
 ${this.formatChannels(tvChannels, text.trim())}
 PREMIER LEAGUE <00:02-00:15`;
@@ -181,6 +191,7 @@ PREMIER LEAGUE <00:02-00:15`;
         matchTimeText={this.state.matchTimeText}
         matchTime={this.state.matchTime}
         channels={this.state.channels}
+        allChannels={this.state.allChannels}
         script={script}
         awayColor={this.state.colorAway}
         homeColor={this.state.colorHome}
@@ -188,8 +199,10 @@ PREMIER LEAGUE <00:02-00:15`;
     </Segment>
   );
 
+  processChannels = allChannels => this.setState({ allChannels });
+
   render() {
-    if (this.state.data.match.length === 0) {
+    if (this.state.data.match.length === 0 && !this.state.loading) {
       return <Message info>Ingen kamper tilgjengelig</Message>;
     }
     if (this.state.error) {

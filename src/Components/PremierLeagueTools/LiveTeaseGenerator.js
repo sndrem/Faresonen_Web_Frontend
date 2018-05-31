@@ -4,7 +4,7 @@ import { Message, Dropdown } from "semantic-ui-react";
 import moment from "moment-timezone";
 import channels from "../../Data/channels";
 import kickOfTexts from "../../Data/kickOfTexts";
-import colors from "../../Data/colors";
+import FirebaseService from "../../services/FirebaseService";
 import "./LiveTeaseGenerator.css";
 
 class LiveTeaseGenerator extends Component {
@@ -13,13 +13,21 @@ class LiveTeaseGenerator extends Component {
     this.state = {
       channels,
       times: [],
-      colors
+      colors: []
     };
+    this.service = new FirebaseService();
   }
 
   componentDidMount() {
     this.createTimes();
+    this.getColors();
   }
+
+  getColors = () => {
+    this.service.getColors(colors => {
+      this.setState({ colors });
+    });
+  };
 
   handleMatchChange = (event, { value }) => {
     this.props.setSelectedMatch(value);
@@ -65,7 +73,7 @@ class LiveTeaseGenerator extends Component {
   };
 
   handleColorChange = (value, home) => {
-    const color = this.findColor(colors, value);
+    const color = this.findColor(this.state.colors, value);
 
     if (home) {
       this.props.setHomeColor(color);

@@ -1,5 +1,4 @@
 import axios from "axios";
-import channels from "../Data/channels";
 
 const AltOmFotballMatchService = {
   getMatches: (tournamentId, seasonId) => {
@@ -36,10 +35,14 @@ const AltOmFotballMatchService = {
     return name;
   },
 
-  getChannelName: channelId => {
+  getChannelName: (allChannels, channelId) => {
+    if (!allChannels) throw new Error("Please provide a list of channels");
+    if (allChannels.length === 0) return "Laster... ";
     if (!channelId) throw new Error(`Please provide a channelId`);
 
-    const channelFound = channels.find(channel => channel.value === channelId);
+    const channelFound = allChannels.find(
+      channel => parseInt(channel.value, 10) === channelId
+    );
     if (!channelFound)
       throw new Error(`Channel not found for ID: ${channelId}`);
 

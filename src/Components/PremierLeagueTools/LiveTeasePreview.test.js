@@ -11,6 +11,10 @@ describe("<LiveTeasePreview />", () => {
         matchTimeText="Avspark kl."
         matchTime="21.00"
         channels={[5]}
+        allChannels={[
+          { name: "TV 2", value: 1 },
+          { name: "TV 2 Sport Premium", value: 5 }
+        ]}
         script="S18 5"
         awayColor={{
           text: "Rød",
@@ -29,6 +33,10 @@ describe("<LiveTeasePreview />", () => {
         matchTimeText="Avspark kl."
         matchTime="21.00"
         channels={[5]}
+        allChannels={[
+          { name: "TV 2", value: 1 },
+          { name: "TV 2 Sport Premium", value: 5 }
+        ]}
         script="S18 5"
       />
     );

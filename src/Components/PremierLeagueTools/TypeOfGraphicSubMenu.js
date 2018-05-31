@@ -3,14 +3,6 @@ import { Menu } from "semantic-ui-react";
 import PropTypes from "prop-types";
 
 class TypeOfGraphicSubMenu extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: {},
-      loading: true
-    };
-  }
-
   handleItemClick = (event, props) => {
     this.props.updateActiveItem(props.name);
   };
