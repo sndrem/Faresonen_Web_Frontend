@@ -19,5 +19,8 @@ export default {
     if (!url)
       throw new Error(`You must specify a url to get the active season`);
     return axios.get(url);
+  },
+  getActiveSeasonNumber(url) {
+    return url.match(/\d+/gm)[1];
   }
 };

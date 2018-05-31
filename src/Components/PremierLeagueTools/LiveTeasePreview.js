@@ -70,7 +70,7 @@ LiveTeasePreview.propTypes = {
   allChannels: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
-      value: PropTypes.number.isRequired
+      value: PropTypes.string.isRequired
     })
   ).isRequired,
   script: PropTypes.string.isRequired,
