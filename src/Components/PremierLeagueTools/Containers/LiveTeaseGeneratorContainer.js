@@ -23,13 +23,16 @@ class LiveTeaseGeneratorContainer extends Component {
       script: "",
       loading: true,
       copied: false,
-      error: ""
+      error: "",
+      leagueSelected: 0
     };
     this.service = new FirebaseService();
   }
 
   componentDidMount() {
-    const { tournamentId, seasonId } = leagues.leagues[0];
+    const { tournamentId, seasonId } = leagues.leagues[
+      this.state.leagueSelected
+    ];
     if (!tournamentId || !seasonId) {
       console.log(
         `Det er ingen turneringsID eller sesongID tilgjengelig for Premier League`
@@ -161,10 +164,10 @@ class LiveTeaseGeneratorContainer extends Component {
 
     return `*SUPER Kamp_Promo_v2 ${homeTeam}
 ${homeBadge.path}
-${this.state.colorHome.value}
+${this.state.colorHome.value ? this.state.colorHome.value : "FARGE IKKE VALGT"}
 ${awayTeam}
 ${awayBadge.path}
-${this.state.colorAway.value}
+${this.state.colorAway.value ? this.state.colorAway.value : "FARGE IKKE VALGT"}
 ${text.trim()} ${time.trim()}
 ${this.formatChannels(tvChannels, text.trim())}
 PREMIER LEAGUE <00:02-00:15`;
@@ -199,7 +202,7 @@ PREMIER LEAGUE <00:02-00:15`;
   processChannels = allChannels => this.setState({ allChannels });
 
   render() {
-    if (this.state.data.match.length === 0) {
+    if (this.state.data.match.length === 0 && !this.state.loading) {
       return <Message info>Ingen kamper tilgjengelig</Message>;
     }
     if (this.state.error) {
