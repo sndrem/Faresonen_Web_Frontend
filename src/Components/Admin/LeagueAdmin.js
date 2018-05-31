@@ -38,10 +38,7 @@ class LeagueAdmin extends Component {
     const menuComponent = this.getMenuComponent(activeItem);
     return (
       <Segment>
-        <p>
-          Dette er admin-sidene til Faresonen. Her kan du legge til og fjerne
-          ligaer.
-        </p>
+        <p>Dette er admin-sidene til Faresonen.</p>
         <Menu tabular>
           <Menu.Item
             name="ligaer"

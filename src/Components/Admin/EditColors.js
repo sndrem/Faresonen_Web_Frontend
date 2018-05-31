@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import { Grid, Icon } from "semantic-ui-react";
 
 const EditColors = ({ colors, loading, editColor, deleteColor }) => {
+  if (loading) {
+    return <p>Henter kanaler...</p>;
+  }
   return (
     <Grid columns={2}>
       {colors

@@ -100,6 +100,7 @@ class ColorContainer extends Component {
 
   render() {
     const { colors, selectedColor, loading, valid } = this.state;
+
     return (
       <Grid columns={2}>
         <Grid.Column>

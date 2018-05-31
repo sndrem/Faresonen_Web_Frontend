@@ -44,7 +44,7 @@ const AltOmFotballMatchService = {
       channel => parseInt(channel.value, 10) === channelId
     );
     if (!channelFound)
-      throw new Error(`Channel not found for ID: ${channelId}`);
+      return `Kanal for ID: ${channelId} ble ikke funnet. Du kan legge til en kanal med den ID'en i admin-menyen`;
 
     return channelFound.name;
   }
