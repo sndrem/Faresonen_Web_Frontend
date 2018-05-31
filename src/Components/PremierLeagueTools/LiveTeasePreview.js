@@ -67,7 +67,12 @@ LiveTeasePreview.propTypes = {
   matchTimeText: PropTypes.string.isRequired,
   matchTime: PropTypes.string.isRequired,
   channels: PropTypes.arrayOf(PropTypes.number).isRequired,
-  allChannels: PropTypes.arrayOf(PropTypes.number).isRequired,
+  allChannels: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      value: PropTypes.number.isRequired
+    })
+  ).isRequired,
   script: PropTypes.string.isRequired,
   awayColor: PropTypes.shape({
     text: PropTypes.string,
