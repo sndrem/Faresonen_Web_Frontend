@@ -6,6 +6,7 @@ import leagues from "../../../Data/leagues";
 import badges from "../../../Data/badgePaths";
 import channels from "../../../Data/channels";
 import altOmFotballMatchService from "../../../services/altOmFotballMatchService";
+import FirebaseService from "../../../services/FirebaseService";
 
 class LiveTeaseGeneratorContainer extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class LiveTeaseGeneratorContainer extends Component {
       matchTimeText: "",
       matchTime: "",
       channels: [5, 10],
+      allChannels: [],
       colorHome: {},
       colorAway: {},
       script: "",
@@ -23,6 +25,7 @@ class LiveTeaseGeneratorContainer extends Component {
       copied: false,
       error: ""
     };
+    this.service = new FirebaseService();
   }
 
   componentDidMount() {
@@ -34,7 +37,12 @@ class LiveTeaseGeneratorContainer extends Component {
       this.setErrorLoadingState();
     }
     this.getMatches(tournamentId, seasonId);
+    this.getChannels();
   }
+
+  getChannels = () => {
+    this.service.getChannels(this.processChannels);
+  };
 
   setErrorLoadingState = () =>
     this.setState({
@@ -180,12 +188,15 @@ PREMIER LEAGUE <00:02-00:15`;
         matchTimeText={this.state.matchTimeText}
         matchTime={this.state.matchTime}
         channels={this.state.channels}
+        allChannels={this.state.allChannels}
         script={script}
         awayColor={this.state.colorAway}
         homeColor={this.state.colorHome}
       />
     </Segment>
   );
+
+  processChannels = allChannels => this.setState({ allChannels });
 
   render() {
     if (this.state.data.match.length === 0) {

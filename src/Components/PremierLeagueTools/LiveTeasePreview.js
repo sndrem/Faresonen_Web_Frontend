@@ -4,9 +4,6 @@ import { TextArea, Grid, Header, Segment } from "semantic-ui-react";
 import altOmFotballMatchService from "../../services/altOmFotballMatchService";
 
 const LiveTeasePreview = props => {
-  const colorStyles = {
-    border: "1px solid lightgray"
-  };
   return (
     <Segment>
       <Header as="h3">Preview</Header>
@@ -23,14 +20,14 @@ const LiveTeasePreview = props => {
           {props.channels && props.channels.length > 0 ? (
             <p>
               Kanal(er):{" "}
-              {Promise.all(
-                props.channels.map(channel =>
-                  altOmFotballMatchService.getChannelName(channel)
+              {props.channels
+                .map(channel =>
+                  altOmFotballMatchService.getChannelName(
+                    props.allChannels,
+                    channel
+                  )
                 )
-              ).then(channels => {
-                console.log(channels);
-                channels.map(channel => channel.name).join(",");
-              })}
+                .join(",")}
             </p>
           ) : (
             ""
@@ -70,6 +67,7 @@ LiveTeasePreview.propTypes = {
   matchTimeText: PropTypes.string.isRequired,
   matchTime: PropTypes.string.isRequired,
   channels: PropTypes.arrayOf(PropTypes.number).isRequired,
+  allChannels: PropTypes.arrayOf(PropTypes.number).isRequired,
   script: PropTypes.string.isRequired,
   awayColor: PropTypes.shape({
     text: PropTypes.string,

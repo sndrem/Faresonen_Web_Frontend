@@ -4,6 +4,7 @@ import LiveTeaseGenerator from "../LiveTeaseGenerator";
 import altOmFotballMatchService from "../../../services/altOmFotballMatchService";
 import leagues from "../../../Data/leagues";
 import LiveTeasePreview from "../LiveTeasePreview";
+import FirebaseService from "../../../services/FirebaseService";
 
 class ProgramTeaseGeneratorContainer extends Component {
   constructor(props) {
@@ -12,23 +13,30 @@ class ProgramTeaseGeneratorContainer extends Component {
       data: {
         matches: [],
         channels: [5],
+        allChannels: [],
         matchTimeText: "",
         matchTime: "",
         selectedMatch: ""
       },
       loading: true
     };
+    this.service = new FirebaseService();
   }
 
   componentDidMount() {
-    const { tournamentId, seasonId } = leagues.leagues[2];
+    const { tournamentId, seasonId } = leagues.leagues[0];
     if (!tournamentId || !seasonId) {
       console.log(
         `Det er ingen turneringsID eller sesongID tilgjengelig for Premier League`
       );
     }
     this.getMatches(tournamentId, seasonId);
+    this.getChannels();
   }
+
+  getChannels = () => {
+    this.service.getChannels(this.processChannels);
+  };
 
   setMatchTimeText = matchTimeText =>
     this.setState({
@@ -105,6 +113,15 @@ ${home || "Hjemmelag ikke valgt"} - ${away ||
       "Bortelag ikke valgt"}<00:01-00:15`;
   };
 
+  processChannels = allChannels =>
+    this.setState({
+      ...this.state,
+      data: {
+        ...this.state.data,
+        allChannels
+      }
+    });
+
   render() {
     const script = this.createScript();
     const {
@@ -112,7 +129,8 @@ ${home || "Hjemmelag ikke valgt"} - ${away ||
       channels,
       selectedMatch,
       matchTimeText,
-      matchTime
+      matchTime,
+      allChannels
     } = this.state.data;
     return (
       <Segment>
@@ -130,6 +148,7 @@ ${home || "Hjemmelag ikke valgt"} - ${away ||
           matchTimeText={matchTimeText}
           matchTime={matchTime}
           channels={channels}
+          allChannels={allChannels}
           script={script}
         />
       </Segment>
