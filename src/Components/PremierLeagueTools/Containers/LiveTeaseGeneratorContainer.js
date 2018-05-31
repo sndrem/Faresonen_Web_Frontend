@@ -4,8 +4,8 @@ import LiveTeaseGenerator from "../LiveTeaseGenerator";
 import LiveTeasePreview from "../LiveTeasePreview";
 import leagues from "../../../Data/leagues";
 import badges from "../../../Data/badgePaths";
-import channels from "../../../Data/channels";
 import altOmFotballMatchService from "../../../services/altOmFotballMatchService";
+import altOmFotballLeagueService from "../../../services/altOmFotballLeagueService";
 import FirebaseService from "../../../services/FirebaseService";
 
 class LiveTeaseGeneratorContainer extends Component {
@@ -24,24 +24,34 @@ class LiveTeaseGeneratorContainer extends Component {
       loading: true,
       copied: false,
       error: "",
-      leagueSelected: 0
+      leagueSelected: {
+        tournamentId: "",
+        seasonId: ""
+      }
     };
     this.service = new FirebaseService();
   }
 
   componentDidMount() {
-    const { tournamentId, seasonId } = leagues.leagues[
-      this.state.leagueSelected
-    ];
-    if (!tournamentId || !seasonId) {
-      console.log(
-        `Det er ingen turneringsID eller sesongID tilgjengelig for Premier League`
-      );
-      this.setErrorLoadingState();
-    }
-    this.getMatches(tournamentId, seasonId);
+    this.getLeagues();
     this.getChannels();
   }
+
+  getLeagues = () => {
+    this.service.getLeagues(leagues => {
+      const league = leagues[0];
+      const tournamentId = league.id;
+      const seasonId = altOmFotballLeagueService.getActiveSeasonNumber(
+        league.activeseason["@uri"]
+      );
+      if (!tournamentId || !seasonId) {
+        console.log(`Det er ingen turneringsID eller sesongID tilgjengelig.`);
+        this.setErrorLoadingState();
+        return;
+      }
+      this.getMatches(tournamentId, seasonId);
+    });
+  };
 
   getChannels = () => {
     this.service.getChannels(this.processChannels);
@@ -125,7 +135,7 @@ class LiveTeaseGeneratorContainer extends Component {
   };
 
   getChannelName = channel => {
-    const found = channels.find(ch => ch.value === channel);
+    const found = this.state.allChannels.find(ch => ch.value === channel);
     if (found) return found.name;
     throw new Error(`Could not find a channel number for ${channel}`);
   };
