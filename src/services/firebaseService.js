@@ -77,12 +77,7 @@ class FirebaseService {
   addChannel = channel => {
     return new Promise((resolve, reject) => {
       this.database
-        .ref(
-          `channels/${this.removeFirebaseSpecializedCharacters(
-            channel.name,
-            "."
-          )}`
-        )
+        .ref(`channels/${channel.value}`)
         .set(channel)
         .then(() => resolve({ message: "Kanal lagret i database" }))
         .catch(error =>
@@ -90,6 +85,15 @@ class FirebaseService {
         );
     });
   };
+
+  removeChannel = key =>
+    new Promise((resolve, reject) => {
+      this.database
+        .ref(`channels/${key}`)
+        .remove()
+        .then(data => resolve(data))
+        .catch(err => reject(err));
+    });
 
   getChannels = cb => {
     this.database.ref("channels").on("value", snapshot => {

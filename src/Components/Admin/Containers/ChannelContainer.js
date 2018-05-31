@@ -20,6 +20,8 @@ class ChannelContainer extends Component {
     this.service = new FirebaseService();
 
     this.addChannel = this.addChannel.bind(this);
+    this.deleteChannel = this.deleteChannel.bind(this);
+    this.editChannel = this.editChannel.bind(this);
     this.resetForm = this.resetForm.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -32,11 +34,17 @@ class ChannelContainer extends Component {
     this.service.getChannels(this.processChannels);
   };
 
-  processChannels = channels => this.setState({ ...this.state, channels });
+  processChannels = channels =>
+    this.setState({
+      ...this.state,
+      channels: this.sortChannels(channels),
+      loading: false
+    });
+
+  sortChannels = channels =>
+    channels.sort((a, b) => parseInt(a.value, 10) - parseInt(b.value, 10));
 
   addChannel = () => {
-    console.log("Adding channel");
-    console.log(this.state.selectedChannel);
     this.service.addChannel(this.state.selectedChannel).then(data => {
       this.setState({ message: data.message });
       this.resetForm();
@@ -63,8 +71,20 @@ class ChannelContainer extends Component {
       valid: false
     });
 
+  editChannel = selectedChannel =>
+    this.setState({
+      ...this.state,
+      selectedChannel,
+      valid: true
+    });
+
+  deleteChannel = channelId => {
+    if (!channelId) throw new Error("Cannot delete a channel without a key");
+    this.service.removeChannel(channelId);
+  };
+
   render() {
-    const { selectedChannel, valid, message, channels } = this.state;
+    const { selectedChannel, valid, message, channels, loading } = this.state;
     return (
       <Grid columns={2}>
         <Grid.Column>
@@ -80,7 +100,12 @@ class ChannelContainer extends Component {
         </Grid.Column>
         <Grid.Column>
           <Header as="h3">Rediger kanaler</Header>
-          <EditChannels channels={channels} />
+          <EditChannels
+            channels={channels}
+            editChannel={this.editChannel}
+            deleteChannel={this.deleteChannel}
+            loading={loading}
+          />
         </Grid.Column>
       </Grid>
     );

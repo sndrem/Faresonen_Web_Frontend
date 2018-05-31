@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Message, Segment } from "semantic-ui-react";
 import LiveTeaseGenerator from "../LiveTeaseGenerator";
 import LiveTeasePreview from "../LiveTeasePreview";
-import leagues from "../../../Data/leagues";
 import badges from "../../../Data/badgePaths";
 import altOmFotballMatchService from "../../../services/altOmFotballMatchService";
 import altOmFotballLeagueService from "../../../services/altOmFotballLeagueService";
@@ -38,8 +37,8 @@ class LiveTeaseGeneratorContainer extends Component {
   }
 
   getLeagues = () => {
-    this.service.getLeagues(leagues => {
-      const league = leagues[0];
+    this.service.getLeagues(databaseLeagues => {
+      const league = databaseLeagues[0];
       const tournamentId = league.id;
       const seasonId = altOmFotballLeagueService.getActiveSeasonNumber(
         league.activeseason["@uri"]
