@@ -35,8 +35,10 @@ const LiveTeasePreview = props => {
           {props.homeColor && (
             <p>
               Farge hjemmelag:{" "}
-              <span style={{ background: props.homeColor.hex }}>
-                {props.homeColor.text}
+              <span
+                style={{ background: props.findColor(props.homeColor).hex }}
+              >
+                {props.findColor(props.homeColor).text}
               </span>
             </p>
           )}
@@ -44,8 +46,10 @@ const LiveTeasePreview = props => {
           {props.awayColor && (
             <p>
               Farge bortelag:{" "}
-              <span style={{ background: props.awayColor.hex }}>
-                {props.awayColor.text}
+              <span
+                style={{ background: props.findColor(props.awayColor).hex }}
+              >
+                {props.findColor(props.awayColor).text}
               </span>
             </p>
           )}
@@ -67,6 +71,7 @@ LiveTeasePreview.propTypes = {
   matchTimeText: PropTypes.string.isRequired,
   matchTime: PropTypes.string.isRequired,
   channels: PropTypes.arrayOf(PropTypes.number).isRequired,
+  findColor: PropTypes.func.isRequired,
   allChannels: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
@@ -74,14 +79,8 @@ LiveTeasePreview.propTypes = {
     })
   ).isRequired,
   script: PropTypes.string.isRequired,
-  awayColor: PropTypes.shape({
-    text: PropTypes.string,
-    hex: PropTypes.string
-  }),
-  homeColor: PropTypes.shape({
-    text: PropTypes.string,
-    hex: PropTypes.string
-  })
+  awayColor: PropTypes.string.isRequired,
+  homeColor: PropTypes.string.isRequired
 };
 
 LiveTeasePreview.defaultProps = {

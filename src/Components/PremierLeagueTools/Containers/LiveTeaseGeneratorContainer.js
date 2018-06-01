@@ -17,11 +17,11 @@ class LiveTeaseGeneratorContainer extends Component {
       matchTime: "",
       channels: [5, 10],
       allChannels: [],
-      colorHome: {},
-      colorAway: {},
+      colorHome: "",
+      colorAway: "",
+      colors: [],
       script: "",
       loading: true,
-      copied: false,
       error: "",
       leagueSelected: {
         tournamentId: "",
@@ -29,12 +29,20 @@ class LiveTeaseGeneratorContainer extends Component {
       }
     };
     this.service = new FirebaseService();
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
     this.getLeagues();
     this.getChannels();
+    this.getColors();
   }
+
+  getColors = () => {
+    this.service.getColors(colors => {
+      this.setState({ colors });
+    });
+  };
 
   getLeagues = () => {
     this.service.getLeagues(databaseLeagues => {
@@ -83,46 +91,29 @@ class LiveTeaseGeneratorContainer extends Component {
       });
   };
 
-  setSelectedMatch = match => {
-    this.setState({
-      ...this.state,
-      selectedMatch: match
-    });
-  };
-
-  setMatchTimeText = matchTimeText => {
-    this.setState({
-      ...this.state,
-      matchTimeText
-    });
-  };
-
-  setMatchTime = matchTime => {
-    this.setState({
-      ...this.state,
-      matchTime
-    });
-  };
-
-  setChannels = setChannels =>
-    this.setState({
-      ...this.state,
-      channels: setChannels
-    });
-
-  setHomeColor = colorHome => {
-    this.setState({
-      ...this.state,
-      colorHome
-    });
-  };
-
-  setAwayColor = colorAway => {
-    this.setState({
-      ...this.state,
-      colorAway
-    });
-  };
+  getGenerator = (matches, script) => (
+    <Segment>
+      <LiveTeaseGenerator
+        matches={matches}
+        handleChange={this.handleChange}
+        defaultChannels={this.state.channels}
+        loading={this.state.loading}
+        colors={this.state.colors}
+        allChannels={this.state.allChannels}
+      />
+      <LiveTeasePreview
+        selectedMatch={this.state.selectedMatch}
+        matchTimeText={this.state.matchTimeText}
+        matchTime={this.state.matchTime}
+        channels={this.state.channels}
+        allChannels={this.state.allChannels}
+        script={script}
+        awayColor={this.state.colorAway}
+        homeColor={this.state.colorHome}
+        findColor={this.findColor}
+      />
+    </Segment>
+  );
 
   getBadgePath = team => {
     const badgeFound = badges.find(
@@ -139,7 +130,7 @@ class LiveTeaseGeneratorContainer extends Component {
     throw new Error(`Could not find a channel number for ${channel}`);
   };
 
-  formatName = name => name.replace("_", "");
+  getScriptColor = colorKey => this.findColor(this.state[colorKey]).value;
 
   formatChannels = (formattingChannels, text) => {
     let formattedChannels = [...formattingChannels];
@@ -173,40 +164,29 @@ class LiveTeaseGeneratorContainer extends Component {
 
     return `*SUPER Kamp_Promo_v2 ${homeTeam}
 ${homeBadge.path}
-${this.state.colorHome.value ? this.state.colorHome.value : "FARGE IKKE VALGT"}
+${this.getScriptColor("colorHome")}
 ${awayTeam}
 ${awayBadge.path}
-${this.state.colorAway.value ? this.state.colorAway.value : "FARGE IKKE VALGT"}
+${this.getScriptColor("colorAway")}
 ${text.trim()} ${time.trim()}
 ${this.formatChannels(tvChannels, text.trim())}
 PREMIER LEAGUE <00:02-00:15`;
   };
 
-  getGenerator = (matches, script) => (
-    <Segment>
-      <LiveTeaseGenerator
-        matches={matches}
-        setSelectedMatch={this.setSelectedMatch}
-        setMatchTimeText={this.setMatchTimeText}
-        setTime={this.setMatchTime}
-        setChannels={this.setChannels}
-        defaultChannels={this.state.channels}
-        setHomeColor={this.setHomeColor}
-        setAwayColor={this.setAwayColor}
-        loading={this.state.loading}
-      />
-      <LiveTeasePreview
-        selectedMatch={this.state.selectedMatch}
-        matchTimeText={this.state.matchTimeText}
-        matchTime={this.state.matchTime}
-        channels={this.state.channels}
-        allChannels={this.state.allChannels}
-        script={script}
-        awayColor={this.state.colorAway}
-        homeColor={this.state.colorHome}
-      />
-    </Segment>
-  );
+  formatName = name => name.replace("_", "");
+
+  findColor = value => {
+    const color = this.state.colors.find(c => c.value === value);
+    if (color) return color;
+    return { text: "FARGE IKKE FUNNET", hex: "", value: "FARGE IKKE FUNNET" };
+  };
+
+  handleChange = ({ name, value }) => {
+    this.setState({
+      ...this.state,
+      [name]: value
+    });
+  };
 
   processChannels = allChannels => this.setState({ allChannels });
 

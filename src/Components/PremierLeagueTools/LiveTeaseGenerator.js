@@ -2,46 +2,15 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Message, Dropdown } from "semantic-ui-react";
 import moment from "moment-timezone";
-import channels from "../../Data/channels";
 import kickOfTexts from "../../Data/kickOfTexts";
-import FirebaseService from "../../services/FirebaseService";
 import "./LiveTeaseGenerator.css";
 
 class LiveTeaseGenerator extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      channels,
-      times: [],
-      colors: []
-    };
-    this.service = new FirebaseService();
-  }
-
   componentDidMount() {
     this.createTimes();
-    this.getColors();
   }
 
-  getColors = () => {
-    this.service.getColors(colors => {
-      this.setState({ colors });
-    });
-  };
-
-  handleMatchChange = (event, { value }) => {
-    this.props.setSelectedMatch(value);
-  };
-
-  handleTimeTextChange = (event, { value }) => {
-    this.props.setMatchTimeText(value);
-  };
-
-  handleTimeChange = (event, { value }) => this.props.setTime(value);
-
-  handleChannelChange = (event, { value }) => {
-    this.props.setChannels(value);
-  };
+  handleChange = (event, props) => this.props.handleChange(props);
 
   createTimes = () => {
     const hours = 24;
@@ -50,7 +19,7 @@ class LiveTeaseGenerator extends Component {
     // eslint-disable-next-line
     for (let i = 0; i < hours; i++) {
       for (let y = 0; y < 60; y += minutes) {
-        const time = `${this.formatTime(i)}.${this.formatTime(y)}`;
+        const time = `${this.padTime(i)}.${this.padTime(y)}`;
         times.push({
           key: time,
           value: time,
@@ -58,29 +27,10 @@ class LiveTeaseGenerator extends Component {
         });
       }
     }
-    this.setState({
-      ...this.state,
-      times
-    });
+    return times;
   };
 
-  formatTime = time => (time < 10 ? `0${time}` : time.toString());
-
-  findColor = (colorList, value) => {
-    const color = colorList.find(c => c.value === value);
-    if (color) return color;
-    throw new Error(`Could not find correct color for value ${value}`);
-  };
-
-  handleColorChange = (value, home) => {
-    const color = this.findColor(this.state.colors, value);
-
-    if (home) {
-      this.props.setHomeColor(color);
-      return;
-    }
-    this.props.setAwayColor(color);
-  };
+  padTime = time => (time < 10 ? `0${time}` : time.toString());
 
   mapMatches = matches => {
     moment.tz.setDefault("Europe/Oslo");
@@ -92,6 +42,13 @@ class LiveTeaseGenerator extends Component {
       )} - ${moment(match.starttime).format("DD.MM.YYYY [Kl.] HH:mm")}`
     }));
   };
+
+  mapChannels = channels =>
+    channels.map(channel => ({
+      key: channel.value,
+      value: parseInt(channel.value, 10),
+      text: channel.name
+    }));
 
   render() {
     return (
@@ -108,7 +65,8 @@ class LiveTeaseGenerator extends Component {
           selection
           loading={this.props.loading}
           options={this.mapMatches(this.props.matches)}
-          onChange={this.handleMatchChange}
+          onChange={this.handleChange}
+          name="selectedMatch"
         />
         <Dropdown
           className="dropdown"
@@ -116,32 +74,36 @@ class LiveTeaseGenerator extends Component {
           search
           selection
           options={kickOfTexts}
-          onChange={this.handleTimeTextChange}
+          onChange={this.handleChange}
+          name="matchTimeText"
         />
         <Dropdown
           className="dropdown"
           placeholder="Velg klokkeslett"
           search
           selection
-          options={this.state.times}
-          onChange={this.handleTimeChange}
+          options={this.createTimes()}
+          onChange={this.handleChange}
+          name="matchTime"
         />
         <Dropdown
           className="dropdown"
           placeholder="Velg farge hjemmelag"
           search
           selection
-          options={this.state.colors}
-          onChange={(event, { value }) => this.handleColorChange(value, true)}
+          options={this.props.colors}
+          onChange={this.handleChange}
+          name="colorHome"
         />
 
         <Dropdown
           className="dropdown"
           placeholder="Velg farge bortelag"
           search
-          options={this.state.colors}
+          options={this.props.colors}
           selection
-          onChange={(event, { value }) => this.handleColorChange(value, false)}
+          onChange={this.handleChange}
+          name="colorAway"
         />
         <Dropdown
           className="dropdown"
@@ -151,8 +113,9 @@ class LiveTeaseGenerator extends Component {
           selection
           multiple
           defaultValue={this.props.defaultChannels}
-          onChange={this.handleChannelChange}
-          options={this.state.channels}
+          onChange={this.handleChange}
+          options={this.mapChannels(this.props.allChannels)}
+          name="channels"
         />
       </div>
     );
@@ -166,14 +129,24 @@ LiveTeaseGenerator.propTypes = {
       starttime: PropTypes.string.isRequired
     })
   ).isRequired,
-  setMatchTimeText: PropTypes.func.isRequired,
-  setTime: PropTypes.func.isRequired,
-  setSelectedMatch: PropTypes.func.isRequired,
-  setChannels: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
   defaultChannels: PropTypes.arrayOf(PropTypes.number).isRequired,
-  setHomeColor: PropTypes.func,
-  setAwayColor: PropTypes.func,
-  loading: PropTypes.bool.isRequired
+  allChannels: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      value: PropTypes.string.isRequired
+    })
+  ).isRequired,
+  loading: PropTypes.bool.isRequired,
+  colors: PropTypes.arrayOf(
+    PropTypes.shape({
+      color: PropTypes.string.isRequired,
+      hex: PropTypes.string.isRequired,
+      key: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+      value: PropTypes.string.isRequired
+    })
+  ).isRequired
 };
 
 LiveTeaseGenerator.defaultProps = {
