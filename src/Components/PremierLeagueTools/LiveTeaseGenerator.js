@@ -86,25 +86,31 @@ class LiveTeaseGenerator extends Component {
           onChange={this.handleChange}
           name="matchTime"
         />
-        <Dropdown
-          className="dropdown"
-          placeholder="Velg farge hjemmelag"
-          search
-          selection
-          options={this.props.colors}
-          onChange={this.handleChange}
-          name="colorHome"
-        />
+        {this.props.colors.length > 0 ? (
+          <div>
+            <Dropdown
+              className="dropdown"
+              placeholder="Velg farge hjemmelag"
+              search
+              selection
+              options={this.props.colors}
+              onChange={this.handleChange}
+              name="colorHome"
+            />
 
-        <Dropdown
-          className="dropdown"
-          placeholder="Velg farge bortelag"
-          search
-          options={this.props.colors}
-          selection
-          onChange={this.handleChange}
-          name="colorAway"
-        />
+            <Dropdown
+              className="dropdown"
+              placeholder="Velg farge bortelag"
+              search
+              options={this.props.colors}
+              selection
+              onChange={this.handleChange}
+              name="colorAway"
+            />
+          </div>
+        ) : (
+          ""
+        )}
         <Dropdown
           className="dropdown"
           placeholder="Velg kanal"
@@ -146,13 +152,13 @@ LiveTeaseGenerator.propTypes = {
       text: PropTypes.string.isRequired,
       value: PropTypes.string.isRequired
     })
-  ).isRequired
+  )
 };
 
 LiveTeaseGenerator.defaultProps = {
   error: "",
-  setHomeColor: () => {},
-  setAwayColor: () => {}
+  colors: [],
+  findColor: () => {}
 };
 
 export default LiveTeaseGenerator;

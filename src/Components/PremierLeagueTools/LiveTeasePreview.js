@@ -71,7 +71,7 @@ LiveTeasePreview.propTypes = {
   matchTimeText: PropTypes.string.isRequired,
   matchTime: PropTypes.string.isRequired,
   channels: PropTypes.arrayOf(PropTypes.number).isRequired,
-  findColor: PropTypes.func.isRequired,
+  findColor: PropTypes.func,
   allChannels: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
@@ -79,13 +79,14 @@ LiveTeasePreview.propTypes = {
     })
   ).isRequired,
   script: PropTypes.string.isRequired,
-  awayColor: PropTypes.string.isRequired,
-  homeColor: PropTypes.string.isRequired
+  awayColor: PropTypes.string,
+  homeColor: PropTypes.string
 };
 
 LiveTeasePreview.defaultProps = {
   awayColor: null,
-  homeColor: null
+  homeColor: null,
+  findColor: () => {}
 };
 
 export default LiveTeasePreview;

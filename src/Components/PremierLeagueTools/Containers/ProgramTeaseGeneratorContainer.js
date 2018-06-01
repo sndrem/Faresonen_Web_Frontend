@@ -21,9 +21,11 @@ class ProgramTeaseGeneratorContainer extends Component {
       loading: true
     };
     this.service = new FirebaseService();
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
+    // TODO Remove hardcoded leagues
     const { tournamentId, seasonId } = leagues.leagues[0];
     if (!tournamentId || !seasonId) {
       console.log(
@@ -37,42 +39,6 @@ class ProgramTeaseGeneratorContainer extends Component {
   getChannels = () => {
     this.service.getChannels(this.processChannels);
   };
-
-  setMatchTimeText = matchTimeText =>
-    this.setState({
-      ...this.state,
-      data: {
-        ...this.state.data,
-        matchTimeText
-      }
-    });
-
-  setTime = matchTime =>
-    this.setState({
-      ...this.state,
-      data: {
-        ...this.state.data,
-        matchTime
-      }
-    });
-
-  setSelectedMatch = selectedMatch =>
-    this.setState({
-      ...this.state,
-      data: {
-        ...this.state.data,
-        selectedMatch
-      }
-    });
-
-  setChannels = channels =>
-    this.setState({
-      ...this.state,
-      data: {
-        ...this.state.data,
-        channels
-      }
-    });
 
   getMatches = (tournamentId, seasonId) => {
     altOmFotballMatchService
@@ -113,6 +79,15 @@ ${home || "Hjemmelag ikke valgt"} - ${away ||
       "Bortelag ikke valgt"}<00:01-00:15`;
   };
 
+  handleChange = ({ value, name }) =>
+    this.setState({
+      ...this.state,
+      data: {
+        ...this.state.data,
+        [name]: value
+      }
+    });
+
   processChannels = allChannels =>
     this.setState({
       ...this.state,
@@ -137,11 +112,9 @@ ${home || "Hjemmelag ikke valgt"} - ${away ||
         <LiveTeaseGenerator
           matches={matches}
           defaultChannels={channels}
+          allChannels={allChannels}
+          handleChange={this.handleChange}
           loading={this.state.loading}
-          setMatchTimeText={this.setMatchTimeText}
-          setTime={this.setTime}
-          setSelectedMatch={this.setSelectedMatch}
-          setChannels={this.setChannels}
         />
         <LiveTeasePreview
           selectedMatch={selectedMatch}
