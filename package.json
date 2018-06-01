@@ -24,7 +24,7 @@
   },
   "scripts": {
     "start":
-      "concurrently \"nodemon --exec babel-node ../faresonen_api/bin/www\" \"react-scripts start\"",
+      "concurrently -k \"nodemon --exec babel-node ../faresonen_api/bin/www\" \"react-scripts start\"",
     "start_front": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
