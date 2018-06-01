@@ -1,5 +1,4 @@
 import React from "react";
-import { shallow } from "enzyme";
 import renderer from "react-test-renderer";
 import LiveTeasePreview from "./LiveTeasePreview";
 
@@ -16,14 +15,9 @@ describe("<LiveTeasePreview />", () => {
           { name: "TV 2 Sport Premium", value: "5" }
         ]}
         script="S18 5"
-        awayColor={{
-          text: "Rød",
-          hex: "#e90052"
-        }}
-        homeColor={{
-          text: "Yellow",
-          hex: "#eaff04"
-        }}
+        awayColor="1"
+        homeColor="2"
+        findColor={() => ({ hex: "FFFFFF" })}
       />
     );
     expect(elem).toMatchSnapshot();
@@ -32,12 +26,15 @@ describe("<LiveTeasePreview />", () => {
         selectedMatch="Brighton - Manchester United"
         matchTimeText="Avspark kl."
         matchTime="21.00"
+        awayColor="1"
+        homeColor="2"
         channels={[5]}
         allChannels={[
           { name: "TV 2", value: "1" },
           { name: "TV 2 Sport Premium", value: "5" }
         ]}
         script="S18 5"
+        findColor={() => ({ hex: "FFFFFF" })}
       />
     );
     expect(elem).toMatchSnapshot();
