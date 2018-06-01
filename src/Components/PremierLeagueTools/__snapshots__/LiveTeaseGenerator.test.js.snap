@@ -2162,141 +2162,143 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
     </div>
   </div>
-  <div
-    aria-busy={undefined}
-    aria-disabled={undefined}
-    aria-expanded={false}
-    className="ui search selection dropdown dropdown"
-    name="colorHome"
-    onBlur={[Function]}
-    onChange={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onMouseDown={[Function]}
-    role="combobox"
-    tabIndex={undefined}
-  >
-    <input
-      aria-autocomplete="list"
-      autoComplete="off"
-      className="search"
+  <div>
+    <div
+      aria-busy={undefined}
+      aria-disabled={undefined}
+      aria-expanded={false}
+      className="ui search selection dropdown dropdown"
+      name="colorHome"
+      onBlur={[Function]}
       onChange={[Function]}
-      style={
-        Object {
-          "width": undefined,
-        }
-      }
-      tabIndex={0}
-      type="text"
-      value=""
-    />
-    <div
-      aria-live="polite"
-      className="default text"
-      role="alert"
-    >
-      Velg farge hjemmelag
-    </div>
-    <i
-      aria-hidden="true"
-      className="dropdown icon"
       onClick={[Function]}
-    />
-    <div
-      aria-multiselectable={undefined}
-      className="menu transition"
-      role="listbox"
+      onFocus={[Function]}
+      onMouseDown={[Function]}
+      role="combobox"
+      tabIndex={undefined}
     >
-      <div
-        aria-checked={false}
-        aria-disabled={undefined}
-        aria-selected={true}
-        className="selected item"
-        color="#e90052"
-        hex="#e90052"
-        name="Rød"
-        onClick={[Function]}
-        role="option"
+      <input
+        aria-autocomplete="list"
+        autoComplete="off"
+        className="search"
+        onChange={[Function]}
         style={
           Object {
-            "pointerEvents": "all",
+            "width": undefined,
           }
         }
+        tabIndex={0}
+        type="text"
+        value=""
+      />
+      <div
+        aria-live="polite"
+        className="default text"
+        role="alert"
       >
-        <span
-          className="text"
+        Velg farge hjemmelag
+      </div>
+      <i
+        aria-hidden="true"
+        className="dropdown icon"
+        onClick={[Function]}
+      />
+      <div
+        aria-multiselectable={undefined}
+        className="menu transition"
+        role="listbox"
+      >
+        <div
+          aria-checked={false}
+          aria-disabled={undefined}
+          aria-selected={true}
+          className="selected item"
+          color="#e90052"
+          hex="#e90052"
+          name="Rød"
+          onClick={[Function]}
+          role="option"
+          style={
+            Object {
+              "pointerEvents": "all",
+            }
+          }
         >
-          Rød
-        </span>
+          <span
+            className="text"
+          >
+            Rød
+          </span>
+        </div>
       </div>
     </div>
-  </div>
-  <div
-    aria-busy={undefined}
-    aria-disabled={undefined}
-    aria-expanded={false}
-    className="ui search selection dropdown dropdown"
-    name="colorAway"
-    onBlur={[Function]}
-    onChange={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onMouseDown={[Function]}
-    role="combobox"
-    tabIndex={undefined}
-  >
-    <input
-      aria-autocomplete="list"
-      autoComplete="off"
-      className="search"
+    <div
+      aria-busy={undefined}
+      aria-disabled={undefined}
+      aria-expanded={false}
+      className="ui search selection dropdown dropdown"
+      name="colorAway"
+      onBlur={[Function]}
       onChange={[Function]}
-      style={
-        Object {
-          "width": undefined,
-        }
-      }
-      tabIndex={0}
-      type="text"
-      value=""
-    />
-    <div
-      aria-live="polite"
-      className="default text"
-      role="alert"
-    >
-      Velg farge bortelag
-    </div>
-    <i
-      aria-hidden="true"
-      className="dropdown icon"
       onClick={[Function]}
-    />
-    <div
-      aria-multiselectable={undefined}
-      className="menu transition"
-      role="listbox"
+      onFocus={[Function]}
+      onMouseDown={[Function]}
+      role="combobox"
+      tabIndex={undefined}
     >
-      <div
-        aria-checked={false}
-        aria-disabled={undefined}
-        aria-selected={true}
-        className="selected item"
-        color="#e90052"
-        hex="#e90052"
-        name="Rød"
-        onClick={[Function]}
-        role="option"
+      <input
+        aria-autocomplete="list"
+        autoComplete="off"
+        className="search"
+        onChange={[Function]}
         style={
           Object {
-            "pointerEvents": "all",
+            "width": undefined,
           }
         }
+        tabIndex={0}
+        type="text"
+        value=""
+      />
+      <div
+        aria-live="polite"
+        className="default text"
+        role="alert"
       >
-        <span
-          className="text"
+        Velg farge bortelag
+      </div>
+      <i
+        aria-hidden="true"
+        className="dropdown icon"
+        onClick={[Function]}
+      />
+      <div
+        aria-multiselectable={undefined}
+        className="menu transition"
+        role="listbox"
+      >
+        <div
+          aria-checked={false}
+          aria-disabled={undefined}
+          aria-selected={true}
+          className="selected item"
+          color="#e90052"
+          hex="#e90052"
+          name="Rød"
+          onClick={[Function]}
+          role="option"
+          style={
+            Object {
+              "pointerEvents": "all",
+            }
+          }
         >
-          Rød
-        </span>
+          <span
+            className="text"
+          >
+            Rød
+          </span>
+        </div>
       </div>
     </div>
   </div>
