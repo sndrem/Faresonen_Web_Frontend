@@ -65,7 +65,7 @@ describe("altOmFotballMatchService", () => {
         confirmed: ""
       }
     ];
-    const filtered = altOmFotballMatchService.filterDoneMatches(matches);
+    const filtered = altOmFotballMatchService.filterNotDoneMatches(matches);
     expect(filtered).toEqual([
       { name: "B", confirmed: "" },
       { name: "C", confirmed: "" }
