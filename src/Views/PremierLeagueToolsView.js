@@ -1,45 +1,21 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import FaresoneMenu from "../Components/Menu/FaresoneMenu";
 import TypeOfGraphicSubMenu from "../Components/PremierLeagueTools/TypeOfGraphicSubMenu";
-import LiveTeaseGeneratorContainer from "../Components/PremierLeagueTools/Containers/LiveTeaseGeneratorContainer";
-import ProgramTeaseGeneratorContainer from "../Components/PremierLeagueTools/Containers/ProgramTeaseGeneratorContainer";
 
-class PremierLeagueToolsView extends Component {
-  constructor() {
-    super();
-    this.state = {
-      activeItem: "liveinfo"
-    };
-  }
-
-  getTypeOfGraphicComponents = type => {
-    switch (type.toLowerCase()) {
-      case "liveinfo":
-        return <LiveTeaseGeneratorContainer />;
-      case "s18teasesuper":
-        return <ProgramTeaseGeneratorContainer />;
-      default:
-        return <p>Lol</p>;
-    }
-  };
-
-  updateActiveItem = item => {
-    this.setState({ activeItem: item });
-  };
-
-  render() {
-    const element = this.getTypeOfGraphicComponents(this.state.activeItem);
-    return (
-      <div>
-        <FaresoneMenu />
-        <TypeOfGraphicSubMenu
-          updateActiveItem={this.updateActiveItem}
-          activeItem={this.state.activeItem}
-        />
-        {element}
-      </div>
-    );
-  }
-}
-
+const PremierLeagueToolsView = props => (
+  <div>
+    <FaresoneMenu />
+    <TypeOfGraphicSubMenu
+      updateActiveItem={props.updateActiveItem}
+      activeItem={props.activeItem}
+    />
+    {props.graphicComponent}
+  </div>
+);
+PremierLeagueToolsView.propTypes = {
+  activeItem: PropTypes.string.isRequired,
+  updateActiveItem: PropTypes.func.isRequired,
+  graphicComponent: PropTypes.node.isRequired
+};
 export default PremierLeagueToolsView;

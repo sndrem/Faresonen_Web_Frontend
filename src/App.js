@@ -8,12 +8,12 @@ import DangerzoneView from "./Views/DangerzoneView";
 import FantasyView from "./Views/FantasyView";
 import DetailedPlayerView from "./Views/DetailedPlayerView";
 import GigSportsView from "./Views/GigSportsView";
-import PremierLeagueToolsView from "./Views/PremierLeagueToolsView";
 import AdminView from "./Views/AdminView";
 import AboutView from "./Views/AboutView";
 import FantasyStatsView from "./Views/FantasyStatsView";
 import My404NotFound from "./Views/My404NotFound";
 import FirebaseService from "./services/FirebaseService";
+import GraphicsContainer from "./Components/PremierLeagueTools/Containers/GraphicsContainer";
 
 class App extends Component {
   constructor(props) {
@@ -85,11 +85,7 @@ class App extends Component {
               component={DetailedPlayerView}
             />
             <Route exact path="/gigsports/" component={GigSportsView} />
-            <Route
-              exact
-              path="/premierleague/"
-              component={PremierLeagueToolsView}
-            />
+            <Route exact path="/premierleague/" component={GraphicsContainer} />
             <Route exact path="/admin/" component={AdminView} />
             <Route exact path="/about/" component={AboutView} />
             <Route path="*" exact component={My404NotFound} />
