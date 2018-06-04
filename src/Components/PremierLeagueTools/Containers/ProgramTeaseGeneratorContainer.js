@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Segment } from "semantic-ui-react";
+import { Segment, Message } from "semantic-ui-react";
 import LiveTeaseGenerator from "../LiveTeaseGenerator";
 import altOmFotballMatchService from "../../../services/altOmFotballMatchService";
-import leagues from "../../../Data/leagues";
 import LiveTeasePreview from "../LiveTeasePreview";
 import FirebaseService from "../../../services/FirebaseService";
 
@@ -18,22 +17,23 @@ class ProgramTeaseGeneratorContainer extends Component {
         matchTime: "",
         selectedMatch: ""
       },
-      loading: true
+      loading: false
     };
     this.service = new FirebaseService();
     this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
-    // TODO Remove hardcoded leagues
-    const { tournamentId, seasonId } = leagues.leagues[0];
-    if (!tournamentId || !seasonId) {
-      console.log(
-        `Det er ingen turneringsID eller sesongID tilgjengelig for Premier League`
-      );
-    }
-    this.getMatches(tournamentId, seasonId);
+    this.getMatches();
     this.getChannels();
+  }
+
+  componentWillReceiveProps(props) {
+    const { selectedLeague } = props;
+    if (selectedLeague) {
+      const [id, season] = selectedLeague.split("-");
+      this.getMatches(id, season);
+    }
   }
 
   getChannels = () => {
@@ -41,8 +41,18 @@ class ProgramTeaseGeneratorContainer extends Component {
   };
 
   getMatches = (tournamentId, seasonId) => {
+    this.setState({
+      ...this.state,
+      data: {
+        ...this.state.data
+      },
+      loading: true
+    });
+    if (!tournamentId || !seasonId) {
+      return;
+    }
     altOmFotballMatchService
-      .getOnlyDoneMatches(tournamentId, seasonId)
+      .getOnlyNotDoneMatches(tournamentId, seasonId)
       .then(data => {
         this.setState({
           ...this.state,
@@ -107,6 +117,16 @@ ${home || "Hjemmelag ikke valgt"} - ${away ||
       matchTime,
       allChannels
     } = this.state.data;
+    if (this.state.loading) {
+      return <p>Henter kamper...</p>;
+    }
+    if (matches.length === 0 && !this.state.loading) {
+      return (
+        <Message info>
+          <Message.Header>Info</Message.Header>Ingen kamper tilgjengelig
+        </Message>
+      );
+    }
     return (
       <Segment>
         <LiveTeaseGenerator

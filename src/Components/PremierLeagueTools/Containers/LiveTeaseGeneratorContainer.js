@@ -4,7 +4,6 @@ import LiveTeaseGenerator from "../LiveTeaseGenerator";
 import LiveTeasePreview from "../LiveTeasePreview";
 import badges from "../../../Data/badgePaths";
 import altOmFotballMatchService from "../../../services/altOmFotballMatchService";
-import altOmFotballLeagueService from "../../../services/altOmFotballLeagueService";
 import FirebaseService from "../../../services/FirebaseService";
 
 class LiveTeaseGeneratorContainer extends Component {
@@ -21,7 +20,7 @@ class LiveTeaseGeneratorContainer extends Component {
       colorAway: "",
       colors: [],
       script: "",
-      loading: true,
+      loading: false,
       error: "",
       leagueSelected: {
         tournamentId: "",
@@ -38,41 +37,42 @@ class LiveTeaseGeneratorContainer extends Component {
     this.getColors();
   }
 
+  componentWillReceiveProps(props) {
+    const { selectedLeague } = props;
+    if (selectedLeague) {
+      const [id, season] = selectedLeague.split("-");
+      this.getLeagues(id, season);
+    }
+  }
+
   getColors = () => {
     this.service.getColors(colors => {
       this.setState({ colors });
     });
   };
 
-  getLeagues = () => {
-    this.service.getLeagues(databaseLeagues => {
-      const league = databaseLeagues[0];
-      const tournamentId = league.id;
-      const seasonId = altOmFotballLeagueService.getActiveSeasonNumber(
-        league.activeseason["@uri"]
-      );
-      if (!tournamentId || !seasonId) {
-        console.log(`Det er ingen turneringsID eller sesongID tilgjengelig.`);
-        this.setErrorLoadingState();
-        return;
-      }
-      this.getMatches(tournamentId, seasonId);
+  getLeagues = (tournamentId, seasonId) => {
+    if (!tournamentId || !seasonId) {
+      console.log(`Det er ingen turneringsID eller sesongID tilgjengelig.`);
+      return;
+    }
+    this.setState({
+      ...this.state,
+      data: {
+        ...this.state.data
+      },
+      loading: true
     });
+    this.getMatches(tournamentId, seasonId);
   };
 
   getChannels = () => {
     this.service.getChannels(this.processChannels);
   };
 
-  setErrorLoadingState = () =>
-    this.setState({
-      error: `Det er ingen turneringsID eller sesongID tilgjengelig for Premier League`,
-      loading: false
-    });
-
   getMatches = (tournamentId, seasonId) => {
     altOmFotballMatchService
-      .getOnlyDoneMatches(tournamentId, seasonId)
+      .getOnlyNotDoneMatches(tournamentId, seasonId)
       .then(data => {
         this.setState({
           data: { match: data },
@@ -191,8 +191,15 @@ PREMIER LEAGUE <00:02-00:15`;
   processChannels = allChannels => this.setState({ allChannels });
 
   render() {
+    if (this.state.loading) {
+      return <p>Henter kamper...</p>;
+    }
     if (this.state.data.match.length === 0 && !this.state.loading) {
-      return <Message info>Ingen kamper tilgjengelig</Message>;
+      return (
+        <Message info>
+          <Message.Header>Info</Message.Header>Ingen kamper tilgjengelig
+        </Message>
+      );
     }
     if (this.state.error) {
       return <Message warning>{this.state.error}</Message>;

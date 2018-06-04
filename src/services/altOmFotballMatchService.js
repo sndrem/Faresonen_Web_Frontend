@@ -10,14 +10,14 @@ const AltOmFotballMatchService = {
     });
   },
 
-  getOnlyDoneMatches: (tournamentId, seasonId) => {
+  getOnlyNotDoneMatches: (tournamentId, seasonId) => {
     const self = this.a;
     return new Promise((resolve, reject) => {
       axios
         .get(`/matches/${tournamentId}/${seasonId}`)
         .then(data => {
           if (data.data.match) {
-            const filtered = self.filterDoneMatches(data.data.match);
+            const filtered = self.filterNotDoneMatches(data.data.match);
             resolve(filtered);
           } else {
             resolve([]);
@@ -27,7 +27,7 @@ const AltOmFotballMatchService = {
     });
   },
 
-  filterDoneMatches: matches =>
+  filterNotDoneMatches: matches =>
     matches.filter(match => match.confirmed !== "true"),
 
   splitNames: (name, delimiter) => {

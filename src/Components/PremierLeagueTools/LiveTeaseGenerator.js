@@ -34,8 +34,9 @@ class LiveTeaseGenerator extends Component {
 
   mapMatches = matches => {
     moment.tz.setDefault("Europe/Oslo");
+
     return matches.map(match => ({
-      key: match.name,
+      key: match["@uri"],
       value: match.name,
       text: `${match.name} - ${moment(match.starttime).from(
         moment()
