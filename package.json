@@ -23,8 +23,7 @@
     "socket.io-client": "^2.0.4"
   },
   "scripts": {
-    "start":
-      "concurrently --kill-others \"nodemon --exec babel-node ../faresonen_api/bin/www\" \"react-scripts start\"",
+    "start": "concurrently --kill-others \"nodemon --exec babel-node ../faresonen_api/bin/www\" \"react-scripts start\"",
     "start_front": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
@@ -35,6 +34,7 @@
   "devDependencies": {
     "axios-mock-adapter": "^1.14.1",
     "babel-cli": "^6.26.0",
+    "babel-preset-flow": "^6.23.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.18.1",
@@ -44,6 +44,7 @@
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.7.0",
+    "flow-bin": "^0.73.0",
     "jest": "^20.0.4",
     "jest-cli": "^20.0.4",
     "jest-localstorage-mock": "^2.2.0",
