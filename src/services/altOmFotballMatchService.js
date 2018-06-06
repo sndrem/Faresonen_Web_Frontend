@@ -1,7 +1,8 @@
+// @flow
 import axios from "axios";
 
 const AltOmFotballMatchService = {
-  getMatches: (tournamentId, seasonId) => {
+  getMatches: (tournamentId: string | number, seasonId: string | number) => {
     return new Promise((resolve, reject) => {
       axios
         .get(`/matches/${tournamentId}/${seasonId}`)
@@ -10,7 +11,10 @@ const AltOmFotballMatchService = {
     });
   },
 
-  getOnlyNotDoneMatches: (tournamentId, seasonId) => {
+  getOnlyNotDoneMatches: (
+    tournamentId: string | number,
+    seasonId: string | number
+  ) => {
     const self = this.a;
     return new Promise((resolve, reject) => {
       axios
@@ -30,12 +34,12 @@ const AltOmFotballMatchService = {
   filterNotDoneMatches: matches =>
     matches.filter(match => match.confirmed !== "true"),
 
-  splitNames: (name, delimiter) => {
+  splitNames: (name: string, delimiter: string) => {
     if (name) return name.split(delimiter);
     return name;
   },
 
-  getChannelName: (allChannels, channelId) => {
+  getChannelName: (allChannels: Array<{}>, channelId: string | number) => {
     if (!allChannels) throw new Error("Please provide a list of channels");
     if (allChannels.length === 0) return "Laster... ";
     if (!channelId) throw new Error(`Please provide a channelId`);
