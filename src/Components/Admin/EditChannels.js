@@ -14,7 +14,6 @@ const EditChannels = ({ channels, loading, editChannel, deleteChannel }) => {
       columns={2}
     >
       {channels.map(channel => {
-        console.log(channel);
         return (
           <Grid.Column key={channel.value}>
             <p>
@@ -28,14 +27,16 @@ const EditChannels = ({ channels, loading, editChannel, deleteChannel }) => {
                   editChannel(channel);
                 }}
               >
-                <Icon name="edit" />Rediger
+                <Icon name="edit" />
+                Rediger
               </span>
               <span
                 role="button"
                 tabIndex={0}
                 onClick={() => deleteChannel(channel.value)}
               >
-                <Icon name="delete" />Fjern
+                <Icon name="delete" />
+                Fjern
               </span>
             </div>
           </Grid.Column>

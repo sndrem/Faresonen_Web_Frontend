@@ -109,6 +109,18 @@ const badges = [
     team: "WEST BROMWICH",
     path: `${path}WEST_BROM`
   },
+  {
+    team: "WOLVERHAMPTON",
+    path: `${path}WOLVERHAMPTON`
+  },
+  {
+    team: "FULHAM",
+    path: `${path}FULHAM`
+  },
+  {
+    team: "CARDIFF",
+    path: `${path}CARDIFF`
+  },
 
   {
     team: "WEST HAM",

@@ -38,7 +38,6 @@ class ColorContainer extends Component {
       this.service
         .addColor(key, color)
         .then(data => {
-          console.log("Save color to db");
           resolve(data);
           this.resetForm();
         })
