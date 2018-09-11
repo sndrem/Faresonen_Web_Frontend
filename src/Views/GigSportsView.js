@@ -32,7 +32,6 @@ class GigSportsView extends Component {
     Promise.all([this.fetchMatches(), this.fetchBets()])
       .then(values => {
         const eliteserien = this.extractLeague(values, 0);
-
         const obosligaen = this.addHours(this.extractLeague(values, 1), 2);
 
         const bets = values[1].feed;
@@ -47,6 +46,7 @@ class GigSportsView extends Component {
         });
       })
       .catch(err => {
+        console.log(err);
         this.updateError("Kunne ikke hente odds. Er du koblet til internett?");
       });
   }
@@ -56,8 +56,10 @@ class GigSportsView extends Component {
       return values[0].competitions[index].matches;
     } catch (err) {
       this.setState({
-        error: "problem fetching data"
+        error:
+          "Det var problemer med henting av data. Mest sannsynlig finnes det ikke kamper fra Gigsports."
       });
+      return [];
     }
   };
 
@@ -81,6 +83,7 @@ class GigSportsView extends Component {
   };
 
   connectGamesAndBets = (matches, bets) => {
+    if (!matches) return [];
     return matches.map(match => {
       const foundBet = bets.find(bet => bet.matchId === match.matchId);
       match.bets = foundBet;
