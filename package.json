@@ -9,6 +9,7 @@
     "moment": "^2.21.0",
     "moment-timezone": "^0.5.16",
     "prop-types": "^15.6.0",
+    "raven-js": "^3.27.0",
     "react": "^16.2.0",
     "react-chartjs": "^1.2.0",
     "react-color": "^2.14.1",
