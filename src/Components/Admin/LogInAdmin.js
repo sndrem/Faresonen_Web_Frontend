@@ -59,7 +59,7 @@ class LogInAdmin extends Component {
         </Form.Field>
         {error ? <span style={{ display: "block" }}>{error}</span> : ""}
         <Button onClick={this.signIn} type="submit">
-          Submit
+          Logg inn
         </Button>
       </Form>
     );

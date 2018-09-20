@@ -9,6 +9,7 @@ import FantasyView from "./Views/FantasyView";
 import DetailedPlayerView from "./Views/DetailedPlayerView";
 import GigSportsView from "./Views/GigSportsView";
 import AdminView from "./Views/AdminView";
+import NewUserView from "./Views/NewUserView";
 import AboutView from "./Views/AboutView";
 import FantasyStatsView from "./Views/FantasyStatsView";
 import My404NotFound from "./Views/My404NotFound";
@@ -87,6 +88,7 @@ class App extends Component {
             <Route exact path="/gigsports/" component={GigSportsView} />
             <Route exact path="/premierleague/" component={GraphicsContainer} />
             <Route exact path="/admin/" component={AdminView} />
+            <Route exact path="/newuser" component={NewUserView} />
             <Route exact path="/about/" component={AboutView} />
             <Route path="*" exact component={My404NotFound} />
           </Switch>
