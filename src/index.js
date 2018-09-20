@@ -7,9 +7,11 @@ import "./print.css";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 
-Raven.config(
-  "https://6804db3180e14d51a1da9c443b1a288c@sentry.io/1280627"
-).install();
+if (process.env.NODE_ENV !== "development") {
+  Raven.config(
+    "https://6804db3180e14d51a1da9c443b1a288c@sentry.io/1280627"
+  ).install();
+}
 
 ReactDOM.render(<App />, document.getElementById("root"));
 registerServiceWorker();
