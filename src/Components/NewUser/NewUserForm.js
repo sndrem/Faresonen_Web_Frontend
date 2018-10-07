@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Header, Form, Button } from "semantic-ui-react";
 
+
 const FormErrors = ({ errors }) => {
   return <ul>{errors.map((error, index) => <li key={index}>{error}</li>)}</ul>;
 };
