@@ -16,13 +16,13 @@ describe("Dangerzone", () => {
                 name: "Wayne Rooney",
                 place: 1,
                 team: "Everton",
-                value1: 1
-              }
-            ]
-          }
+                value1: 1,
+              },
+            ],
+          },
         ]}
         loading={false}
-      />
+      />,
     );
     expect(elem).toMatchSnapshot();
   });
@@ -38,20 +38,20 @@ describe("Dangerzone", () => {
                 name: "Wayne Rooney",
                 place: 1,
                 team: "Everton",
-                value1: 3
-              }
-            ]
-          }
+                value1: 3,
+              },
+            ],
+          },
         ]}
         loading={false}
-      />
+      />,
     );
     expect(elem).toMatchSnapshot();
   });
 
   it("Should render properly when no players are present", () => {
     const elem = renderer.create(
-      <Dangerzone leagueName="Premier League" players={[]} loading={false} />
+      <Dangerzone leagueName="Premier League" players={[]} loading={false} />,
     );
     expect(elem).toMatchSnapshot();
   });
@@ -59,18 +59,18 @@ describe("Dangerzone", () => {
   describe("teams should be sorted alphabetically", () => {
     it("should return a list of alphabetically sorted teams", () => {
       let teams = [
-        { name: "Brann" },
-        { name: "Start" },
-        { name: "Vålerenga" },
-        { name: "Bodø/Glimt" }
+        {name: "Brann"},
+        {name: "Start"},
+        {name: "Vålerenga"},
+        {name: "Bodø/Glimt"},
       ];
 
       teams = dangerzoneService.sortTeams(teams);
       expect(teams).toEqual([
-        { name: "Bodø/Glimt" },
-        { name: "Brann" },
-        { name: "Start" },
-        { name: "Vålerenga" }
+        {name: "Bodø/Glimt"},
+        {name: "Brann"},
+        {name: "Start"},
+        {name: "Vålerenga"},
       ]);
     });
   });
@@ -82,30 +82,30 @@ describe("Dangerzone", () => {
           players: [
             {
               name: "Ole",
-              value1: 4
+              value1: 4,
             },
             {
               name: "Petter",
-              value1: -1
+              value1: -1,
             },
             {
               name: "Sindre",
-              value1: 0
+              value1: 0,
             },
             {
               name: "Nikko",
-              value1: 3
-            }
-          ]
-        }
+              value1: 3,
+            },
+          ],
+        },
       };
 
       const filtered = dangerzoneService.filterPlayers(teams);
       expect(filtered).toEqual([
         {
           name: "Brann",
-          players: [{ name: "Nikko", value1: 3 }]
-        }
+          players: [{name: "Nikko", value1: 3}],
+        },
       ]);
     });
   });
@@ -113,38 +113,38 @@ describe("Dangerzone", () => {
   describe("players should be grouped by team name", () => {
     it("should group players by team name", () => {
       const players = [
-        { team: "Brann", name: "Ole" },
-        { team: "Rosenborg", name: "Petter" },
-        { team: "Brann", name: "Sigurd" },
-        { team: "Ranheim", name: "Kåre" },
-        { team: "Brann", name: "Sigve" },
-        { team: "Ranheim", name: "Aleks" },
-        { team: "Rosenborg", name: "Steffen" },
-        { team: "Brann", name: "Sindre" }
+        {team: "Brann", name: "Ole"},
+        {team: "Rosenborg", name: "Petter"},
+        {team: "Brann", name: "Sigurd"},
+        {team: "Ranheim", name: "Kåre"},
+        {team: "Brann", name: "Sigve"},
+        {team: "Ranheim", name: "Aleks"},
+        {team: "Rosenborg", name: "Steffen"},
+        {team: "Brann", name: "Sindre"},
       ];
 
       const grouped = dangerzoneService.groupPlayers(players);
       expect(grouped).toEqual({
         Brann: {
           players: [
-            { team: "Brann", name: "Ole" },
-            { team: "Brann", name: "Sigurd" },
-            { team: "Brann", name: "Sigve" },
-            { team: "Brann", name: "Sindre" }
-          ]
+            {team: "Brann", name: "Ole"},
+            {team: "Brann", name: "Sigurd"},
+            {team: "Brann", name: "Sigve"},
+            {team: "Brann", name: "Sindre"},
+          ],
         },
         Ranheim: {
           players: [
-            { team: "Ranheim", name: "Kåre" },
-            { team: "Ranheim", name: "Aleks" }
-          ]
+            {team: "Ranheim", name: "Kåre"},
+            {team: "Ranheim", name: "Aleks"},
+          ],
         },
         Rosenborg: {
           players: [
-            { team: "Rosenborg", name: "Petter" },
-            { team: "Rosenborg", name: "Steffen" }
-          ]
-        }
+            {team: "Rosenborg", name: "Petter"},
+            {team: "Rosenborg", name: "Steffen"},
+          ],
+        },
       });
     });
   });

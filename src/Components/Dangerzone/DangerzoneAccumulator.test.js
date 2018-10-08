@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow } from "enzyme";
+import {shallow} from "enzyme";
 import renderer from "react-test-renderer";
 import DangerZoneAccumulator from "./DangerZoneAccumulator";
 import testData from "../../Test/testData";
@@ -11,7 +11,7 @@ describe("<DangerzoneAccumulator />", () => {
         events={testData.yellowCardEvents}
         removeEvent={() => {}}
         removePlayer={() => {}}
-      />
+      />,
     );
     expect(tree).toMatchSnapshot();
   });
@@ -21,7 +21,7 @@ describe("<DangerzoneAccumulator />", () => {
         events={testData.yellowCardEvents}
         removeEvent={() => {}}
         removePlayer={() => {}}
-      />
+      />,
     );
 
     const message = elem.instance().getInfoMessage();
@@ -36,7 +36,7 @@ describe("<DangerzoneAccumulator />", () => {
         events={[]}
         removeEvent={() => {}}
         removePlayer={() => {}}
-      />
+      />,
     );
     // Set state manually
     elem.state().data.events = testData.yellowCardAndPlayerEvents;
@@ -48,7 +48,7 @@ describe("<DangerzoneAccumulator />", () => {
         birthday: "1988-05-28T00:00:00+02:00",
         birthplace: "Pakrac",
         country: {
-          "@uri": "http://api.tv2.no/sport/resources/countries/205/"
+          "@uri": "http://api.tv2.no/sport/resources/countries/205/",
         },
         created: "2018-03-05T17:45:33+01:00",
         enetpulseId: "463298",
@@ -56,41 +56,41 @@ describe("<DangerzoneAccumulator />", () => {
         height: "188",
         id: "345617",
         images: {
-          "@uri": "http://api.tv2.no/sport/resources/people/345617/images/"
+          "@uri": "http://api.tv2.no/sport/resources/people/345617/images/",
         },
         lastname: "Popovic",
         memberships: {
-          "@uri": "http://api.tv2.no/sport/resources/people/345617/memberships/"
+          "@uri": "http://api.tv2.no/sport/resources/people/345617/memberships/",
         },
         nifsId: "155223",
         role: {
-          "@uri": "http://api.tv2.no/sport/resources/roles/1/"
+          "@uri": "http://api.tv2.no/sport/resources/roles/1/",
         },
-        weight: "81"
+        weight: "81",
       },
       event: {
         "@uri": "http://api.tv2.no/sport/resources/events/15221417/",
         eventtype: {
-          "@uri": "http://api.tv2.no/sport/resources/eventtypes/2/"
+          "@uri": "http://api.tv2.no/sport/resources/eventtypes/2/",
         },
         eventtime: "41",
         extendedeventtype: {
-          "@uri": "http://api.tv2.no/sport/resources/extendedeventtypes/1200/"
+          "@uri": "http://api.tv2.no/sport/resources/extendedeventtypes/1200/",
         },
         goalsTeamA: "1",
         goalsTeamB: "0",
         id: "15221417",
         match: {
-          "@uri": "http://api.tv2.no/sport/resources/matches/912485/"
+          "@uri": "http://api.tv2.no/sport/resources/matches/912485/",
         },
         person1: {
-          "@uri": "http://api.tv2.no/sport/resources/people/345617/"
+          "@uri": "http://api.tv2.no/sport/resources/people/345617/",
         },
         realTime: "2018-03-18T18:46:57+01:00",
         team: {
-          "@uri": "http://api.tv2.no/sport/resources/teams/307/"
-        }
-      }
+          "@uri": "http://api.tv2.no/sport/resources/teams/307/",
+        },
+      },
     };
     elem.instance().removeEventFromState(removeEvent);
     expect(elem.state().data.events.length).toEqual(5);
@@ -99,9 +99,9 @@ describe("<DangerzoneAccumulator />", () => {
     expect(
       elem.instance().removeEventFromState({
         player: {
-          id: 123
-        }
-      })
+          id: 123,
+        },
+      }),
     ).toEqual(false);
 
     expect(elem.state().data.events.length).toEqual(5);
@@ -124,13 +124,13 @@ describe("<DangerzoneAccumulator />", () => {
         events={testData.yellowCardAndPlayerEvents}
         removeEvent={removeEventMock}
         removePlayer={removePlayerMock}
-      />
+      />,
     );
     elem.instance().removeFeedEvent({
       player: {
         name: "Wayne Rooney",
-        id: 1
-      }
+        id: 1,
+      },
     });
     expect(removeEventMock.mock.calls.length).toBe(1);
     expect(removePlayerMock.mock.calls[0][1]).toEqual("eliteserien");

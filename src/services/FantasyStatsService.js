@@ -45,7 +45,6 @@ const FantasyStatsService = {
           resolve(selectedPlayers);
         })
         .catch(err => {
-          console.warn(err);
           reject(err);
         });
     });

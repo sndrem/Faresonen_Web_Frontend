@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Grid, Header } from "semantic-ui-react";
+import React, {Component} from "react";
+import {Grid, Header} from "semantic-ui-react";
 import NewChannelForm from "../NewChannelForm";
 import EditChannels from "../EditChannels";
 import FirebaseService from "../../../services/FirebaseService";
@@ -35,48 +35,48 @@ class ChannelContainer extends Component {
   };
 
   processChannels = channels =>
-    this.setState({
-      ...this.state,
+    this.setState(prevState => ({
+      ...prevState,
       channels: this.sortChannels(channels),
       loading: false
-    });
+    }));
 
   sortChannels = channels =>
     channels.sort((a, b) => parseInt(a.value, 10) - parseInt(b.value, 10));
 
   addChannel = () => {
     this.service.addChannel(this.state.selectedChannel).then(data => {
-      this.setState({ message: data.message });
+      this.setState({message: data.message});
       this.resetForm();
     });
   };
 
   handleChange = (name, value, valid) =>
-    this.setState({
-      ...this.state,
+    this.setState(prevState => ({
+      ...prevState,
       selectedChannel: {
-        ...this.state.selectedChannel,
+        ...prevState.selectedChannel,
         [name]: value
       },
       valid
-    });
+    }));
 
   resetForm = () =>
-    this.setState({
-      ...this.state,
+    this.setState(prevState => ({
+      ...prevState,
       selectedChannel: {
         name: "",
         value: "1"
       },
       valid: false
-    });
+    }));
 
   editChannel = selectedChannel =>
-    this.setState({
-      ...this.state,
+    this.setState(prevState => ({
+      ...prevState,
       selectedChannel,
       valid: true
-    });
+    }));
 
   deleteChannel = channelId => {
     if (!channelId) throw new Error("Cannot delete a channel without a key");
@@ -84,7 +84,7 @@ class ChannelContainer extends Component {
   };
 
   render() {
-    const { selectedChannel, valid, message, channels, loading } = this.state;
+    const {selectedChannel, valid, message, channels, loading} = this.state;
     return (
       <Grid columns={2}>
         <Grid.Column>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Header, List } from "semantic-ui-react";
+import {Header, List} from "semantic-ui-react";
 import PropTypes from "prop-types";
 
 const FantasyStatsList = props => (
@@ -11,7 +11,7 @@ const FantasyStatsList = props => (
 
 FantasyStatsList.propTypes = {
   players: PropTypes.arrayOf(PropTypes.string).isRequired,
-  header: PropTypes.string.isRequired
+  header: PropTypes.string.isRequired,
 };
 
 export default FantasyStatsList;

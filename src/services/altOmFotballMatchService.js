@@ -2,19 +2,15 @@
 import axios from "axios";
 
 const AltOmFotballMatchService = {
-  getMatches: (tournamentId: string | number, seasonId: string | number) => {
-    return new Promise((resolve, reject) => {
+  getMatches: (tournamentId, seasonId) =>
+    new Promise((resolve, reject) => {
       axios
         .get(`/matches/${tournamentId}/${seasonId}`)
         .then(data => resolve(data))
         .catch(err => reject(err));
-    });
-  },
+    }),
 
-  getOnlyNotDoneMatches: (
-    tournamentId: string | number,
-    seasonId: string | number
-  ) => {
+  getOnlyNotDoneMatches: (tournamentId, seasonId) => {
     const self = this.a;
     return new Promise((resolve, reject) => {
       axios
@@ -42,7 +38,7 @@ const AltOmFotballMatchService = {
   getChannelName: (allChannels: Array<{}>, channelId: string | number) => {
     if (!allChannels) throw new Error("Please provide a list of channels");
     if (allChannels.length === 0) return "Laster... ";
-    if (!channelId) throw new Error(`Please provide a channelId`);
+    if (!channelId) throw new Error("Please provide a channelId");
 
     const channelFound = allChannels.find(
       channel => parseInt(channel.value, 10) === channelId

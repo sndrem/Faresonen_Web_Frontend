@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import {
   Message,
   Grid,
@@ -56,22 +56,21 @@ class DangerzoneView extends Component {
   setupSocket = () => {
     socket.open();
     socket.on("connect", () => {
-      this.setState({ socketConnected: true });
+      this.setState({socketConnected: true});
     });
 
     socket.on("disconnect", () => {
-      this.setState({ socketConnected: false });
+      this.setState({socketConnected: false});
     });
 
     socket.on("data", data => {
-      this.setState({ socketConnected: true });
+      this.setState({socketConnected: true});
       if (!data.events) return;
-      if(!Array.isArray(data.events)) {
+      if (!Array.isArray(data.events)) {
         data.events = [data.events];
       }
-      const merged = this.state.data.eliteserien.concat(
-        this.state.data.obosligaen
-      );
+      const {eliteserien, obosligaen} = this.state.data;
+      const merged = eliteserien.concat(obosligaen);
 
       const events = data.events.filter(event => {
         if (event && event.person1) {
@@ -109,7 +108,7 @@ class DangerzoneView extends Component {
     axios
       .get("/statistics/allDangerzonePlayers")
       .then(data => {
-        const { eliteserien, obosligaen } = data.data;
+        const {eliteserien, obosligaen} = data.data;
         if (overwrite) {
           playerLocalStorageService.saveToLocalStorage({
             eliteserien,
@@ -120,27 +119,27 @@ class DangerzoneView extends Component {
         this.setDefaultState(eliteserien, obosligaen);
       })
       .catch(err => {
+        const {data} = this.state;
         this.setState({
           data: {
-            ...this.state.data
+            ...data
           },
           loading: false,
           error:
             "Kunne ikke hente spillere i faresonen. Er du koblet til internett?"
         });
-        console.error(err);
       });
 
   showModal = () => {
-    this.setState({ open: true });
+    this.setState({open: true});
   };
 
   hideModal = () => {
-    this.setState({ open: false });
+    this.setState({open: false});
   };
 
   handleCancel = () => {
-    const { eliteserien, obosligaen } = JSON.parse(
+    const {eliteserien, obosligaen} = JSON.parse(
       localStorage.getItem("players")
     );
     this.setState({
@@ -159,44 +158,44 @@ class DangerzoneView extends Component {
     this.hideModal();
   };
 
-  formatPlayers = () => ({
-    eliteserien: dangerzoneService.groupPlayersArrayResponse(
-      this.state.data.eliteserien
-    ),
-    obosligaen: dangerzoneService.groupPlayersArrayResponse(
-      this.state.data.obosligaen
-    )
-  });
+  formatPlayers = () => {
+    const {eliteserien, obosligaen} = this.state.data;
+    return {
+      eliteserien: dangerzoneService.groupPlayersArrayResponse(eliteserien),
+      obosligaen: dangerzoneService.groupPlayersArrayResponse(obosligaen)
+    };
+  };
 
   removePlayer = (player, leagueId) => {
-    const found = this.state.data.eliteserien.find(
-      p => p.id === parseInt(player.id, 10)
-    );
+    const {eliteserien} = this.state.data;
+    const found = eliteserien.find(p => p.id === parseInt(player.id, 10));
     if (found) {
-      const index = this.state.data[leagueId].indexOf(found);
-      this.state.data[leagueId].splice(index, 1);
-      playerLocalStorageService.saveToLocalStorage(this.state.data);
+      const {data} = this.state;
+      const index = data[leagueId].indexOf(found);
+      data[leagueId].splice(index, 1);
+      playerLocalStorageService.saveToLocalStorage(data);
     }
   };
 
   removeEvent = event => {
-    const index = this.state.data.events.indexOf(event.event);
-    this.state.data.events.splice(index, 1);
+    const {data} = this.state;
+    const index = data.events.indexOf(event.event);
+    data.events.splice(index, 1);
     this.setState({
       data: {
-        events: this.state.data.events,
-        ...this.state.data
+        events: data.events,
+        ...data
       }
     });
   };
 
   render() {
-    const { eliteserien, obosligaen, events } = this.state.data;
-    const { lastUpdated } = playerLocalStorageService.getFromLocalStorage(
+    const {eliteserien, obosligaen, events} = this.state.data;
+    const {lastUpdated} = playerLocalStorageService.getFromLocalStorage(
       "players"
     );
     const players = this.formatPlayers();
-    const { socketConnected } = this.state;
+    const {socketConnected, error, open, loading} = this.state;
 
     return (
       <div>
@@ -204,11 +203,11 @@ class DangerzoneView extends Component {
         <Grid columns={1}>
           <Grid.Column>
             <Segment>
-              <Dimmer active={this.state.loading}>
+              <Dimmer active={loading}>
                 <Loader>Henter spiller for Eliteserien og OBOS-ligaen</Loader>
               </Dimmer>
               <Confirm
-                open={this.state.open}
+                open={open}
                 header={`Sist oppdatert: ${moment(lastUpdated).fromNow()}`}
                 content="Det er allerede lastet ned spillere for faresonen. Ønsker du å laste ned oppdaterte spillere?"
                 cancelButton="Nææh, dropp det"
@@ -216,8 +215,8 @@ class DangerzoneView extends Component {
                 onCancel={this.handleCancel}
                 onConfirm={this.handleConfirm}
               />
-              {this.state.error ? (
-                <Message info>{this.state.error}</Message>
+              {error ? (
+                <Message info>{error}</Message>
               ) : (
                 <DangerzoneStatistics
                   eliteserien={eliteserien.length}

@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
-import { Message } from "semantic-ui-react";
+import {Message} from "semantic-ui-react";
 import axios from "axios";
 import FaresoneMenu from "../Components/Menu/FaresoneMenu";
 import LeagueProgress from "../Components/LeagueProgress/LeagueProgress";
@@ -23,11 +23,16 @@ class RoundView extends Component {
 
   constructor(props) {
     super(props);
+    const {
+      match: {
+        params: {leagueName, roundNumber, tournamentId, seasonId}
+      }
+    } = this.props;
     this.state = {
-      leagueName: props.match.params.leagueName,
-      roundNumber: parseInt(props.match.params.roundNumber, 10),
-      tournamentId: parseInt(props.match.params.tournamentId, 10),
-      seasonId: parseInt(props.match.params.seasonId, 10),
+      leagueName,
+      roundNumber: parseInt(roundNumber, 10),
+      tournamentId: parseInt(tournamentId, 10),
+      seasonId: parseInt(seasonId, 10),
       matches: [],
       nextMatches: [],
       finishedMatches: [],
@@ -37,14 +42,20 @@ class RoundView extends Component {
   }
 
   componentDidMount() {
-    let { roundId, nextRoundId } = this.props.match.params;
+    let {
+      match: {
+        params: {roundId, nextRoundId}
+      }
+    } = this.props;
+    const {
+      match: {
+        params: {tournamentId, seasonId}
+      }
+    } = this.props;
     roundId = parseInt(roundId, 10);
     nextRoundId = parseInt(nextRoundId, 10);
     this.getRound(roundId, "matches");
-    this.getTable(
-      this.props.match.params.tournamentId,
-      this.props.match.params.seasonId
-    );
+    this.getTable(tournamentId, seasonId);
     if (nextRoundId > 0) {
       this.getRound(nextRoundId, "nextMatches");
     }
@@ -54,12 +65,12 @@ class RoundView extends Component {
     axios
       .get(`/table/${tournamentId}/${seasonId}`)
       .then(data => {
-        this.setState({ table: data.data.item });
+        this.setState({table: data.data.item});
       })
-      .catch(() => this.setState({ table: [] }));
+      .catch(() => this.setState({table: []}));
   }
 
-  getRound(roundId, key) {
+  getRound = (roundId, key) => {
     axios
       .get(`/rounds/${roundId}`)
       .then(data => {
@@ -88,20 +99,32 @@ class RoundView extends Component {
           loading: false
         })
       );
-  }
+  };
 
   render() {
-    let finishedMatches = null;
-    if (this.state.finishedMatches.length > 0 && !this.state.loading) {
-      finishedMatches = (
+    let finishedMatchesElement = null;
+    const {
+      finishedMatches,
+      loading,
+      roundNumber,
+      leagueName,
+      tournamentId,
+      seasonId,
+      matches,
+      nextMatches,
+      table
+    } = this.state;
+    const {switchLeagueName} = this.props;
+    if (finishedMatches.length > 0 && !loading) {
+      finishedMatchesElement = (
         <FinishedMatches
           className="print"
-          matches={this.state.finishedMatches}
-          roundNumber={this.state.roundNumber}
+          matches={finishedMatches}
+          roundNumber={roundNumber}
         />
       );
     } else {
-      finishedMatches = (
+      finishedMatchesElement = (
         <Message className="no-print" info>
           <Message.Header>Ferdig spilte kamper</Message.Header>
           Det er ikke spilt noen kamper denne runden
@@ -111,53 +134,50 @@ class RoundView extends Component {
 
     return (
       <div>
-        <FaresoneMenu switchLeagueName={this.props.switchLeagueName} />
+        <FaresoneMenu switchLeagueName={switchLeagueName} />
 
         <RoundSteps
           className="no-print"
-          round={this.state.roundNumber}
-          league={this.state.leagueName}
+          round={roundNumber}
+          league={leagueName}
         />
 
         <LeagueProgress
-          leagueName={this.state.leagueName}
-          tournamentId={this.state.tournamentId}
-          seasonId={this.state.seasonId}
+          leagueName={leagueName}
+          tournamentId={tournamentId}
+          seasonId={seasonId}
         />
 
         <MatchesContainer
           className="print"
-          leagueName={this.state.leagueName}
-          roundNumber={this.state.roundNumber}
-          matches={this.state.matches}
-          loading={this.state.loading}
+          leagueName={leagueName}
+          roundNumber={roundNumber}
+          matches={matches}
+          loading={loading}
         />
 
-        {finishedMatches}
+        {finishedMatchesElement}
 
         <LeagueTable
           className="print"
-          leagueName={this.state.leagueName}
-          table={this.state.table}
-          tableColors={tools.getTableColors(this.state.tournamentId)}
+          leagueName={leagueName}
+          table={table}
+          tableColors={tools.getTableColors(tournamentId)}
         />
 
         <NextMatches
           className="print"
-          matches={this.state.nextMatches}
-          nextRoundNumber={this.state.roundNumber}
-          loading={this.state.loading}
+          matches={nextMatches}
+          nextRoundNumber={roundNumber}
+          loading={loading}
         />
 
-        <TopscorersContainer
-          className="print"
-          tournamentId={this.state.tournamentId}
-        />
+        <TopscorersContainer className="print" tournamentId={tournamentId} />
 
         <DangerzoneContainer
           className="print"
-          leagueName={this.state.leagueName}
-          tournamentId={parseInt(this.state.tournamentId, 10)}
+          leagueName={leagueName}
+          tournamentId={parseInt(tournamentId, 10)}
         />
       </div>
     );

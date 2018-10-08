@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Menu } from "semantic-ui-react";
+import React, {Component} from "react";
+import {Menu} from "semantic-ui-react";
 import PropTypes from "prop-types";
 
 class TypeOfGraphicSubMenu extends Component {
@@ -7,12 +7,13 @@ class TypeOfGraphicSubMenu extends Component {
     super(props);
     this.handleItemClick = this.handleItemClick.bind(this);
   }
+
   handleItemClick = (event, props) => {
     this.props.updateActiveItem(props.name);
   };
 
   render() {
-    const { activeItem } = this.props;
+    const {activeItem} = this.props;
     return (
       <Menu>
         <Menu.Item
@@ -39,7 +40,7 @@ class TypeOfGraphicSubMenu extends Component {
 
 TypeOfGraphicSubMenu.propTypes = {
   activeItem: PropTypes.string.isRequired,
-  updateActiveItem: PropTypes.func.isRequired
+  updateActiveItem: PropTypes.func.isRequired,
 };
 
 export default TypeOfGraphicSubMenu;

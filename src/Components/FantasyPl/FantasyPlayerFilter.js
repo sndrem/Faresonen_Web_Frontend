@@ -1,14 +1,13 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
-import { Segment, Form, Checkbox } from "semantic-ui-react";
+import {Segment, Form, Checkbox} from "semantic-ui-react";
 import "./FantasyPlayerFilter.css";
 
 class FantasyPlayerFilter extends Component {
-  handleNameSearch = search =>
-    this.props.setNameFilter(search.target.value.trim().toLowerCase());
+  handleNameSearch = search => this.props.setNameFilter(search.target.value.trim().toLowerCase());
 
-  handlePriceSearch = search => {
-    const { value } = search.target;
+  handlePriceSearch = (search) => {
+    const {value} = search.target;
     if (isNaN(value) || !value) this.props.setPriceFilter(-1);
     else {
       this.props.setPriceFilter(parseFloat(value, 10));
@@ -53,7 +52,7 @@ class FantasyPlayerFilter extends Component {
 FantasyPlayerFilter.propTypes = {
   setPriceFilter: PropTypes.func.isRequired,
   setNameFilter: PropTypes.func.isRequired,
-  setDreamTeamFilter: PropTypes.func.isRequired
+  setDreamTeamFilter: PropTypes.func.isRequired,
 };
 
 export default FantasyPlayerFilter;

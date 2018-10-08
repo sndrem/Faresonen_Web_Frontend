@@ -1,9 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Segment, Dimmer, Loader, Message } from "semantic-ui-react";
+import {
+  Segment, Dimmer, Loader, Message,
+} from "semantic-ui-react";
 import RoundButtons from "../RoundButtons/RoundButtons";
 
-const RoundList = props => {
+const RoundList = (props) => {
   if (props.rounds.length === 0) {
     return (
       <Message info>
@@ -14,7 +16,10 @@ const RoundList = props => {
   return (
     <Segment>
       <Dimmer active={props.loading}>
-        <Loader>Henter runder for {props.leagueName}</Loader>
+        <Loader>
+Henter runder for
+          {props.leagueName}
+        </Loader>
       </Dimmer>
       <RoundButtons
         tournamentId={props.tournamentId}
@@ -38,9 +43,9 @@ RoundList.propTypes = {
       "@uri": PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       nextRoundId: PropTypes.string,
-      roundNo: PropTypes.string.isRequired
-    })
-  ).isRequired
+      roundNo: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
 };
 
 export default RoundList;

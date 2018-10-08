@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
-import { Feed, Icon, Message, Modal, Header } from "semantic-ui-react";
+import {Feed, Icon, Message, Modal, Header} from "semantic-ui-react";
 import tools from "../../Tools/tools";
 import "./DangerzoneAccumulator.css";
 
@@ -11,8 +11,7 @@ class DangerZoneAccumulator extends Component {
     this.state = {
       data: {
         events: []
-      },
-      loading: true
+      }
     };
   }
 
@@ -22,16 +21,13 @@ class DangerZoneAccumulator extends Component {
       const uri = p.person1["@uri"];
       players.push(tools.getPersonData(uri));
     });
-    tools
-      .getMultiplePersonData(players, nextProps.events)
-      .then(data => {
-        this.setState({
-          data: {
-            events: data
-          }
-        });
-      })
-      .catch(err => console.warn(err));
+    tools.getMultiplePersonData(players, nextProps.events).then(data => {
+      this.setState({
+        data: {
+          events: data
+        }
+      });
+    });
   }
 
   getInfoMessage = () => (
@@ -52,27 +48,28 @@ class DangerZoneAccumulator extends Component {
   };
 
   removeEventFromState = event => {
-    if (!event.player)
+    if (!event.player) {
       throw new Error(
         "Event does not have player and player id information. Cannot remove element from state"
       );
-    const index = this.state.data.events.findIndex(e => {
-      return e.player.id === event.player.id;
-    });
+    }
+    const index = this.state.data.events.findIndex(
+      e => e.player.id === event.player.id
+    );
     if (index < 0) return false;
     this.state.data.events.splice(index, 1);
-    this.setState({
+    this.setState(prevState => ({
       data: {
-        events: this.state.data.events
+        events: prevState.data.events
       }
-    });
+    }));
   };
 
   sortEvents = events =>
     events.sort((a, b) => a.event.realTime <= b.event.realTime);
 
   render() {
-    let { events } = this.state.data;
+    let {events} = this.state.data;
     events = this.sortEvents(events);
 
     let elements = null;

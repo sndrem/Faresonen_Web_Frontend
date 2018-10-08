@@ -11,14 +11,14 @@ describe("<LiveTeasePreview />", () => {
         matchTime="21.00"
         channels={[5]}
         allChannels={[
-          { name: "TV 2", value: "1" },
-          { name: "TV 2 Sport Premium", value: "5" }
+          {name: "TV 2", value: "1"},
+          {name: "TV 2 Sport Premium", value: "5"},
         ]}
         script="S18 5"
         awayColor="1"
         homeColor="2"
-        findColor={() => ({ hex: "FFFFFF" })}
-      />
+        findColor={() => ({hex: "FFFFFF"})}
+      />,
     );
     expect(elem).toMatchSnapshot();
     elem = renderer.create(
@@ -30,12 +30,12 @@ describe("<LiveTeasePreview />", () => {
         homeColor="2"
         channels={[5]}
         allChannels={[
-          { name: "TV 2", value: "1" },
-          { name: "TV 2 Sport Premium", value: "5" }
+          {name: "TV 2", value: "1"},
+          {name: "TV 2 Sport Premium", value: "5"},
         ]}
         script="S18 5"
-        findColor={() => ({ hex: "FFFFFF" })}
-      />
+        findColor={() => ({hex: "FFFFFF"})}
+      />,
     );
     expect(elem).toMatchSnapshot();
   });

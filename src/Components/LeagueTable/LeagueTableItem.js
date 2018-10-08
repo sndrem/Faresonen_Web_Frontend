@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
-import { Table } from "semantic-ui-react";
+import {Table} from "semantic-ui-react";
 import axios from "axios";
 import "./LeagueTable.css";
 
@@ -9,22 +9,25 @@ class LeagueTableItem extends Component {
     super(props);
     this.state = {
       data: props.tableData,
-      teamData: ""
+      teamData: "",
     };
 
     this.getTeamData(props.tableData.team["@uri"]);
   }
 
   getTeamData(url) {
-    axios.get(url).then(data => {
-      this.setState({ teamData: data.data });
+    axios.get(url).then((data) => {
+      this.setState({teamData: data.data});
     });
   }
 
   render() {
     return (
       <Table.Row className={this.props.rowColor}>
-        <Table.Cell>{this.state.data.position}.</Table.Cell>
+        <Table.Cell>
+          {this.state.data.position}
+.
+        </Table.Cell>
         <Table.Cell>{this.state.teamData.name}</Table.Cell>
         <Table.Cell>{this.state.data.matches}</Table.Cell>
         <Table.Cell>{this.state.data.wins}</Table.Cell>
@@ -40,16 +43,16 @@ class LeagueTableItem extends Component {
 }
 
 LeagueTableItem.defaultProps = {
-  rowColor: ""
+  rowColor: "",
 };
 
 LeagueTableItem.propTypes = {
   tableData: PropTypes.shape({
     team: PropTypes.shape({
-      "@uri": PropTypes.string.isRequired
-    })
+      "@uri": PropTypes.string.isRequired,
+    }),
   }).isRequired,
-  rowColor: PropTypes.string
+  rowColor: PropTypes.string,
 };
 
 export default LeagueTableItem;

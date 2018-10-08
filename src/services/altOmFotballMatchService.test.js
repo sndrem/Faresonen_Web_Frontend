@@ -10,13 +10,11 @@ function idDoesNotExists() {
 }
 
 function getChannels() {
-  return [{ name: "TV 2", value: 1 }, { name: "TV 2 Sport Premium", value: 5 }];
+  return [{name: "TV 2", value: 1}, {name: "TV 2 Sport Premium", value: 5}];
 }
 describe("altOmFotballMatchService", () => {
   it("Should get matches", async () => {
-    mockAxios.get.mockImplementationOnce(() =>
-      Promise.resolve({ data: ["matches"] })
-    );
+    mockAxios.get.mockImplementationOnce(() => Promise.resolve({data: ["matches"]}));
 
     const matches = await altOmFotballMatchService.getMatches();
     expect(matches.data).toEqual(["matches"]);
@@ -54,21 +52,21 @@ describe("altOmFotballMatchService", () => {
     const matches = [
       {
         name: "A",
-        confirmed: "true"
+        confirmed: "true",
       },
       {
         name: "B",
-        confirmed: ""
+        confirmed: "",
       },
       {
         name: "C",
-        confirmed: ""
-      }
+        confirmed: "",
+      },
     ];
     const filtered = altOmFotballMatchService.filterNotDoneMatches(matches);
     expect(filtered).toEqual([
-      { name: "B", confirmed: "" },
-      { name: "C", confirmed: "" }
+      {name: "B", confirmed: ""},
+      {name: "C", confirmed: ""},
     ]);
   });
 });

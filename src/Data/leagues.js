@@ -12,8 +12,8 @@ export default {
       image: EliteserieImage,
       active: true,
       activeseason: {
-        "@uri": "http://api.tv2.no/sport/resources/seasons/340/"
-      }
+        "@uri": "http://api.tv2.no/sport/resources/seasons/340/",
+      },
     },
     {
       name: "OBOS-ligaen",
@@ -23,8 +23,8 @@ export default {
       image: ObosligaenImage,
       active: true,
       activeseason: {
-        "@uri": "http://api.tv2.no/sport/resources/seasons/340/"
-      }
+        "@uri": "http://api.tv2.no/sport/resources/seasons/340/",
+      },
     },
     {
       name: "Premier League",
@@ -34,8 +34,8 @@ export default {
       image: PremierLeagueImage,
       active: false,
       activeseason: {
-        "@uri": "http://api.tv2.no/sport/resources/seasons/339/"
-      }
-    }
-  ]
+        "@uri": "http://api.tv2.no/sport/resources/seasons/339/",
+      },
+    },
+  ],
 };

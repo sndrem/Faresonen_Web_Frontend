@@ -1,27 +1,23 @@
 import React from "react";
-import { shallow } from "enzyme";
+import {shallow} from "enzyme";
 import mockAxios from "axios";
-import { Progress } from "semantic-ui-react";
+import {Progress} from "semantic-ui-react";
 import LeagueProgress from "./LeagueProgress";
 
 function mockGetOnce() {
-  mockAxios.get.mockImplementationOnce(() =>
-    Promise.resolve({
-      data: [
-        {
-          data: {
-            confirmed: "true"
-          }
-        }
-      ]
-    })
-  );
+  mockAxios.get.mockImplementationOnce(() => Promise.resolve({
+    data: [
+      {
+        data: {
+          confirmed: "true",
+        },
+      },
+    ],
+  }));
 }
 
 function mockAllOnce() {
-  mockAxios.all.mockImplementationOnce(() =>
-    Promise.resolve({ data: ["Yeah"] })
-  );
+  mockAxios.all.mockImplementationOnce(() => Promise.resolve({data: ["Yeah"]}));
 }
 
 describe("<LeagueProgess />", () => {
@@ -33,8 +29,8 @@ describe("<LeagueProgess />", () => {
         seasonId={340}
       />,
       {
-        disableLifecycleMethods: true
-      }
+        disableLifecycleMethods: true,
+      },
     );
   }
 
@@ -54,7 +50,7 @@ describe("<LeagueProgess />", () => {
       finished: 0,
       left: 0,
       total: 0,
-      loading: true
+      loading: true,
     });
   });
 
@@ -74,7 +70,7 @@ describe("<LeagueProgess />", () => {
       finished: 0,
       left: 0,
       total: 0,
-      loading: true
+      loading: true,
     };
 
     expect(defaultState).toEqual(elem.state());
@@ -89,7 +85,9 @@ describe("<LeagueProgess />", () => {
   it("should initialize with correct props", () => {
     const elem = createElement();
     const progressElement = elem.find(Progress);
-    const { color, progress, total, value } = progressElement.props();
+    const {
+      color, progress, total, value,
+    } = progressElement.props();
     expect(color).toEqual("green");
     expect(progress).toEqual("ratio");
     expect(total).toEqual(0);

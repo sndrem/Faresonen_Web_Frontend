@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import Topscorers from "../Topscorers";
@@ -15,16 +15,16 @@ class TopscorersContainer extends Component {
   }
 
   componentDidMount() {
-    const { tournamentId } = this.props;
+    const {tournamentId} = this.props;
     axios
       .get(`/statistics/topscorers/${tournamentId}`)
       .then(data => {
         this.setState({
-          data: { players: data.data.data.slice(0, 10) },
+          data: {players: data.data.data.slice(0, 10)},
           loading: false
         });
       })
-      .catch(() => this.setState({ players: [] }));
+      .catch(() => this.setState({data: {players: []}}));
   }
 
   render() {

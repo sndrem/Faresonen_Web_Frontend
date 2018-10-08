@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow } from "enzyme";
+import {shallow} from "enzyme";
 import renderer from "react-test-renderer";
 import LeagueChooser from "./LeagueChooser";
 import data from "../../Data/leagues";

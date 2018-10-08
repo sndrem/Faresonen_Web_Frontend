@@ -24,7 +24,8 @@ exports[`<RoundSteps /> Should render properly 1`] = `
       <div
         className="description"
       >
-        Du har valgt 
+        Du har valgt
+         
         Eliteserien
       </div>
     </div>
@@ -49,7 +50,8 @@ exports[`<RoundSteps /> Should render properly 1`] = `
       <div
         className="description"
       >
-        Du har valgt runde 
+        Du har valgt runde
+         
         1
       </div>
     </div>

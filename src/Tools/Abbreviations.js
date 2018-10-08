@@ -16,7 +16,7 @@ class Abbreviations {
       Vålerenga: "VIF",
       Start: "STA",
       Ranheim: "RAN",
-      "Bodø/Glimt": "B/G"
+      "Bodø/Glimt": "B/G",
     };
 
     this.obosligaAbbr = {
@@ -35,7 +35,7 @@ class Abbreviations {
       "Ullensaker/Kisa": "UKI",
       Viking: "VIK",
       Levanger: "LEV",
-      Kongsvinger: "KON"
+      Kongsvinger: "KON",
     };
   }
 
@@ -53,7 +53,7 @@ class Abbreviations {
     }
 
     throw new Error(
-      `${league} is an invalid league. Use Eliteserien or Obosligaen`
+      `${league} is an invalid league. Use Eliteserien or Obosligaen`,
     );
   };
 }

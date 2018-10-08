@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Grid, Header } from "semantic-ui-react";
+import React, {Component} from "react";
+import {Grid, Header} from "semantic-ui-react";
 import NewColorForm from "../NewColorForm";
 import EditColors from "../EditColors";
 import FirebaseService from "../../../services/FirebaseService";
@@ -29,7 +29,7 @@ class ColorContainer extends Component {
     this.service.getColors(this.processColors);
   };
 
-  setColor = color => this.setState({ selectedColor: color });
+  setColor = color => this.setState({selectedColor: color});
 
   saveColor = (key, color) => {
     if (!key) throw new Error("Cannot save color without a key");
@@ -59,46 +59,46 @@ class ColorContainer extends Component {
   };
 
   resetForm = () => {
-    this.setState({
-      ...this.state,
+    this.setState(prevState => ({
+      ...prevState,
       selectedColor: {
         key: "",
         value: "0",
         hex: "FFFFFF"
       }
-    });
+    }));
   };
 
   editColor = color => {
-    this.setState({ selectedColor: color });
+    this.setState({selectedColor: color});
   };
 
-  processColors = colors => this.setState({ colors, loading: false });
+  processColors = colors => this.setState({colors, loading: false});
 
   handleChange = (name, value, valid) => {
-    this.setState({
-      ...this.state,
+    this.setState(prevState => ({
+      ...prevState,
       valid,
       selectedColor: {
-        ...this.state.selectedColor,
+        ...prevState.selectedColor,
         [name]: value
       }
-    });
+    }));
   };
 
   handleColorChange = (hexColor, valid) => {
-    this.setState({
-      ...this.state,
+    this.setState(prevState => ({
+      ...prevState,
       valid,
       selectedColor: {
-        ...this.state.selectedColor,
+        ...prevState.selectedColor,
         hex: hexColor
       }
-    });
+    }));
   };
 
   render() {
-    const { colors, selectedColor, loading, valid } = this.state;
+    const {colors, selectedColor, loading, valid} = this.state;
 
     return (
       <Grid columns={2}>

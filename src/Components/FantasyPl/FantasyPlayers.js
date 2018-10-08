@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {
   Grid,
@@ -8,7 +8,7 @@ import {
   Loader,
   Modal,
   Image,
-  Icon
+  Icon,
 } from "semantic-ui-react";
 import FantasyPlayerAnchor from "./FantasyPlayerAnchor";
 
@@ -22,7 +22,7 @@ class FantasyPlayers extends Component {
   };
 
   render() {
-    const { loading, teams } = this.props;
+    const {loading, teams} = this.props;
     return (
       <Segment>
         <Dimmer active={loading}>
@@ -31,7 +31,7 @@ class FantasyPlayers extends Component {
 
         <Header as="h1">Fantasy PL</Header>
         <Grid columns={4}>
-          {Object.keys(teams).map(key => {
+          {Object.keys(teams).map((key) => {
             if (teams[key].players.length === 0) {
               return "";
             }
@@ -43,17 +43,20 @@ class FantasyPlayers extends Component {
                   .map(player => (
                     <div key={player.id}>
                       <Modal
-                        trigger={
+                        trigger={(
                           <FantasyPlayerAnchor
                             onClick={this.handleOpen}
                             firstName={player.first_name}
                             secondName={player.second_name}
                             inDreamTeam={player.in_dreamteam}
                           />
-                        }
+)}
                       >
                         <Modal.Header>
-                          {player.first_name} {player.second_name}{" "}
+                          {player.first_name}
+                          {" "}
+                          {player.second_name}
+                          {" "}
                           {player.in_dreamteam ? (
                             <Icon name="star" color="yellow" />
                           ) : (
@@ -66,13 +69,15 @@ class FantasyPlayers extends Component {
                             size="medium"
                             src={`http://platform-static-files.s3.amazonaws.com/premierleague/photos/players/250x250/p${player.photo.replace(
                               "jpg",
-                              "png"
+                              "png",
                             )}`}
                           />
                           <Modal.Description>
                             <div>
                               <p>
-                                <b>Pris: </b>£{player.now_cost / 10}
+                                <b>Pris: </b>
+£
+                                {player.now_cost / 10}
                               </p>
                               <p>
                                 {" "}
@@ -82,7 +87,8 @@ class FantasyPlayers extends Component {
                               <p>
                                 {" "}
                                 <b>Valgt av: </b>
-                                {player.selected_by_percent}%
+                                {player.selected_by_percent}
+%
                               </p>
                               <p>
                                 {" "}
@@ -93,8 +99,10 @@ class FantasyPlayers extends Component {
                               </p>
                               {player.chancee_of_playing_next_round ? (
                                 <p>
-                                  <b>Sjanse for å spille neste runde:</b>{" "}
-                                  {player.chancee_of_playing_next_round}%
+                                  <b>Sjanse for å spille neste runde:</b>
+                                  {" "}
+                                  {player.chancee_of_playing_next_round}
+%
                                 </p>
                               ) : (
                                 ""
@@ -107,7 +115,10 @@ class FantasyPlayers extends Component {
                         </Modal.Content>
                       </Modal>
 
-                      <span>£{player.now_cost / 10}</span>
+                      <span>
+£
+                        {player.now_cost / 10}
+                      </span>
                     </div>
                   ))}
               </Grid.Column>
@@ -127,12 +138,12 @@ FantasyPlayers.propTypes = {
           id: PropTypes.number.isRequired,
           first_name: PropTypes.string.isRequired,
           second_name: PropTypes.string.isRequired,
-          now_cost: PropTypes.number.isRequired
-        })
-      ).isRequired
-    })
+          now_cost: PropTypes.number.isRequired,
+        }),
+      ).isRequired,
+    }),
   ).isRequired,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
 };
 
 export default FantasyPlayers;

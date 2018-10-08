@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { Container } from "semantic-ui-react";
-import { HashRouter, Route, Switch } from "react-router-dom";
+import React, {Component} from "react";
+import {Container} from "semantic-ui-react";
+import {HashRouter, Route, Switch} from "react-router-dom";
 import FrontpageView from "./Views/FrontpageView";
 import MainView from "./Views/MainView";
 import RoundView from "./Views/RoundView";
@@ -25,7 +25,7 @@ class App extends Component {
       seasonId: "",
       leagues: [],
       loading: true,
-      error: ""
+      error: "",
     };
     this.service = new FirebaseService();
   }
@@ -34,10 +34,10 @@ class App extends Component {
     this.service.getLeagues(this.processLeagues);
   }
 
-  processLeagues = leagues => this.setState({ leagues, loading: false });
+  processLeagues = leagues => this.setState({leagues, loading: false});
 
   switchLeagueName = (leagueName, tournamentId, seasonId) => {
-    this.setState({ leagueName, tournamentId, seasonId });
+    this.setState({leagueName, tournamentId, seasonId});
   };
 
   render() {

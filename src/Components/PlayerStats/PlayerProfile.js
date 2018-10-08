@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Card, Image, Icon } from "semantic-ui-react";
+import {Card, Image, Icon} from "semantic-ui-react";
 
 const PlayerProfile = ({
   name,
@@ -11,56 +11,62 @@ const PlayerProfile = ({
   cost,
   selectedBy,
   points,
-  teamName
-}) => {
-  return (
-    <div>
-      <Card>
-        <Image
-          src={
+  teamName,
+}) => (
+  <div>
+    <Card>
+      <Image
+        src={
             photo
               ? `http://platform-static-files.s3.amazonaws.com/premierleague/photos/players/250x250/p${photo.replace(
-                  "jpg",
-                  "png"
-                )}`
+                "jpg",
+                "png",
+              )}`
               : ""
           }
-        />
-        <Card.Content>
-          <Card.Header>
-            {name}, {teamName}{" "}
-            {inDreamTeam ? <Icon name="star" color="yellow" /> : ""}
-          </Card.Header>
-          <div>
+      />
+      <Card.Content>
+        <Card.Header>
+          {name}
+,
+          {teamName}
+          {" "}
+          {inDreamTeam ? <Icon name="star" color="yellow" /> : ""}
+        </Card.Header>
+        <div>
+          <Card.Description>
+            <b>Pris: </b>
+£
+            {cost / 10}
+          </Card.Description>
+          <Card.Description>
+            <b>Poeng: </b>
+            {points}
+          </Card.Description>
+          <Card.Description>
+            <b>Valgt av: </b>
+            {selectedBy}
+%
+          </Card.Description>
+          <Card.Description>
+            <b>Skader: </b>
+            {news ? `${news}` : "Ingen skader."}
+          </Card.Description>
+          {chanceOfPlayingNextRound ? (
             <Card.Description>
-              <b>Pris: </b>£{cost / 10}
+              <b>Sjanse for å spille neste runde:</b>
+              {" "}
+              {chanceOfPlayingNextRound}
+%
             </Card.Description>
-            <Card.Description>
-              <b>Poeng: </b>
-              {points}
-            </Card.Description>
-            <Card.Description>
-              <b>Valgt av: </b>
-              {selectedBy}%
-            </Card.Description>
-            <Card.Description>
-              <b>Skader: </b>
-              {news ? `${news}` : "Ingen skader."}
-            </Card.Description>
-            {chanceOfPlayingNextRound ? (
-              <Card.Description>
-                <b>Sjanse for å spille neste runde:</b>{" "}
-                {chanceOfPlayingNextRound}%
-              </Card.Description>
-            ) : (
-              ""
-            )}
-          </div>
-        </Card.Content>
-      </Card>
-    </div>
-  );
-};
+          ) : (
+            ""
+          )}
+        </div>
+      </Card.Content>
+    </Card>
+  </div>
+);
 PlayerProfile.propTypes = {
   name: PropTypes.string,
   teamName: PropTypes.string,
@@ -70,7 +76,7 @@ PlayerProfile.propTypes = {
   inDreamTeam: PropTypes.bool,
   cost: PropTypes.number,
   selectedBy: PropTypes.string,
-  points: PropTypes.number
+  points: PropTypes.number,
 };
 
 PlayerProfile.defaultProps = {
@@ -82,6 +88,6 @@ PlayerProfile.defaultProps = {
   cost: -1,
   selectedBy: "",
   points: -1,
-  teamName: ""
+  teamName: "",
 };
 export default PlayerProfile;

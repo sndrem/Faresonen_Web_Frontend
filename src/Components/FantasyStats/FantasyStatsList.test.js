@@ -10,10 +10,10 @@ describe("<FantasyStatsList />", () => {
           "£5,6 mill - Harry Kane",
           "£4,2 mill - Mohamed Salah",
           "£3,3 mill - Alexis Sanchez",
-          "£2,9 mill - Romelu Lukaku"
+          "£2,9 mill - Romelu Lukaku",
         ]}
         header="Dyreste spillere"
-      />
+      />,
     );
     expect(tree).toMatchSnapshot();
   });

@@ -4,20 +4,20 @@ import FaresoneMenu from "../Components/Menu/FaresoneMenu";
 import FirstSteps from "../Components/ProcedureSteps/FirstSteps";
 import LeagueChooser from "../Components/LeagueChooser/LeagueChooser";
 
-const FrontpageView = props => (
+const FrontpageView = ({switchLeagueName, leagues, error, loading}) => (
   <div>
-    <FaresoneMenu switchLeagueName={props.switchLeagueName} />
+    <FaresoneMenu switchLeagueName={switchLeagueName} />
     <FirstSteps />
-    {props.loading ? (
+    {loading ? (
       <p>Henter ligaer...</p>
     ) : (
       <LeagueChooser
-        leagues={props.leagues}
-        switchLeagueName={props.switchLeagueName}
-        {...props}
+        leagues={leagues}
+        switchLeagueName={switchLeagueName}
+        {...this.props}
       />
     )}
-    {props.error ? <p>{props.error}</p> : ""}
+    {error ? <p>{error}</p> : ""}
   </div>
 );
 

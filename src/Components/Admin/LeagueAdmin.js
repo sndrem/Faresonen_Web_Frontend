@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Button, Segment, Divider, Menu } from "semantic-ui-react";
+import React, {Component} from "react";
+import {Button, Segment, Divider, Menu} from "semantic-ui-react";
 import firebaseConfig from "../../databaseConfig/firebaseConfig";
 import LeaguesContainer from "./Containers/LeaguesContainer";
 import ColorContainer from "./Containers/ColorContainer";
@@ -9,7 +9,6 @@ class LeagueAdmin extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
       activeItem: "ligaer",
       menuComponents: {
         ligaer: <LeaguesContainer />,
@@ -31,10 +30,10 @@ class LeagueAdmin extends Component {
     firebaseConfig.auth().signOut();
   };
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+  handleItemClick = (e, {name}) => this.setState({activeItem: name});
 
   render() {
-    const { activeItem } = this.state;
+    const {activeItem} = this.state;
     const menuComponent = this.getMenuComponent(activeItem);
     return (
       <Segment>

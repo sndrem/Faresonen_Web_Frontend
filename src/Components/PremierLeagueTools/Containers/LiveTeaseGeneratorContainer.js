@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Message, Segment } from "semantic-ui-react";
+import React, {Component} from "react";
+import {Message, Segment} from "semantic-ui-react";
 import LiveTeaseGenerator from "../LiveTeaseGenerator";
 import LiveTeasePreview from "../LiveTeasePreview";
 import badges from "../../../Data/badgePaths";
@@ -10,7 +10,7 @@ class LiveTeaseGeneratorContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: { match: [] },
+      data: {match: []},
       selectedMatch: "",
       matchTimeText: "",
       matchTime: "",
@@ -24,8 +24,8 @@ class LiveTeaseGeneratorContainer extends Component {
       error: "",
       leagueSelected: {
         tournamentId: "",
-        seasonId: ""
-      }
+        seasonId: "",
+      },
     };
     this.service = new FirebaseService();
     this.handleChange = this.handleChange.bind(this);
@@ -38,7 +38,7 @@ class LiveTeaseGeneratorContainer extends Component {
   }
 
   componentWillReceiveProps(props) {
-    const { selectedLeague } = props;
+    const {selectedLeague} = props;
     if (selectedLeague) {
       const [id, season] = selectedLeague.split("-");
       this.getLeagues(id, season);
@@ -46,22 +46,22 @@ class LiveTeaseGeneratorContainer extends Component {
   }
 
   getColors = () => {
-    this.service.getColors(colors => {
-      this.setState({ colors });
+    this.service.getColors((colors) => {
+      this.setState({colors});
     });
   };
 
   getLeagues = (tournamentId, seasonId) => {
     if (!tournamentId || !seasonId) {
-      console.log(`Det er ingen turneringsID eller sesongID tilgjengelig.`);
+      console.log("Det er ingen turneringsID eller sesongID tilgjengelig.");
       return;
     }
     this.setState({
       ...this.state,
       data: {
-        ...this.state.data
+        ...this.state.data,
       },
-      loading: true
+      loading: true,
     });
     this.getMatches(tournamentId, seasonId);
   };
@@ -73,20 +73,20 @@ class LiveTeaseGeneratorContainer extends Component {
   getMatches = (tournamentId, seasonId) => {
     altOmFotballMatchService
       .getOnlyNotDoneMatches(tournamentId, seasonId)
-      .then(data => {
+      .then((data) => {
         this.setState({
-          data: { match: data },
+          data: {match: data},
           loading: false,
-          error: ""
+          error: "",
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.warn(err);
         this.setState({
           data: {},
           loading: false,
           error:
-            "Det var et problem ved henting av kamper. Sjekk at du er koblet til internett"
+            "Det var et problem ved henting av kamper. Sjekk at du er koblet til internett",
         });
       });
   };
@@ -115,16 +115,16 @@ class LiveTeaseGeneratorContainer extends Component {
     </Segment>
   );
 
-  getBadgePath = team => {
+  getBadgePath = (team) => {
     const badgeFound = badges.find(
-      badge => badge.team.toLowerCase() === team.toLowerCase()
+      badge => badge.team.toLowerCase() === team.toLowerCase(),
     );
     if (badgeFound) return badgeFound;
-    return { path: "IKKE RIKTIG BADGE" };
+    return {path: "IKKE RIKTIG BADGE"};
     // throw new Error(`Could not find badge for ${team}`);
   };
 
-  getChannelName = channel => {
+  getChannelName = (channel) => {
     const found = this.state.allChannels.find(ch => ch.value === channel);
     if (found) return found.name;
     throw new Error(`Could not find a channel number for ${channel}`);
@@ -150,7 +150,7 @@ class LiveTeaseGeneratorContainer extends Component {
       selectedMatch: match,
       matchTimeText: text,
       matchTime: time,
-      channels: tvChannels
+      channels: tvChannels,
     } = this.state;
     if (!match) return "";
 
@@ -175,20 +175,20 @@ PREMIER LEAGUE <00:02-00:15`;
 
   formatName = name => name.replace("_", "");
 
-  findColor = value => {
+  findColor = (value) => {
     const color = this.state.colors.find(c => c.value === value);
     if (color) return color;
-    return { text: "FARGE IKKE FUNNET", hex: "", value: "FARGE IKKE FUNNET" };
+    return {text: "FARGE IKKE FUNNET", hex: "", value: "FARGE IKKE FUNNET"};
   };
 
-  handleChange = ({ name, value }) => {
+  handleChange = ({name, value}) => {
     this.setState({
       ...this.state,
-      [name]: value
+      [name]: value,
     });
   };
 
-  processChannels = allChannels => this.setState({ allChannels });
+  processChannels = allChannels => this.setState({allChannels});
 
   render() {
     if (this.state.loading) {
@@ -197,7 +197,8 @@ PREMIER LEAGUE <00:02-00:15`;
     if (this.state.data.match.length === 0 && !this.state.loading) {
       return (
         <Message info>
-          <Message.Header>Info</Message.Header>Ingen kamper tilgjengelig
+          <Message.Header>Info</Message.Header>
+Ingen kamper tilgjengelig
         </Message>
       );
     }
@@ -205,7 +206,7 @@ PREMIER LEAGUE <00:02-00:15`;
       return <Message warning>{this.state.error}</Message>;
     }
 
-    let { match: matches } = this.state.data;
+    let {match: matches} = this.state.data;
     if (!matches) {
       matches = [];
     }

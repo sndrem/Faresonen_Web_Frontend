@@ -1,26 +1,25 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
-import { Header, Segment, Form, Button } from "semantic-ui-react";
+import {Header, Segment, Form, Button} from "semantic-ui-react";
 import inputParser from "../../Tools/inputParsers";
 
 class EditLeague extends Component {
   constructor(props) {
     super(props);
-    const { name, seasonId, tournamentId } = props.league;
+    const {name, seasonId, tournamentId} = props.league;
     this.state = {
       data: {
         name,
         seasonId,
         tournamentId
-      },
-      loading: true
+      }
     };
     this.handleChange = this.handleChange.bind(this);
     this.submit = this.submit.bind(this);
   }
 
   componentWillReceiveProps = nextProps => {
-    const { name, seasonId, tournamentId } = nextProps.league;
+    const {name, seasonId, tournamentId} = nextProps.league;
     this.setState({
       data: {
         name,
@@ -36,33 +35,30 @@ class EditLeague extends Component {
     if (parseType) {
       const parser = inputParser[parseType];
       const parsedValue = parser(e.target.value);
-      this.setState({
+      this.setState(prevState => ({
         data: {
-          ...this.state.data,
+          ...prevState.data,
           [e.target.name]: parsedValue
         }
-      });
+      }));
       return;
     }
-    this.setState({
+    this.setState(prevState => ({
       data: {
-        ...this.state.data,
+        ...prevState.data,
         [e.target.name]: e.target.value
       }
-    });
+    }));
   };
 
-  // submit = e => {
-  //   e.preventDefault();
-  //   console.log("Submitting form with data", this.state);
-  //   const service = new FirebaseService();
-  //   service.updateLeague(this.state.data);
-  // };
   render() {
-    const { name, seasonId, tournamentId } = this.state.data;
+    const {name, seasonId, tournamentId} = this.state.data;
     return (
       <Segment color="red">
-        <Header as="h3">Liga: {this.props.league.name}</Header>
+        <Header as="h3">
+          Liga:
+          {this.props.league.name}
+        </Header>
         <Form onSubmit={this.submit}>
           <Form.Field>
             <label htmlFor="leagueName">Navn</label>

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Icon, Step } from "semantic-ui-react";
+import {Icon, Step} from "semantic-ui-react";
 
 const Steps = props => (
   <Step.Group className="no-print">
@@ -8,7 +8,10 @@ const Steps = props => (
       <Icon name="checkmark" />
       <Step.Content>
         <Step.Title>Liga valgt</Step.Title>
-        <Step.Description>Du har valgt {props.league}</Step.Description>
+        <Step.Description>
+Du har valgt
+          {props.league}
+        </Step.Description>
       </Step.Content>
     </Step>
 
@@ -39,7 +42,7 @@ const Steps = props => (
 );
 
 Steps.propTypes = {
-  league: PropTypes.string.isRequired
+  league: PropTypes.string.isRequired,
 };
 
 export default Steps;

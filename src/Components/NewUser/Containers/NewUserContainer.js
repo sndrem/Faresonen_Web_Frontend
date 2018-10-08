@@ -1,6 +1,6 @@
 import React from "react";
+import {Message} from "semantic-ui-react";
 import NewUserForm from "../NewUserForm";
-import { Message } from "semantic-ui-react";
 import firebaseConfig from "../../../databaseConfig/firebaseConfig";
 
 class NewUserContainer extends React.Component {
@@ -11,13 +11,13 @@ class NewUserContainer extends React.Component {
       password: "",
       confirmedPassword: "",
       formErrors: [],
-      info: ""
+      info: "",
     };
   }
 
-  onSubmit = event => {
+  onSubmit = (event) => {
     event.preventDefault();
-    const { email, password, confirmedPassword } = this.state;
+    const {email, password, confirmedPassword} = this.state;
     const errors = [];
     if (password !== confirmedPassword) {
       errors.push("Passordene matcher ikke");
@@ -25,26 +25,25 @@ class NewUserContainer extends React.Component {
       firebaseConfig
         .auth()
         .createUserWithEmailAndPassword(email, password)
-        .then(data => {
+        .then((data) => {
           console.log("Bruker opprettet");
           console.log(data);
-          return;
         })
-        .catch(error => {
-          const { message } = error;
+        .catch((error) => {
+          const {message} = error;
           errors.push(message);
         });
-      this.setState({ formErrors: errors });
+      this.setState({formErrors: errors});
     }
   };
 
-  onChange = event => {
+  onChange = (event) => {
     event.preventDefault();
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({[event.target.name]: event.target.value});
   };
 
   render() {
-    const { formErrors, info } = this.state;
+    const {formErrors, info} = this.state;
     return (
       <div>
         {info !== "" ? (

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
 
@@ -7,17 +7,18 @@ class DateFilter extends Component {
     super(props);
     this.state = {
       data: {
-        date: moment(new Date()).format("YYYY-MM-DD")
+        date: moment(new Date()).format("YYYY-MM-DD"),
       },
-      loading: true
+      loading: true,
     };
   }
 
-  handleChange = event => {
+  handleChange = (event) => {
     event.preventDefault();
     this.props.updateDate(new Date(event.target.value));
-    this.setState({ data: { date: event.target.value } });
+    this.setState({data: {date: event.target.value}});
   };
+
   render() {
     return (
       <div>
@@ -35,6 +36,6 @@ class DateFilter extends Component {
   }
 }
 DateFilter.propTypes = {
-  updateDate: PropTypes.func.isRequired
+  updateDate: PropTypes.func.isRequired,
 };
 export default DateFilter;

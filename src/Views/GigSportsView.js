@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import moment from "moment";
 import {
   Header,
@@ -45,8 +45,7 @@ class GigSportsView extends Component {
           loading: false
         });
       })
-      .catch(err => {
-        console.log(err);
+      .catch(() => {
         this.updateError("Kunne ikke hente odds. Er du koblet til internett?");
       });
   }
@@ -75,12 +74,11 @@ class GigSportsView extends Component {
     return [];
   };
 
-  filterMatchesByDate = (matches, date = new Date()) => {
-    return matches.filter(match => {
+  filterMatchesByDate = (matches, date = new Date()) =>
+    matches.filter(match => {
       const matchDay = new Date(match.start).toDateString();
       return matchDay === date.toDateString();
     });
-  };
 
   connectGamesAndBets = (matches, bets) => {
     if (!matches) return [];
@@ -91,41 +89,43 @@ class GigSportsView extends Component {
     });
   };
 
-  fetchMatches = () => {
-    return fetch(
+  fetchMatches = () =>
+    fetch(
       `${
         this.gigDomain
       }Customers/TV2/MatchFeed?apiKey=a1476rz9nz3wh0x5denb8ij54cxo47yr`
     )
       .then(response => response.json())
-      .catch(err =>
+      .catch(() =>
         this.updateError(
           "Kunne ikke hente kamper fra GIG Sports. Er du koblet til internett?"
         )
       );
-  };
 
-  fetchBets = () => {
-    return fetch(
+  fetchBets = () =>
+    fetch(
       `${
         this.gigDomain
       }Customers/Tv2/OddsFeed/Pregame?apiKey=a1476rz9nz3wh0x5denb8ij54cxo47yr`
     )
       .then(response => response.json())
-      .catch(err =>
+      .catch(() =>
         this.updateError(
           "Kunne ikke hente odds fra GIG Sports. Er du koblet til internett?"
         )
       );
-  };
 
-  updateDate = date => this.setState({ dateFilter: date });
+  updateDate = date => this.setState({dateFilter: date});
 
   updateError = message =>
-    this.setState({ ...this.state, error: message, loading: false });
+    this.setState(prevState => ({
+      ...prevState,
+      error: message,
+      loading: false
+    }));
 
   render() {
-    let { eliteserien, obosligaen } = this.state.data;
+    let {eliteserien, obosligaen} = this.state.data;
     eliteserien = this.filterMatchesByDate(eliteserien, this.state.dateFilter);
     obosligaen = this.filterMatchesByDate(obosligaen, this.state.dateFilter);
     return (

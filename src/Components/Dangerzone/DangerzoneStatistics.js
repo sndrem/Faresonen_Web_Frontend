@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Statistic } from "semantic-ui-react";
+import {Statistic} from "semantic-ui-react";
 
 const socketConnected = (connected = false) => {
   if (connected) {
@@ -40,6 +40,6 @@ const DangerzoneStatistics = props => (
 DangerzoneStatistics.propTypes = {
   socketConnected: PropTypes.bool.isRequired,
   eliteserien: PropTypes.number.isRequired,
-  obosligaen: PropTypes.number.isRequired
+  obosligaen: PropTypes.number.isRequired,
 };
 export default DangerzoneStatistics;

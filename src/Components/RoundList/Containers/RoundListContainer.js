@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import axios from "axios";
 import RoundList from "../RoundList";
 
@@ -13,6 +14,7 @@ class RoundListContainer extends Component {
       loading: true
     };
   }
+
   componentDidMount() {
     const { tournamentId, seasonId } = this.props;
     this.getRounds(tournamentId, seasonId);
@@ -41,6 +43,7 @@ class RoundListContainer extends Component {
         })
       );
   };
+
   render() {
     const { rounds } = this.state.data;
     const { tournamentId, seasonId, leagueName } = this.props;
@@ -55,4 +58,11 @@ class RoundListContainer extends Component {
     );
   }
 }
+
+RoundListContainer.propTypes = {
+  tournamentId: PropTypes.number.isRequired,
+  seasonId: PropTypes.number.isRequired,
+  leagueName: PropTypes.string.isRequired
+};
+
 export default RoundListContainer;

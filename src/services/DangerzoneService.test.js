@@ -6,34 +6,34 @@ describe("DangerzoneService", () => {
       Brann: {
         players: [
           {
-            name: "Sindre"
+            name: "Sindre",
           },
           {
-            name: "Ole"
-          }
-        ]
+            name: "Ole",
+          },
+        ],
       },
       Rosenborg: {
         players: [
           {
-            name: "Petter"
+            name: "Petter",
           },
           {
-            name: "Kåre"
-          }
-        ]
-      }
+            name: "Kåre",
+          },
+        ],
+      },
     };
 
     expect(DangerzoneService.fromObjectToArray(objects)).toEqual([
       {
         team: "Brann",
-        players: [{ name: "Sindre" }, { name: "Ole" }]
+        players: [{name: "Sindre"}, {name: "Ole"}],
       },
       {
         team: "Rosenborg",
-        players: [{ name: "Petter" }, { name: "Kåre" }]
-      }
+        players: [{name: "Petter"}, {name: "Kåre"}],
+      },
     ]);
   });
 });

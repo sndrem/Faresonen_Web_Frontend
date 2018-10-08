@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Form, Button } from "semantic-ui-react";
+import React, {Component} from "react";
+import {Form, Button} from "semantic-ui-react";
 import firebaseConfig from "../../databaseConfig/firebaseConfig";
 
 class LogInAdmin extends Component {
@@ -8,30 +8,30 @@ class LogInAdmin extends Component {
     this.state = {
       email: "",
       pwd: "",
-      error: ""
+      error: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.signIn = this.signIn.bind(this);
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     e.preventDefault();
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({[e.target.name]: e.target.value});
   };
 
-  signIn = e => {
+  signIn = (e) => {
     e.preventDefault();
-    const { email, pwd } = this.state;
+    const {email, pwd} = this.state;
     firebaseConfig
       .auth()
       .signInWithEmailAndPassword(email, pwd)
       .catch(() => {
-        this.setState({ error: "Brukernavn eller passord er feil." });
+        this.setState({error: "Brukernavn eller passord er feil."});
       });
   };
 
   render() {
-    const { error, email, pwd } = this.state;
+    const {error, email, pwd} = this.state;
     return (
       <Form>
         <Form.Field>
@@ -57,7 +57,7 @@ class LogInAdmin extends Component {
             autoComplete="password"
           />
         </Form.Field>
-        {error ? <span style={{ display: "block" }}>{error}</span> : ""}
+        {error ? <span style={{display: "block"}}>{error}</span> : ""}
         <Button onClick={this.signIn} type="submit">
           Logg inn
         </Button>

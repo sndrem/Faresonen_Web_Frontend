@@ -1,9 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Table, Segment, Dimmer, Loader, Message } from "semantic-ui-react";
+import {
+  Table, Segment, Dimmer, Loader, Message,
+} from "semantic-ui-react";
 import NextMatchInfo from "./NextMatchInfo";
 
-const NextMatches = props => {
+const NextMatches = (props) => {
   const matches = props.matches.map(m => (
     <NextMatchInfo
       key={m.id}
@@ -47,7 +49,7 @@ const NextMatches = props => {
 NextMatches.propTypes = {
   matches: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   nextRoundNumber: PropTypes.number.isRequired,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
 };
 
 export default NextMatches;

@@ -1,20 +1,20 @@
 import React from "react";
-import { shallow } from "enzyme";
+import {shallow} from "enzyme";
 import renderer from "react-test-renderer";
 import axios from "axios";
-import { Segment } from "semantic-ui-react";
+import {Segment} from "semantic-ui-react";
 import LeagueTable from "./LeagueTable";
 
 // Mock axios
 jest.mock("axios", () => {
   const data = {
     data: {
-      name: "Premier League"
-    }
+      name: "Premier League",
+    },
   };
 
   return {
-    get: jest.fn(() => Promise.resolve(data))
+    get: jest.fn(() => Promise.resolve(data)),
   };
 });
 
@@ -24,10 +24,10 @@ function instantiateShallow() {
       leagueName="Eliteserien"
       tableColors={{
         greens: [],
-        reds: []
+        reds: [],
       }}
       table={[]}
-    />
+    />,
   );
 }
 
@@ -38,10 +38,10 @@ describe("<LeagueTable />", () => {
         leagueName="Eliteserien"
         tableColors={{
           greens: [1, 2],
-          reds: [19, 20]
+          reds: [19, 20],
         }}
         table={[{}]}
-      />
+      />,
     );
     expect(tree).toMatchSnapshot();
   });
@@ -52,9 +52,9 @@ describe("<LeagueTable />", () => {
       leagueName: "Eliteserien",
       tableColors: {
         greens: [],
-        reds: []
+        reds: [],
       },
-      loading: true
+      loading: true,
     });
   });
 
@@ -90,15 +90,15 @@ describe("<LeagueTable />", () => {
           points: "78",
           position: "1",
           season: {
-            "@uri": "http://api.tv2.no/sport/resources/seasons/339/"
+            "@uri": "http://api.tv2.no/sport/resources/seasons/339/",
           },
           team: {
-            "@uri": "http://api.tv2.no/sport/resources/teams/722/"
+            "@uri": "http://api.tv2.no/sport/resources/teams/722/",
           },
           tournament: {
-            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/"
+            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/",
           },
-          wins: "25"
+          wins: "25",
         },
         {
           "@uri": "http://api.tv2.no/sport/resources/table/500569/",
@@ -126,15 +126,15 @@ describe("<LeagueTable />", () => {
           points: "62",
           position: "2",
           season: {
-            "@uri": "http://api.tv2.no/sport/resources/seasons/339/"
+            "@uri": "http://api.tv2.no/sport/resources/seasons/339/",
           },
           team: {
-            "@uri": "http://api.tv2.no/sport/resources/teams/735/"
+            "@uri": "http://api.tv2.no/sport/resources/teams/735/",
           },
           tournament: {
-            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/"
+            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/",
           },
-          wins: "19"
+          wins: "19",
         },
         {
           "@uri": "http://api.tv2.no/sport/resources/table/500570/",
@@ -162,15 +162,15 @@ describe("<LeagueTable />", () => {
           points: "60",
           position: "3",
           season: {
-            "@uri": "http://api.tv2.no/sport/resources/seasons/339/"
+            "@uri": "http://api.tv2.no/sport/resources/seasons/339/",
           },
           team: {
-            "@uri": "http://api.tv2.no/sport/resources/teams/733/"
+            "@uri": "http://api.tv2.no/sport/resources/teams/733/",
           },
           tournament: {
-            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/"
+            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/",
           },
-          wins: "17"
+          wins: "17",
         },
         {
           "@uri": "http://api.tv2.no/sport/resources/table/500571/",
@@ -198,15 +198,15 @@ describe("<LeagueTable />", () => {
           points: "58",
           position: "4",
           season: {
-            "@uri": "http://api.tv2.no/sport/resources/seasons/339/"
+            "@uri": "http://api.tv2.no/sport/resources/seasons/339/",
           },
           team: {
-            "@uri": "http://api.tv2.no/sport/resources/teams/740/"
+            "@uri": "http://api.tv2.no/sport/resources/teams/740/",
           },
           tournament: {
-            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/"
+            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/",
           },
-          wins: "17"
+          wins: "17",
         },
         {
           "@uri": "http://api.tv2.no/sport/resources/table/500572/",
@@ -234,15 +234,15 @@ describe("<LeagueTable />", () => {
           points: "53",
           position: "5",
           season: {
-            "@uri": "http://api.tv2.no/sport/resources/seasons/339/"
+            "@uri": "http://api.tv2.no/sport/resources/seasons/339/",
           },
           team: {
-            "@uri": "http://api.tv2.no/sport/resources/teams/723/"
+            "@uri": "http://api.tv2.no/sport/resources/teams/723/",
           },
           tournament: {
-            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/"
+            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/",
           },
-          wins: "16"
+          wins: "16",
         },
         {
           "@uri": "http://api.tv2.no/sport/resources/table/500573/",
@@ -270,15 +270,15 @@ describe("<LeagueTable />", () => {
           points: "45",
           position: "6",
           season: {
-            "@uri": "http://api.tv2.no/sport/resources/seasons/339/"
+            "@uri": "http://api.tv2.no/sport/resources/seasons/339/",
           },
           team: {
-            "@uri": "http://api.tv2.no/sport/resources/teams/738/"
+            "@uri": "http://api.tv2.no/sport/resources/teams/738/",
           },
           tournament: {
-            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/"
+            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/",
           },
-          wins: "13"
+          wins: "13",
         },
         {
           "@uri": "http://api.tv2.no/sport/resources/table/500574/",
@@ -306,15 +306,15 @@ describe("<LeagueTable />", () => {
           points: "40",
           position: "7",
           season: {
-            "@uri": "http://api.tv2.no/sport/resources/seasons/339/"
+            "@uri": "http://api.tv2.no/sport/resources/seasons/339/",
           },
           team: {
-            "@uri": "http://api.tv2.no/sport/resources/teams/762/"
+            "@uri": "http://api.tv2.no/sport/resources/teams/762/",
           },
           tournament: {
-            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/"
+            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/",
           },
-          wins: "10"
+          wins: "10",
         },
         {
           "@uri": "http://api.tv2.no/sport/resources/table/500575/",
@@ -342,15 +342,15 @@ describe("<LeagueTable />", () => {
           points: "37",
           position: "8",
           season: {
-            "@uri": "http://api.tv2.no/sport/resources/seasons/339/"
+            "@uri": "http://api.tv2.no/sport/resources/seasons/339/",
           },
           team: {
-            "@uri": "http://api.tv2.no/sport/resources/teams/731/"
+            "@uri": "http://api.tv2.no/sport/resources/teams/731/",
           },
           tournament: {
-            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/"
+            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/",
           },
-          wins: "9"
+          wins: "9",
         },
         {
           "@uri": "http://api.tv2.no/sport/resources/table/500576/",
@@ -378,15 +378,15 @@ describe("<LeagueTable />", () => {
           points: "36",
           position: "9",
           season: {
-            "@uri": "http://api.tv2.no/sport/resources/seasons/339/"
+            "@uri": "http://api.tv2.no/sport/resources/seasons/339/",
           },
           team: {
-            "@uri": "http://api.tv2.no/sport/resources/teams/781/"
+            "@uri": "http://api.tv2.no/sport/resources/teams/781/",
           },
           tournament: {
-            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/"
+            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/",
           },
-          wins: "10"
+          wins: "10",
         },
         {
           "@uri": "http://api.tv2.no/sport/resources/table/500577/",
@@ -414,15 +414,15 @@ describe("<LeagueTable />", () => {
           points: "34",
           position: "10",
           season: {
-            "@uri": "http://api.tv2.no/sport/resources/seasons/339/"
+            "@uri": "http://api.tv2.no/sport/resources/seasons/339/",
           },
           team: {
-            "@uri": "http://api.tv2.no/sport/resources/teams/810/"
+            "@uri": "http://api.tv2.no/sport/resources/teams/810/",
           },
           tournament: {
-            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/"
+            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/",
           },
-          wins: "8"
+          wins: "8",
         },
         {
           "@uri": "http://api.tv2.no/sport/resources/table/500578/",
@@ -450,15 +450,15 @@ describe("<LeagueTable />", () => {
           points: "34",
           position: "11",
           season: {
-            "@uri": "http://api.tv2.no/sport/resources/seasons/339/"
+            "@uri": "http://api.tv2.no/sport/resources/seasons/339/",
           },
           team: {
-            "@uri": "http://api.tv2.no/sport/resources/teams/730/"
+            "@uri": "http://api.tv2.no/sport/resources/teams/730/",
           },
           tournament: {
-            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/"
+            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/",
           },
-          wins: "9"
+          wins: "9",
         },
         {
           "@uri": "http://api.tv2.no/sport/resources/table/500579/",
@@ -486,15 +486,15 @@ describe("<LeagueTable />", () => {
           points: "33",
           position: "12",
           season: {
-            "@uri": "http://api.tv2.no/sport/resources/seasons/339/"
+            "@uri": "http://api.tv2.no/sport/resources/seasons/339/",
           },
           team: {
-            "@uri": "http://api.tv2.no/sport/resources/teams/788/"
+            "@uri": "http://api.tv2.no/sport/resources/teams/788/",
           },
           tournament: {
-            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/"
+            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/",
           },
-          wins: "8"
+          wins: "8",
         },
         {
           "@uri": "http://api.tv2.no/sport/resources/table/500580/",
@@ -522,15 +522,15 @@ describe("<LeagueTable />", () => {
           points: "30",
           position: "13",
           season: {
-            "@uri": "http://api.tv2.no/sport/resources/seasons/339/"
+            "@uri": "http://api.tv2.no/sport/resources/seasons/339/",
           },
           team: {
-            "@uri": "http://api.tv2.no/sport/resources/teams/791/"
+            "@uri": "http://api.tv2.no/sport/resources/teams/791/",
           },
           tournament: {
-            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/"
+            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/",
           },
-          wins: "8"
+          wins: "8",
         },
         {
           "@uri": "http://api.tv2.no/sport/resources/table/500581/",
@@ -558,15 +558,15 @@ describe("<LeagueTable />", () => {
           points: "30",
           position: "14",
           season: {
-            "@uri": "http://api.tv2.no/sport/resources/seasons/339/"
+            "@uri": "http://api.tv2.no/sport/resources/seasons/339/",
           },
           team: {
-            "@uri": "http://api.tv2.no/sport/resources/teams/724/"
+            "@uri": "http://api.tv2.no/sport/resources/teams/724/",
           },
           tournament: {
-            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/"
+            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/",
           },
-          wins: "7"
+          wins: "7",
         },
         {
           "@uri": "http://api.tv2.no/sport/resources/table/500582/",
@@ -594,15 +594,15 @@ describe("<LeagueTable />", () => {
           points: "30",
           position: "15",
           season: {
-            "@uri": "http://api.tv2.no/sport/resources/seasons/339/"
+            "@uri": "http://api.tv2.no/sport/resources/seasons/339/",
           },
           team: {
-            "@uri": "http://api.tv2.no/sport/resources/teams/776/"
+            "@uri": "http://api.tv2.no/sport/resources/teams/776/",
           },
           tournament: {
-            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/"
+            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/",
           },
-          wins: "8"
+          wins: "8",
         },
         {
           "@uri": "http://api.tv2.no/sport/resources/table/500583/",
@@ -630,15 +630,15 @@ describe("<LeagueTable />", () => {
           points: "29",
           position: "16",
           season: {
-            "@uri": "http://api.tv2.no/sport/resources/seasons/339/"
+            "@uri": "http://api.tv2.no/sport/resources/seasons/339/",
           },
           team: {
-            "@uri": "http://api.tv2.no/sport/resources/teams/736/"
+            "@uri": "http://api.tv2.no/sport/resources/teams/736/",
           },
           tournament: {
-            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/"
+            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/",
           },
-          wins: "7"
+          wins: "7",
         },
         {
           "@uri": "http://api.tv2.no/sport/resources/table/500584/",
@@ -666,15 +666,15 @@ describe("<LeagueTable />", () => {
           points: "28",
           position: "17",
           season: {
-            "@uri": "http://api.tv2.no/sport/resources/seasons/339/"
+            "@uri": "http://api.tv2.no/sport/resources/seasons/339/",
           },
           team: {
-            "@uri": "http://api.tv2.no/sport/resources/teams/728/"
+            "@uri": "http://api.tv2.no/sport/resources/teams/728/",
           },
           tournament: {
-            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/"
+            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/",
           },
-          wins: "5"
+          wins: "5",
         },
         {
           "@uri": "http://api.tv2.no/sport/resources/table/500585/",
@@ -702,15 +702,15 @@ describe("<LeagueTable />", () => {
           points: "27",
           position: "18",
           season: {
-            "@uri": "http://api.tv2.no/sport/resources/seasons/339/"
+            "@uri": "http://api.tv2.no/sport/resources/seasons/339/",
           },
           team: {
-            "@uri": "http://api.tv2.no/sport/resources/teams/767/"
+            "@uri": "http://api.tv2.no/sport/resources/teams/767/",
           },
           tournament: {
-            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/"
+            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/",
           },
-          wins: "6"
+          wins: "6",
         },
         {
           "@uri": "http://api.tv2.no/sport/resources/table/500586/",
@@ -738,15 +738,15 @@ describe("<LeagueTable />", () => {
           points: "27",
           position: "19",
           season: {
-            "@uri": "http://api.tv2.no/sport/resources/seasons/339/"
+            "@uri": "http://api.tv2.no/sport/resources/seasons/339/",
           },
           team: {
-            "@uri": "http://api.tv2.no/sport/resources/teams/794/"
+            "@uri": "http://api.tv2.no/sport/resources/teams/794/",
           },
           tournament: {
-            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/"
+            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/",
           },
-          wins: "6"
+          wins: "6",
         },
         {
           "@uri": "http://api.tv2.no/sport/resources/table/500587/",
@@ -774,21 +774,21 @@ describe("<LeagueTable />", () => {
           points: "20",
           position: "20",
           season: {
-            "@uri": "http://api.tv2.no/sport/resources/seasons/339/"
+            "@uri": "http://api.tv2.no/sport/resources/seasons/339/",
           },
           team: {
-            "@uri": "http://api.tv2.no/sport/resources/teams/783/"
+            "@uri": "http://api.tv2.no/sport/resources/teams/783/",
           },
           tournament: {
-            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/"
+            "@uri": "http://api.tv2.no/sport/resources/tournaments/230/",
           },
-          wins: "3"
-        }
+          wins: "3",
+        },
       ],
       tableColors: {
         greens: [0, 1, 2, 3],
-        reds: [17, 18, 19]
-      }
+        reds: [17, 18, 19],
+      },
     };
     const elem = instantiateShallow();
     elem.instance().getLeagueName(uri);

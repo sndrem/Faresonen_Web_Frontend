@@ -1,7 +1,7 @@
 import React from "react";
-import { shallow } from "enzyme";
+import {shallow} from "enzyme";
 import renderer from "react-test-renderer";
-import { Item } from "semantic-ui-react";
+import {Item} from "semantic-ui-react";
 import MatchInfo from "./MatchInfo";
 
 describe("<MatchInfo />", () => {
@@ -14,7 +14,7 @@ describe("<MatchInfo />", () => {
         startTime="13.45"
         channel="TV 2 Sport Premium"
         referee="Martin Atkinson"
-      />
+      />,
     );
     expect(tree).toMatchSnapshot();
   });
@@ -29,13 +29,13 @@ describe("<MatchInfo />", () => {
         channel="TV 2 Sport Premium"
         referee="Martin Atkinson"
         status={{
-          "@uri": "http://api.tv2.no/sport/resources/statuses/2/"
+          "@uri": "http://api.tv2.no/sport/resources/statuses/2/",
         }}
-      />
+      />,
     );
     const header = elem.find(Item.Header);
     expect(header.html()).toEqual(
-      '<div class="header">UTSATT: Man. United - Liverpool, Old Trafford</div>'
+      "<div class=\"header\">UTSATT: Man. United - Liverpool, Old Trafford</div>",
     );
   });
 
@@ -48,11 +48,11 @@ describe("<MatchInfo />", () => {
         startTime="13.45"
         channel="TV 2 Sport Premium"
         referee="Martin Atkinson"
-      />
+      />,
     );
     const header = elem.find(Item.Header);
     expect(header.html()).toEqual(
-      '<div class="header">Man. United - Liverpool, Old Trafford</div>'
+      "<div class=\"header\">Man. United - Liverpool, Old Trafford</div>",
     );
   });
 });

@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow } from "enzyme";
+import {shallow} from "enzyme";
 import renderer from "react-test-renderer";
 import MatchInfo from "./MatchInfo";
 import MatchInfoContainer from "./Containers/MatchInfoContainer";
@@ -12,20 +12,20 @@ describe("<MatchInfo />", () => {
           name: "Brann-Ranheim",
           starttime: "2018-04-02T18:00:00+02:00",
           referee: {
-            "@uri": ""
+            "@uri": "",
           },
           status: {
-            "@uri": ""
-          }
+            "@uri": "",
+          },
         }}
-      />
+      />,
     );
     expect(tree).toMatchSnapshot();
   });
   it("should format the referees name correctly", () => {
     const ref = {
       firstname: "Martin",
-      lastname: "Atkinson"
+      lastname: "Atkinson",
     };
 
     const elem = shallow(
@@ -36,10 +36,10 @@ describe("<MatchInfo />", () => {
         startTime=""
         channel="TV 2 Sport Premium"
         referee="Martin Atkinson"
-      />
+      />,
     );
     expect(MatchInfoContainer.formatRefereeName(ref)).toEqual(
-      "Martin Atkinson"
+      "Martin Atkinson",
     );
     ref.lastname = "";
     expect(MatchInfoContainer.formatRefereeName(ref)).toEqual("Martin");

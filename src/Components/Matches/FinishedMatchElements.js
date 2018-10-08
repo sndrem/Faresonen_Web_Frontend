@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Divider, Message } from "semantic-ui-react";
+import React, {Component} from "react";
+import {Divider, Message} from "semantic-ui-react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import goalEvents from "../../Tools/events";
@@ -20,15 +20,11 @@ class FinishedMatchElements extends Component {
   static calculateHomeAndAwayEvents(events) {
     return events.reduce(
       (obj, e, index, list) => {
-        const prevElementA =
-          list[index - 1] === undefined ? null : list[index - 1].goalsTeamA;
-        const prevElementB =
-          list[index - 1] === undefined ? null : list[index - 1].goalsTeamB;
+        const prevElementA = list[index - 1] === undefined ? null : list[index - 1].goalsTeamA;
+        const prevElementB = list[index - 1] === undefined ? null : list[index - 1].goalsTeamB;
 
-        const previousHomeScore =
-          prevElementA === null ? 0 : parseInt(prevElementA, 10);
-        const previousAwayScore =
-          prevElementB === null ? 0 : parseInt(prevElementB, 10);
+        const previousHomeScore = prevElementA === null ? 0 : parseInt(prevElementA, 10);
+        const previousAwayScore = prevElementB === null ? 0 : parseInt(prevElementB, 10);
 
         const homeScore = parseInt(e.goalsTeamA, 10);
         const awayScore = parseInt(e.goalsTeamB, 10);
@@ -43,21 +39,21 @@ class FinishedMatchElements extends Component {
 
         return obj;
       },
-      { home: [], away: [] }
+      {home: [], away: []},
     );
   }
 
   static filterGoalEvents(events) {
-    return events.filter(e => {
+    return events.filter((e) => {
       const eventType = e.eventtype["@uri"];
       const extendedEventType = e.extendedeventtype["@uri"];
       if (!eventType) return false;
       if (!extendedEventType) return false;
       return (
-        FinishedMatchElements.goalWasGoalInPlay(eventType) ||
-        FinishedMatchElements.goalWasPenalty(eventType) ||
-        FinishedMatchElements.goalWasPenalty(extendedEventType) ||
-        FinishedMatchElements.goalWasOwnGoal(extendedEventType)
+        FinishedMatchElements.goalWasGoalInPlay(eventType)
+        || FinishedMatchElements.goalWasPenalty(eventType)
+        || FinishedMatchElements.goalWasPenalty(extendedEventType)
+        || FinishedMatchElements.goalWasOwnGoal(extendedEventType)
       );
     });
   }
@@ -69,9 +65,9 @@ class FinishedMatchElements extends Component {
   static splitGameName(name) {
     if (name.includes("-")) {
       return name.split("-");
-    } else if (name.includes(",")) {
+    } if (name.includes(",")) {
       return name.split(",");
-    } else if (name.includes(";")) {
+    } if (name.includes(";")) {
       return name.split(";");
     }
     return name;
@@ -87,7 +83,7 @@ class FinishedMatchElements extends Component {
           lastname: scorer.person1.lastname,
           eventTime: scorer.eventtime,
           eventType: scorer.eventtype["@uri"],
-          extendedeventtype: scorer.extendedeventtype["@uri"]
+          extendedeventtype: scorer.extendedeventtype["@uri"],
         });
       } else {
         obj[scorer.person1["@uri"]].push({
@@ -95,7 +91,7 @@ class FinishedMatchElements extends Component {
           lastname: scorer.person1.lastname,
           eventTime: scorer.eventtime,
           eventType: scorer.eventtype["@uri"],
-          extendedeventtype: scorer.extendedeventtype["@uri"]
+          extendedeventtype: scorer.extendedeventtype["@uri"],
         });
       }
       return obj;
@@ -108,12 +104,12 @@ class FinishedMatchElements extends Component {
       const extendedEventType = s.extendedeventtype;
       const eventType = s.eventType;
       if (
-        FinishedMatchElements.goalWasPenalty(extendedEventType) ||
-        FinishedMatchElements.goalWasPenalty(eventType)
+        FinishedMatchElements.goalWasPenalty(extendedEventType)
+        || FinishedMatchElements.goalWasPenalty(eventType)
       ) {
-        text += `str. `;
+        text += "str. ";
       } else if (FinishedMatchElements.goalWasOwnGoal(extendedEventType)) {
-        text += `sm. `;
+        text += "sm. ";
       }
       text += index + 1 !== list.length ? `${s.eventTime}, ` : `${s.eventTime}`;
     });
@@ -124,20 +120,18 @@ class FinishedMatchElements extends Component {
   static formatGoalScoreText(scorers) {
     const groupedScorers = FinishedMatchElements.groupScorers(scorers);
     return Object.keys(groupedScorers)
-      .map(key =>
-        FinishedMatchElements.formatIndividualGoalScorer(groupedScorers[key])
-      )
+      .map(key => FinishedMatchElements.formatIndividualGoalScorer(groupedScorers[key]))
       .join(", ");
   }
 
   static extractPersonNames(events) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       const promises = [];
-      events.forEach(e => {
+      events.forEach((e) => {
         promises.push(FinishedMatchElements.getNameOfPerson(e.person1["@uri"]));
       });
 
-      axios.all(promises).then(data => {
+      axios.all(promises).then((data) => {
         events.forEach((e, index) => {
           e.person1 = data[index].data;
         });
@@ -149,13 +143,13 @@ class FinishedMatchElements extends Component {
   constructor(props) {
     super(props);
     const [home, away] = FinishedMatchElements.splitGameName(
-      props.matchInfo.name
+      props.matchInfo.name,
     );
     this.state = {
       home,
       away,
       goalScorersHomeTeam: [],
-      goalScorersAwayTeam: []
+      goalScorersAwayTeam: [],
     };
   }
 
@@ -166,59 +160,73 @@ class FinishedMatchElements extends Component {
   getGoals(eventUri) {
     axios
       .get(eventUri)
-      .then(data => {
+      .then((data) => {
         const filteredGoalEvents = FinishedMatchElements.filterGoalEvents(
-          data.data.event
+          data.data.event,
         );
         const calculatedEvents = FinishedMatchElements.calculateHomeAndAwayEvents(
-          filteredGoalEvents
+          filteredGoalEvents,
         );
         FinishedMatchElements.extractPersonNames(calculatedEvents.home).then(
-          goalScorersHomeTeam => {
+          (goalScorersHomeTeam) => {
             this.setState({
-              goalScorersHomeTeam
+              goalScorersHomeTeam,
             });
-          }
+          },
         );
         FinishedMatchElements.extractPersonNames(calculatedEvents.away).then(
-          goalScorersAwayTeam => {
+          (goalScorersAwayTeam) => {
             this.setState({
-              goalScorersAwayTeam
+              goalScorersAwayTeam,
             });
-          }
+          },
         );
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
       });
   }
 
   render() {
-    const { home, away } = this.state;
+    const {home, away} = this.state;
     const homeScorers = FinishedMatchElements.formatGoalScoreText(
-      this.state.goalScorersHomeTeam
+      this.state.goalScorersHomeTeam,
     );
     const awayScorers = FinishedMatchElements.formatGoalScoreText(
-      this.state.goalScorersAwayTeam
+      this.state.goalScorersAwayTeam,
     );
 
     return (
       <div>
         <Message size="small">
           <Message.Header>
-            {home} {this.props.matchInfo.goalsTeamAEndtime} -{" "}
-            {this.props.matchInfo.goalsTeamBEndtime} {away}
+            {home}
+            {" "}
+            {this.props.matchInfo.goalsTeamAEndtime}
+            {" "}
+-
+            {" "}
+            {this.props.matchInfo.goalsTeamBEndtime}
+            {" "}
+            {away}
           </Message.Header>
           {this.props.matchInfo.goalsTeamAEndtime > 0 ? (
             <p>
-              <b>{home}:</b> {homeScorers}
+              <b>
+                {home}
+:
+              </b>
+              {" "}
+              {homeScorers}
             </p>
           ) : (
             ""
           )}
           {this.props.matchInfo.goalsTeamBEndtime > 0 ? (
             <p>
-              <b>{away}</b>: {awayScorers}
+              <b>{away}</b>
+:
+              {awayScorers}
             </p>
           ) : (
             ""
@@ -236,9 +244,9 @@ FinishedMatchElements.propTypes = {
     goalsTeamBEndtime: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     events: PropTypes.shape({
-      "@uri": PropTypes.string.isRequired
-    })
-  }).isRequired
+      "@uri": PropTypes.string.isRequired,
+    }),
+  }).isRequired,
 };
 
 export default FinishedMatchElements;

@@ -6,14 +6,14 @@ const playerLocalStorageService = {
     return {
       eliteserien: [],
       obosligaen: [],
-      lastUpdated: new Date()
+      lastUpdated: new Date(),
     };
   },
 
   localStoragePlayersIsEmpty() {
     const {
       eliteserien,
-      obosligaen
+      obosligaen,
     } = playerLocalStorageService.getFromLocalStorage("players");
     return eliteserien.length <= 0 && obosligaen.length <= 0;
   },
@@ -26,7 +26,7 @@ const playerLocalStorageService = {
     const updatedPlayers = players;
     updatedPlayers.lastUpdated = new Date();
     localStorage.setItem("players", JSON.stringify(updatedPlayers));
-  }
+  },
 };
 
 export default playerLocalStorageService;

@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
-import { Progress } from "semantic-ui-react";
+import {Progress} from "semantic-ui-react";
 import axios from "axios";
 import events from "../../Tools/events";
 
@@ -13,15 +13,14 @@ class LeagueProgess extends Component {
     return new Promise((resolve, reject) => {
       axios
         .all(promises)
-        .then(data => {
+        .then((data) => {
           const filteredMatches = data.reduce(
             (obj, match) => {
-              const { match: matchData } = match.data;
+              const {match: matchData} = match.data;
               if (
                 matchData.every(
-                  m =>
-                    m.confirmed === "true" ||
-                    LeagueProgess.roundHasFinishedMatches(matchData)
+                  m => m.confirmed === "true"
+                    || LeagueProgess.roundHasFinishedMatches(matchData),
                 )
               ) {
                 // eslint-disable-next-line
@@ -35,11 +34,11 @@ class LeagueProgess extends Component {
               }
               return obj;
             },
-            { finished: 0, left: 0 }
+            {finished: 0, left: 0},
           );
           resolve(filteredMatches);
         })
-        .catch(err => {
+        .catch((err) => {
           reject(err);
         });
     });
@@ -50,7 +49,7 @@ class LeagueProgess extends Component {
   }
 
   static roundHasPostponedMatches(matches) {
-    return matches.some(m => {
+    return matches.some((m) => {
       let status = null;
       if (m.status) {
         status = m.status["@uri"];
@@ -60,7 +59,7 @@ class LeagueProgess extends Component {
   }
 
   static roundHasFinishedMatches(matches) {
-    return matches.some(m => {
+    return matches.some((m) => {
       let status = null;
       if (m.status) {
         status = m.status["@uri"];
@@ -75,31 +74,31 @@ class LeagueProgess extends Component {
       finished: 0,
       left: 0,
       total: 0,
-      loading: true
+      loading: true,
     };
   }
 
   componentDidMount() {
-    const { tournamentId, seasonId } = this.props;
+    const {tournamentId, seasonId} = this.props;
     this.getRounds(tournamentId, seasonId);
   }
 
   getRounds(tournamentId, seasonId) {
     axios
       .get(`/rounds/${tournamentId}/${seasonId}`)
-      .then(data => {
+      .then((data) => {
         this.calculateRounds(data.data.round);
       })
       .catch(err => console.error(err));
   }
 
   calculateRounds(rounds) {
-    LeagueProgess.removeFinishedRounds(rounds).then(calculated => {
+    LeagueProgess.removeFinishedRounds(rounds).then((calculated) => {
       this.setState({
         finished: calculated.finished,
         left: calculated.left,
         total: calculated.finished + calculated.left,
-        loading: false
+        loading: false,
       });
     });
   }
@@ -113,7 +112,9 @@ class LeagueProgess extends Component {
         total={this.state.total}
         value={this.state.finished}
       >
-        Progresjon for {this.props.leagueName}
+        Progresjon for
+        {" "}
+        {this.props.leagueName}
       </Progress>
     );
   }
@@ -122,7 +123,7 @@ class LeagueProgess extends Component {
 LeagueProgess.propTypes = {
   leagueName: PropTypes.string.isRequired,
   tournamentId: PropTypes.number.isRequired,
-  seasonId: PropTypes.number.isRequired
+  seasonId: PropTypes.number.isRequired,
 };
 
 export default LeagueProgess;

@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
-import { Grid, Statistic, Segment } from "semantic-ui-react";
+import {Grid, Statistic, Segment} from "semantic-ui-react";
 import FaresoneMenu from "../../Menu/FaresoneMenu";
 import PlayerProfile from "../PlayerProfile";
 
@@ -12,56 +12,55 @@ class PlayerStatsContainer extends Component {
       data: {
         player: {},
         team: {}
-      },
-      loading: true
+      }
     };
   }
 
   componentDidMount = () => {
-    const { playerId } = this.props;
+    const {playerId} = this.props;
     axios.get(`/fantasy/player/${playerId}`).then(data => {
       const player = data.data;
       if (player.team_code) {
         this.getTeam(player.team_code);
       }
-      this.setState({
+      this.setState(prevState => ({
         data: {
-          ...this.state.data,
+          ...prevState.data,
           player: data.data
-        },
-        loading: false
-      });
+        }
+      }));
     });
   };
 
   // TODO Fetch team based on team code
   getTeam = teamId => {
     axios.get(`/fantasy/team/${teamId}`).then(data => {
-      this.setState({
+      this.setState(prevState => ({
         data: {
-          ...this.state.data,
+          ...prevState.data,
           team: data.data
         }
-      });
+      }));
     });
   };
+
   mapStats = player => [
-    { key: "goals", label: "Mål", value: player.goals_scored },
-    { key: "assists", label: "Assists", value: player.assists },
+    {key: "goals", label: "Mål", value: player.goals_scored},
+    {key: "assists", label: "Assists", value: player.assists},
     {
       key: "pointsPerGame",
       label: "Poeng per kamp",
       value: player.points_per_game
     },
-    { key: "minPlayed", label: "Min. spilt", value: player.minutes },
-    { key: "influence", label: "Påvirkning", value: player.influence },
-    { key: "creativity", label: "Kreativitet", value: player.creativity },
-    { key: "form", label: "Form", value: player.form },
-    { key: "bonus", label: "Bonus", value: player.bonus }
+    {key: "minPlayed", label: "Min. spilt", value: player.minutes},
+    {key: "influence", label: "Påvirkning", value: player.influence},
+    {key: "creativity", label: "Kreativitet", value: player.creativity},
+    {key: "form", label: "Form", value: player.form},
+    {key: "bonus", label: "Bonus", value: player.bonus}
   ];
 
   render() {
-    const { player, team } = this.state.data;
+    const {player, team} = this.state.data;
 
     const items = this.mapStats(player);
     return (

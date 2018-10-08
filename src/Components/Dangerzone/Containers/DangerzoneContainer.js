@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
 import Dangerzone from "../Dangerzone";
 import dangerzoneService from "../../../services/dangerzoneService";
@@ -17,31 +17,27 @@ class DangerzoneContainer extends Component {
   }
 
   getPlayersWithYellowCards(tournamentId) {
-    dangerzoneService
-      .getPlayersWithYellowCards(tournamentId)
-      .then(data => {
-        const { data: yellowCardResponse } = data.data;
-        if (data.length <= 0) {
-          this.setState({
-            players: [],
-            loading: false
-          });
-          return;
-        }
-        let playersGrouped = dangerzoneService.groupPlayers(yellowCardResponse);
-        playersGrouped = dangerzoneService.filterPlayers(playersGrouped);
-        playersGrouped = dangerzoneService.sortTeams(playersGrouped);
+    dangerzoneService.getPlayersWithYellowCards(tournamentId).then(data => {
+      const {data: yellowCardResponse} = data.data;
+      if (data.length <= 0) {
         this.setState({
-          players: playersGrouped,
+          players: [],
           loading: false
         });
-      })
-      .catch(err => {
-        console.log(err);
+        return;
+      }
+      let playersGrouped = dangerzoneService.groupPlayers(yellowCardResponse);
+      playersGrouped = dangerzoneService.filterPlayers(playersGrouped);
+      playersGrouped = dangerzoneService.sortTeams(playersGrouped);
+      this.setState({
+        players: playersGrouped,
+        loading: false
       });
+    });
   }
+
   render() {
-    const { players, loading } = this.state;
+    const {players, loading} = this.state;
     return (
       <Dangerzone
         players={players}

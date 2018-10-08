@@ -6,7 +6,7 @@ describe("Utility tools", () => {
       const data = tools.getTableColors(1);
       expect(data).toEqual({
         greens: [0, 1, 2],
-        reds: [14, 15]
+        reds: [14, 15],
       });
     });
   });
@@ -16,7 +16,7 @@ describe("Utility tools", () => {
       const data = tools.getTableColors(230);
       expect(data).toEqual({
         greens: [0, 1, 2, 3],
-        reds: [17, 18, 19]
+        reds: [17, 18, 19],
       });
     });
   });
@@ -30,7 +30,7 @@ describe("Extraction of personIds", () => {
       "",
       "http://api.tv2.no/sport/resources/peoples/207243/",
       "http://api.tv2.no/sport/resources/207243/",
-      "http://api.tv2.no/sport/resources/people/207243/people/1876"
+      "http://api.tv2.no/sport/resources/people/207243/people/1876",
     ];
 
     expect(tools.extractPersonId(personUrls[0])).toEqual(207243);

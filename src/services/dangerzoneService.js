@@ -11,10 +11,9 @@ const dangerzoneService = {
       axios
         .get(`/statistics/yellowcards/${tournamentId}`)
         .then(data => {
-          resolve({ data: data.data });
+          resolve({data: data.data});
         })
         .catch(err => {
-          console.log(err);
           reject(err);
         });
     });
@@ -62,7 +61,7 @@ const dangerzoneService = {
   fromObjectToArray(objects) {
     const list = [];
     Object.keys(objects).forEach(key => {
-      list.push({ team: key, players: objects[key].players });
+      list.push({team: key, players: objects[key].players});
     });
     return list;
   }

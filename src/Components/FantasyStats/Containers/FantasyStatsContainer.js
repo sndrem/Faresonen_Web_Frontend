@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Message, Segment, Grid } from "semantic-ui-react";
+import React, {Component} from "react";
+import {Message, Segment, Grid} from "semantic-ui-react";
 import FantasyStatsList from "../FantasyStatsList";
 import FantasyStatsService from "../../../services/FantasyStatsService";
 
@@ -9,63 +9,62 @@ class FantasyStatsContainer extends Component {
     this.state = {
       data: {
         selectedPlayers: [],
-        expensivePlayers: []
+        expensivePlayers: [],
       },
       loading: true,
-      errors: []
+      errors: [],
     };
   }
+
   componentDidMount() {
     this.getMostSelectedPlayers(10);
     this.getMostExpensivePlayers(10);
   }
 
-  getMostExpensivePlayers = limit => {
+  getMostExpensivePlayers = (limit) => {
     FantasyStatsService.getMostExpensivePlayer(limit)
-      .then(data =>
+      .then(data => this.setState({
+        data: {
+          ...this.state.data,
+          expensivePlayers: data,
+        },
+      }))
+      .catch((err) => {
         this.setState({
           data: {
             ...this.state.data,
-            expensivePlayers: data
-          }
-        })
-      )
-      .catch(err => {
-        this.setState({
-          data: {
-            ...this.state.data,
-            expensivePlayers: []
+            expensivePlayers: [],
           },
           loading: false,
           errors: [
             ...this.state.errors,
-            "Kunne ikke hente de dyreste spillerne. Er du koblet til internett?"
-          ]
+            "Kunne ikke hente de dyreste spillerne. Er du koblet til internett?",
+          ],
         });
       });
   };
 
-  getMostSelectedPlayers = limit => {
+  getMostSelectedPlayers = (limit) => {
     FantasyStatsService.getMostSelectedPlayers(limit)
-      .then(data => {
+      .then((data) => {
         this.setState({
           data: {
             ...this.state.data,
-            selectedPlayers: data
-          }
+            selectedPlayers: data,
+          },
         });
       })
-      .catch(err => {
+      .catch((err) => {
         this.setState({
           data: {
             ...this.state.data,
-            selectedPlayers: []
+            selectedPlayers: [],
           },
           loading: false,
           errors: [
             ...this.state.errors,
-            "Kunne ikke hente de mest valgte spillerne. Er du koblet til internett?"
-          ]
+            "Kunne ikke hente de mest valgte spillerne. Er du koblet til internett?",
+          ],
         });
       });
   };
@@ -77,7 +76,7 @@ class FantasyStatsContainer extends Component {
   );
 
   render() {
-    const { selectedPlayers, expensivePlayers } = this.state.data;
+    const {selectedPlayers, expensivePlayers} = this.state.data;
     if (this.state.errors.length > 0) {
       return this.formatErrors(this.state.errors);
     }
@@ -88,10 +87,9 @@ class FantasyStatsContainer extends Component {
           <Grid.Column>
             <FantasyStatsList
               players={selectedPlayers.map(
-                player =>
-                  `${player.selected_by_percent}% - ${player.first_name} ${
-                    player.second_name
-                  }`
+                player => `${player.selected_by_percent}% - ${player.first_name} ${
+                  player.second_name
+                }`,
               )}
               header="Mest valgte spillere"
             />
@@ -99,10 +97,9 @@ class FantasyStatsContainer extends Component {
           <Grid.Column>
             <FantasyStatsList
               players={expensivePlayers.map(
-                player =>
-                  `£${(player.now_cost / 10).toFixed(1)} mill. - ${
-                    player.first_name
-                  } ${player.second_name}`
+                player => `£${(player.now_cost / 10).toFixed(1)} mill. - ${
+                  player.first_name
+                } ${player.second_name}`,
               )}
               header="Dyreste spillere"
             />

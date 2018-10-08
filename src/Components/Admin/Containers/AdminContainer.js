@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import firebaseConfig from "../../../databaseConfig/firebaseConfig";
 import LogInAdmin from "../LogInAdmin";
 import LeagueAdmin from "../LeagueAdmin";
@@ -7,8 +7,7 @@ class AdminContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null,
-      loading: true
+      user: null
     };
   }
 
@@ -20,9 +19,9 @@ class AdminContainer extends Component {
   authListener() {
     firebaseConfig.auth().onAuthStateChanged(user => {
       if (user) {
-        this.setState({ user });
+        this.setState({user});
       } else {
-        this.setState({ user: null });
+        this.setState({user: null});
       }
     });
   }

@@ -1,5 +1,5 @@
 import React from "react";
-import { Icon, Step } from "semantic-ui-react";
+import {Icon, Step} from "semantic-ui-react";
 
 const FirstSteps = () => (
   <Step.Group>

@@ -6,7 +6,7 @@ const tools = {
     return {
       channel: this.getChannel(match),
       stadium: this.getStadium(match),
-      referee: this.getReferee(match)
+      referee: this.getReferee(match),
     };
   },
 
@@ -34,17 +34,17 @@ const tools = {
 
   getReferee(match) {
     if (match.referee) {
-      return { referee: axios.get(match.referee["@uri"]) };
+      return {referee: axios.get(match.referee["@uri"])};
     }
     return {
-      referee: { info: "Dommer ikke klar" }
+      referee: {info: "Dommer ikke klar"},
     };
   },
 
   getTableColors(leagueId) {
     const data = {
       greens: [],
-      reds: []
+      reds: [],
     };
 
     switch (leagueId) {
@@ -68,7 +68,7 @@ const tools = {
     if (colors) return colors;
 
     throw new Error(
-      `Could not find matching colors for ${teamName}. Update teamColors.js with the correct team name and colors`
+      `Could not find matching colors for ${teamName}. Update teamColors.js with the correct team name and colors`,
     );
   },
 
@@ -80,13 +80,11 @@ const tools = {
     return new Promise((resolve, reject) => {
       axios
         .all(promises)
-        .then(data => {
-          const players = data.map((p, index) => {
-            return {
-              player: p.data,
-              event: events[index]
-            };
-          });
+        .then((data) => {
+          const players = data.map((p, index) => ({
+            player: p.data,
+            event: events[index],
+          }));
           resolve(players);
         })
         .catch(err => reject(err));
@@ -108,7 +106,7 @@ const tools = {
     if (res && res.length > 1) return parseInt(res[1], 10);
 
     return -1;
-  }
+  },
 };
 
 export default tools;

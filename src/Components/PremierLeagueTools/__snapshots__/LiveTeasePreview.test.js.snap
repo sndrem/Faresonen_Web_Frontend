@@ -16,11 +16,12 @@ exports[`<LiveTeasePreview /> Should render properly 1`] = `
       className="column"
     >
       <p>
-        Kamp valgt: 
+        Kamp valgt:
         Brighton - Manchester United
       </p>
       <p>
-        Fritekst: 
+        Fritekst:
+         
         Avspark kl.
          
         21.00
@@ -90,11 +91,12 @@ exports[`<LiveTeasePreview /> Should render properly 2`] = `
       className="column"
     >
       <p>
-        Kamp valgt: 
+        Kamp valgt:
         Brighton - Manchester United
       </p>
       <p>
-        Fritekst: 
+        Fritekst:
+         
         Avspark kl.
          
         21.00

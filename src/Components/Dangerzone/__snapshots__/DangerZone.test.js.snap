@@ -107,7 +107,7 @@ exports[`Dangerzone Should render properly when no players are present 1`] = `
     Faresonen ikke tilgjengelig
   </div>
   <p>
-    Det er ingen spillere i Faresonen for 
+    Det er ingen spillere i Faresonen for
     Premier League
     .
   </p>

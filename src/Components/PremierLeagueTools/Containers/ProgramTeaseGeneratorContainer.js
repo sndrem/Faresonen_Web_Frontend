@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Segment, Message } from "semantic-ui-react";
+import React, {Component} from "react";
+import {Segment, Message} from "semantic-ui-react";
 import LiveTeaseGenerator from "../LiveTeaseGenerator";
 import altOmFotballMatchService from "../../../services/altOmFotballMatchService";
 import LiveTeasePreview from "../LiveTeasePreview";
@@ -29,7 +29,7 @@ class ProgramTeaseGeneratorContainer extends Component {
   }
 
   componentWillReceiveProps(props) {
-    const { selectedLeague } = props;
+    const {selectedLeague} = props;
     if (selectedLeague) {
       const [id, season] = selectedLeague.split("-");
       this.getMatches(id, season);
@@ -41,71 +41,69 @@ class ProgramTeaseGeneratorContainer extends Component {
   };
 
   getMatches = (tournamentId, seasonId) => {
-    this.setState({
-      ...this.state,
+    this.setState(prevState => ({
+      ...prevState,
       data: {
-        ...this.state.data
+        ...prevState.data
       },
       loading: true
-    });
+    }));
     if (!tournamentId || !seasonId) {
       return;
     }
     altOmFotballMatchService
       .getOnlyNotDoneMatches(tournamentId, seasonId)
       .then(data => {
-        this.setState({
-          ...this.state,
+        this.setState(prevState => ({
+          ...prevState,
           data: {
-            ...this.state.data,
+            ...prevState.data,
             matches: data
           },
           loading: false
-        });
+        }));
       })
       .catch(err => {
-        console.error(err);
-        this.setState({
-          ...this.state,
+        this.setState(prevState => ({
+          ...prevState,
           error: "Kunne ikke hente kamper fra AltomFotball",
           loading: false
-        });
+        }));
       });
   };
 
   createScript = () => {
+    const {data} = this.state;
     const [home, away] = altOmFotballMatchService.splitNames(
-      this.state.data.selectedMatch,
+      data.selectedMatch,
       "-"
     );
-    const channel = this.state.data.channels[0]
-      ? this.state.data.channels[0]
-      : "INGEN KANAL VALGT";
+    const channel = data.channels[0] ? data.channels[0] : "INGEN KANAL VALGT";
     return `Super S18 ${channel}
-${this.state.data.matchTimeText || "Tekst ikke valgt"}
-${this.state.data.matchTime || "Tid ikke valgt"}
+${data.matchTimeText || "Tekst ikke valgt"}
+${data.matchTime || "Tid ikke valgt"}
 Premier League
 ${home || "Hjemmelag ikke valgt"} - ${away ||
       "Bortelag ikke valgt"}<00:01-00:15`;
   };
 
-  handleChange = ({ value, name }) =>
-    this.setState({
-      ...this.state,
+  handleChange = ({value, name}) =>
+    this.setState(prevState => ({
+      ...prevState,
       data: {
-        ...this.state.data,
+        ...prevState.data,
         [name]: value
       }
-    });
+    }));
 
   processChannels = allChannels =>
-    this.setState({
-      ...this.state,
+    this.setState(prevState => ({
+      ...prevState,
       data: {
-        ...this.state.data,
+        ...prevState.data,
         allChannels
       }
-    });
+    }));
 
   render() {
     const script = this.createScript();
@@ -123,7 +121,8 @@ ${home || "Hjemmelag ikke valgt"} - ${away ||
     if (matches.length === 0 && !this.state.loading) {
       return (
         <Message info>
-          <Message.Header>Info</Message.Header>Ingen kamper tilgjengelig
+          <Message.Header>Info</Message.Header>
+          Ingen kamper tilgjengelig
         </Message>
       );
     }

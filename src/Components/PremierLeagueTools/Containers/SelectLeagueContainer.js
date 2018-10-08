@@ -4,7 +4,7 @@ import SelectLeague from "../SelectLeague";
 const SelectLeagueContainer = ({
   setSelectedLeague,
   selectedLeague,
-  leagues
+  leagues,
 }) => (
   <SelectLeague
     leagues={leagues}

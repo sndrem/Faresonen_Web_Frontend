@@ -1,13 +1,13 @@
 import React from "react";
-import { Menu, Dropdown } from "semantic-ui-react";
+import {Menu, Dropdown} from "semantic-ui-react";
 
 const FaresoneMenu = () => (
   <div className="no-print">
     <Menu inverted>
-      <Menu.Item as={"a"} href="#/" name="home">
+      <Menu.Item as="a" href="#/" name="home">
         Hjem
       </Menu.Item>
-      <Menu.Item as={"a"} href="#/dangerzone" name="dangerzone">
+      <Menu.Item as="a" href="#/dangerzone" name="dangerzone">
         Faresonen
       </Menu.Item>
       <Menu.Item as="a" href="#/gigsports" name="gigsports">

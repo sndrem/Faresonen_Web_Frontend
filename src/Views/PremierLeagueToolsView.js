@@ -4,24 +4,34 @@ import FaresoneMenu from "../Components/Menu/FaresoneMenu";
 import TypeOfGraphicSubMenu from "../Components/PremierLeagueTools/TypeOfGraphicSubMenu";
 import SelectLeagueContainer from "../Components/PremierLeagueTools/Containers/SelectLeagueContainer";
 
-const PremierLeagueToolsView = props => (
+const PremierLeagueToolsView = ({
+  leagues,
+  updateActiveItem,
+  activeItem,
+  setSelectedLeague,
+  selectedLeague,
+  graphicComponent
+}) => (
   <div>
     <FaresoneMenu />
     <TypeOfGraphicSubMenu
-      updateActiveItem={props.updateActiveItem}
-      activeItem={props.activeItem}
+      updateActiveItem={updateActiveItem}
+      activeItem={activeItem}
     />
     <SelectLeagueContainer
-      leagues={props.leagues}
-      setSelectedLeague={props.setSelectedLeague}
-      selectedLeague={props.selectedLeague}
+      leagues={leagues}
+      setSelectedLeague={setSelectedLeague}
+      selectedLeague={selectedLeague}
     />
-    {props.graphicComponent}
+    {graphicComponent}
   </div>
 );
 PremierLeagueToolsView.propTypes = {
   activeItem: PropTypes.string.isRequired,
   updateActiveItem: PropTypes.func.isRequired,
-  graphicComponent: PropTypes.node.isRequired
+  graphicComponent: PropTypes.node.isRequired,
+  leagues: PropTypes.array.isRequired,
+  setSelectedLeague: PropTypes.func.isRequired,
+  selectedLeague: PropTypes.string.isRequired
 };
 export default PremierLeagueToolsView;

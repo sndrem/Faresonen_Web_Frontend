@@ -1,22 +1,21 @@
-import React, { Component } from "react";
-import { Accordion, Icon } from "semantic-ui-react";
+import React, {Component} from "react";
+import {Accordion, Icon} from "semantic-ui-react";
 
 export default class AccordionExampleStandard extends Component {
-  state = { activeIndex: 0 };
+  state = {activeIndex: 0};
 
   handleClick = (e, titleProps) => {
-    const { index } = titleProps;
-    const { activeIndex } = this.state;
+    const {index} = titleProps;
+    const {activeIndex} = this.state;
     const newIndex = this.calculateNewIndex(index, activeIndex);
 
-    this.setState({ activeIndex: newIndex });
+    this.setState({activeIndex: newIndex});
   };
 
-  calculateNewIndex = (index, activeIndex) =>
-    activeIndex === index ? -1 : index;
+  calculateNewIndex = (index, activeIndex) => (activeIndex === index ? -1 : index);
 
   render() {
-    const { activeIndex } = this.state;
+    const {activeIndex} = this.state;
 
     return (
       <Accordion>
@@ -53,8 +52,10 @@ export default class AccordionExampleStandard extends Component {
         <Accordion.Content active={activeIndex === 1}>
           <p>
             Ja, det kan legges til flere ligaer. Alt man trenger er liga-id og
-            sesong-id fra{" "}
-            <a href="http://www.altomfotball.no">altomfotball.no</a>. Foreløpig
+            sesong-id fra
+            {" "}
+            <a href="http://www.altomfotball.no">altomfotball.no</a>
+. Foreløpig
             må det gjøres via Sindre Moldeklev, men i fremtiden kan det være det
             kan bli gjort av deg som bruker.
           </p>

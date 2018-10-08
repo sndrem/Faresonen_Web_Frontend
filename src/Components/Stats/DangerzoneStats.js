@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
-import { Bar as BarChart } from "react-chartjs";
+import {Bar as BarChart} from "react-chartjs";
 import "./DangerzoneStats.css";
 
 class DangerzoneStats extends Component {
@@ -27,15 +27,13 @@ class DangerzoneStats extends Component {
       data: DangerzoneStats.formatData(props.data),
       chartOptions: {
         responsive: true
-      },
-      loading: true
+      }
     };
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      data: DangerzoneStats.formatData(nextProps.data),
-      loading: false
+      data: DangerzoneStats.formatData(nextProps.data)
     });
   }
 

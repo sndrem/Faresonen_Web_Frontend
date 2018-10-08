@@ -49,13 +49,69 @@ exports[`<FaresoneMenu /> Should render properly 1`] = `
     >
       Premier League-verktøy
     </a>
-    <a
-      className="right item"
-      href="#/admin"
+    <div
+      aria-busy={undefined}
+      aria-disabled={undefined}
+      aria-expanded={false}
+      aria-multiselectable={undefined}
+      className="ui item dropdown"
+      onBlur={[Function]}
+      onChange={[Function]}
       onClick={[Function]}
+      onFocus={[Function]}
+      onMouseDown={[Function]}
+      role="listbox"
+      tabIndex={0}
     >
-      Admin
-    </a>
+      <div
+        aria-live="polite"
+        className="text"
+        role="alert"
+      >
+        Admin
+      </div>
+      <i
+        aria-hidden="true"
+        className="dropdown icon"
+        onClick={[Function]}
+      />
+      <div
+        className="menu transition"
+      >
+        <a
+          aria-checked={undefined}
+          aria-disabled={undefined}
+          aria-selected={undefined}
+          className="item"
+          href="#/admin"
+          name="admin"
+          onClick={[Function]}
+          role="option"
+        >
+          <span
+            className="text"
+          >
+            Logg inn
+          </span>
+        </a>
+        <a
+          aria-checked={undefined}
+          aria-disabled={undefined}
+          aria-selected={undefined}
+          className="item"
+          href="#/newuser"
+          name="newuser"
+          onClick={[Function]}
+          role="option"
+        >
+          <span
+            className="text"
+          >
+            Opprett ny bruker
+          </span>
+        </a>
+      </div>
+    </div>
     <a
       className="right item"
       href="#/about"

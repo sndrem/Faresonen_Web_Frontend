@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import AddLeaguesContainer from "./AddLeaguesContainer";
 import RemoveLeaguesContainer from "./RemoveLeaguesContainer";
 import FirebaseService from "../../../services/FirebaseService";
@@ -11,7 +11,7 @@ class LeaguesContainer extends Component {
       altOmFotballLeagues: [],
       leagues: [],
       selectedLeagues: [],
-      loading: true
+      loading: true,
     };
     this.service = new FirebaseService();
     this.getAltOmFotballLeagues = this.getAltOmFotballLeagues.bind(this);
@@ -27,21 +27,21 @@ class LeaguesContainer extends Component {
   };
 
   getAltOmFotballLeagues = () => {
-    altOmFotballLeagueService.getAllLeagues().then(data => {
-      this.setState({ altOmFotballLeagues: data.data.tournament });
+    altOmFotballLeagueService.getAllLeagues().then((data) => {
+      this.setState({altOmFotballLeagues: data.data.tournament});
     });
   };
 
-  setSelectedLeagues = selectedLeagues => this.setState({ selectedLeagues });
+  setSelectedLeagues = selectedLeagues => this.setState({selectedLeagues});
 
-  saveSelectedLeagues = selectedLeagues => {
+  saveSelectedLeagues = (selectedLeagues) => {
     this.service.saveLeagues(selectedLeagues);
   };
 
   removeLeague = id => this.service.removeLeague(id);
 
-  processLeagues = leagues => {
-    this.setState({ leagues, loading: false });
+  processLeagues = (leagues) => {
+    this.setState({leagues, loading: false});
   };
 
   render() {
@@ -49,7 +49,7 @@ class LeaguesContainer extends Component {
       leagues,
       selectedLeagues,
       altOmFotballLeagues,
-      loading
+      loading,
     } = this.state;
     return (
       <div>

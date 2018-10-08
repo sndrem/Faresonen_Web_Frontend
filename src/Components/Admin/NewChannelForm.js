@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
-import { Form, Button, Message } from "semantic-ui-react";
+import {Form, Button, Message} from "semantic-ui-react";
 
 class NewChannelForm extends Component {
   constructor(props) {
@@ -15,13 +15,17 @@ class NewChannelForm extends Component {
     this.props.addChannel();
   };
 
-  handleChange = (e, { name, value }) => {
+  handleChange = (e, {name, value}) => {
     const valid = document.forms.channelForm.checkValidity();
     this.props.handleChange(name, value, valid);
   };
 
   render() {
-    const { selectedChannel: { name, value }, valid, message } = this.props;
+    const {
+      selectedChannel: {name, value},
+      valid,
+      message
+    } = this.props;
     return (
       <div>
         {message ? (
@@ -71,8 +75,9 @@ NewChannelForm.propTypes = {
     value: PropTypes.string.isRequired
   }).isRequired,
   addChannel: PropTypes.func.isRequired,
-  resetForm: PropTypes.func.isRequired,
-  handleChange: PropTypes.func.isRequired
+  handleChange: PropTypes.func.isRequired,
+  valid: PropTypes.bool.isRequired,
+  message: PropTypes.string.isRequired
 };
 
 export default NewChannelForm;

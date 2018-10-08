@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Table, Segment, Dimmer, Loader, Message } from "semantic-ui-react";
+import {
+  Table, Segment, Dimmer, Loader, Message,
+} from "semantic-ui-react";
 
-const Topscorers = props => {
+const Topscorers = (props) => {
   if (props.players.length <= 0 && props.loading === false) {
     return (
       <Message negative>
@@ -59,10 +61,10 @@ Topscorers.propTypes = {
       team: PropTypes.string.isRequired,
       value1: PropTypes.number.isRequired,
       value2: PropTypes.number.isRequired,
-      value3: PropTypes.number.isRequired
-    })
+      value3: PropTypes.number.isRequired,
+    }),
   ).isRequired,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
 };
 
 export default Topscorers;

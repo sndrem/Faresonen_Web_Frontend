@@ -11,47 +11,47 @@ export default [
   {
     key: today,
     value: today,
-    text: today
+    text: today,
   },
   {
     key: tomorrow,
     value: tomorrow,
-    text: tomorrow
+    text: tomorrow,
   },
 
   {
     key: monday,
     value: monday,
-    text: monday
+    text: monday,
   },
   {
     key: tuesday,
     value: tuesday,
-    text: tuesday
+    text: tuesday,
   },
   {
     key: wednesday,
     value: wednesday,
-    text: wednesday
+    text: wednesday,
   },
   {
     key: thursday,
     value: thursday,
-    text: thursday
+    text: thursday,
   },
   {
     key: friday,
     value: friday,
-    text: friday
+    text: friday,
   },
   {
     key: saturday,
     value: saturday,
-    text: saturday
+    text: saturday,
   },
   {
     key: sunday,
     value: sunday,
-    text: sunday
-  }
+    text: sunday,
+  },
 ];
