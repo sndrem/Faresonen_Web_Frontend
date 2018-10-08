@@ -3,7 +3,8 @@ node_js:
   - "8.0"
 cache:
   directories:
-  - node_modules
+    - node_modules
 script:
   - npm test
-
+notifications:
+  slack: sindreswebadmin:jjVgMFufNYTN8Gm4HG2RvjYN
