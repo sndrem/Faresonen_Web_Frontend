@@ -13,10 +13,13 @@ exports[`<DangerzoneSearch /> Should render properly 1`] = `
       <div
         className="field"
       >
-        <label>
+        <label
+          htmlFor="playerSearch"
+        >
           Søk etter spiller
         </label>
         <input
+          id="playerSearch"
           onChange={[Function]}
           placeholder="Fornavn/etternavn"
         />

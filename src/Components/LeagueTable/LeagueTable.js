@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
-import { Table, Segment, Dimmer, Loader } from "semantic-ui-react";
+import {Table, Segment, Dimmer, Loader} from "semantic-ui-react";
 import axios from "axios";
 import LeagueTableItem from "./LeagueTableItem";
 
@@ -16,8 +16,8 @@ class LeagueTable extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { table } = nextProps;
-    this.setState({ table });
+    const {table} = nextProps;
+    this.setState({table});
     if (nextProps.table && table.length > 1) {
       this.getLeagueName(table[0].tournament["@uri"]);
     }

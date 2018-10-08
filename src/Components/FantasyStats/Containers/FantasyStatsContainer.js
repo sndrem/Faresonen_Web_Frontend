@@ -9,10 +9,9 @@ class FantasyStatsContainer extends Component {
     this.state = {
       data: {
         selectedPlayers: [],
-        expensivePlayers: [],
+        expensivePlayers: []
       },
-      loading: true,
-      errors: [],
+      errors: []
     };
   }
 
@@ -21,64 +20,73 @@ class FantasyStatsContainer extends Component {
     this.getMostExpensivePlayers(10);
   }
 
-  getMostExpensivePlayers = (limit) => {
+  getMostExpensivePlayers = limit => {
     FantasyStatsService.getMostExpensivePlayer(limit)
-      .then(data => this.setState({
-        data: {
-          ...this.state.data,
-          expensivePlayers: data,
-        },
-      }))
-      .catch((err) => {
-        this.setState({
+      .then(data =>
+        this.setState(prevState => ({
           data: {
-            ...this.state.data,
-            expensivePlayers: [],
+            ...prevState.data,
+            expensivePlayers: data
+          }
+        }))
+      )
+      .catch(() => {
+        this.setState(prevState => ({
+          data: {
+            ...prevState.data,
+            expensivePlayers: []
           },
           loading: false,
           errors: [
-            ...this.state.errors,
-            "Kunne ikke hente de dyreste spillerne. Er du koblet til internett?",
-          ],
-        });
+            ...prevState.errors,
+            "Kunne ikke hente de dyreste spillerne. Er du koblet til internett?"
+          ]
+        }));
       });
   };
 
-  getMostSelectedPlayers = (limit) => {
+  getMostSelectedPlayers = limit => {
     FantasyStatsService.getMostSelectedPlayers(limit)
-      .then((data) => {
-        this.setState({
+      .then(data => {
+        this.setState(prevState => ({
           data: {
-            ...this.state.data,
-            selectedPlayers: data,
-          },
-        });
+            ...prevState.data,
+            selectedPlayers: data
+          }
+        }));
       })
-      .catch((err) => {
-        this.setState({
+      .catch(() => {
+        this.setState(prevState => ({
           data: {
-            ...this.state.data,
-            selectedPlayers: [],
+            ...prevState.data,
+            selectedPlayers: []
           },
           loading: false,
           errors: [
-            ...this.state.errors,
-            "Kunne ikke hente de mest valgte spillerne. Er du koblet til internett?",
-          ],
-        });
+            ...prevState.errors,
+            "Kunne ikke hente de mest valgte spillerne. Er du koblet til internett?"
+          ]
+        }));
       });
   };
 
   formatErrors = errors => (
     <Message info>
-      <ul>{errors.map(error => <li key={error}>{error}</li>)}</ul>
+      <ul>
+        {errors.map(error => (
+          <li key={error}>{error}</li>
+        ))}
+      </ul>
     </Message>
   );
 
   render() {
-    const {selectedPlayers, expensivePlayers} = this.state.data;
-    if (this.state.errors.length > 0) {
-      return this.formatErrors(this.state.errors);
+    const {
+      data: {selectedPlayers, expensivePlayers},
+      errors
+    } = this.state;
+    if (errors.length > 0) {
+      return this.formatErrors(errors);
     }
 
     return (
@@ -87,9 +95,10 @@ class FantasyStatsContainer extends Component {
           <Grid.Column>
             <FantasyStatsList
               players={selectedPlayers.map(
-                player => `${player.selected_by_percent}% - ${player.first_name} ${
-                  player.second_name
-                }`,
+                player =>
+                  `${player.selected_by_percent}% - ${player.first_name} ${
+                    player.second_name
+                  }`
               )}
               header="Mest valgte spillere"
             />
@@ -97,9 +106,10 @@ class FantasyStatsContainer extends Component {
           <Grid.Column>
             <FantasyStatsList
               players={expensivePlayers.map(
-                player => `£${(player.now_cost / 10).toFixed(1)} mill. - ${
-                  player.first_name
-                } ${player.second_name}`,
+                player =>
+                  `£${(player.now_cost / 10).toFixed(1)} mill. - ${
+                    player.first_name
+                  } ${player.second_name}`
               )}
               header="Dyreste spillere"
             />

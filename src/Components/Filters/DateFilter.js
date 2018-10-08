@@ -7,13 +7,12 @@ class DateFilter extends Component {
     super(props);
     this.state = {
       data: {
-        date: moment(new Date()).format("YYYY-MM-DD"),
-      },
-      loading: true,
+        date: moment(new Date()).format("YYYY-MM-DD")
+      }
     };
   }
 
-  handleChange = (event) => {
+  handleChange = event => {
     event.preventDefault();
     this.props.updateDate(new Date(event.target.value));
     this.setState({data: {date: event.target.value}});
@@ -23,10 +22,11 @@ class DateFilter extends Component {
     return (
       <div>
         <p>
-          <label>Velg dato</label>
+          <label htmlFor="date">Velg dato</label>
         </p>
         <input
           type="date"
+          id="date"
           name="datefilter"
           value={this.state.data.date}
           onChange={this.handleChange}
@@ -36,6 +36,6 @@ class DateFilter extends Component {
   }
 }
 DateFilter.propTypes = {
-  updateDate: PropTypes.func.isRequired,
+  updateDate: PropTypes.func.isRequired
 };
 export default DateFilter;

@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Item } from "semantic-ui-react";
+import {Item} from "semantic-ui-react";
 import "moment/locale/nb";
 import events from "../../Tools/events";
 
 const MatchInfo = props => {
   let header = "";
-  const { status } = props;
+  const {status} = props;
   if (status && events.postponed.includes(status["@uri"])) {
     header = (
       <Item.Header>
@@ -25,9 +25,7 @@ const MatchInfo = props => {
       <Item.Content>
         {header}
         <Item.Meta>
-          {props.startDate} - Avspark kl.
-          {props.startTime} på
-          {props.channel}
+          {props.startDate} - Avspark kl. {props.startTime} på {props.channel}
         </Item.Meta>
         {props.referee && (
           <Item.Meta className="float-right">

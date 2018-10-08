@@ -65,6 +65,7 @@ class EditLeague extends Component {
             <input
               placeholder="Navn på serien"
               name="name"
+              id="leagueName"
               value={name}
               onChange={this.handleChange}
             />
@@ -74,6 +75,7 @@ class EditLeague extends Component {
             <input
               placeholder="SesongID"
               name="seasonId"
+              id="leagueSeasonID"
               value={seasonId}
               onChange={this.handleChange}
               type="number"
@@ -85,6 +87,7 @@ class EditLeague extends Component {
             <input
               placeholder="TurneringsID"
               name="tournamentId"
+              id="leagueTournamentID"
               value={tournamentId}
               onChange={this.handleChange}
               type="number"

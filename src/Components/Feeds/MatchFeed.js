@@ -7,7 +7,7 @@ import {
   Dimmer,
   Loader,
   TextArea,
-  Grid,
+  Grid
 } from "semantic-ui-react";
 import moment from "moment";
 import "moment/locale/nb";
@@ -20,9 +20,9 @@ class MatchFeed extends Component {
     this.state = {
       data: {
         matches: [],
-        freeText: "",
+        freeText: ""
       },
-      loading: true,
+      loading: true
     };
   }
 
@@ -30,17 +30,17 @@ class MatchFeed extends Component {
     this.setState(
       {
         data: {
-          matches: nextProps.matches,
+          matches: nextProps.matches
         },
-        loading: false,
+        loading: false
       },
       () => {
         this.formatFreeText(this.props.league);
-      },
+      }
     );
   }
 
-  getBestBetColor = (bet) => {
+  getBestBetColor = bet => {
     if (bet === null) {
       return "";
     }
@@ -62,10 +62,7 @@ class MatchFeed extends Component {
   betsNotReadyElement = match => (
     <Table.Row key={match.matchId}>
       <Table.Cell>
-        {match.homeTeamName}
-        {" "}
--
-        {match.awayTeamName}
+        {match.homeTeamName} -{match.awayTeamName}
       </Table.Cell>
       <Table.Cell width={5}>
         {moment(match.start).format("dddd DD. MMMM HH:mm")}
@@ -76,20 +73,17 @@ class MatchFeed extends Component {
     </Table.Row>
   );
 
-  createElements = (matches) => {
+  createElements = matches => {
     if (!matches) return [];
 
-    return matches.map((m) => {
+    return matches.map(m => {
       if (!m.bets) return this.betsNotReadyElement(m);
 
       const {homeValue, drawValue, awayValue} = m.bets.oddsMarkets[0];
       return (
         <Table.Row key={m.matchId}>
           <Table.Cell>
-            {m.homeTeamName}
-            {" "}
--
-            {m.awayTeamName}
+            {m.homeTeamName} -{m.awayTeamName}
           </Table.Cell>
           <Table.Cell width={5}>
             {moment(m.start).format("dddd DD. MMMM HH:mm")}
@@ -102,72 +96,50 @@ class MatchFeed extends Component {
     });
   };
 
-  // createTableCellsForBets = (bet, rest) => {
-  //   if (rest.length === 2) {
-  //     const rest1 = rest[0];
-  //     const rest2 = rest[1];
-  //     if (bet > draw && home > away) {
-  //           <Table.Cell color="green">{this.formatPercent(home)}</Table.Cell>
-  //           <Table.Cell>{this.formatPercent(draw)}</Table.Cell>
-  //           <Table.Cell>{this.formatPercent(away)}</Table.Cell>
-  //     } else if (draw > home && draw > away) {
-  //           <Table.Cell>{this.formatPercent(home)}</Table.Cell>
-  //           <Table.Cell color="orange">{this.formatPercent(draw)}</Table.Cell>
-  //           <Table.Cell>{this.formatPercent(away)}</Table.Cell>
-  //     } else if (away > home && away > draw) {
-  //           <Table.Cell>{this.formatPercent(home)}</Table.Cell>
-  //           <Table.Cell>{this.formatPercent(draw)}</Table.Cell>
-  //           <Table.Cell color="green">{this.formatPercent(away)}</Table.Cell>
-  //         </span>
-  //     }
-  //   }
-  //   return <Table.Cell>Odds ikke tilgjengelig</Table.Cell>;
-  // };
-
   formatPercent = value => `${(value * 100).toFixed(1)} %`;
 
-  formatFreeText = (league) => {
+  formatFreeText = league => {
     if (this.state.data.matches.length > 0) {
       const abbrevs = new Abbreviations();
       const text = this.state.data.matches
-        .map((m) => {
+        .map(m => {
           if (!m.bets) return "";
 
           const homeTeamAbbrev = abbrevs.getAbbreviations(
             m.homeTeamName,
-            league,
+            league
           );
           const awayTeamAbbrev = abbrevs.getAbbreviations(
             m.awayTeamName,
-            league,
+            league
           );
 
           const homeTeamBet = this.formatPercent(
-            m.bets.oddsMarkets[0].homeValue,
+            m.bets.oddsMarkets[0].homeValue
           );
 
           const drawBet = this.formatPercent(m.bets.oddsMarkets[0].drawValue);
 
           const awayTeamBet = this.formatPercent(
-            m.bets.oddsMarkets[0].awayValue,
+            m.bets.oddsMarkets[0].awayValue
           );
 
           return `${homeTeamAbbrev} - ${awayTeamAbbrev}\nH: ${homeTeamBet} U: ${drawBet} B: ${awayTeamBet}`;
         })
         .join("\n\n");
-      this.setState({
+      this.setState(prevState => ({
         data: {
           freeText: text,
-          matches: this.state.data.matches,
-        },
-      });
+          matches: prevState.data.matches
+        }
+      }));
     } else {
-      this.setState({
+      this.setState(prevState => ({
         data: {
           freeText: "",
-          matches: this.state.data.matches,
-        },
-      });
+          matches: prevState.data.matches
+        }
+      }));
     }
   };
 
@@ -179,7 +151,7 @@ class MatchFeed extends Component {
           <Segment>
             <Dimmer active={this.state.loading}>
               <Loader>
-Henter kamper for
+                Henter kamper for
                 {this.props.league}
               </Loader>
             </Dimmer>
@@ -215,5 +187,6 @@ Henter kamper for
 }
 MatchFeed.propTypes = {
   league: PropTypes.string.isRequired,
+  matches: PropTypes.array.isRequired
 };
 export default MatchFeed;

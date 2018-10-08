@@ -63,6 +63,7 @@ class DangerZoneAccumulator extends Component {
         events: prevState.data.events
       }
     }));
+    return null;
   };
 
   sortEvents = events =>

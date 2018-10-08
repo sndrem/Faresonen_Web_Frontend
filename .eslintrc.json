@@ -27,6 +27,22 @@
         "aspects": ["noHref", "invalidHref", "preferButton"]
       }
     ],
+    "jsx-a11y/label-has-associated-control": [
+      2,
+      {
+        "labelComponents": ["label"],
+        "labelAttributes": ["htmlFor"],
+        "controlComponents": ["input"]
+      }
+    ],
+    "jsx-a11y/label-has-for": [
+      2,
+      {
+        "required": {
+          "every": ["id"]
+        }
+      }
+    ],
     "babel/new-cap": 1,
     "babel/no-invalid-this": 1,
     "babel/object-curly-spacing": 1,
@@ -40,6 +56,7 @@
     "describe": 1,
     "it": 1,
     "expect": 1,
-    "jest": 1
+    "jest": 1,
+    "xit": 1
   }
 }

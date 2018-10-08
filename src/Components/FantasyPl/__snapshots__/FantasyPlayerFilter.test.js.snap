@@ -17,10 +17,13 @@ exports[`<FantasyPlayerFilter /> Should render properly 1`] = `
     <div
       className="field"
     >
-      <label>
+      <label
+        htmlFor="freetext"
+      >
         Søk fritekst
       </label>
       <input
+        id="freetext"
         onChange={[Function]}
         placeholder="Søk etter navn"
       />
@@ -28,10 +31,13 @@ exports[`<FantasyPlayerFilter /> Should render properly 1`] = `
     <div
       className="field"
     >
-      <label>
+      <label
+        htmlFor="priceFilter"
+      >
         Filtrer på pris i pund (£)
       </label>
       <input
+        id="priceFilter"
         onChange={[Function]}
         step={0.1}
         type="number"

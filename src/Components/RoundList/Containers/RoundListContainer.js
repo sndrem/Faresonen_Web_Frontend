@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import RoundList from "../RoundList";
@@ -16,12 +16,12 @@ class RoundListContainer extends Component {
   }
 
   componentDidMount() {
-    const { tournamentId, seasonId } = this.props;
+    const {tournamentId, seasonId} = this.props;
     this.getRounds(tournamentId, seasonId);
   }
 
   componentWillReceiveProps(nextProps) {
-    const { tournamentId, seasonId } = nextProps;
+    const {tournamentId, seasonId} = nextProps;
     this.getRounds(tournamentId, seasonId);
   }
 
@@ -30,7 +30,7 @@ class RoundListContainer extends Component {
       .get(`/rounds/${tournamentId}/${seasonId}`)
       .then(data => {
         this.setState({
-          data: { rounds: data.data.round || [] },
+          data: {rounds: data.data.round || []},
           loading: false
         });
       })
@@ -45,8 +45,8 @@ class RoundListContainer extends Component {
   };
 
   render() {
-    const { rounds } = this.state.data;
-    const { tournamentId, seasonId, leagueName } = this.props;
+    const {rounds} = this.state.data;
+    const {tournamentId, seasonId, leagueName} = this.props;
     return (
       <RoundList
         rounds={rounds}
