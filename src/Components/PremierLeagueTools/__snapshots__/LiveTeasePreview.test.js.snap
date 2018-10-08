@@ -20,8 +20,7 @@ exports[`<LiveTeasePreview /> Should render properly 1`] = `
         Brighton - Manchester United
       </p>
       <p>
-        Fritekst:
-         
+        Fritekst: 
         Avspark kl.
          
         21.00
@@ -95,8 +94,7 @@ exports[`<LiveTeasePreview /> Should render properly 2`] = `
         Brighton - Manchester United
       </p>
       <p>
-        Fritekst:
-         
+        Fritekst: 
         Avspark kl.
          
         21.00

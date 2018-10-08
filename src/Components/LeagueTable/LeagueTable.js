@@ -1,8 +1,6 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
-import {
-  Table, Segment, Dimmer, Loader,
-} from "semantic-ui-react";
+import { Table, Segment, Dimmer, Loader } from "semantic-ui-react";
 import axios from "axios";
 import LeagueTableItem from "./LeagueTableItem";
 
@@ -13,23 +11,23 @@ class LeagueTable extends Component {
       table: [],
       leagueName: props.leagueName,
       tableColors: props.tableColors,
-      loading: true,
+      loading: true
     };
   }
 
   componentWillReceiveProps(nextProps) {
-    const {table} = nextProps;
-    this.setState({table});
+    const { table } = nextProps;
+    this.setState({ table });
     if (nextProps.table && table.length > 1) {
       this.getLeagueName(table[0].tournament["@uri"]);
     }
   }
 
   getLeagueName(tournamentUri) {
-    axios.get(tournamentUri).then((data) => {
+    axios.get(tournamentUri).then(data => {
       this.setState({
         leagueName: data.data.name,
-        loading: false,
+        loading: false
       });
     });
   }
@@ -43,7 +41,8 @@ class LeagueTable extends Component {
           tableData={data}
         />
       );
-    } if (this.state.tableColors.reds.includes(index)) {
+    }
+    if (this.state.tableColors.reds.includes(index)) {
       return (
         <LeagueTableItem rowColor="red-table" key={data.id} tableData={data} />
       );
@@ -52,20 +51,16 @@ class LeagueTable extends Component {
   };
 
   render() {
-    const tableElements = this.state.table.map((t, index) => this.createLeagueTableItems(t, index));
+    const tableElements = this.state.table.map((t, index) =>
+      this.createLeagueTableItems(t, index)
+    );
 
     return (
       <Segment className="print">
         <Dimmer active={this.state.loading}>
-          <Loader>
-Henter tabell for
-            {this.state.leagueName}
-          </Loader>
+          <Loader>Henter tabell for {this.state.leagueName}</Loader>
         </Dimmer>
-        <h1>
-Tabell:
-          {this.state.leagueName}
-        </h1>
+        <h1>Tabell: {this.state.leagueName}</h1>
         <Table>
           <Table.Header>
             <Table.Row>
@@ -92,9 +87,9 @@ LeagueTable.propTypes = {
   leagueName: PropTypes.string.isRequired,
   tableColors: PropTypes.shape({
     greens: PropTypes.arrayOf(PropTypes.number),
-    reds: PropTypes.arrayOf(PropTypes.number),
+    reds: PropTypes.arrayOf(PropTypes.number)
   }).isRequired,
-  table: PropTypes.arrayOf(PropTypes.object).isRequired,
+  table: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default LeagueTable;
