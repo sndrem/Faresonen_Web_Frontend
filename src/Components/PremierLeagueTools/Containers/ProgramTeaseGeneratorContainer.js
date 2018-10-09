@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import PropTypes from "prop-types";
 import {Segment, Message} from "semantic-ui-react";
 import LiveTeaseGenerator from "../LiveTeaseGenerator";
 import altOmFotballMatchService from "../../../services/altOmFotballMatchService";
@@ -63,7 +64,7 @@ class ProgramTeaseGeneratorContainer extends Component {
           loading: false
         }));
       })
-      .catch(err => {
+      .catch(() => {
         this.setState(prevState => ({
           ...prevState,
           error: "Kunne ikke hente kamper fra AltomFotball",
@@ -147,4 +148,9 @@ ${home || "Hjemmelag ikke valgt"} - ${away ||
     );
   }
 }
+
+ProgramTeaseGeneratorContainer.propTypes = {
+  selectedLeague: PropTypes.string.isRequired
+};
+
 export default ProgramTeaseGeneratorContainer;

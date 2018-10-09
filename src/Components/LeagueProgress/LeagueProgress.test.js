@@ -1,7 +1,7 @@
 import React from "react";
-import { shallow } from "enzyme";
+import {shallow} from "enzyme";
 import mockAxios from "axios";
-import { Progress } from "semantic-ui-react";
+import {Progress} from "semantic-ui-react";
 import LeagueProgress from "./LeagueProgress";
 
 function mockGetOnce() {
@@ -79,7 +79,7 @@ describe("<LeagueProgess />", () => {
   it("should initialize with correct props", () => {
     const elem = createElement();
     const progressElement = elem.find(Progress);
-    const { color, progress } = progressElement.props();
+    const {color, progress} = progressElement.props();
     expect(color).toEqual("green");
     expect(progress).toEqual("ratio");
   });

@@ -14,7 +14,7 @@ const FrontpageView = ({switchLeagueName, leagues, error, loading}) => (
       <LeagueChooser
         leagues={leagues}
         switchLeagueName={switchLeagueName}
-        {...this.props}
+        {...this.props} // eslint-disable-line
       />
     )}
     {error ? <p>{error}</p> : ""}

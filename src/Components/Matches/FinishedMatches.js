@@ -7,14 +7,16 @@ class FinishedMatches extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      matches: this.props.matches,
+      matches: this.props.matches
     };
   }
 
   componentDidMount() {}
 
   render() {
-    const finishedMatchElements = this.state.matches.map(m => <FinishedMatchElements key={m.id} matchInfo={m} />);
+    const finishedMatchElements = this.state.matches.map(m => (
+      <FinishedMatchElements key={m.id} matchInfo={m} />
+    ));
 
     return (
       <Segment>
@@ -22,7 +24,7 @@ class FinishedMatches extends Component {
           <Loader>Henter kamper som er ferdig</Loader>
         </Dimmer>
         <h1>
-Ferdig spilt i runde
+          Ferdig spilt i runde
           {this.props.roundNumber}
         </h1>
         {finishedMatchElements}
@@ -33,7 +35,7 @@ Ferdig spilt i runde
 
 FinishedMatches.propTypes = {
   matches: PropTypes.array.isRequired,
-  roundNumber: PropTypes.number,
+  roundNumber: PropTypes.number.isRequired
 };
 
 export default FinishedMatches;

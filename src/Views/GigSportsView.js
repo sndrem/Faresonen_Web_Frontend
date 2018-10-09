@@ -84,8 +84,11 @@ class GigSportsView extends Component {
     if (!matches) return [];
     return matches.map(match => {
       const foundBet = bets.find(bet => bet.matchId === match.matchId);
-      match.bets = foundBet;
-      return match;
+      const connectedMatch = {
+        bets: null
+      };
+      connectedMatch.bets = foundBet;
+      return connectedMatch;
     });
   };
 

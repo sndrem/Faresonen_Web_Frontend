@@ -11,7 +11,7 @@ const AltOmFotballMatchService = {
     }),
 
   getOnlyNotDoneMatches: (tournamentId, seasonId) => {
-    const self = this.a;
+    const self = this.a; // eslint-disable-line
     return new Promise((resolve, reject) => {
       axios
         .get(`/matches/${tournamentId}/${seasonId}`)
@@ -30,12 +30,12 @@ const AltOmFotballMatchService = {
   filterNotDoneMatches: matches =>
     matches.filter(match => match.confirmed !== "true"),
 
-  splitNames: (name: string, delimiter: string) => {
+  splitNames: (name, delimiter) => {
     if (name) return name.split(delimiter);
     return name;
   },
 
-  getChannelName: (allChannels: Array<{}>, channelId: string | number) => {
+  getChannelName: (allChannels, channelId) => {
     if (!allChannels) throw new Error("Please provide a list of channels");
     if (allChannels.length === 0) return "Laster... ";
     if (!channelId) throw new Error("Please provide a channelId");

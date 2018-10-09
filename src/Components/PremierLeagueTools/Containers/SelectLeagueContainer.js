@@ -1,10 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 import SelectLeague from "../SelectLeague";
 
 const SelectLeagueContainer = ({
   setSelectedLeague,
   selectedLeague,
-  leagues,
+  leagues
 }) => (
   <SelectLeague
     leagues={leagues}
@@ -12,5 +13,9 @@ const SelectLeagueContainer = ({
     selectedLeague={selectedLeague}
   />
 );
-
+SelectLeagueContainer.propTypes = {
+  setSelectedLeague: PropTypes.func.isRequired,
+  selectedLeague: PropTypes.string.isRequired,
+  leagues: PropTypes.array.isRequired
+};
 export default SelectLeagueContainer;

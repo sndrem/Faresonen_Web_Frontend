@@ -67,7 +67,7 @@ class DangerzoneView extends Component {
       this.setState({socketConnected: true});
       if (!data.events) return;
       if (!Array.isArray(data.events)) {
-        data.events = [data.events];
+        data.events = [data.events]; // eslint-disable-line
       }
       const {eliteserien, obosligaen} = this.state.data;
       const merged = eliteserien.concat(obosligaen);
@@ -84,12 +84,12 @@ class DangerzoneView extends Component {
         }
         return false;
       });
-      this.setState({
+      this.setState(prevState => ({
         data: {
-          ...this.state.data,
+          ...prevState.data,
           events
         }
-      });
+      }));
     });
   };
 
@@ -118,7 +118,7 @@ class DangerzoneView extends Component {
         }
         this.setDefaultState(eliteserien, obosligaen);
       })
-      .catch(err => {
+      .catch(() => {
         const {data} = this.state;
         this.setState({
           data: {

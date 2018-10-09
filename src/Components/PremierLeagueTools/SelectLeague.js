@@ -19,15 +19,11 @@ SelectLeague.propTypes = {
     PropTypes.shape({
       key: PropTypes.string.isRequired,
       value: PropTypes.string.isRequired,
-      text: PropTypes.string.isRequired,
-    }),
+      text: PropTypes.string.isRequired
+    })
   ).isRequired,
   setSelectedLeague: PropTypes.func.isRequired,
-  selectedLeague: PropTypes.string.isRequired,
-};
-
-SelectLeague.defaultProps = {
-  selectedLeague: {},
+  selectedLeague: PropTypes.string.isRequired
 };
 
 export default SelectLeague;

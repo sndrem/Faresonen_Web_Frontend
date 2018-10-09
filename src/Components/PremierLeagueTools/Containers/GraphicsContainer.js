@@ -11,12 +11,10 @@ class GraphicsContainer extends Component {
     this.state = {
       activeItem: "liveinfo",
       selectedLeague: "",
-      leagues: [],
-      matches: [],
-      loading: true,
+      leagues: []
     };
     this.getTypeOfGraphicComponents = this.getTypeOfGraphicComponents.bind(
-      this,
+      this
     );
     this.service = altOmFotballLeagueService;
     this.matchService = AltOmFotballMatchService;
@@ -27,7 +25,7 @@ class GraphicsContainer extends Component {
     this.getLeagues();
   }
 
-  getTypeOfGraphicComponents = (type) => {
+  getTypeOfGraphicComponents = type => {
     switch (type.toLowerCase()) {
       case "liveinfo":
         return (
@@ -46,27 +44,28 @@ class GraphicsContainer extends Component {
     }
   };
 
-  setSelectedLeague = (selectedLeague) => {
+  setSelectedLeague = selectedLeague => {
     this.setState({selectedLeague});
   };
 
   getLeagues() {
-    this.service.getAllLeagues().then((data) => {
+    this.service.getAllLeagues().then(data => {
       this.setState({leagues: data.data.tournament});
     });
   }
 
-  updateActiveItem = (item) => {
+  updateActiveItem = item => {
     this.setState({activeItem: item});
   };
 
-  mapLeagues = leagues => leagues.map(league => ({
-    key: league.id + league.name,
-    value: `${league.id}-${this.service.getActiveSeasonNumber(
-      league.activeseason["@uri"],
-    )}`,
-    text: league.name,
-  }));
+  mapLeagues = leagues =>
+    leagues.map(league => ({
+      key: league.id + league.name,
+      value: `${league.id}-${this.service.getActiveSeasonNumber(
+        league.activeseason["@uri"]
+      )}`,
+      text: league.name
+    }));
 
   render() {
     const element = this.getTypeOfGraphicComponents(this.state.activeItem);

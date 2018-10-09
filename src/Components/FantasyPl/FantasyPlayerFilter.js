@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
-import { Segment, Form, Checkbox } from "semantic-ui-react";
+import {Segment, Form, Checkbox} from "semantic-ui-react";
 import "./FantasyPlayerFilter.css";
 
 class FantasyPlayerFilter extends Component {
@@ -8,7 +8,7 @@ class FantasyPlayerFilter extends Component {
     this.props.setNameFilter(search.target.value.trim().toLowerCase());
 
   handlePriceSearch = search => {
-    const { value } = search.target;
+    const {value} = search.target;
     if (isNaN(value) || !value) this.props.setPriceFilter(-1);
     else {
       this.props.setPriceFilter(parseFloat(value, 10));

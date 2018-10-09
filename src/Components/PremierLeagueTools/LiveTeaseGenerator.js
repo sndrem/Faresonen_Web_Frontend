@@ -23,7 +23,7 @@ class LiveTeaseGenerator extends Component {
         times.push({
           key: time,
           value: time,
-          text: time,
+          text: time
         });
       }
     }
@@ -32,23 +32,24 @@ class LiveTeaseGenerator extends Component {
 
   padTime = time => (time < 10 ? `0${time}` : time.toString());
 
-  mapMatches = (matches) => {
+  mapMatches = matches => {
     moment.tz.setDefault("Europe/Oslo");
 
     return matches.map(match => ({
       key: match["@uri"],
       value: match.name,
       text: `${match.name} - ${moment(match.starttime).from(
-        moment(),
-      )} - ${moment(match.starttime).format("DD.MM.YYYY [Kl.] HH:mm")}`,
+        moment()
+      )} - ${moment(match.starttime).format("DD.MM.YYYY [Kl.] HH:mm")}`
     }));
   };
 
-  mapChannels = channels => channels.map(channel => ({
-    key: channel.value,
-    value: parseInt(channel.value, 10),
-    text: channel.name,
-  }));
+  mapChannels = channels =>
+    channels.map(channel => ({
+      key: channel.value,
+      value: parseInt(channel.value, 10),
+      text: channel.name
+    }));
 
   render() {
     return (
@@ -132,16 +133,16 @@ LiveTeaseGenerator.propTypes = {
   matches: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
-      starttime: PropTypes.string.isRequired,
-    }),
+      starttime: PropTypes.string.isRequired
+    })
   ).isRequired,
   handleChange: PropTypes.func.isRequired,
   defaultChannels: PropTypes.arrayOf(PropTypes.number).isRequired,
   allChannels: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired,
-    }),
+      value: PropTypes.string.isRequired
+    })
   ).isRequired,
   loading: PropTypes.bool.isRequired,
   colors: PropTypes.arrayOf(
@@ -150,15 +151,13 @@ LiveTeaseGenerator.propTypes = {
       hex: PropTypes.string.isRequired,
       key: PropTypes.string.isRequired,
       text: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired,
-    }),
-  ),
+      value: PropTypes.string.isRequired
+    })
+  )
 };
 
 LiveTeaseGenerator.defaultProps = {
-  error: "",
-  colors: [],
-  findColor: () => {},
+  colors: []
 };
 
 export default LiveTeaseGenerator;

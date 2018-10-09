@@ -6,15 +6,15 @@ describe("<FinishedMatchElements />", () => {
     const matchNames = ["Ranheim-Brann", "Ranheim,Brann", "Ranheim;Brann"];
     expect(FinishedMatchElements.splitGameName(matchNames[0])).toEqual([
       "Ranheim",
-      "Brann",
+      "Brann"
     ]);
     expect(FinishedMatchElements.splitGameName(matchNames[1])).toEqual([
       "Ranheim",
-      "Brann",
+      "Brann"
     ]);
     expect(FinishedMatchElements.splitGameName(matchNames[2])).toEqual([
       "Ranheim",
-      "Brann",
+      "Brann"
     ]);
   });
 
@@ -38,10 +38,10 @@ describe("<FinishedMatchElements />", () => {
     const goalString = FinishedMatchElements.formatGoalScoreText(scorers);
     expect(goalString).toEqual("Smalling (55), Lukaku (76), Matic (90)");
 
-    const doubleScorers = testData.doubleScorers;
+    const {doubleScorers} = testData;
 
     const doubleScoreString = FinishedMatchElements.formatGoalScoreText(
-      doubleScorers,
+      doubleScorers
     );
 
     expect(doubleScoreString).toEqual("Smalling (55, 76), Matic (90)");

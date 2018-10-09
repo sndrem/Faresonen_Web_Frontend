@@ -10,8 +10,8 @@ describe("<LiveTeaseGenerator />", () => {
         matches={[
           {
             name: "Brighton-Man.United",
-            starttime: "2017-09-15 09:30:00",
-          },
+            starttime: "2017-09-15 09:30:00"
+          }
         ]}
         handleChange={() => {}}
         defaultChannels={[5, 10]}
@@ -22,12 +22,12 @@ describe("<LiveTeaseGenerator />", () => {
             key: "1",
             value: "1",
             hex: "#e90052",
-            color: "#e90052",
-          },
+            color: "#e90052"
+          }
         ]}
         allChannels={[{name: "TV 2", value: "1"}]}
         loading={false}
-      />,
+      />
     );
     expect(tree).toMatchSnapshot();
   });
@@ -38,8 +38,8 @@ describe("<LiveTeaseGenerator />", () => {
         matches={[
           {
             name: "Brighton-Man.United",
-            starttime: "2018-05-02T12:22:24.041Z",
-          },
+            starttime: "2018-05-02T12:22:24.041Z"
+          }
         ]}
         handleChange={() => {}}
         defaultChannels={[5, 10]}
@@ -50,12 +50,12 @@ describe("<LiveTeaseGenerator />", () => {
             key: "1",
             value: "1",
             hex: "#e90052",
-            color: "#e90052",
-          },
+            color: "#e90052"
+          }
         ]}
         allChannels={[{name: "TV 2", value: "1"}]}
         loading={false}
-      />,
+      />
     );
     let hours = elem.instance().padTime(9);
     expect(hours).toEqual("09");
@@ -72,8 +72,8 @@ describe("<LiveTeaseGenerator />", () => {
         matches={[
           {
             name: "Brighton-Man.United",
-            starttime: "2018-05-02T12:22:24.041Z",
-          },
+            starttime: "2018-05-02T12:22:24.041Z"
+          }
         ]}
         handleChange={() => {}}
         defaultChannels={[5, 10]}
@@ -84,28 +84,29 @@ describe("<LiveTeaseGenerator />", () => {
             key: "1",
             value: "1",
             hex: "#e90052",
-            color: "#e90052",
-          },
+            color: "#e90052"
+          }
         ]}
         allChannels={[{name: "TV 2", value: "1"}]}
         loading={false}
-      />,
+      />
     );
     const colors = [
       {value: 1, text: "Rød"},
       {value: 10, text: "Blå"},
       {value: 15, text: "Grønn"},
       {value: 4, text: "Gul"},
-      {value: 9, text: "Lilla"},
+      {value: 9, text: "Lilla"}
     ];
+
+    function findColor(colorsToFind, value) {
+      elem.instance().findColor(colorsToFind, value);
+    }
+
     let color = elem.instance().findColor(colors, 10);
     expect(color).toEqual({value: 10, text: "Blå"});
     color = elem.instance().findColor(colors, 9);
     expect(color).toEqual({value: 9, text: "Lilla"});
     expect(() => findColor(colors, -1)).toThrow();
-
-    function findColor(colors, value) {
-      elem.instance().findColor(colors, value);
-    }
   });
 });

@@ -72,8 +72,7 @@ class LeagueProgess extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      finished: 0,
-      loading: true
+      finished: 0
     };
   }
 
@@ -92,9 +91,7 @@ class LeagueProgess extends Component {
     LeagueProgess.removeFinishedRounds(rounds).then(calculated => {
       this.setState({
         finished: calculated.finished,
-        left: calculated.left,
-        total: calculated.finished + calculated.left,
-        loading: false
+        total: calculated.finished + calculated.left
       });
     });
   }

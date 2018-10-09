@@ -11,11 +11,11 @@ class NewUserContainer extends React.Component {
       password: "",
       confirmedPassword: "",
       formErrors: [],
-      info: "",
+      info: ""
     };
   }
 
-  onSubmit = (event) => {
+  onSubmit = event => {
     event.preventDefault();
     const {email, password, confirmedPassword} = this.state;
     const errors = [];
@@ -25,11 +25,8 @@ class NewUserContainer extends React.Component {
       firebaseConfig
         .auth()
         .createUserWithEmailAndPassword(email, password)
-        .then((data) => {
-          console.log("Bruker opprettet");
-          console.log(data);
-        })
-        .catch((error) => {
+        .then(() => {})
+        .catch(error => {
           const {message} = error;
           errors.push(message);
         });
@@ -37,7 +34,7 @@ class NewUserContainer extends React.Component {
     }
   };
 
-  onChange = (event) => {
+  onChange = event => {
     event.preventDefault();
     this.setState({[event.target.name]: event.target.value});
   };

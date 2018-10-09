@@ -50,7 +50,11 @@
     "babel/semi": 1,
     "babel/no-unused-expressions": 1,
     "babel/valid-typeof": 1,
-    "react/forbid-prop-types": 0
+    "react/forbid-prop-types": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "anchor-is-valid": 0,
+    "no-restricted-globals": 0,
+    "jsx-a11y/anchor-is-valid": 0
   },
   "globals": {
     "describe": 1,
