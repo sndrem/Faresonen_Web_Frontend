@@ -1,68 +1,62 @@
-import React, {Component} from "react";
+import React, {useState} from "react";
 import {Form, Button} from "semantic-ui-react";
 import firebaseConfig from "../../databaseConfig/firebaseConfig";
 
-class LogInAdmin extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: "",
-      pwd: "",
-      error: "",
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.signIn = this.signIn.bind(this);
-  }
+const LogInAdmin = () => {
+  const [email, setEmail] = useState("");
+  const [pwd, setPwd] = useState("");
+  const [error, setError] = useState("");
 
-  handleChange = (e) => {
+  const handleEmailChange = e => {
     e.preventDefault();
-    this.setState({[e.target.name]: e.target.value});
+    setEmail(e.target.value);
   };
 
-  signIn = (e) => {
+  const handlePwdChange = e => {
     e.preventDefault();
-    const {email, pwd} = this.state;
+    setPwd(e.target.value);
+  };
+
+  const signIn = e => {
+    e.preventDefault();
     firebaseConfig
       .auth()
       .signInWithEmailAndPassword(email, pwd)
       .catch(() => {
-        this.setState({error: "Brukernavn eller passord er feil."});
+        setError("Brukernavn eller passord er feil.");
       });
   };
 
-  render() {
-    const {error, email, pwd} = this.state;
-    return (
-      <Form>
-        <Form.Field>
-          <label htmlFor="email">Email</label>
-          <input
-            placeholder="Email"
-            name="email"
-            value={email}
-            type="email"
-            required
-            onChange={this.handleChange}
-            autoComplete="email"
-          />
-        </Form.Field>
-        <Form.Field>
-          <label htmlFor="pwd">Passord</label>
-          <input
-            placeholder="Passord"
-            type="password"
-            name="pwd"
-            value={pwd}
-            onChange={this.handleChange}
-            autoComplete="password"
-          />
-        </Form.Field>
-        {error ? <span style={{display: "block"}}>{error}</span> : ""}
-        <Button onClick={this.signIn} type="submit">
-          Logg inn
-        </Button>
-      </Form>
-    );
-  }
-}
+  return (
+    <Form>
+      <Form.Field>
+        <label htmlFor="email">Email</label>
+        <input
+          placeholder="Email"
+          name="email"
+          value={email}
+          type="email"
+          required
+          onChange={handleEmailChange}
+          autoComplete="email"
+        />
+      </Form.Field>
+      <Form.Field>
+        <label htmlFor="pwd">Passord</label>
+        <input
+          placeholder="Passord"
+          type="password"
+          name="pwd"
+          value={pwd}
+          onChange={handlePwdChange}
+          autoComplete="password"
+        />
+      </Form.Field>
+      {error ? <span style={{display: "block"}}>{error}</span> : ""}
+      <Button onClick={signIn} type="submit">
+        Logg inn
+      </Button>
+    </Form>
+  );
+};
 export default LogInAdmin;

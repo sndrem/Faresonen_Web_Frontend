@@ -19,14 +19,16 @@ class NewColorForm extends Component {
     key: name,
     text: name,
     value: number,
-    hex,
+    hex
   });
 
-  saveColor = (e) => {
+  saveColor = e => {
     e.preventDefault();
     const form = document.forms.colorForm;
     if (form.checkValidity()) {
-      const {color: {key, hex, value}} = this.props;
+      const {
+        color: {key, hex, value}
+      } = this.props;
       const colorObject = this.constructColorObject(key, hex, value);
       const colorKey = hex.replace("#", "");
       this.props.saveColor(colorKey, colorObject);
@@ -38,7 +40,7 @@ class NewColorForm extends Component {
     this.props.handleChange(name, value, valid);
   };
 
-  handleColorChange = (color) => {
+  handleColorChange = color => {
     const valid = this.formIsValid();
     this.props.handleColorChange(color.hex, valid);
   };
@@ -46,7 +48,11 @@ class NewColorForm extends Component {
   formIsValid = () => document.forms.colorForm.checkValidity();
 
   render() {
-    const {color: {key, value, hex}, error, valid} = this.props;
+    const {
+      color: {key, value, hex},
+      error,
+      valid
+    } = this.props;
 
     return (
       <div>
@@ -103,18 +109,18 @@ NewColorForm.propTypes = {
   color: PropTypes.shape({
     key: PropTypes.string.isRequired,
     hex: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired
   }).isRequired,
   handleColorChange: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
   error: PropTypes.shape({
-    message: PropTypes.string.isRequired,
+    message: PropTypes.string.isRequired
   }),
   valid: PropTypes.bool.isRequired,
-  resetForm: PropTypes.func.isRequired,
+  resetForm: PropTypes.func.isRequired
 };
 
 NewColorForm.defaultProps = {
-  error: undefined,
+  error: undefined
 };
 export default NewColorForm;
