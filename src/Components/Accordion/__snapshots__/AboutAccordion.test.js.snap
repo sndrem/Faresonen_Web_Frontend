@@ -38,8 +38,7 @@ exports[`<AboutAccordion /> Should render properly 1`] = `
     className="content"
   >
     <p>
-      Ja, det kan legges til flere ligaer. Alt man trenger er liga-id og sesong-id fra
-       
+      Ja, det kan legges til flere ligaer. Alt man trenger er liga-id og sesong-id fra 
       <a
         href="http://www.altomfotball.no"
       >
