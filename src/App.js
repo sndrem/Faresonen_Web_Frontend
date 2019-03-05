@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {Container} from "semantic-ui-react";
 import {HashRouter, Route, Switch} from "react-router-dom";
+import ReactGA from "react-ga";
 import FrontpageView from "./Views/FrontpageView";
 import MainView from "./Views/MainView";
 import RoundView from "./Views/RoundView";
@@ -16,6 +17,11 @@ import My404NotFound from "./Views/My404NotFound";
 import FirebaseService from "./services/FirebaseService";
 import GraphicsContainer from "./Components/PremierLeagueTools/Containers/GraphicsContainer";
 
+function initializeReactGA() {
+  ReactGA.initialize("UA-58175708-2");
+  ReactGA.pageview("/forside");
+}
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -25,8 +31,9 @@ class App extends Component {
       seasonId: "",
       leagues: [],
       loading: true,
-      error: "",
+      error: ""
     };
+    initializeReactGA();
     this.service = new FirebaseService();
   }
 
