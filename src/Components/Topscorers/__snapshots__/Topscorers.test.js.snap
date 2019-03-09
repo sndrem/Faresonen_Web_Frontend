@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<TopScorers /> Should render corretly 1`] = `
+exports[`<TopScorers /> Should render correctly 1`] = `
 <div
   className="ui segment"
 >
@@ -12,13 +12,9 @@ exports[`<TopScorers /> Should render corretly 1`] = `
       className="content"
     >
       <div
-        className="center"
+        className="ui text loader"
       >
-        <div
-          className="ui text loader"
-        >
-          Henter toppscorere
-        </div>
+        Henter toppscorere
       </div>
     </div>
   </div>
@@ -108,7 +104,7 @@ exports[`<TopScorers /> Should render corretly 1`] = `
 </div>
 `;
 
-exports[`<TopScorers /> Should render corretly 2`] = `
+exports[`<TopScorers /> Should render correctly 2`] = `
 <div
   className="ui negative message"
 >

@@ -4,7 +4,6 @@ exports[`<PlayerProfile /> Should render properly 1`] = `
 <div>
   <div
     className="ui card"
-    href={undefined}
     onClick={[Function]}
   >
     <img
@@ -24,6 +23,7 @@ exports[`<PlayerProfile /> Should render properly 1`] = `
         <i
           aria-hidden="true"
           className="yellow star icon"
+          onClick={[Function]}
         />
       </div>
       <div>
@@ -81,7 +81,6 @@ exports[`<PlayerProfile /> Should render properly 2`] = `
 <div>
   <div
     className="ui card"
-    href={undefined}
     onClick={[Function]}
   >
     <img
@@ -155,7 +154,6 @@ exports[`<PlayerProfile /> Should render properly 3`] = `
 <div>
   <div
     className="ui card"
-    href={undefined}
     onClick={[Function]}
   >
     <img

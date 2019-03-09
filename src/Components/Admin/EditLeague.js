@@ -18,7 +18,7 @@ class EditLeague extends Component {
     this.submit = this.submit.bind(this);
   }
 
-  componentWillReceiveProps = nextProps => {
+  UNSAFE_componentWillReceiveProps = nextProps => {
     const {name, seasonId, tournamentId} = nextProps.league;
     this.setState({
       data: {

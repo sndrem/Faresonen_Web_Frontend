@@ -38,7 +38,7 @@ class LiveTeaseGeneratorContainer extends Component {
     this.getColors();
   }
 
-  componentWillReceiveProps(props) {
+  UNSAFE_componentWillReceiveProps(props) {
     const {selectedLeague} = props;
     if (selectedLeague) {
       const [id, season] = selectedLeague.split("-");

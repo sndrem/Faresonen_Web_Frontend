@@ -20,7 +20,7 @@ class RoundListContainer extends Component {
     this.getRounds(tournamentId, seasonId);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const {tournamentId, seasonId} = nextProps;
     this.getRounds(tournamentId, seasonId);
   }

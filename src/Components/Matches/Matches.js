@@ -1,14 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {
-  List, Divider, Segment, Dimmer, Loader,
-} from "semantic-ui-react";
+import { List, Divider, Segment, Dimmer, Loader } from "semantic-ui-react";
 import MatchInfoContainer from "./Containers/MatchInfoContainer";
 import events from "../../Tools/events";
 import "./Matches.css";
 
-const Matches = (props) => {
-  const nextMatches = props.matches.map((m) => {
+const Matches = ({ matches, loading, leagueName, roundNumber }) => {
+  const sorted = matches.sort(
+    (a, b) => new Date(a.starttime) - new Date(b.starttime)
+  );
+  const nextMatches = sorted.map(m => {
     let className = "";
 
     if (m.status && events.postponed.includes(m.status["@uri"])) {
@@ -25,15 +26,11 @@ const Matches = (props) => {
   });
   return (
     <Segment className="print" padded="very">
-      <Dimmer size="medium" active={props.loading}>
+      <Dimmer size="medium" active={loading}>
         <Loader>Henter kamper</Loader>
       </Dimmer>
       <h1>
-        {props.leagueName}
-        {" "}
--
-        {props.roundNumber}
-. Runde
+        {leagueName} -{roundNumber}. Runde
       </h1>
       <List>{nextMatches}</List>
     </Segment>
@@ -45,13 +42,13 @@ Matches.propTypes = {
   roundNumber: PropTypes.number.isRequired,
   matches: PropTypes.arrayOf(
     PropTypes.shape({
-      hometeam: PropTypes.shape({"@uri": PropTypes.string.isRequired})
+      hometeam: PropTypes.shape({ "@uri": PropTypes.string.isRequired })
         .isRequired,
-      awayteam: PropTypes.shape({"@uri": PropTypes.string.isRequired})
-        .isRequired,
-    }),
+      awayteam: PropTypes.shape({ "@uri": PropTypes.string.isRequired })
+        .isRequired
+    })
   ).isRequired,
-  loading: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired
 };
 
 export default Matches;

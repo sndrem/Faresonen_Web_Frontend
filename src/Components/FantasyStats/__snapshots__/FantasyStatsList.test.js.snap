@@ -13,7 +13,6 @@ exports[`<FantasyStatsList /> Should render properly 1`] = `
   >
     <div
       className="item"
-      data-value={undefined}
       onClick={[Function]}
       role="listitem"
     >
@@ -21,7 +20,6 @@ exports[`<FantasyStatsList /> Should render properly 1`] = `
     </div>
     <div
       className="item"
-      data-value={undefined}
       onClick={[Function]}
       role="listitem"
     >
@@ -29,7 +27,6 @@ exports[`<FantasyStatsList /> Should render properly 1`] = `
     </div>
     <div
       className="item"
-      data-value={undefined}
       onClick={[Function]}
       role="listitem"
     >
@@ -37,7 +34,6 @@ exports[`<FantasyStatsList /> Should render properly 1`] = `
     </div>
     <div
       className="item"
-      data-value={undefined}
       onClick={[Function]}
       role="listitem"
     >

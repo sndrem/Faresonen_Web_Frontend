@@ -15,7 +15,7 @@ class DangerZoneAccumulator extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const players = [];
     nextProps.events.forEach(p => {
       const uri = p.person1["@uri"];

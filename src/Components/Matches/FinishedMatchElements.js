@@ -203,19 +203,33 @@ class FinishedMatchElements extends Component {
       <div>
         <Message size="small">
           <Message.Header>
-            {home} {this.props.matchInfo.goalsTeamAEndtime} -{" "}
-            {this.props.matchInfo.goalsTeamBEndtime} {away}
+            {home} 
+            {" "}
+            {this.props.matchInfo.goalsTeamAEndtime}
+            {" "}
+-
+            {" "}
+            {this.props.matchInfo.goalsTeamBEndtime} 
+            {" "}
+            {away}
           </Message.Header>
           {this.props.matchInfo.goalsTeamAEndtime > 0 ? (
             <p>
-              <b>{home}:</b> {homeScorers}
+              <b>
+                {home}
+:
+              </b> 
+              {" "}
+              {homeScorers}
             </p>
           ) : (
             ""
           )}
           {this.props.matchInfo.goalsTeamBEndtime > 0 ? (
             <p>
-              <b>{away}</b>:{awayScorers}
+              <b>{away}</b>
+:
+              {awayScorers}
             </p>
           ) : (
             ""

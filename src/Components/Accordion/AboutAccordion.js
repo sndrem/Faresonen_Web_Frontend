@@ -49,7 +49,9 @@ const AboutAccordion = () => {
       <Accordion.Content active={activeIndex === 1}>
         <p>
           Ja, det kan legges til flere ligaer. Alt man trenger er liga-id og
-          sesong-id fra <a href="http://www.altomfotball.no">altomfotball.no</a>
+          sesong-id fra 
+          {" "}
+          <a href="http://www.altomfotball.no">altomfotball.no</a>
           . Foreløpig må det gjøres via Sindre Moldeklev, men i fremtiden kan
           det være det kan bli gjort av deg som bruker.
         </p>

@@ -1,22 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Item} from "semantic-ui-react";
+import { Item } from "semantic-ui-react";
 import "moment/locale/nb";
 import events from "../../Tools/events";
 
-const MatchInfo = props => {
+const MatchInfo = ({
+  status,
+  matchName,
+  stadium,
+  startDate,
+  startTime,
+  channel,
+  referee
+}) => {
   let header = "";
-  const {status} = props;
   if (status && events.postponed.includes(status["@uri"])) {
     header = (
       <Item.Header>
-        UTSATT: {props.matchName}, {props.stadium}
+        UTSATT: {matchName}, {stadium}
       </Item.Header>
     );
   } else {
     header = (
       <Item.Header>
-        {props.matchName}, {props.stadium}
+        {matchName}, {stadium}
       </Item.Header>
     );
   }
@@ -25,12 +32,13 @@ const MatchInfo = props => {
       <Item.Content>
         {header}
         <Item.Meta>
-          {props.startDate} - Avspark kl. {props.startTime} på {props.channel}
+          {startDate} - Avspark kl.
+          {startTime} på {channel}
         </Item.Meta>
-        {props.referee && (
+        {referee && (
           <Item.Meta className="float-right">
             Dommer:
-            {props.referee}
+            {referee}
           </Item.Meta>
         )}
       </Item.Content>

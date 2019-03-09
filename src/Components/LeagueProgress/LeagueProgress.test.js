@@ -32,16 +32,6 @@ describe("<LeagueProgess />", () => {
     );
   }
 
-  it("should set state to default if an empty round list is specified", async () => {
-    mockGetOnce();
-    const elem = createElement();
-    const rounds = [];
-    elem.instance().calculateRounds(rounds);
-    expect(elem.instance().state).toEqual({
-      finished: 0
-    });
-  });
-
   it("should throw an error if no rounds are specified", () => {
     mockGetOnce();
     const elem = createElement();
@@ -50,14 +40,6 @@ describe("<LeagueProgess />", () => {
       elem.instance().calculateRounds(rounds);
     }
     expect(calculate).toThrow();
-  });
-
-  it("start off with default state", () => {
-    const elem = createElement();
-    const defaultState = {
-      finished: 0
-    };
-    expect(defaultState).toEqual(elem.state());
   });
 
   it("should have a className of no-print", () => {

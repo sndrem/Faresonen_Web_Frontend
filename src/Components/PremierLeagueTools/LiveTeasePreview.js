@@ -28,14 +28,19 @@ const LiveTeasePreview = ({
         )}
         {matchTimeText && matchTime ? (
           <p>
-            Fritekst: {matchTimeText} {matchTime}
+            Fritekst: 
+            {" "}
+            {matchTimeText} 
+            {" "}
+            {matchTime}
           </p>
         ) : (
           ""
         )}
         {channels && channels.length > 0 ? (
           <p>
-            Kanal(er):{" "}
+            Kanal(er):
+            {" "}
             {channels
               .map(channel =>
                 altOmFotballMatchService.getChannelName(allChannels, channel)
@@ -47,7 +52,8 @@ const LiveTeasePreview = ({
         )}
         {homeColor && (
           <p>
-            Farge hjemmelag:{" "}
+            Farge hjemmelag:
+            {" "}
             <span style={{background: findColor(homeColor).hex}}>
               {findColor(homeColor).text}
             </span>
@@ -56,7 +62,8 @@ const LiveTeasePreview = ({
 
         {awayColor && (
           <p>
-            Farge bortelag:{" "}
+            Farge bortelag:
+            {" "}
             <span style={{background: findColor(awayColor).hex}}>
               {findColor(awayColor).text}
             </span>

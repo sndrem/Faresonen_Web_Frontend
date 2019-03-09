@@ -14,7 +14,7 @@ class DangerzoneSearch extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const {eliteserien, obosligaen} = nextProps.players;
     this.setState({
       data: {

@@ -6,12 +6,12 @@ exports[`<FirstSteps /> Should render properly 1`] = `
 >
   <div
     className="active step"
-    href={undefined}
     onClick={[Function]}
   >
     <i
       aria-hidden="true"
       className="soccer icon"
+      onClick={[Function]}
     />
     <div
       className="content"
@@ -30,12 +30,12 @@ exports[`<FirstSteps /> Should render properly 1`] = `
   </div>
   <div
     className="disabled step"
-    href={undefined}
     onClick={[Function]}
   >
     <i
       aria-hidden="true"
       className="numbered list icon"
+      onClick={[Function]}
     />
     <div
       className="content"
@@ -54,12 +54,12 @@ exports[`<FirstSteps /> Should render properly 1`] = `
   </div>
   <div
     className="disabled step"
-    href={undefined}
     onClick={[Function]}
   >
     <i
       aria-hidden="true"
       className="print icon"
+      onClick={[Function]}
     />
     <div
       className="content"
@@ -78,12 +78,12 @@ exports[`<FirstSteps /> Should render properly 1`] = `
   </div>
   <div
     className="disabled step"
-    href={undefined}
     onClick={[Function]}
   >
     <i
       aria-hidden="true"
       className="cocktail icon"
+      onClick={[Function]}
     />
     <div
       className="content"

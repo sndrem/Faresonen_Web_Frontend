@@ -29,7 +29,7 @@ class ProgramTeaseGeneratorContainer extends Component {
     this.getChannels();
   }
 
-  componentWillReceiveProps(props) {
+  UNSAFE_componentWillReceiveProps(props) {
     const {selectedLeague} = props;
     if (selectedLeague) {
       const [id, season] = selectedLeague.split("-");

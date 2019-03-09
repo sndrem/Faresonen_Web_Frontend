@@ -10,7 +10,6 @@ exports[`<FantasyPlayerFilter /> Should render properly 1`] = `
     Her kan du filtrere spillere ved å søke etter fornavn/etternavn eller filtrere på pris.
   </p>
   <form
-    action={undefined}
     className="ui form"
     onSubmit={[Function]}
   >
@@ -49,23 +48,17 @@ exports[`<FantasyPlayerFilter /> Should render properly 1`] = `
       <div
         className="ui checkbox"
         onChange={[Function]}
-        onClick={[Function]}
         onMouseDown={[Function]}
+        onMouseUp={[Function]}
       >
         <input
           checked={false}
           className="hidden"
-          id={undefined}
-          name={undefined}
-          onClick={[Function]}
           readOnly={true}
           tabIndex={0}
           type="checkbox"
-          value={undefined}
         />
-        <label
-          htmlFor={undefined}
-        >
+        <label>
           Vis kun Dream Team
         </label>
       </div>

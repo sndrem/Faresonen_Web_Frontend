@@ -13,14 +13,14 @@ function instantiateShallow() {
             players: [
               {
                 name: "Sindre",
-                value1: 2,
+                value1: 2
               },
               {
                 name: "Ole",
-                value1: 1,
-              },
-            ],
-          },
+                value1: 1
+              }
+            ]
+          }
         ],
         obosligaen: [
           {
@@ -28,17 +28,17 @@ function instantiateShallow() {
             players: [
               {
                 name: "Mads",
-                value1: 2,
+                value1: 2
               },
               {
                 name: "Christian",
-                value1: 4,
-              },
-            ],
-          },
-        ],
+                value1: 4
+              }
+            ]
+          }
+        ]
       }}
-    />,
+    />
   );
 }
 
@@ -48,15 +48,16 @@ describe("<DangerzoneSearch />", () => {
       <DangerzoneSearch
         players={{
           eliteserien: [],
-          obosligaen: [],
+          obosligaen: []
         }}
-      />,
+      />
     );
     expect(tree).toMatchSnapshot();
   });
   it("Should return correct players when searching", () => {
     const elem = instantiateShallow();
-    elem.instance().componentWillReceiveProps({
+    // eslint-disable-next-line
+    elem.instance().UNSAFE_componentWillReceiveProps({
       players: {
         eliteserien: [
           {
@@ -64,14 +65,14 @@ describe("<DangerzoneSearch />", () => {
             players: [
               {
                 name: "Sindre",
-                value1: 2,
+                value1: 2
               },
               {
                 name: "Ole",
-                value1: 1,
-              },
-            ],
-          },
+                value1: 1
+              }
+            ]
+          }
         ],
         obosligaen: [
           {
@@ -79,30 +80,30 @@ describe("<DangerzoneSearch />", () => {
             players: [
               {
                 name: "Mads",
-                value1: 2,
+                value1: 2
               },
               {
                 name: "Christian",
-                value1: 4,
-              },
-            ],
-          },
-        ],
-      },
+                value1: 4
+              }
+            ]
+          }
+        ]
+      }
     });
     let results = elem.instance().searchFilter("Sindre", "eliteserien");
     expect(results).toEqual([
-      {team: "Brann", players: [{name: "Sindre", value1: 2}]},
+      {team: "Brann", players: [{name: "Sindre", value1: 2}]}
     ]);
 
     results = elem.instance().searchFilter("sin", "eliteserien");
     expect(results).toEqual([
-      {team: "Brann", players: [{name: "Sindre", value1: 2}]},
+      {team: "Brann", players: [{name: "Sindre", value1: 2}]}
     ]);
 
     results = elem.instance().searchFilter("mad", "obosligaen");
     expect(results).toEqual([
-      {team: "Mjøndalen", players: [{name: "Mads", value1: 2}]},
+      {team: "Mjøndalen", players: [{name: "Mads", value1: 2}]}
     ]);
 
     results = elem.instance().searchFilter("", "obosligaen");
@@ -112,14 +113,14 @@ describe("<DangerzoneSearch />", () => {
         players: [
           {
             name: "Mads",
-            value1: 2,
+            value1: 2
           },
           {
             name: "Christian",
-            value1: 4,
-          },
-        ],
-      },
+            value1: 4
+          }
+        ]
+      }
     ]);
   });
 

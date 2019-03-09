@@ -1,14 +1,14 @@
-import React, {Component} from "react";
+import React, {useEffect, useState} from "react";
 import PropTypes from "prop-types";
 import {Progress} from "semantic-ui-react";
 import axios from "axios";
 import events from "../../Tools/events";
 
-class LeagueProgess extends Component {
-  static removeFinishedRounds(rounds) {
+const LeagueProgress = ({tournamentId, seasonId, leagueName}) => {
+  const removeFinishedRounds = rounds => {
     if (!rounds) throw new Error("Rounds cannot be undefined");
 
-    const promises = LeagueProgess.getMatchUris(rounds);
+    const promises = getMatchUris(rounds);
 
     return new Promise((resolve, reject) => {
       axios
@@ -20,13 +20,12 @@ class LeagueProgess extends Component {
               if (
                 matchData.every(
                   m =>
-                    m.confirmed === "true" ||
-                    LeagueProgess.roundHasFinishedMatches(matchData)
+                    m.confirmed === "true" || roundHasFinishedMatches(matchData)
                 )
               ) {
                 // eslint-disable-next-line
                 obj.finished += 1;
-              } else if (LeagueProgess.roundHasPostponedMatches(matchData)) {
+              } else if (roundHasPostponedMatches(matchData)) {
                 // eslint-disable-next-line
                 obj.finished += 1;
               } else {
@@ -43,13 +42,13 @@ class LeagueProgess extends Component {
           reject(err);
         });
     });
-  }
+  };
 
-  static getMatchUris(rounds) {
+  const getMatchUris = rounds => {
     return rounds.map(r => axios.get(r.matches["@uri"]));
-  }
+  };
 
-  static roundHasPostponedMatches(matches) {
+  const roundHasPostponedMatches = matches => {
     return matches.some(m => {
       let status = null;
       if (m.status) {
@@ -57,9 +56,9 @@ class LeagueProgess extends Component {
       }
       return events.postponed.includes(status);
     });
-  }
+  };
 
-  static roundHasFinishedMatches(matches) {
+  const roundHasFinishedMatches = matches => {
     return matches.some(m => {
       let status = null;
       if (m.status) {
@@ -67,54 +66,48 @@ class LeagueProgess extends Component {
       }
       return events.ended.includes(status);
     });
-  }
+  };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      finished: 0
-    };
-  }
+  const [finished, setFinished] = useState(0);
+  const [total, setTotal] = useState(0);
 
-  componentDidMount() {
-    const {tournamentId, seasonId} = this.props;
-    this.getRounds(tournamentId, seasonId);
-  }
+  useEffect(
+    () => {
+      getRounds(tournamentId, seasonId);
+    },
+    [tournamentId, seasonId]
+  );
 
-  getRounds(tournamentId, seasonId) {
+  const getRounds = (tournamentId, seasonId) => {
     axios.get(`/rounds/${tournamentId}/${seasonId}`).then(data => {
-      this.calculateRounds(data.data.round);
+      calculateRounds(data.data.round);
     });
-  }
+  };
 
-  calculateRounds(rounds) {
-    LeagueProgess.removeFinishedRounds(rounds).then(calculated => {
-      this.setState({
-        finished: calculated.finished,
-        total: calculated.finished + calculated.left
-      });
+  const calculateRounds = rounds => {
+    removeFinishedRounds(rounds).then(({finished, left}) => {
+      setFinished(finished);
+      setTotal(finished + left);
     });
-  }
+  };
 
-  render() {
-    return (
-      <Progress
-        className="no-print"
-        color="green"
-        progress="ratio"
-        total={this.state.total}
-        value={this.state.finished}
-      >
-        Progresjon for {this.props.leagueName}
-      </Progress>
-    );
-  }
-}
+  return (
+    <Progress
+      className="no-print"
+      color="green"
+      progress="ratio"
+      total={total}
+      value={finished}
+    >
+      Progresjon for {leagueName}
+    </Progress>
+  );
+};
 
-LeagueProgess.propTypes = {
+LeagueProgress.propTypes = {
   leagueName: PropTypes.string.isRequired,
   tournamentId: PropTypes.number.isRequired,
   seasonId: PropTypes.number.isRequired
 };
 
-export default LeagueProgess;
+export default LeagueProgress;
