@@ -18,8 +18,7 @@ exports[`<RoundButtons /> Should render properly 1`] = `
       <span
         className="startDate"
       >
-        Starter:
-         
+        Starter: 
         25.04.2018
       </span>
     </a>

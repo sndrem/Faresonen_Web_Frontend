@@ -1,20 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {
-  Table, Segment, Dimmer, Loader, Message,
-} from "semantic-ui-react";
+import { Table, Segment, Dimmer, Loader, Message } from "semantic-ui-react";
 import NextMatchInfo from "./NextMatchInfo";
 
-const NextMatches = (props) => {
-  const matches = props.matches.map(m => (
-    <NextMatchInfo
-      key={m.id}
-      matchInfo={m}
-      nextRoundNumber={props.nextRoundNumber}
-    />
+const NextMatches = ({ matches, nextRoundNumber, loading }) => {
+  const nextMatchInfo = matches.map(m => (
+    <NextMatchInfo key={m.id} matchInfo={m} nextRoundNumber={nextRoundNumber} />
   ));
 
-  if (props.matches.length <= 0 && !props.loading) {
+  if (nextMatchInfo.length <= 0 && !loading) {
     return (
       <Message className="no-print" info>
         Kamper for neste runde er ikke klar, eller så holder du på å lage lefsen
@@ -25,7 +19,7 @@ const NextMatches = (props) => {
 
   return (
     <Segment>
-      <Dimmer active={props.loading}>
+      <Dimmer active={loading}>
         <Loader>Henter neste runde</Loader>
       </Dimmer>
       <h1>Neste runde</h1>
@@ -40,7 +34,7 @@ const NextMatches = (props) => {
             <Table.HeaderCell>Kanal</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
-        <Table.Body>{matches}</Table.Body>
+        <Table.Body>{nextMatchInfo}</Table.Body>
       </Table>
     </Segment>
   );
@@ -49,7 +43,7 @@ const NextMatches = (props) => {
 NextMatches.propTypes = {
   matches: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   nextRoundNumber: PropTypes.number.isRequired,
-  loading: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired
 };
 
 export default NextMatches;

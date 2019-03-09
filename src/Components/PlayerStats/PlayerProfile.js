@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Card, Image, Icon} from "semantic-ui-react";
+import { Card, Image, Icon } from "semantic-ui-react";
 
 const PlayerProfile = ({
   name,
@@ -11,32 +11,29 @@ const PlayerProfile = ({
   cost,
   selectedBy,
   points,
-  teamName,
+  teamName
 }) => (
   <div>
     <Card>
       <Image
         src={
-            photo
-              ? `http://platform-static-files.s3.amazonaws.com/premierleague/photos/players/250x250/p${photo.replace(
+          photo
+            ? `http://platform-static-files.s3.amazonaws.com/premierleague/photos/players/250x250/p${photo.replace(
                 "jpg",
-                "png",
+                "png"
               )}`
-              : ""
-          }
+            : ""
+        }
       />
       <Card.Content>
         <Card.Header>
-          {name}
-,
-          {teamName}
-          {" "}
+          {name}, {teamName}{" "}
           {inDreamTeam ? <Icon name="star" color="yellow" /> : ""}
         </Card.Header>
         <div>
           <Card.Description>
             <b>Pris: </b>
-£
+            £
             {cost / 10}
           </Card.Description>
           <Card.Description>
@@ -46,7 +43,7 @@ const PlayerProfile = ({
           <Card.Description>
             <b>Valgt av: </b>
             {selectedBy}
-%
+            %
           </Card.Description>
           <Card.Description>
             <b>Skader: </b>
@@ -54,10 +51,8 @@ const PlayerProfile = ({
           </Card.Description>
           {chanceOfPlayingNextRound ? (
             <Card.Description>
-              <b>Sjanse for å spille neste runde:</b>
-              {" "}
-              {chanceOfPlayingNextRound}
-%
+              <b>Sjanse for å spille neste runde:</b> {chanceOfPlayingNextRound}
+              %
             </Card.Description>
           ) : (
             ""
@@ -76,7 +71,7 @@ PlayerProfile.propTypes = {
   inDreamTeam: PropTypes.bool,
   cost: PropTypes.number,
   selectedBy: PropTypes.string,
-  points: PropTypes.number,
+  points: PropTypes.number
 };
 
 PlayerProfile.defaultProps = {
@@ -88,6 +83,6 @@ PlayerProfile.defaultProps = {
   cost: -1,
   selectedBy: "",
   points: -1,
-  teamName: "",
+  teamName: ""
 };
 export default PlayerProfile;

@@ -1,5 +1,5 @@
-import React, {Component} from "react";
-import {Segment, Dimmer, Loader} from "semantic-ui-react";
+import React, { Component } from "react";
+import { Segment, Dimmer, Loader } from "semantic-ui-react";
 import PropTypes from "prop-types";
 import FinishedMatchElements from "./FinishedMatchElements";
 
@@ -23,10 +23,7 @@ class FinishedMatches extends Component {
         <Dimmer active={this.state.loading}>
           <Loader>Henter kamper som er ferdig</Loader>
         </Dimmer>
-        <h1>
-          Ferdig spilt i runde
-          {this.props.roundNumber}
-        </h1>
+        <h1>Ferdig spilt i runde {this.props.roundNumber}</h1>
         {finishedMatchElements}
       </Segment>
     );

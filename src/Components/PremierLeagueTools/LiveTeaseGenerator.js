@@ -1,25 +1,32 @@
-import React, {Component} from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import {Message, Dropdown} from "semantic-ui-react";
+import { Message, Dropdown } from "semantic-ui-react";
 import moment from "moment-timezone";
 import kickOfTexts from "../../Data/kickOfTexts";
 import "./LiveTeaseGenerator.css";
 
-class LiveTeaseGenerator extends Component {
-  componentDidMount() {
-    this.createTimes();
-  }
+const LiveTeaseGenerator = ({
+  handleChange,
+  loading,
+  matches,
+  colors,
+  defaultChannels,
+  allChannels
+}) => {
+  useEffect(() => {
+    createTimes();
+  }, []);
 
-  handleChange = (event, props) => this.props.handleChange(props);
+  const handleOnChange = (event, props) => handleChange(props);
 
-  createTimes = () => {
+  const createTimes = () => {
     const hours = 24;
     const minutes = 15;
     const times = [];
     // eslint-disable-next-line
     for (let i = 0; i < hours; i++) {
       for (let y = 0; y < 60; y += minutes) {
-        const time = `${this.padTime(i)}.${this.padTime(y)}`;
+        const time = `${padTime(i)}.${padTime(y)}`;
         times.push({
           key: time,
           value: time,
@@ -30,9 +37,9 @@ class LiveTeaseGenerator extends Component {
     return times;
   };
 
-  padTime = time => (time < 10 ? `0${time}` : time.toString());
+  const padTime = time => (time < 10 ? `0${time}` : time.toString());
 
-  mapMatches = matches => {
+  const mapMatches = matches => {
     moment.tz.setDefault("Europe/Oslo");
 
     return matches.map(match => ({
@@ -44,90 +51,88 @@ class LiveTeaseGenerator extends Component {
     }));
   };
 
-  mapChannels = channels =>
+  const mapChannels = channels =>
     channels.map(channel => ({
       key: channel.value,
       value: parseInt(channel.value, 10),
       text: channel.name
     }));
 
-  render() {
-    return (
-      <div>
-        <Message info>
-          Obs obs, pass på og alltid dobbeltsjekke scriptet før du bruker det på
-          sending
-        </Message>
-        <Dropdown
-          className="dropdown"
-          placeholder="Velg kamp"
-          fluid
-          search
-          selection
-          loading={this.props.loading}
-          options={this.mapMatches(this.props.matches)}
-          onChange={this.handleChange}
-          name="selectedMatch"
-        />
-        <Dropdown
-          className="dropdown"
-          placeholder="Velg avsparkstekst"
-          search
-          selection
-          options={kickOfTexts}
-          onChange={this.handleChange}
-          name="matchTimeText"
-        />
-        <Dropdown
-          className="dropdown"
-          placeholder="Velg klokkeslett"
-          search
-          selection
-          options={this.createTimes()}
-          onChange={this.handleChange}
-          name="matchTime"
-        />
-        {this.props.colors.length > 0 ? (
-          <div>
-            <Dropdown
-              className="dropdown"
-              placeholder="Velg farge hjemmelag"
-              search
-              selection
-              options={this.props.colors}
-              onChange={this.handleChange}
-              name="colorHome"
-            />
+  return (
+    <div>
+      <Message info>
+        Obs obs, pass på og alltid dobbeltsjekke scriptet før du bruker det på
+        sending
+      </Message>
+      <Dropdown
+        className="dropdown"
+        placeholder="Velg kamp"
+        fluid
+        search
+        selection
+        loading={loading}
+        options={mapMatches(matches)}
+        onChange={handleOnChange}
+        name="selectedMatch"
+      />
+      <Dropdown
+        className="dropdown"
+        placeholder="Velg avsparkstekst"
+        search
+        selection
+        options={kickOfTexts}
+        onChange={handleOnChange}
+        name="matchTimeText"
+      />
+      <Dropdown
+        className="dropdown"
+        placeholder="Velg klokkeslett"
+        search
+        selection
+        options={createTimes()}
+        onChange={handleOnChange}
+        name="matchTime"
+      />
+      {colors.length > 0 ? (
+        <div>
+          <Dropdown
+            className="dropdown"
+            placeholder="Velg farge hjemmelag"
+            search
+            selection
+            options={colors}
+            onChange={handleOnChange}
+            name="colorHome"
+          />
 
-            <Dropdown
-              className="dropdown"
-              placeholder="Velg farge bortelag"
-              search
-              options={this.props.colors}
-              selection
-              onChange={this.handleChange}
-              name="colorAway"
-            />
-          </div>
-        ) : (
-          ""
-        )}
-        <Dropdown
-          className="dropdown"
-          placeholder="Velg kanal"
-          fluid
-          search
-          selection
-          multiple
-          defaultValue={this.props.defaultChannels}
-          onChange={this.handleChange}
-          options={this.mapChannels(this.props.allChannels)}
-          name="channels"
-        />
-      </div>
-    );
-  }
-}
+          <Dropdown
+            className="dropdown"
+            placeholder="Velg farge bortelag"
+            search
+            options={colors}
+            selection
+            onChange={handleOnChange}
+            name="colorAway"
+          />
+        </div>
+      ) : (
+        ""
+      )}
+      <Dropdown
+        className="dropdown"
+        placeholder="Velg kanal"
+        fluid
+        search
+        selection
+        multiple
+        defaultValue={defaultChannels}
+        onChange={handleChange}
+        options={mapChannels(allChannels)}
+        name="channels"
+      />
+    </div>
+  );
+};
 
 LiveTeaseGenerator.propTypes = {
   matches: PropTypes.arrayOf(

@@ -1,11 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {
-  Table, Segment, Dimmer, Loader, Message,
-} from "semantic-ui-react";
+import { Table, Segment, Dimmer, Loader, Message } from "semantic-ui-react";
 
-const Topscorers = (props) => {
-  if (props.players.length <= 0 && props.loading === false) {
+const Topscorers = ({ players, loading }) => {
+  if (players.length <= 0 && loading === false) {
     return (
       <Message negative>
         <Message.Header>Toppscorere ikke tilgjengelig</Message.Header>
@@ -18,7 +16,7 @@ const Topscorers = (props) => {
     );
   }
 
-  const topscorers = props.players.map(ts => (
+  const topscorers = players.map(ts => (
     <Table.Row key={ts.name}>
       <Table.Cell>{ts.place}</Table.Cell>
       <Table.Cell>{ts.name}</Table.Cell>
@@ -31,7 +29,7 @@ const Topscorers = (props) => {
 
   return (
     <Segment>
-      <Dimmer active={props.loading}>
+      <Dimmer active={loading}>
         <Loader>Henter toppscorere</Loader>
       </Dimmer>
       <h1>Toppscorere</h1>
@@ -61,10 +59,10 @@ Topscorers.propTypes = {
       team: PropTypes.string.isRequired,
       value1: PropTypes.number.isRequired,
       value2: PropTypes.number.isRequired,
-      value3: PropTypes.number.isRequired,
-    }),
+      value3: PropTypes.number.isRequired
+    })
   ).isRequired,
-  loading: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired
 };
 
 export default Topscorers;

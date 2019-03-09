@@ -1,63 +1,42 @@
-import React, {Component} from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import RoundList from "../RoundList";
 
-class RoundListContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: {
-        rounds: [],
-        leagueName: ""
-      },
-      loading: true
-    };
-  }
+const RoundListContainer = ({ tournamentId, seasonId, leagueName }) => {
+  const [rounds, setRounds] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  componentDidMount() {
-    const {tournamentId, seasonId} = this.props;
-    this.getRounds(tournamentId, seasonId);
-  }
+  useEffect(
+    () => {
+      getRounds(tournamentId, seasonId);
+    },
+    [tournamentId, seasonId]
+  );
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    const {tournamentId, seasonId} = nextProps;
-    this.getRounds(tournamentId, seasonId);
-  }
-
-  getRounds = (tournamentId, seasonId) => {
+  const getRounds = (tournamentId, seasonId) => {
     axios
       .get(`/rounds/${tournamentId}/${seasonId}`)
       .then(data => {
-        this.setState({
-          data: {rounds: data.data.round || []},
-          loading: false
-        });
+        setRounds(data.data.round || []);
+        setLoading(false);
       })
-      .catch(() =>
-        this.setState({
-          data: {
-            rounds: []
-          },
-          loading: false
-        })
-      );
+      .catch(() => {
+        setRounds([]);
+        setLoading(false);
+      });
   };
 
-  render() {
-    const {rounds} = this.state.data;
-    const {tournamentId, seasonId, leagueName} = this.props;
-    return (
-      <RoundList
-        rounds={rounds}
-        leagueName={leagueName}
-        loading={this.state.loading}
-        tournamentId={tournamentId}
-        seasonId={seasonId}
-      />
-    );
-  }
-}
+  return (
+    <RoundList
+      rounds={rounds}
+      leagueName={leagueName}
+      loading={loading}
+      tournamentId={tournamentId}
+      seasonId={seasonId}
+    />
+  );
+};
 
 RoundListContainer.propTypes = {
   tournamentId: PropTypes.number.isRequired,

@@ -17,7 +17,7 @@ exports[`<PlayerProfile /> Should render properly 1`] = `
         className="header"
       >
         Marcos Alonso
-        ,
+        , 
         Chelsea
          
         <i
@@ -94,7 +94,7 @@ exports[`<PlayerProfile /> Should render properly 2`] = `
         className="header"
       >
         Marcos Alonso
-        ,
+        , 
         Chelsea
          
         
@@ -167,7 +167,7 @@ exports[`<PlayerProfile /> Should render properly 3`] = `
         className="header"
       >
         Marcos Alonso
-        ,
+        , 
         
          
         
