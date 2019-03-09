@@ -6,12 +6,12 @@ exports[`<RoundSteps /> Should render properly 1`] = `
 >
   <div
     className="completed step"
-    href={undefined}
     onClick={[Function]}
   >
     <i
       aria-hidden="true"
       className="checkmark icon"
+      onClick={[Function]}
     />
     <div
       className="content"
@@ -32,12 +32,12 @@ exports[`<RoundSteps /> Should render properly 1`] = `
   </div>
   <div
     className="completed step"
-    href={undefined}
     onClick={[Function]}
   >
     <i
       aria-hidden="true"
       className="checkmark icon"
+      onClick={[Function]}
     />
     <div
       className="content"
@@ -58,12 +58,12 @@ exports[`<RoundSteps /> Should render properly 1`] = `
   </div>
   <div
     className="step"
-    href={undefined}
     onClick={[Function]}
   >
     <i
       aria-hidden="true"
       className="print icon"
+      onClick={[Function]}
     />
     <div
       className="content"
@@ -82,12 +82,12 @@ exports[`<RoundSteps /> Should render properly 1`] = `
   </div>
   <div
     className="step"
-    href={undefined}
     onClick={[Function]}
   >
     <i
       aria-hidden="true"
       className="cocktail icon"
+      onClick={[Function]}
     />
     <div
       className="content"

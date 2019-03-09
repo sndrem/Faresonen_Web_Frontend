@@ -9,7 +9,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
   </div>
   <div
     aria-busy={false}
-    aria-disabled={undefined}
     aria-expanded={false}
     className="ui fluid search selection dropdown dropdown"
     name="selectedMatch"
@@ -19,7 +18,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
     onFocus={[Function]}
     onMouseDown={[Function]}
     role="combobox"
-    tabIndex={undefined}
   >
     <input
       aria-autocomplete="list"
@@ -48,13 +46,11 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       onClick={[Function]}
     />
     <div
-      aria-multiselectable={undefined}
       className="menu transition"
       role="listbox"
     >
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={true}
         className="selected item"
         onClick={[Function]}
@@ -74,8 +70,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
     </div>
   </div>
   <div
-    aria-busy={undefined}
-    aria-disabled={undefined}
     aria-expanded={false}
     className="ui search selection dropdown dropdown"
     name="matchTimeText"
@@ -85,7 +79,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
     onFocus={[Function]}
     onMouseDown={[Function]}
     role="combobox"
-    tabIndex={undefined}
   >
     <input
       aria-autocomplete="list"
@@ -114,13 +107,11 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       onClick={[Function]}
     />
     <div
-      aria-multiselectable={undefined}
       className="menu transition"
       role="listbox"
     >
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={true}
         className="selected item"
         onClick={[Function]}
@@ -139,7 +130,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -158,7 +148,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -177,7 +166,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -196,7 +184,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -215,7 +202,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -234,7 +220,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -253,7 +238,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -272,7 +256,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -292,8 +275,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
     </div>
   </div>
   <div
-    aria-busy={undefined}
-    aria-disabled={undefined}
     aria-expanded={false}
     className="ui search selection dropdown dropdown"
     name="matchTime"
@@ -303,7 +284,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
     onFocus={[Function]}
     onMouseDown={[Function]}
     role="combobox"
-    tabIndex={undefined}
   >
     <input
       aria-autocomplete="list"
@@ -332,13 +312,11 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       onClick={[Function]}
     />
     <div
-      aria-multiselectable={undefined}
       className="menu transition"
       role="listbox"
     >
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={true}
         className="selected item"
         onClick={[Function]}
@@ -357,7 +335,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -376,7 +353,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -395,7 +371,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -414,7 +389,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -433,7 +407,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -452,7 +425,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -471,7 +443,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -490,7 +461,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -509,7 +479,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -528,7 +497,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -547,7 +515,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -566,7 +533,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -585,7 +551,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -604,7 +569,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -623,7 +587,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -642,7 +605,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -661,7 +623,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -680,7 +641,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -699,7 +659,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -718,7 +677,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -737,7 +695,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -756,7 +713,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -775,7 +731,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -794,7 +749,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -813,7 +767,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -832,7 +785,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -851,7 +803,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -870,7 +821,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -889,7 +839,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -908,7 +857,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -927,7 +875,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -946,7 +893,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -965,7 +911,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -984,7 +929,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1003,7 +947,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1022,7 +965,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1041,7 +983,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1060,7 +1001,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1079,7 +1019,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1098,7 +1037,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1117,7 +1055,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1136,7 +1073,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1155,7 +1091,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1174,7 +1109,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1193,7 +1127,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1212,7 +1145,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1231,7 +1163,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1250,7 +1181,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1269,7 +1199,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1288,7 +1217,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1307,7 +1235,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1326,7 +1253,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1345,7 +1271,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1364,7 +1289,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1383,7 +1307,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1402,7 +1325,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1421,7 +1343,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1440,7 +1361,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1459,7 +1379,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1478,7 +1397,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1497,7 +1415,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1516,7 +1433,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1535,7 +1451,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1554,7 +1469,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1573,7 +1487,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1592,7 +1505,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1611,7 +1523,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1630,7 +1541,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1649,7 +1559,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1668,7 +1577,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1687,7 +1595,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1706,7 +1613,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1725,7 +1631,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1744,7 +1649,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1763,7 +1667,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1782,7 +1685,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1801,7 +1703,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1820,7 +1721,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1839,7 +1739,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1858,7 +1757,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1877,7 +1775,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1896,7 +1793,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1915,7 +1811,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1934,7 +1829,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1953,7 +1847,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1972,7 +1865,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -1991,7 +1883,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -2010,7 +1901,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -2029,7 +1919,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -2048,7 +1937,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -2067,7 +1955,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -2086,7 +1973,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -2105,7 +1991,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -2124,7 +2009,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -2143,7 +2027,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={false}
         className="item"
         onClick={[Function]}
@@ -2164,8 +2047,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
   </div>
   <div>
     <div
-      aria-busy={undefined}
-      aria-disabled={undefined}
       aria-expanded={false}
       className="ui search selection dropdown dropdown"
       name="colorHome"
@@ -2175,7 +2056,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       onFocus={[Function]}
       onMouseDown={[Function]}
       role="combobox"
-      tabIndex={undefined}
     >
       <input
         aria-autocomplete="list"
@@ -2204,13 +2084,11 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
         onClick={[Function]}
       />
       <div
-        aria-multiselectable={undefined}
         className="menu transition"
         role="listbox"
       >
         <div
           aria-checked={false}
-          aria-disabled={undefined}
           aria-selected={true}
           className="selected item"
           color="#e90052"
@@ -2233,8 +2111,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       </div>
     </div>
     <div
-      aria-busy={undefined}
-      aria-disabled={undefined}
       aria-expanded={false}
       className="ui search selection dropdown dropdown"
       name="colorAway"
@@ -2244,7 +2120,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
       onFocus={[Function]}
       onMouseDown={[Function]}
       role="combobox"
-      tabIndex={undefined}
     >
       <input
         aria-autocomplete="list"
@@ -2273,13 +2148,11 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
         onClick={[Function]}
       />
       <div
-        aria-multiselectable={undefined}
         className="menu transition"
         role="listbox"
       >
         <div
           aria-checked={false}
-          aria-disabled={undefined}
           aria-selected={true}
           className="selected item"
           color="#e90052"
@@ -2303,8 +2176,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
     </div>
   </div>
   <div
-    aria-busy={undefined}
-    aria-disabled={undefined}
     aria-expanded={false}
     className="ui fluid multiple search selection dropdown dropdown"
     name="channels"
@@ -2314,7 +2185,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
     onFocus={[Function]}
     onMouseDown={[Function]}
     role="combobox"
-    tabIndex={undefined}
   >
     <input
       aria-autocomplete="list"
@@ -2350,7 +2220,6 @@ exports[`<LiveTeaseGenerator /> Should render properly 1`] = `
     >
       <div
         aria-checked={false}
-        aria-disabled={undefined}
         aria-selected={true}
         className="selected item"
         onClick={[Function]}

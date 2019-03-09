@@ -20,13 +20,9 @@ exports[`<NextMatches /> Should render properly 2`] = `
       className="content"
     >
       <div
-        className="center"
+        className="ui text loader"
       >
-        <div
-          className="ui text loader"
-        >
-          Henter neste runde
-        </div>
+        Henter neste runde
       </div>
     </div>
   </div>

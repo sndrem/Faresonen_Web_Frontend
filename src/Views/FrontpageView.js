@@ -4,7 +4,13 @@ import FaresoneMenu from "../Components/Menu/FaresoneMenu";
 import FirstSteps from "../Components/ProcedureSteps/FirstSteps";
 import LeagueChooser from "../Components/LeagueChooser/LeagueChooser";
 
-const FrontpageView = ({switchLeagueName, leagues, error, loading}) => (
+const FrontpageView = ({
+  switchLeagueName,
+  leagues,
+  error,
+  loading,
+  ...props
+}) => (
   <div>
     <FaresoneMenu switchLeagueName={switchLeagueName} />
     <FirstSteps />
@@ -14,7 +20,7 @@ const FrontpageView = ({switchLeagueName, leagues, error, loading}) => (
       <LeagueChooser
         leagues={leagues}
         switchLeagueName={switchLeagueName}
-        {...this.props} // eslint-disable-line
+        {...props} // eslint-disable-line
       />
     )}
     {error ? <p>{error}</p> : ""}

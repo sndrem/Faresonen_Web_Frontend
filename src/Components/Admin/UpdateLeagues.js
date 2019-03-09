@@ -31,7 +31,8 @@ class UpdateLeagues extends Component {
           selection
           loading={this.props.loading}
           onChange={this.handleChange}
-        />{" "}
+        />
+        {" "}
       </Segment>
     );
   }

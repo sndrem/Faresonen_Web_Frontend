@@ -13,6 +13,7 @@ exports[`<DangerzoneAccumulator /> should render correctly 1`] = `
     <i
       aria-hidden="true"
       className="info icon"
+      onClick={[Function]}
     />
     <div
       className="content"

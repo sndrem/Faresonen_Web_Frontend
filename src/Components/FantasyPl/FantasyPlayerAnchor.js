@@ -11,7 +11,12 @@ const FantasyPlayerAnchor = ({
 }) => (
   <a className="playerAnchor" role="button" onClick={onClick} tabIndex={0}>
     {inDreamTeam ? <Icon name="star" color="yellow" /> : ""}
-    {firstName} {secondName} -{" "}
+    {firstName} 
+    {" "}
+    {secondName}
+    {" "}
+-
+    {" "}
   </a>
 );
 

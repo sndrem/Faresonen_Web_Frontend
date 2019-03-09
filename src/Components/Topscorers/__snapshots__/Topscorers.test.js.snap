@@ -12,13 +12,9 @@ exports[`<TopScorers /> Should render corretly 1`] = `
       className="content"
     >
       <div
-        className="center"
+        className="ui text loader"
       >
-        <div
-          className="ui text loader"
-        >
-          Henter toppscorere
-        </div>
+        Henter toppscorere
       </div>
     </div>
   </div>

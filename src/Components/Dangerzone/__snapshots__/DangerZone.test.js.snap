@@ -12,18 +12,14 @@ exports[`Dangerzone Should render properly 1`] = `
       className="content"
     >
       <div
-        className="center"
+        className="ui text loader"
       >
-        <div
-          className="ui text loader"
-        >
-          Henter spillere i faresonen
-        </div>
+        Henter spillere i faresonen
       </div>
     </div>
   </div>
   <h1>
-    Faresonen i 
+    Faresonen i
     Premier League
   </h1>
   <div
@@ -38,7 +34,6 @@ exports[`Dangerzone Should render properly 1`] = `
       >
         <div
           className="item"
-          data-value={undefined}
           onClick={[Function]}
           role="listitem"
         >
@@ -54,20 +49,21 @@ exports[`Dangerzone Should render properly 1`] = `
               className="description"
             >
               1
-               spillere
+               
+              spillere
             </div>
             <div
               className="list"
             >
               <div
                 className="item"
-                data-value={undefined}
                 onClick={[Function]}
                 role="listitem"
               >
                 <i
                   aria-hidden="true"
                   className="user icon"
+                  onClick={[Function]}
                 />
                 <div
                   className="content"
@@ -126,18 +122,14 @@ exports[`Dangerzone Should render properly when players have more than 1 yellow 
       className="content"
     >
       <div
-        className="center"
+        className="ui text loader"
       >
-        <div
-          className="ui text loader"
-        >
-          Henter spillere i faresonen
-        </div>
+        Henter spillere i faresonen
       </div>
     </div>
   </div>
   <h1>
-    Faresonen i 
+    Faresonen i
     Premier League
   </h1>
   <div
@@ -152,7 +144,6 @@ exports[`Dangerzone Should render properly when players have more than 1 yellow 
       >
         <div
           className="item"
-          data-value={undefined}
           onClick={[Function]}
           role="listitem"
         >
@@ -168,20 +159,21 @@ exports[`Dangerzone Should render properly when players have more than 1 yellow 
               className="description"
             >
               1
-               spillere
+               
+              spillere
             </div>
             <div
               className="list"
             >
               <div
                 className="item"
-                data-value={undefined}
                 onClick={[Function]}
                 role="listitem"
               >
                 <i
                   aria-hidden="true"
                   className="user icon"
+                  onClick={[Function]}
                 />
                 <div
                   className="content"

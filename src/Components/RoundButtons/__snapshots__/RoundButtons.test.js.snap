@@ -7,7 +7,6 @@ exports[`<RoundButtons /> Should render properly 1`] = `
 >
   <div
     className="item"
-    data-value={undefined}
     onClick={[Function]}
     role="listitem"
   >
@@ -19,7 +18,8 @@ exports[`<RoundButtons /> Should render properly 1`] = `
       <span
         className="startDate"
       >
-        Starter: 
+        Starter:
+         
         25.04.2018
       </span>
     </a>

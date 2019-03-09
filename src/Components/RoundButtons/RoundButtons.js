@@ -37,7 +37,9 @@ class RoundButtons extends Component {
     <a href={this.createUrl(roundInfo)} className="round-buttons">
       {roundInfo.name}
       <span className="startDate">
-        Starter: {moment(roundInfo.startdate).format("DD.MM.YYYY")}
+        Starter: 
+        {" "}
+        {moment(roundInfo.startdate).format("DD.MM.YYYY")}
       </span>
     </a>
   );

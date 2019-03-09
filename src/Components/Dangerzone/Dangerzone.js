@@ -17,7 +17,8 @@ const Dangerzone = props => {
         <Message.Header>Faresonen ikke tilgjengelig</Message.Header>
         <p>
           Det er ingen spillere i Faresonen for
-          {props.leagueName}.
+          {props.leagueName}
+.
         </p>
       </Message>
     );
@@ -28,7 +29,10 @@ const Dangerzone = props => {
       <Dimmer active={props.loading}>
         <Loader>Henter spillere i faresonen</Loader>
       </Dimmer>
-      <h1>Faresonen i {props.leagueName}</h1>
+      <h1>
+Faresonen i
+        {props.leagueName}
+      </h1>
       <Grid columns={4}>
         {props.players.map(team => (
           <Grid.Column key={team.name}>
@@ -37,7 +41,9 @@ const Dangerzone = props => {
                 <List.Content>
                   <List.Header>{team.name}</List.Header>
                   <List.Description>
-                    {team.players.length} spillere
+                    {team.players.length}
+                    {" "}
+spillere
                   </List.Description>
                   <List.List>
                     {team.players.map(player => (
@@ -46,7 +52,8 @@ const Dangerzone = props => {
                         <List.Content>
                           <List.Header>{player.name}</List.Header>
                           <List.Description>
-                            {player.value1}{" "}
+                            {player.value1}
+                            {" "}
                             {player.value1 > 1 ? "gule kort" : "gult kort"}
                             {", "}
                             {team.name}

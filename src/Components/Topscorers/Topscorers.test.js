@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 import TopScorers from "./Topscorers";
 
 describe("<TopScorers />", () => {
-  it("Should render corretly", () => {
+  it("Should render correctly", () => {
     let tree = renderer.create(
       <TopScorers
         players={[
@@ -25,6 +25,4 @@ describe("<TopScorers />", () => {
     tree = renderer.create(<TopScorers players={[]} loading={false} />);
     expect(tree).toMatchSnapshot();
   });
-
-  it("");
 });
