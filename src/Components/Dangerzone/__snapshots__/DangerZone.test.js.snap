@@ -19,7 +19,7 @@ exports[`Dangerzone Should render properly 1`] = `
     </div>
   </div>
   <h1>
-    Faresonen i
+    Faresonen i 
     Premier League
   </h1>
   <div
@@ -49,8 +49,7 @@ exports[`Dangerzone Should render properly 1`] = `
               className="description"
             >
               1
-               
-              spillere
+               spillere
             </div>
             <div
               className="list"
@@ -129,7 +128,7 @@ exports[`Dangerzone Should render properly when players have more than 1 yellow 
     </div>
   </div>
   <h1>
-    Faresonen i
+    Faresonen i 
     Premier League
   </h1>
   <div
@@ -159,8 +158,7 @@ exports[`Dangerzone Should render properly when players have more than 1 yellow 
               className="description"
             >
               1
-               
-              spillere
+               spillere
             </div>
             <div
               className="list"
