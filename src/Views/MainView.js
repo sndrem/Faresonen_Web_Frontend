@@ -1,12 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Grid} from "semantic-ui-react";
+import ReactGA from "react-ga";
+import { Grid } from "semantic-ui-react";
 import RoundListContainer from "../Components/RoundList/Containers/RoundListContainer";
 import FaresoneMenu from "../Components/Menu/FaresoneMenu";
 import Steps from "../Components/ProcedureSteps/Steps";
 
-const MainView = (props) => {
-  const {leagueName, tournamentId, seasonId} = props.match.params;
+ReactGA.pageview("/ligaside");
+
+const MainView = props => {
+  const { leagueName, tournamentId, seasonId } = props.match.params;
   return (
     <div>
       <FaresoneMenu />
@@ -27,8 +30,8 @@ const MainView = (props) => {
 
 MainView.propTypes = {
   match: PropTypes.shape({
-    params: PropTypes.object.isRequired,
-  }).isRequired,
+    params: PropTypes.object.isRequired
+  }).isRequired
 };
 
 export default MainView;

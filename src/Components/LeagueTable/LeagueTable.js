@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import {Table, Segment, Dimmer, Loader} from "semantic-ui-react";
+import { Table, Segment, Dimmer, Loader } from "semantic-ui-react";
 import axios from "axios";
 import LeagueTableItem from "./LeagueTableItem";
 
-const LeagueTable = ({tableColors, table = []}) => {
+const LeagueTable = ({ tableColors, table = [] }) => {
   const [leagueName, setLeagueName] = useState("");
   const [loading, setLoading] = useState(true);
 
@@ -51,10 +51,7 @@ const LeagueTable = ({tableColors, table = []}) => {
       <Dimmer active={loading}>
         <Loader>Henter tabell</Loader>
       </Dimmer>
-      <h1>
-        Tabell:
-        {leagueName}
-      </h1>
+      <h1>Tabell: {leagueName}</h1>
       <Table>
         <Table.Header>
           <Table.Row>
